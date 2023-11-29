@@ -1,0 +1,127 @@
+<div class="modal modal-info fade in" id="{{modal}}" data-backdrop="static">
+    <div class="modal-dialog modal-lg" style="max-width: 1150px;">
+        <div class="modal-content">
+            <form [formGroup]="userForm" (submit)="onSubmit();">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{title}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Nome</label>
+                                <input
+                                    type="text"
+                                    formControlName="username"
+                                    name="username"
+                                    class="form-control"
+                                    placeholder="Nome"
+                                    [ngClass]="{ 'is-invalid': submitted && f.username.errors, 'is-valid': f.username.touched && !f.username.errors }"
+                                />
+                                <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['username'].errors.required">O campo nome é obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Sobre Nome</label>
+                                <input
+                                    type="text"
+                                    formControlName="surname"
+                                    name="surname"
+                                    class="form-control"
+                                    placeholder="Sobre Nome"
+                                    [ngClass]="{ 'is-invalid': submitted && f.surname.errors, 'is-valid': f.surname.touched && !f.surname.errors }"
+                                />
+                                <div *ngIf="submitted && f['surname'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['surname'].errors.required">O campo sobre nome é obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa-editl"></i> Telefone</label>
+                                <input
+                                    type="text"
+                                    formControlName="cell_phone"
+                                    name="cell_phone"
+                                    class="form-control"
+                                    placeholder="Telefone"
+                                    [ngClass]="{ 'is-invalid': submitted && f.cell_phone.errors, 'is-valid': f.cell_phone.touched && !f.cell_phone.errors }"
+                                />
+
+                                <div *ngIf="submitted && f['cell_phone'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['cell_phone'].errors.required">O campo telefone é obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa-editl"></i> Password</label>
+                                <input
+                                    type="password"
+                                    formControlName="password"
+                                    name="password"
+                                    class="form-control"
+                                    placeholder="Password"
+                                    [ngClass]="{ 'is-invalid': submitted && f.password.errors, 'is-valid': f.password.touched && !f.password.errors }"
+                                />
+
+                                <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['password'].errors.required">O campo password é obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa-editl"></i> Email</label>
+                                <input type="email" formControlName="email" name="email" class="form-control" placeholder="Email" [ngClass]="{ 'is-invalid': submitted && f.email.errors, 'is-valid': f.email.touched && !f.email.errors }" />
+
+                                <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['email'].errors.required">O campo email é obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Genero</label>
+                                <select formControlName="gender_id" name="gender_id" class="form-select" [ngClass]="{ 'is-invalid': submitted && f.gender_id.errors, 'is-valid': f.gender_id.touched && !f.gender_id.errors }">
+                                    <option *ngFor="let item of genders" value="{{item.id}}">{{item.name}}</option>
+                                </select>
+                                <div *ngIf="submitted && f['gender_id'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['gender_id'].errors.required">O campo gênero é obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> País</label>
+                                <select formControlName="country_id" name="country_id" class="form-select" [ngClass]="{ 'is-invalid': submitted && f.country_id.errors, 'is-valid': f.country_id.touched && !f.country_id.errors }">
+                                    <option *ngFor="let item of countries" value="{{item.id}}">{{item.name}}</option>
+                                </select>
+                                <div *ngIf="submitted && f['country_id'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['country_id'].errors.required">O campo país é obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button class="btn btn-danger btn-sm" type="reset" [disabled]="userForm.pristine && !submitted" (click)="onReset()">Limpar</button>
+                    <button class="btn btn-success btn-sm mr-1" type="submit" [disabled]="userForm.valid">Validar</button>
+                    <button type="submit" [disabled]="userForm.pristine || userForm.invalid" class="btn btn-primary btn-sm">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

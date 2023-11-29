@@ -1,0 +1,94 @@
+<!-- Header -->
+<div class="header bg-green pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <h6 class="h2 text-white d-inline-block mb-0">{{ 'header.invoice.title' | translate }}</h6>
+                </div>
+                <div class="col-lg-6 col-5 text-right">
+                    <a class="btn btn-outline-default btn-sm" href="#" routerLink="register">
+                        <span class="nav-link-text">{{ 'btn.register' | translate }}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page content -->
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header border-0">
+                </div>
+                <!-- Light table -->
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>#</th>
+                                <th class="sort">{{ 'table.customer' | translate}}</th>
+                                <th class="sort">{{ 'table.sigla_doc' | translate}}</th>
+                                <th class="sort">{{ 'table.sequence' | translate}}</th>
+                                <th class="text-center">{{ 'table.status' | translate}}</th>
+                                <th class="text-right">{{ 'table.total' | translate}}</th>
+                                <th class="text-right">{{ 'table.open_amount' | translate}}</th>
+                                <th class="text-center">{{ 'table.status' | translate}}</th>
+                                <th class="sort">{{ 'table.date' | translate}}</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="list" *ngIf="invoices">
+                            <tr *ngFor="let item of invoices; index as i">
+                                <td>{{ i+1 }}</td>
+                                <th scope="row"><span class="name mb-0 text-sm">{{ item.customer.name}}</span></th>
+                                <th scope="row"><span class="name mb-0 text-sm">{{ item.sigla_doc }}</span></th>
+                                <td class="text-center">{{ item.sequence }}</td>
+                                <td class="m-0 text-center">
+                                    <span class="badge badge-lg badge-{{item.status === 'N' ? 'success' : 'danger'}}">{{
+                                        'table.' + item.status | translate
+                                        }}</span>
+                                </td>
+                                <td class="text-right">{{ item.total | to_kwanza }}</td>
+                                <td class="text-right">{{ item.open_amount | to_kwanza }}</td>
+                                <td>
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h5>{{progressbar(item.total, item.open_amount)}}%</h5>
+                                            <div class="progress progress-xs mb-0">
+                                                <div class="progress-bar bg-orange" role="progressbar"
+                                                    aria-valuenow="{progressbar(item.total, item.open_amount)}"
+                                                    aria-valuemin="0" aria-valuemax="100"
+                                                    ng-style="{'width': progressbar(item.total, item.open_amount) + '%'}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="budget">{{ item.created_at | date }}</td>
+                                <td class="text-right">
+                                    <div class="dropdown">
+                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                            <a class="dropdown-item" href="#">Opções</a>
+                                            <button type="button" class="dropdown-item" (click)="print(item)">
+                                                Visualizar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

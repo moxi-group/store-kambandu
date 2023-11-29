@@ -1,0 +1,99 @@
+<!-- Header -->
+<div class="header">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <h6 class="h2 d-inline-block mb-0">Registo de Factura</h6>
+                </div>
+                <div class="col-lg-6 col-5 text-right">
+
+                    <h6 class="h2 d-inline-block mb-0">
+                        TOTAL RECEBIDO
+                        <br>
+                        <strong>{{ this._invoicesService.total_received | to_kwanza }}</strong>
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page content -->
+
+<div class="container-fluid">
+    <ng-wizard [config]="config" (stepChanged)="stepChanged($event)">
+        <ng-wizard-step [title]="'Cliente e Tipo de Facturação'" [canEnter]="true"
+            [description]="'Selecionar Cliente e Tipo de Facturação'"
+            [canExit]="isValidFunctionReturnsBoolean.bind(this)">
+
+            <div class="m-2">
+                <app-add-customer></app-add-customer>
+            </div>
+        </ng-wizard-step>
+
+        <ng-wizard-step [title]="'Linhas Facturação'" [description]="'Adicionar as Linhas Facturação'"
+            [canExit]="isValidFunctionReturnsBoolean.bind(this)">
+            <div class="m-2">
+                <add-product-invoice></add-product-invoice>
+            </div>
+        </ng-wizard-step>
+    </ng-wizard>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header pb-0">
+                    <div class="d-flex align-items-center">
+                        <p class="">Informações Cliente</p>
+                    </div>
+                </div>
+                <div class="card-body" *ngIf="this._invoicesService.customer">
+                    <h5>Nome<span class="font-weight-light">: {{this._invoicesService.customer.name}} </span></h5>
+                    <h5>NIF<span class="font-weight-light">: {{this._invoicesService.customer.nif}} </span></h5>
+                    <h5>E-mail<span class="font-weight-light">: {{this._invoicesService.customer.email}} </span></h5>
+                    <h5>Telefone<span class="font-weight-light">: {{this._invoicesService.customer.phone_number}}
+                        </span></h5>
+                    <h5>Endereço<span class="font-weight-light">: {{this._invoicesService.customer.address}} </span>
+                    </h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header pb-0">
+                    <div class="d-flex align-items-center">
+                        <p class="">Informações Serie</p>
+                    </div>
+                </div>
+                <div class="card-body" *ngIf="this._invoicesService.serie">
+                    <h5>Nome<span class="font-weight-light">: {{this._invoicesService.serie.name}} </span></h5>
+                    <h5>Tipo Documento<span class="font-weight-light">: {{this._invoicesService.serie?.document?.name}}
+                        </span></h5>
+                    <h5>Sigla<span class="font-weight-light">: {{this._invoicesService.serie.document.slug}} </span>
+                    </h5>
+                    <h5>Sequencia<span class="font-weight-light">: {{this._invoicesService.serie.start_number}} </span>
+                    </h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header pb-0">
+                    <div class="d-flex align-items-center">
+                        <p class="">Resumo da Faturação</p>
+                    </div>
+                </div>
+                <div class="card-body" *ngIf="this._invoicesService.total">
+                    <h5>{{ 'table.tax_value' | translate}}<span class="font-weight-light">:
+                            {{this._invoicesService.total | to_kwanza}} </span></h5>
+                    <h5>{{ 'table.tax_without_tax' | translate}}<span class="font-weight-light">:
+                            {{this._invoicesService.total | to_kwanza }} </span></h5>
+                    <h5>{{ 'table.totla' | translate}}<span class="font-weight-light">: {{this._invoicesService.total |
+                            to_kwanza }} </span></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

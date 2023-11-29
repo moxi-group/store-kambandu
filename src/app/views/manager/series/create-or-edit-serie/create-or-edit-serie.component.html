@@ -1,0 +1,57 @@
+<div class="modal fade" id="{{modal}}" tabindex="-1" role="dialog" aria-labelledby="CreateOrEditSerieModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form [formGroup]="serieForm" (submit)="onSubmit();">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="CreateOrEditDocumentModal">{{title}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label class="control-label">{{ 'label.description' | translate}}</label>
+                        <input type="text" formControlName="name" name="name" class="form-control" placeholder="LDA2023"
+                            [ngClass]="{ 'is-invalid': submitted && f.name.errors, 'is-valid': f.name.touched && !f.name.errors }" />
+                        <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                            <div *ngIf="f['name'].errors.required">{{ 'errors.required' | translate}}</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">{{ 'label.sigla' | translate}}</label>
+                        <input type="text" formControlName="start_number" name="start_number" class="form-control"
+                            placeholder="Nº de sequencia"
+                            [ngClass]="{ 'is-invalid': submitted && f.start_number.errors, 'is-valid': f.start_number.touched && !f.start_number.errors }" />
+                        <div *ngIf="submitted && f['start_number'].errors" class="invalid-feedback">
+                            <div *ngIf="f['start_number'].errors.required">{{ 'errors.required' | translate}}</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">{{ 'label.document' | translate}}</label>
+                        <select formControlName="document_uuid" name="document_uuid" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.document_uuid.errors, 'is-valid': f.document_uuid.touched && !f.document_uuid.errors }">
+
+                            <option *ngFor="let document of documents" [value]="document.uuid">{{ document.name }} - {{
+                                document.slug }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger btn-sm" type="reset" [disabled]="serieForm.pristine && !submitted"
+                        (click)="onReset()">{{ 'btn.clean' | translate}}</button>
+                    <button class="btn btn-success btn-sm mr-1" type="submit" [disabled]="serieForm.valid">{{
+                        'btn.validate' | translate}}</button>
+                    <button type="submit" [disabled]="serieForm.pristine || serieForm.invalid"
+                        class="btn btn-primary btn-sm">{{ 'btn.save' | translate}}</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

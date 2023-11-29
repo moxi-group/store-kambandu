@@ -1,0 +1,60 @@
+<div class="modal fade" id="{{modal}}" tabindex="-1" role="dialog" aria-labelledby="createOrEditPaymentMethod"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form [formGroup]="paymentMethodForm" (submit)="onSubmit();">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createOrEditPaymentMethod">{{title}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label">{{ 'label.name' | translate}}</label>
+                        <input type="text" formControlName="name" name="name" class="form-control"
+                            placeholder="Numerário ou Transferencia bancária ..."
+                            [ngClass]="{ 'is-invalid': submitted && f.name.errors, 'is-valid': f.name.touched && !f.name.errors }" />
+                        <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                            <div *ngIf="f['name'].errors.required">{{ 'errors.required' | translate}}</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">{{ 'label.description' | translate}}</label>
+                        <input type="text" formControlName="description" name="description" class="form-control"
+                            placeholder="Descrição"
+                            [ngClass]="{ 'is-invalid': submitted && f.description.errors, 'is-valid': f.description.touched && !f.description.errors }" />
+                        <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
+                            <div *ngIf="f['description'].errors.required">{{ 'errors.required' | translate}}</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">{{ 'label.use_bank' | translate}}</label>
+                        <input type="checkbox" formControlName="use_bank" name="use_bank" class="m-3"
+                            placeholder="Descrição"
+                            [ngClass]="{ 'is-invalid': submitted && f.use_bank.errors, 'is-valid': f.use_bank.touched && !f.use_bank.errors }" />
+                        <div *ngIf="submitted && f['use_bank'].errors" class="invalid-feedback">
+                            <div *ngIf="f['use_bank'].errors.required">{{ 'errors.required' | translate}}</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-danger btn-sm" type="reset"
+                        [disabled]="paymentMethodForm.pristine && !submitted" (click)="onReset()">{{ 'btn.clean' |
+                        translate}}</button>
+                    <button class="btn btn-success btn-sm mr-1" type="submit" [disabled]="paymentMethodForm.valid">{{
+                        'btn.validate' | translate}}</button>
+                    <button type="submit" [disabled]="paymentMethodForm.pristine || paymentMethodForm.invalid"
+                        class="btn btn-primary btn-sm">{{ 'btn.save' | translate}}</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

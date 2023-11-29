@@ -1,0 +1,343 @@
+<body class="bg-default">
+    <!-- Navbar -->
+    <nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="https://kambandu.com/">
+                <img src="/assets/logo_white.png">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse"
+                aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse navbar-custom-collapse collapse" id="navbar-collapse">
+                <div class="navbar-collapse-header">
+                    <div class="row">
+                        <div class="col-6 collapse-brand">
+                            <a href="#">
+                                <img src="/assets/logo_white.png">
+                            </a>
+                        </div>
+                        <div class="col-6 collapse-close">
+                            <button type="button" class="navbar-toggler" data-toggle="collapse"
+                                data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                                <span></span>
+                                <span></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <span class="nav-link-inner--text">Dashboard</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <hr class="d-lg-none" />
+                <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-icon" href="#" target="_blank" data-toggle="tooltip"
+                            data-original-title="Like us on Facebook">
+                            <i class="fab fa-facebook-square"></i>
+                            <span class="nav-link-inner--text d-lg-none">Facebook</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-icon" href="#" target="_blank" data-toggle="tooltip"
+                            data-original-title="Follow us on Instagram">
+                            <i class="fab fa-instagram"></i>
+                            <span class="nav-link-inner--text d-lg-none">Instagram</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-icon" href="#" target="_blank" data-toggle="tooltip"
+                            data-original-title="Follow us on Twitter">
+                            <i class="fab fa-twitter-square"></i>
+                            <span class="nav-link-inner--text d-lg-none">Twitter</span>
+                        </a>
+                    </li>
+                    <li class="nav-item d-none d-lg-block ml-lg-4">
+                        <a href="#" target="_blank" class="btn btn-neutral btn-icon" routerLink="/subscriptions">
+                            <span class="btn-inner--icon">
+                                <i class="fas fa-shopping-cart mr-2"></i>
+                            </span>
+                            <span class="nav-link-inner--text">Subscrever agora</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Main content -->
+
+    <div class="main-content">
+        <!-- Header -->
+        <div class="header bg-gradient-primary py-7 py-lg-8 pt-lg-9">
+            <div class="separator separator-bottom separator-skew zindex-100">
+            </div>
+        </div>
+        <!-- Page content -->
+        <div class="container mt--8 pb-5">
+            <form [formGroup]="subscriptionForm" (submit)="onSubmit();">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5 col-md-7">
+                        <div class="card bg-secondary border-0 mb-0">
+                            <div class="card-body px-lg-5 py-lg-5">
+                                <div class="text-center text-muted mb-4">
+                                    <h3>{{'register_now' | translate}}</h3>
+                                    <small>{{'company_info' | translate}}</small>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <div class="input-group input-group-merge input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-briefcase-24"></i></span>
+                                        </div>
+                                        <input type="text" formControlName="company_name" name="company_name"
+                                            class="form-control" placeholder="Nome legal da Empresa"
+                                            [ngClass]="{ 'is-invalid': submitted && f.company_name.errors, 'is-valid': f.company_name.touched && !f.company_name.errors }" />
+                                        <div *ngIf="submitted && f['company_name'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['company_name'].errors.required">{{ 'errors.required' |
+                                                translate}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <div class="input-group input-group-merge input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-briefcase-24"></i></span>
+                                        </div>
+                                        <input type="text" formControlName="company_nif" name="company_nif"
+                                            class="form-control" placeholder="Número de idenficação Fiscal (NIF)"
+                                            [ngClass]="{ 'is-invalid': submitted && f.company_nif.errors, 'is-valid': f.company_nif.touched && !f.company_nif.errors }" />
+                                        <div *ngIf="submitted && f['company_nif'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['company_nif'].errors.required">{{ 'errors.required' |
+                                                translate}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <div class="input-group input-group-merge input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-map-big"></i></span>
+                                        </div>
+                                        <input type="text" formControlName="company_address_detail"
+                                            name="company_address_detail" class="form-control"
+                                            placeholder="Endereço detalhado"
+                                            [ngClass]="{ 'is-invalid': submitted && f.company_address_detail.errors, 'is-valid': f.company_street_name.touched && !f.company_address_detail.errors }" />
+                                        <div *ngIf="submitted && f['company_address_detail'].errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="f['company_address_detail'].errors.required">{{
+                                                'errors.required' |
+                                                translate}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <div class="input-group input-group-merge input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-map-big"></i></span>
+                                        </div>
+                                        <input type="text" formControlName="company_street_name"
+                                            name="company_street_name" class="form-control" placeholder="Rua"
+                                            [ngClass]="{ 'is-invalid': submitted && f.company_street_name.errors, 'is-valid': f.company_street_name.touched && !f.company_street_name.errors }" />
+                                        <div *ngIf="submitted && f['company_street_name'].errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="f['company_street_name'].errors.required">{{ 'errors.required' |
+                                                translate}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <div class="input-group input-group-merge input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-map-big"></i></span>
+                                        </div>
+                                        <input type="text" formControlName="company_city" name="company_city"
+                                            class="form-control" placeholder="Cidade"
+                                            [ngClass]="{ 'is-invalid': submitted && f.company_city.errors, 'is-valid': f.company_street_name.touched && !f.company_city.errors }" />
+                                        <div *ngIf="submitted && f['company_city'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['company_city'].errors.required">{{ 'errors.required' |
+                                                translate}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <div class="input-group input-group-merge input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                                        </div>
+                                        <input type="email" formControlName="company_email" name="company_email"
+                                            class="form-control" placeholder="E-mail da Empresa"
+                                            [ngClass]="{ 'is-invalid': submitted && f.company_email.errors, 'is-valid': f.company_street_name.touched && !f.company_email.errors }" />
+                                        <div *ngIf="submitted && f['company_email'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['company_email'].errors.required">{{ 'errors.required' |
+                                                translate}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <div class="input-group input-group-merge input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-tablet-button"></i></span>
+                                        </div>
+                                        <input type="text" formControlName="company_cell_phone"
+                                            name="company_cell_phone" class="form-control"
+                                            placeholder="Nº telefone da Empresa"
+                                            [ngClass]="{ 'is-invalid': submitted && f.company_cell_phone.errors, 'is-valid': f.company_street_name.touched && !f.company_cell_phone.errors }" />
+                                        <div *ngIf="submitted && f['company_cell_phone'].errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="f['company_cell_phone'].errors.required">{{ 'errors.required' |
+                                                translate}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <div class="input-group input-group-merge input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-tag"></i></span>
+                                        </div>
+                                        <input type="text" formControlName="company_postal_code"
+                                            name="company_postal_code" class="form-control" placeholder="Código Postal"
+                                            [ngClass]="{ 'is-invalid': submitted && f.company_postal_code.errors, 'is-valid': f.company_street_name.touched && !f.company_postal_code.errors }" />
+                                        <div *ngIf="submitted && f['company_postal_code'].errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="f['company_postal_code'].errors.required">{{ 'errors.required' |
+                                                translate}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <div class="input-group input-group-merge input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-ui-04"></i></span>
+                                        </div>
+
+                                        <select formControlName="company_regime" name="company_regime"
+                                            class="form-control"
+                                            [ngClass]="{ 'is-invalid': submitted && f.company_regime.errors, 'is-valid': f.company_street_name.touched && !f.company_regime.errors }">
+
+                                            <option value="Regime Simplificado">Regime Simplificado</option>
+                                            <option value="Regime Caixa">Regime Caixa</option>
+                                        </select>
+
+                                        <div *ngIf="submitted && f['company_regime'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['company_regime'].errors.required">{{ 'errors.required' |
+                                                translate}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-7">
+                        <div class="card bg-secondary border-0 mb-0">
+                            <div class="card-body px-lg-5 py-lg-5">
+                                <div class="text-center text-muted mb-4">
+                                    <small>{{'user_info' | translate}}</small>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <div class="input-group input-group-merge input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-align-left-2"></i></span>
+                                        </div>
+                                        <input type="text" formControlName="user_name" name="user_name"
+                                            class="form-control" placeholder="Nome do utilizador (Admin)"
+                                            [ngClass]="{ 'is-invalid': submitted && f.user_name.errors, 'is-valid': f.user_name.touched && !f.user_name.errors }" />
+                                        <div *ngIf="submitted && f['user_name'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['user_name'].errors.required">{{ 'errors.required' |
+                                                translate}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <div class="input-group input-group-merge input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                                        </div>
+                                        <input type="email" formControlName="user_email" name="user_email"
+                                            class="form-control" placeholder="E-mail do utilizador (Admin)"
+                                            [ngClass]="{ 'is-invalid': submitted && f.user_email.errors, 'is-valid': f.user_email.touched && !f.user_email.errors }" />
+                                        <div *ngIf="submitted && f['user_email'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['user_email'].errors.required">{{ 'errors.required' |
+                                                translate}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <div class="input-group input-group-merge input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-tablet-button"></i></span>
+                                        </div>
+                                        <input type="text" formControlName="user_phone_number" name="user_phone_number"
+                                            class="form-control" placeholder="Nº telefone do utilizador (Admin)"
+                                            [ngClass]="{ 'is-invalid': submitted && f.user_phone_number.errors, 'is-valid': f.user_phone_number.touched && !f.user_phone_number.errors }" />
+                                        <div *ngIf="submitted && f['user_phone_number'].errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="f['user_phone_number'].errors.required">{{ 'errors.required' |
+                                                translate}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <div class="input-group input-group-merge input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                        </div>
+                                        <input type="password" formControlName="user_password" name="user_password"
+                                            class="form-control" placeholder="Senha ****"
+                                            [ngClass]="{ 'is-invalid': submitted && f.user_password.errors, 'is-valid': f.user_password.touched && !f.user_password.errors }" />
+                                        <div *ngIf="submitted && f['user_password'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['user_password'].errors.required">{{ 'errors.required' |
+                                                translate}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <button class="btn btn-danger btn-sm" type="reset"
+                                        [disabled]="subscriptionForm.pristine && !submitted" (click)="onReset()">{{
+                                        'btn.clean' | translate}}</button>
+                                    <button class="btn btn-success btn-sm mr-1" type="submit"
+                                        [disabled]="subscriptionForm.valid">{{
+                                        'btn.validate' | translate}}</button>
+                                    <button type="submit"
+                                        [disabled]="subscriptionForm.pristine || subscriptionForm.invalid"
+                                        class="btn btn-primary btn-sm">{{ 'btn.save' | translate}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</body>

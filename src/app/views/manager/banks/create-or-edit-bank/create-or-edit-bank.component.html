@@ -1,0 +1,67 @@
+<div class="modal fade" id="{{modal}}" tabindex="-1" role="dialog" aria-labelledby="CreateOrEditBankModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form [formGroup]="bankForm" (submit)="onSubmit();">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="CreateOrEditBankModal">{{title}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label class="control-label">{{ 'label.name' | translate}}</label>
+                        <input type="text" formControlName="name" name="name" class="form-control" placeholder="LDA2023"
+                            [ngClass]="{ 'is-invalid': submitted && f.name.errors, 'is-valid': f.name.touched && !f.name.errors }" />
+                        <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                            <div *ngIf="f['name'].errors.required">{{ 'errors.required' | translate}}</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">{{ 'label.account_number' | translate}}</label>
+                        <input type="text" formControlName="account_number" name="account_number" class="form-control"
+                            placeholder=""
+                            [ngClass]="{ 'is-invalid': submitted && f.account_number.errors, 'is-valid': f.account_number.touched && !f.account_number.errors }" />
+                        <div *ngIf="submitted && f['account_number'].errors" class="invalid-feedback">
+                            <div *ngIf="f['account_number'].errors.required">{{ 'errors.required' | translate}}</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">{{ 'label.iban' | translate}}</label>
+                        <input type="text" formControlName="iban" name="iban" class="form-control" placeholder=""
+                            [ngClass]="{ 'is-invalid': submitted && f.iban.errors, 'is-valid': f.iban.touched && !f.iban.errors }" />
+                        <div *ngIf="submitted && f['iban'].errors" class="invalid-feedback">
+                            <div *ngIf="f['iban'].errors.required">{{ 'errors.required' | translate}}</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">{{ 'label.description' | translate}}</label>
+                        <input type="text" formControlName="description" name="description" class="form-control"
+                            placeholder=""
+                            [ngClass]="{ 'is-invalid': submitted && f.description.errors, 'is-valid': f.description.touched && !f.description.errors }" />
+                        <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
+                            <div *ngIf="f['description'].errors.required">{{ 'errors.required' | translate}}</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger btn-sm" type="reset" [disabled]="bankForm.pristine && !submitted"
+                        (click)="onReset()">{{ 'btn.clean' | translate}}</button>
+                    <button class="btn btn-success btn-sm mr-1" type="submit" [disabled]="bankForm.valid">{{
+                        'btn.validate' | translate}}</button>
+                    <button type="submit" [disabled]="bankForm.pristine || bankForm.invalid"
+                        class="btn btn-primary btn-sm">{{ 'btn.save' | translate}}</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,153 @@
+<div class="row">
+    <div class="col-md-5  col-sm-12">
+        <div class="table-responsive tableFixHead">
+            <h3 class="control-label">Lista dos Produtos</h3>
+
+            <table class="table align-items-center table-flush table-hover">
+                <thead class="thead-light">
+                    <tr class="mt-2">
+                        <th>#</th>
+                        <th scope="col" class="sort">{{ 'table.name' | translate}}</th>
+                        <th scope="col" class="sort">{{ 'table.tax' | translate}}</th>
+                        <th scope="col" class="sort">{{ 'table.price' | translate}}</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+
+                <tbody class="list" *ngIf="products">
+                    <tr *ngFor="let item of products; index as i">
+                        <td>{{ i + 1 }}</td>
+                        <td class="budget">{{ item.name }}</td>
+                        <td class="budget">{{ item.tax.code }} - {{ item.tax.percentage }}%</td>
+                        <td class="budget">{{ item.price | to_kwanza }}</td>
+                        <td class="text-right">
+                            <button type="button" class="btn btn-sm btn-success btn-round btn-icon" data-toggle="modal"
+                                (click)="patchProduct(item)" data-target="#AddQuantiteModal">
+                                <i class="ni ni-fat-add"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-md-7 col-sm-12">
+        <h3 class="control-label text-right">Linhas da Factura</h3>
+
+        <div class="table-responsive table-lines">
+            <table class="table align-items-center table-flush table-striped">
+                <thead class="thead-light">
+                    <tr class="mt-2">
+                        <th>#</th>
+                        <th class="">{{ 'table.name' | translate}}</th>
+                        <th class="text-center">{{ 'table.quantity' | translate}}</th>
+                        <th class="text-right">{{ 'table.price' | translate}}</th>
+                        <th class="text-right">{{ 'table.tax_without_tax' | translate}}</th>
+                        <th class="text-right">{{ 'table.total' | translate}}</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody class="list border-line">
+                    <tr *ngFor="let line of this._invoicesService.invoiceObject.lines; index as i">
+                        <td>{{ i + 1 }}</td>
+                        <td class="budget">{{ line.name }}</td>
+                        <td class="budget text-center">{{ line.quantity }}</td>
+                        <td class="budget text-right">{{ line.price | to_kwanza }}</td>
+                        <td class="budget text-right">{{ line.total_without_tax | to_kwanza }}</td>
+                        <td class="budget text-right">{{ line.total | to_kwanza }}</td>
+                        <td class="text-right">
+                            <button type="button" class="btn btn-sm btn-danger btn-round btn-icon"
+                                (click)="remove_line(line.uuid)">
+                                <i class="ni ni-fat-remove"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="row"
+            *ngIf="this._invoicesService.serie?.document?.slug === 'FR' && this._invoicesService.invoiceObject.lines.length">
+            <section *ngIf="this._invoicesService.invoiceObject.lines.length && active_payment_line || true">
+                <h3>Como quer pagar?</h3>
+                <div class="table-responsive table-lines">
+                    <table class="table align-items-center table-flush table-striped">
+                        <thead class="thead-light">
+                            <tr class="mt-2">
+                                <th class="">{{ 'Forma Pagamento' | translate}}</th>
+                                <th class="text-center">{{ 'Total Esperado' | translate}}</th>
+                                <th class="text-right">{{ 'Total Recebido' | translate}}</th>
+                                <th class="text-center">{{ 'Data Pagamento' | translate}}</th>
+                                <th class="text-right">{{ 'Ação' | translate}}</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="list border-line">
+                            <tr>
+                                <td class="">
+                                    <select [(ngModel)]="payment.payment_method_uuid" id="payment_method_uuid"
+                                        name="payment_method_uuid" class="form-control input-sm">
+                                        <option *ngFor="let payment of payment_methods" [value]="payment.uuid">
+                                            {{payment.name }}
+                                        </option>
+                                    </select>
+                                </td>
+
+                                <td class="text-right">
+                                    <input [disabled]="true" value="{{ this._invoicesService.total | to_kwanza }}"
+                                        type="text" class="form-control input-sm text-right" />
+                                </td>
+
+                                <th class="text-right">
+                                    <input [(ngModel)]="payment.amount_received" type="number" id="amount_received"
+                                        name="amount_received" class="form-control input-sm text-right"
+                                        placeholder="" />
+                                </th>
+
+                                <th class="text-right">
+                                    <input type="datetime" [(ngModel)]="payment.payment_date" id="payment_date"
+                                        name="payment_date" class="form-control input-sm text-right" placeholder="" />
+                                </th>
+
+                                <th class="text-right">
+                                    <button (click)="_add_payment_line()" [disabled]="active_payment_line" type="button"
+                                        class="btn btn-sm btn-danger btn-round btn-icon">
+                                        <i class="ni ni-fat-plus"></i> Adicionar
+                                    </button>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="table align-items-center table-flush table-hover"
+                        *ngIf="this._invoicesService.invoiceObject.payment_lines.length">
+                        <tbody class="list">
+                            <tr *ngFor="let item of this._invoicesService.invoiceObject.payment_lines; index as i">
+                                <td>{{ i + 1 }}</td>
+                                <td class="budget">{{ item.kind }}</td>
+                                <td class="budget">{{ item.payment_date | date }} </td>
+                                <td class="budget">{{ item.amount_received | to_kwanza }}</td>
+                                <td class="text-right">
+                                    <button type="button" class="btn btn-sm btn-danger btn-round btn-icon"
+                                        (click)="remove_payment_line(item.payment_method_uuid)">
+                                        <i class="ni ni-fat-remove"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </section>
+
+        </div>
+
+
+    </div>
+</div>
+
+<AddQuantiteModal [product]="product" [modal]=""></AddQuantiteModal>

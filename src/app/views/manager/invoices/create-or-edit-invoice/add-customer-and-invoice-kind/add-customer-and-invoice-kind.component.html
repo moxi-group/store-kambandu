@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-md-4 col-sm-12">
+        <label id="customer_uuid" class="control-label">{{ 'label.customer' | translate}}</label>
+        <select (change)="set_customer($event.target)" [(ngModel)]="this._invoicesService.invoiceObject.customer_uuid"
+            id="customer_uuid" name="customer_uuid" class="form-control input-sm">
+            <option *ngFor="let customer of customers" [value]="customer.uuid">{{ customer.name }}
+            </option>
+        </select>
+    </div>
+</div>
+
+<br>
+
+<div class="row">
+    <div class="col-md-4 col-sm-12">
+        <label id="serie_uuid" class="control-label">{{ 'label.serie' | translate}}</label>
+        <select (change)="set_serie($event.target)" [(ngModel)]="this._invoicesService.invoiceObject.serie_uuid"
+            id="serie_uuid" name="serie_uuid" class="form-control input-sm" (change)="_check_serie($event.target)">
+            <option *ngFor="let serie of series" [value]="serie.uuid">{{serie.document.slug
+                }} - {{ serie.name }}
+            </option>
+        </select>
+    </div>
+</div>
