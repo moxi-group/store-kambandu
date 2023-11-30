@@ -7,6 +7,7 @@ import { ProductsComponent } from './products/products.component';
 import { CustomersComponent } from './customers/customers.component';
 import { BanksComponent } from './banks/banks.component';
 import { CreateOrEditInvoiceComponent } from './invoices/create-or-edit-invoice/create-or-edit-invoice.component';
+import { StoresComponent } from './stores/stores.component';
 
 const routes: Routes = [
     {
@@ -42,6 +43,10 @@ const routes: Routes = [
             {
                 path: 'banks',
                 component: BanksComponent
+            },
+            {
+                path: 'stores',
+                component: StoresComponent
             }
         ]
     }

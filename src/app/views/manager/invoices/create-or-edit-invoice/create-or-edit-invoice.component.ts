@@ -1,5 +1,6 @@
 import { Component, OnInit, SimpleChange } from '@angular/core';
 import { of } from 'rxjs'
+import { Router } from '@angular/router';
 import { NgWizardConfig, NgWizardService, StepChangedArgs, StepValidationArgs, STEP_STATE, THEME } from 'ng-wizard';
 import { InvoicesService } from '../invoices.service';
 import { ApplicationService } from 'src/app/api/application.service';
@@ -44,6 +45,7 @@ export class CreateOrEditInvoiceComponent implements OnInit {
 
 
     constructor(
+        private router: Router,
         private ngWizardService: NgWizardService,
         public _invoicesService: InvoicesService,
         private _applicationService: ApplicationService
@@ -59,7 +61,6 @@ export class CreateOrEditInvoiceComponent implements OnInit {
         let is_valid_form = this._validations()
 
         if ( is_valid_form ) {
-            console.log( this._invoicesService.invoiceObject )
             this._create()
         }
 
@@ -68,8 +69,8 @@ export class CreateOrEditInvoiceComponent implements OnInit {
     _create() {
         this._invoicesService.create(this._invoicesService.invoiceObject)
         .subscribe(response => {
-            console.log(response)
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
+            this.router.navigate(['/managers/invoices'])
         })
     }
 

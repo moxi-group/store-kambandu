@@ -25,6 +25,8 @@ import { AddQuantityInvoiceComponent } from './invoices/create-or-edit-invoice/a
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AddCustomerAndInvoiceKindComponent } from './invoices/create-or-edit-invoice/add-customer-and-invoice-kind/add-customer-and-invoice-kind.component';
 import { AddProductInvoiceComponent } from './invoices/create-or-edit-invoice/add-product-invoice/add-product-invoice.component';
+import { StoresComponent } from './stores/stores.component';
+import { CreateOrEditStoreComponent } from './stores/create-or-edit-store/create-or-edit-store.component';
 
 
 const ngWizardConfig: NgWizardConfig = {
@@ -36,7 +38,6 @@ const ngWizardConfig: NgWizardConfig = {
         ManagersComponent,
         SeriesComponent,
         CreateOrEditSerieComponent,
-
 
         InvoicesComponent,
         CreateOrEditInvoiceComponent,
@@ -51,7 +52,10 @@ const ngWizardConfig: NgWizardConfig = {
         CustomersComponent,
         CreateOrEditCustomerComponent,
         BanksComponent,
-        CreateOrEditBankComponent
+        CreateOrEditBankComponent,
+
+        StoresComponent,
+        CreateOrEditStoreComponent
     ],
 
     imports: [
