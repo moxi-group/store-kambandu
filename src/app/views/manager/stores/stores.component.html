@@ -32,9 +32,8 @@
                             <tr>
                                 <th>#</th>
                                 <th scope="col" class="sort">{{ 'table.name' | translate}}</th>
-                                <th scope="col" class="sort">{{ 'table.document' | translate}}</th>
-                                <th scope="col" class="sort">{{ 'table.sequence' | translate}}</th>
-                                <th scope="col" class="sort">{{ 'table.status' | translate}}</th>
+                                <th scope="col" class="sort">{{ 'table.email' | translate}}</th>
+                                <th scope="col" class="sort">{{ 'table.address' | translate}}</th>
                                 <th scope="col" class="sort">{{ 'table.date' | translate}}</th>
                                 <th scope="col"></th>
                             </tr>
@@ -42,17 +41,9 @@
                         <tbody class="list" *ngIf="stores">
                             <tr *ngFor="let item of stores; index as i">
                                 <td>{{ i+1 }}</td>
-                                <th scope="row"><span class="name mb-0 text-sm">{{ item.document.slug
-                                        }} - {{ item.name }}</span></th>
-                                <th scope="row"><span class="name mb-0 text-sm">{{ item.document.name }}</span></th>
-                                <td class="budget">{{ item.start_number }}</td>
-                                <td>
-                                    <span class="badge badge-dot mr-4">
-                                        <i class="bg-green"></i>
-                                        <span class="status">{{ 'status.' + item.is_active.toString() | translate
-                                            }}</span>
-                                    </span>
-                                </td>
+                                <th scope="row"><span class="name mb-0 text-sm">{{ item.name }}</span></th>
+                                <th scope="row"><span class="name mb-0 text-sm">{{ item.email }}</span></th>
+                                <td class="budget">{{ item.address }}</td>
                                 <td class="budget">{{ item.created_at | date }}</td>
                                 <td class="text-right">
                                     <div class="dropdown">

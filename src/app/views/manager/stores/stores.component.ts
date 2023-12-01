@@ -29,7 +29,7 @@ export class StoresComponent implements OnInit {
 
     get_series() {
         this._storeService
-        .get_series()
+        .get_stores()
         .subscribe(response => {
             this.stores = Object(response)
         })

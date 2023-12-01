@@ -27,8 +27,10 @@ export class CreateOrEditStoreComponent implements OnInit {
         this.storeForm = this._formBuild.group({
             uuid: [{ value: null, disabled: true }],
             name: [null, Validators.required],
-            start_number: [1, Validators.required],
-            document_uuid: [null, Validators.required]
+            email: [null, Validators.required],
+            address: [null, Validators.required],
+            cell_phone: [null, Validators.required],
+            description: [null, Validators.required]
         })
 
 

@@ -20,9 +20,9 @@ export class StoresService {
     .set('Authorization', `Bearer ${this.token}`)
     .set('header-company-uuid', `${this.companyToken}`)
 
-    get_series() {
+    get_stores() {
         return this._http_client.get<any>(
-            `${environment.fullBaseUrl}/series`, { headers: this.headers }
+            `${environment.fullBaseUrl}/stores`, { headers: this.headers }
         )
     }
 

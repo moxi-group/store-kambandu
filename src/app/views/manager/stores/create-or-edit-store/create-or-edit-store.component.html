@@ -14,7 +14,8 @@
 
                     <div class="form-group">
                         <label class="control-label">{{ 'label.description' | translate}}</label>
-                        <input type="text" formControlName="name" name="name" class="form-control" placeholder="LDA2023"
+                        <input type="text" formControlName="name" name="name" class="form-control"
+                            placeholder="Nome da loja"
                             [ngClass]="{ 'is-invalid': submitted && f.name.errors, 'is-valid': f.name.touched && !f.name.errors }" />
                         <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
                             <div *ngIf="f['name'].errors.required">{{ 'errors.required' | translate}}</div>
@@ -22,24 +23,45 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label">{{ 'label.sigla' | translate}}</label>
-                        <input type="text" formControlName="start_number" name="start_number" class="form-control"
-                            placeholder="Nº de sequencia"
-                            [ngClass]="{ 'is-invalid': submitted && f.start_number.errors, 'is-valid': f.start_number.touched && !f.start_number.errors }" />
-                        <div *ngIf="submitted && f['start_number'].errors" class="invalid-feedback">
-                            <div *ngIf="f['start_number'].errors.required">{{ 'errors.required' | translate}}</div>
+                        <label class="control-label">{{ 'label.email' | translate}}</label>
+                        <input type="text" formControlName="email" name="email" class="form-control"
+                            placeholder="e-mail"
+                            [ngClass]="{ 'is-invalid': submitted && f.email.errors, 'is-valid': f.email.touched && !f.email.errors }" />
+                        <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                            <div *ngIf="f['email'].errors.required">{{ 'errors.required' | translate}}</div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label">{{ 'label.document' | translate}}</label>
-                        <select formControlName="document_uuid" name="document_uuid" class="form-control"
-                            [ngClass]="{ 'is-invalid': submitted && f.document_uuid.errors, 'is-valid': f.document_uuid.touched && !f.document_uuid.errors }">
-
-                            <option *ngFor="let document of documents" [value]="document.uuid">{{ document.name }} - {{
-                                document.slug }}</option>
-                        </select>
+                        <label class="control-label">{{ 'label.cell_phone' | translate}}</label>
+                        <input type="text" formControlName="cell_phone" name="cell_phone" class="form-control"
+                            placeholder="e-mail"
+                            [ngClass]="{ 'is-invalid': submitted && f.cell_phone.errors, 'is-valid': f.cell_phone.touched && !f.cell_phone.errors }" />
+                        <div *ngIf="submitted && f['cell_phone'].errors" class="invalid-feedback">
+                            <div *ngIf="f['cell_phone'].errors.required">{{ 'errors.required' | translate}}</div>
+                        </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="control-label">{{ 'label.address' | translate}}</label>
+                        <input type="text" formControlName="address" name="address" class="form-control"
+                            placeholder="endereço da loja"
+                            [ngClass]="{ 'is-invalid': submitted && f.address.errors, 'is-valid': f.address.touched && !f.address.errors }" />
+                        <div *ngIf="submitted && f['address'].errors" class="invalid-feedback">
+                            <div *ngIf="f['address'].errors.required">{{ 'errors.required' | translate}}</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">{{ 'label.description' | translate}}</label>
+                        <input type="text" formControlName="description" name="description" class="form-control"
+                            placeholder="Detalhes"
+                            [ngClass]="{ 'is-invalid': submitted && f.description.errors, 'is-valid': f.description.touched && !f.description.errors }" />
+                        <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
+                            <div *ngIf="f['description'].errors.required">{{ 'errors.required' | translate}}</div>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-danger btn-sm" type="reset" [disabled]="storeForm.pristine && !submitted"
