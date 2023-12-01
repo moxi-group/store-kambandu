@@ -32,8 +32,6 @@ export class CreateOrEditStoreComponent implements OnInit {
             cell_phone: [null, Validators.required],
             description: [null, Validators.required]
         })
-
-
     }
 
     ngOnInit(): void {

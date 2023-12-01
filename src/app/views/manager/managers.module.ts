@@ -28,6 +28,7 @@ import { AddProductInvoiceComponent } from './invoices/create-or-edit-invoice/ad
 import { StoresComponent } from './stores/stores.component';
 import { CreateOrEditStoreComponent } from './stores/create-or-edit-store/create-or-edit-store.component';
 import { ProvidersComponent } from './providers/providers.component';
+import { CreateOrEditProviderComponent } from './providers/create-or-edit-provider/create-or-edit-provider.component';
 
 
 const ngWizardConfig: NgWizardConfig = {
@@ -59,7 +60,7 @@ const ngWizardConfig: NgWizardConfig = {
         CreateOrEditStoreComponent,
 
         ProvidersComponent,
-        CreateOrEditProductComponent
+        CreateOrEditProviderComponent
     ],
 
     imports: [
