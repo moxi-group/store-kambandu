@@ -27,6 +27,7 @@
     "@ngx-translate/http-loader": "^7.0.0",
     "@types/file-saver": "^2.0.5",
     "angular-archwizard": "^7.0.0",
+    "chart.js": "^4.4.0",
     "crypto": "^1.0.1",
     "file-saver": "^2.0.5",
     "flag-icon-css": "^4.1.7",

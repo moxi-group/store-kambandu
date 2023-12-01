@@ -8,6 +8,7 @@ import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { ManagerRolesComponent } from './manager-roles/manager-roles.component';
 
+
 @NgModule({
     declarations: [
         DashboardComponent,
