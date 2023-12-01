@@ -34,7 +34,7 @@ const APP_CONTAINERS = [
         ...APP_CONTAINERS,
         NotFoundComponentComponent,
         HeaderComponent,
-        AsideComponent,
+        AsideComponent
     ],
     imports: [
         HttpClientModule,

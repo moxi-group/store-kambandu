@@ -8,6 +8,7 @@ import { CustomersComponent } from './customers/customers.component';
 import { BanksComponent } from './banks/banks.component';
 import { CreateOrEditInvoiceComponent } from './invoices/create-or-edit-invoice/create-or-edit-invoice.component';
 import { StoresComponent } from './stores/stores.component';
+import { ProvidersComponent } from './providers/providers.component';
 
 const routes: Routes = [
     {
@@ -47,6 +48,10 @@ const routes: Routes = [
             {
                 path: 'stores',
                 component: StoresComponent
+            },
+            {
+                path: 'providers',
+                component: ProvidersComponent
             }
         ]
     }
