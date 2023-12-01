@@ -9,6 +9,7 @@ import { BanksComponent } from './banks/banks.component';
 import { CreateOrEditInvoiceComponent } from './invoices/create-or-edit-invoice/create-or-edit-invoice.component';
 import { StoresComponent } from './stores/stores.component';
 import { ProvidersComponent } from './providers/providers.component';
+import { StocksComponent } from './stocks/stocks.component';
 
 const routes: Routes = [
     {
@@ -52,6 +53,10 @@ const routes: Routes = [
             {
                 path: 'providers',
                 component: ProvidersComponent
+            },
+            {
+                path: 'stocks',
+                component: StocksComponent
             }
         ]
     }

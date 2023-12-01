@@ -1,0 +1,66 @@
+<div class="modal fade" id="{{modal}}" tabindex="-1" role="dialog" aria-labelledby="CreateOrEditSerieModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form [formGroup]="movimentStockForm" (submit)="onSubmit();">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="CreateOrEditDocumentModal">{{title}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label class="control-label">{{ 'Quantidade à Movimentar' | translate}}</label>
+                        <input type="text" formControlName="quantity" name="quantity" class="form-control"
+                            placeholder="Adicionar a Quantidade"
+                            [ngClass]="{ 'is-invalid': submitted && f.quantity.errors, 'is-valid': f.quantity.touched && !f.quantity.errors }" />
+                        <div *ngIf="submitted && f['quantity'].errors" class="invalid-feedback">
+                            <div *ngIf="f['quantity'].errors.required">{{ 'errors.required' | translate}}</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">{{ 'Selecionar Fornecedor' | translate}}</label>
+                        <select formControlName="provider_uuid" name="provider_uuid" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.provider_uuid.errors, 'is-valid': f.provider_uuid.touched && !f.provider_uuid.errors }">
+                            <option *ngFor="let provider of providers" [value]="provider.uuid">{{ provider.name }} - {{
+                                provider.nif }}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">{{ 'Associar Produto à Movimentar' | translate}}</label>
+                        <select formControlName="product_uuid" name="product_uuid" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.product_uuid.errors, 'is-valid': f.product_uuid.touched && !f.product_uuid.errors }">
+                            <option *ngFor="let product of products" [value]="product.uuid">{{ product.name }} - {{
+                                product.price | to_kwanza }}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">{{ 'Associar Loja/Armazem' | translate}}</label>
+                        <select formControlName="store_uuid" name="store_uuid" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.store_uuid.errors, 'is-valid': f.store_uuid.touched && !f.store_uuid.errors }">
+                            <option *ngFor="let store of stores" [value]="store.uuid">{{ store.name }}</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger btn-sm" type="reset"
+                        [disabled]="movimentStockForm.pristine && !submitted" (click)="onReset()">{{ 'btn.clean' |
+                        translate}}</button>
+                    <button class="btn btn-success btn-sm mr-1" type="submit" [disabled]="movimentStockForm.valid">{{
+                        'btn.validate' | translate}}</button>
+                    <button type="submit" [disabled]="movimentStockForm.pristine || movimentStockForm.invalid"
+                        class="btn btn-primary btn-sm">{{ 'btn.save' | translate}}</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
