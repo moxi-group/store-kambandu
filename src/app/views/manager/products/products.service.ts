@@ -34,8 +34,8 @@ export class ProductsService {
     }
 
     update(uuid: string, data: any) {
-        return this._http_client.post<any>(
-            `${environment.fullBaseUrl}/products`,
+        return this._http_client.put<any>(
+            `${environment.fullBaseUrl}/products/${uuid}`,
             data,
             { headers: this.headers }
         )

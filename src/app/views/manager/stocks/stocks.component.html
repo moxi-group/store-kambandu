@@ -37,8 +37,8 @@
                                 <th scope="col" class="sort text-center">{{ 'Quant. Pendente' | translate}}</th>
                                 <th scope="col" class="sort text-center">{{ 'Quant. Contabilizada' | translate}}</th>
                                 <th scope="col" class="sort text-center">{{ 'Quant. Disponível' | translate}}</th>
-                                <th scope="col" class="sort text-light">{{ 'Ultima Atualização' | translate}}</th>
-                                <th scope="col"></th>
+                                <th scope="col" class="sort text-right">{{ 'Ultima Atualização' | translate}}</th>
+                                <th scope="col">Opções</th>
                             </tr>
                         </thead>
                         <tbody class="list" *ngIf="stocks">
@@ -50,7 +50,7 @@
                                 <td class="budget bg-warning text-center text-white">{{ item.pending_quantity }}</td>
                                 <td class="budget bg-primary text-center text-white">{{ item.accounting_quantity }}</td>
                                 <td class="budget bg-green text-center text-white">{{ item.quantity_available }}</td>
-                                <td class="budget text-light">{{ item.created_at | date }}</td>
+                                <td class="budget text-right">{{ item.created_at | date }}</td>
                                 <td class="text-right">
                                     <div class="dropdown">
                                         <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"

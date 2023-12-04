@@ -196,7 +196,7 @@ var Charts = (function() {
 			'info': '#11cdef',
 			'success': '#2dce89',
 			'danger': '#f5365c',
-			'warning': '#fb6340'
+			'warning': '#dfab3b'
 		},
 		black: '#12263F',
 		white: '#FFFFFF',
@@ -2265,7 +2265,7 @@ var VectorMap = (function() {
 				'info': '#11cdef',
 				'success': '#2dce89',
 				'danger': '#f5365c',
-				'warning': '#fb6340'
+				'warning': '#dfab3b'
 			},
 			black: '#12263F',
 			white: '#FFFFFF',
