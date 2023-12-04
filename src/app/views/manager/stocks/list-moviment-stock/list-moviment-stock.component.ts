@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 import { StocksService } from '../stocks.service';
+import { ApplicationService } from 'src/app/api/application.service';
 
 @Component({
     selector: 'ListMovimentStockModal',
@@ -14,7 +15,8 @@ export class ListMovimentStockComponent implements OnInit {
     @Input() stock: any
 
     constructor(
-        private _stockService: StocksService
+        private _stockService: StocksService,
+        private _applicationService: ApplicationService
     ) {
     }
 
@@ -40,7 +42,8 @@ export class ListMovimentStockComponent implements OnInit {
         this._stockService
         .approve_moviment_stock(item.uuid)
         .subscribe(response => {
-            this.stock_moviments = Object(response)
+            this._applicationService.SwalSuccess("Stock aprovado com sucesso!");
+            this.loading_init()
         })
     }
 
@@ -48,7 +51,8 @@ export class ListMovimentStockComponent implements OnInit {
         this._stockService
         .reject_moviment_stock(item.uuid)
         .subscribe(response => {
-            this.stock_moviments = Object(response)
+            this._applicationService.SwalSuccess("Stock regeitado!");
+            this.loading_init()
         })
     }
 

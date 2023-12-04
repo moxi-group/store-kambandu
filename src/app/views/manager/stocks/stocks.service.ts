@@ -35,21 +35,21 @@ export class StocksService {
 
     get_stock_moviments(stock_uuid: string) {
         return this._http_client.get<any>(
-            `${environment.fullBaseUrl}/stocks/find-stock-moviment-by-stock-uuid?stock_uuid=${stock_uuid}`, 
+            `${environment.fullBaseUrl}/stocks/find-stock-moviment-by-stock-uuid/${stock_uuid}`, 
             { headers: this.headers }
         )
     }
 
-    approve_moviment_stock(uuid: string) {
-        return this._http_client.post<any>(
-            `${environment.fullBaseUrl}/stocks/approve-stock-moviment?stock_moviment_uuid=${uuid}`,
+    approve_moviment_stock(uuid: string) {        
+        return this._http_client.get<any>(
+            `${environment.fullBaseUrl}/stocks/approve-stock-moviment/${uuid}`,
             { headers: this.headers }
         )
     }
 
     reject_moviment_stock(uuid: string) {
-        return this._http_client.post<any>(
-            `${environment.fullBaseUrl}/stocks/reject-stock-moviment?stock_moviment_uuid=${uuid}`,
+        return this._http_client.get<any>(
+            `${environment.fullBaseUrl}/stocks/reject-stock-moviment/${uuid}`,
             { headers: this.headers }
         )
     }
