@@ -91,25 +91,12 @@ export class CreateMovimentStockComponent implements OnInit {
             return;
         }
 
-        if ( Boolean(this.movimentStockForm.getRawValue().uuid) ) {
-            this._update(this.movimentStockForm.getRawValue().uuid, this.movimentStockForm.value)
-        } else {
-            this._create(this.movimentStockForm.value)
-        }
+        this._create(this.movimentStockForm.value)
     }
 
     _create(form: FormGroup) {
-        this._stockService.create_moviment_stock(form)
+        this._stockService.create_stock_moviment(form)
         .subscribe(response => {
-            this.submitted = false;
-            this._applicationService.SwalSuccess("Registo feito com sucesso!");
-            this.onReset()
-        })
-    }
-
-    _update(uuid: string, form: FormGroup){
-        this._stockService.approve_moviment_stock(uuid, form)
-        .subscribe(res => {
             this.submitted = false;
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this.onReset()

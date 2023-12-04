@@ -10,7 +10,9 @@ import { StocksService } from './stocks.service';
 
 export class StocksComponent implements OnInit {
     moviment_stock: any = {}
+    stock: any = {}
     stocks: any = []
+    
 
     constructor(
         private _serieService: StocksService,
@@ -35,6 +37,10 @@ export class StocksComponent implements OnInit {
 
     pachValue(item: any) {
         this.moviment_stock = item
+    }
+
+    pachValueStock(item: any) {
+        this.stock = item
     }
 
 

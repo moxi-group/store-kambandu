@@ -60,7 +60,7 @@
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                             <a class="dropdown-item" href="#">Opções</a>
                                             <button type="button" class="dropdown-item" data-toggle="modal"
-                                                (click)="pachValue(item)" data-target="#CreateMovimentStockModal">
+                                                (click)="pachValueStock(item)" data-target="#ListMovimentStockModal">
                                                 {{ 'Ver Movimentos' | translate}}
                                             </button>
                                         </div>
@@ -79,3 +79,4 @@
 </div>
 
 <CreateMovimentStockModal [moviment_stock]="moviment_stock" [modal]=""></CreateMovimentStockModal>
+<ListMovimentStockModal [stock]="stock" [modal]=""></ListMovimentStockModal>

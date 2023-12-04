@@ -1,0 +1,49 @@
+<div class="modal fade" id="{{modal}}" tabindex="-1" role="dialog" aria-labelledby="ListMovimentStockModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="card-header border-0">
+                <h2>Lista de Movimentos Stock</h2>
+            </div>
+            <!-- Light table -->
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>#</th>
+                            <th class="sort">{{ 'Código' | translate}}</th>
+                            <th class="sort">{{ 'Produto' | translate}}</th>
+                            <th class="sort text-center">{{ 'Quant. Pendente' | translate}}</th>
+                            <th class="text-center">{{ 'Tipo' | translate}}</th>
+                            <th class="text-center">{{ 'Estado' | translate}}</th>
+                            <th class="sort text-light">{{ 'Data Registo' | translate}}</th>
+                            <th class="text-light">{{ 'Opções' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody class="list" *ngIf="stock_moviments">
+                        <tr *ngFor="let item of stock_moviments; index as i">
+                            <td>{{ i+1 }}</td>
+                            <th scope="row"><span class="name mb-0 text-sm">{{ item?.product?.code }}</span></th>
+                            <th scope="row"><span class="name mb-0 text-sm">{{ item?.product?.name }}</span></th>
+                            <td class="budget bg-warning text-center text-white">{{ item.quantity }}</td>
+                            <td class="text-center">{{ item.kind_moviment }}</td>
+                            <td class="budget text-light">{{ item.created_at | date }}</td>
+                            <td class="text-right">
+                                <button *ngIf="item.status == 'pending'" (click)="_reject(item)" type="button"
+                                    class="btn btn-danger btn-sm">
+                                    {{ 'Rejeitar' | translate}}
+                                </button>
+
+                                <button *ngIf="item.status == 'pending'" (click)="_approve(item)" type="button"
+                                    class="btn btn-success btn-sm">
+                                    {{ 'Aprovar' | translate}}
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -31,6 +31,7 @@ import { ProvidersComponent } from './providers/providers.component';
 import { CreateOrEditProviderComponent } from './providers/create-or-edit-provider/create-or-edit-provider.component';
 import { StocksComponent } from './stocks/stocks.component';
 import { CreateMovimentStockComponent } from './stocks/create-moviment-stock/create-moviment-stock.component';
+import { ListMovimentStockComponent } from './stocks/list-moviment-stock/list-moviment-stock.component';
 
 
 
@@ -66,7 +67,8 @@ const ngWizardConfig: NgWizardConfig = {
         CreateOrEditProviderComponent,
 
         StocksComponent,
-        CreateMovimentStockComponent
+        CreateMovimentStockComponent,
+        ListMovimentStockComponent
     ],
 
     imports: [
