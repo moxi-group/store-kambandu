@@ -34,7 +34,7 @@ export class CreateMovimentStockComponent implements OnInit {
         this.movimentStockForm = this._formBuild.group({
             uuid: [{ value: null, disabled: true }],
             quantity: [ 1, Validators.required ],
-            kind_moviment: [null, Validators.required],
+            kind_moviment: ["entrada", Validators.required],
             provider_uuid: [null, Validators.required],
             product_uuid: [null, Validators.required],
             store_uuid: [null, Validators.required]

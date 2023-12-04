@@ -34,23 +34,23 @@
                                 <th scope="col" class="sort">{{ 'Código' | translate}}</th>
                                 <th scope="col" class="sort">{{ 'Produto' | translate}}</th>
                                 <th scope="col" class="sort">{{ 'Preço' | translate}}</th>
-                                <th scope="col" class="sort">{{ 'Quantidade Pendente' | translate}}</th>
-                                <th scope="col" class="sort">{{ 'Quantidade Contabilizada' | translate}}</th>
-                                <th scope="col" class="sort">{{ 'Quantidade Disponível' | translate}}</th>
-                                <th scope="col" class="sort">{{ 'Ultima Atualização' | translate}}</th>
+                                <th scope="col" class="sort text-center">{{ 'Quant. Pendente' | translate}}</th>
+                                <th scope="col" class="sort text-center">{{ 'Quant. Contabilizada' | translate}}</th>
+                                <th scope="col" class="sort text-center">{{ 'Quant. Disponível' | translate}}</th>
+                                <th scope="col" class="sort text-light">{{ 'Ultima Atualização' | translate}}</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody class="list" *ngIf="stocks">
                             <tr *ngFor="let item of stocks; index as i">
                                 <td>{{ i+1 }}</td>
-                                <th scope="row"><span class="name mb-0 text-sm">{{ item.product.code }}</span></th>
-                                <th scope="row"><span class="name mb-0 text-sm">{{ item.product.name }}</span></th>
-                                <th scope="row"><span class="name mb-0 text-sm">{{ item.product.price }}</span></th>
-                                <td class="budget bg-green">{{ item.start_number }}</td>
-                                <td class="budget bg-green">{{ item.start_number }}</td>
-                                <td class="budget bg-green">{{ item.start_number }}</td>
-                                <td class="budget">{{ item.created_at | date }}</td>
+                                <th scope="row"><span class="name mb-0 text-sm">{{ item?.product?.code }}</span></th>
+                                <th scope="row"><span class="name mb-0 text-sm">{{ item?.product?.name }}</span></th>
+                                <th scope="row"><span class="name mb-0 text-sm">{{ item?.product?.price }}</span></th>
+                                <td class="budget bg-warning text-center text-white">{{ item.pending_quantity }}</td>
+                                <td class="budget bg-primary text-center text-white">{{ item.accounting_quantity }}</td>
+                                <td class="budget bg-green text-center text-white">{{ item.quantity_available }}</td>
+                                <td class="budget text-light">{{ item.created_at | date }}</td>
                                 <td class="text-right">
                                     <div class="dropdown">
                                         <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
