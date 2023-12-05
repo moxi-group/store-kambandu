@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DefaultLayoutComponent } from './containers';
 import { NotFoundComponentComponent } from './views/layout/not-found-component/not-found-component.component';
+import { QuickSaleComponent } from './views/quick-sale/quick-sale.component';
 
 
 
@@ -28,6 +29,10 @@ export const routes: Routes = [
                 path: 'managers',
                 loadChildren: () => import('./views/manager/managers.module')
                 .then(m => m.ManagersModule)
+            },
+            {
+                path: 'quick-sale',
+                component: QuickSaleComponent
             }
         ]
     },

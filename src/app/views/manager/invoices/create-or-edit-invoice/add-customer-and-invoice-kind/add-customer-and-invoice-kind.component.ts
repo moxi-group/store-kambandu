@@ -27,10 +27,6 @@ export class AddCustomerAndInvoiceKindComponent implements OnInit {
         public _invoicesService: InvoicesService,
         private _customersService: CustomersService,
     ) {
-
-
-        
-
         this.loading_data()
     }
 

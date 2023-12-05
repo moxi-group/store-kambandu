@@ -1,0 +1,53 @@
+<br>
+
+<div class='container'>
+    <div class="row">
+        <div class="col-md-4 col-sm-12">
+            <label for="basic-url">Pesquisar Produto</label>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3"
+                    placeholder='escrever o código' (keyup)="_search_produt($event.target)">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-success" type="button">Adicionar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row justify-content-md-center">
+        <div class="col-md-8">
+
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-sm-12">
+                    <label id="serie_uuid" class="control-label">Série do Documento</label>
+                    <select (change)="set_serie($event.target)"
+                        [(ngModel)]="this._invoicesService.invoiceObject.serie_uuid" id="serie_uuid" name="serie_uuid"
+                        class="form-control" (change)="_check_serie($event.target)">
+                        <option *ngFor="let serie of series" [value]="serie.uuid">{{serie.document.slug
+                            }} - {{ serie.name }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-sm-12 mt-3">
+                    <label id="customer_uuid" class="control-label">{{ 'label.customer' | translate}}</label>
+                    <select (change)="set_customer($event.target)"
+                        [(ngModel)]="this._invoicesService.invoiceObject.customer_uuid" id="customer_uuid"
+                        name="customer_uuid" class="form-control">
+                        <option *ngFor="let customer of customers" [value]="customer.uuid">{{ customer.name }}
+                        </option>
+                    </select>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+</div>

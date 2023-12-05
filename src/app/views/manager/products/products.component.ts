@@ -22,10 +22,10 @@ export class ProductsComponent implements OnInit {
     }
 
     loading_data() {
-        this.get_series();
+        this.get_products();
     }
 
-    get_series() {
+    get_products() {
         this._productsService
         .get_products()
         .subscribe(response => {
