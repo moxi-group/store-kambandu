@@ -8,13 +8,14 @@ import { LoginComponent } from './login/login.component'
 
 import {TranslateModule} from '@ngx-translate/core';
 import { CreateOrEditSubscriptionComponent } from './create-or-edit-subscription/create-or-edit-subscription.component'
+import { SharedModule } from 'src/app/shared/shared.module'
 
 
 @NgModule({
 
     declarations: [
         LoginComponent,
-        CreateOrEditSubscriptionComponent    
+        CreateOrEditSubscriptionComponent
     ],
     exports: [
         
@@ -24,7 +25,8 @@ import { CreateOrEditSubscriptionComponent } from './create-or-edit-subscription
         CommonModule,
         ReactiveFormsModule,
         AuthRoutingModule,
-        TranslateModule
+        TranslateModule,
+        SharedModule
     ],
     providers: [AuthService]
 })

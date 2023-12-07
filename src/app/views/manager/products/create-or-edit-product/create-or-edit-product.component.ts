@@ -31,7 +31,8 @@ export class CreateOrEditProductComponent implements OnInit {
             price: [null, Validators.required],
             code: [null, Validators.required],
             description: [null, Validators.required],
-            tax_uuid: [null, Validators.required]
+            tax_uuid: [null, Validators.required],
+            is_stocked: [true, Validators.required]
         })
 
         this.get_taxes()

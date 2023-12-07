@@ -35,6 +35,7 @@
                                 <th scope="col" class="sort">{{ 'Código' | translate}}</th>
                                 <th scope="col" class="sort">{{ 'table.tax' | translate}}</th>
                                 <th scope="col" class="sort">{{ 'table.price' | translate}}</th>
+                                <th scope="col" class="sort">{{ 'Usar Stock' | translate}}</th>
                                 <th scope="col" class="sort">{{ 'table.status' | translate}}</th>
                                 <th scope="col" class="sort">{{ 'table.date' | translate}}</th>
                                 <th scope="col"></th>
@@ -47,6 +48,11 @@
                                 <th scope="row"><span class="name mb-0 text-sm">{{ item.code }}</span></th>
                                 <td class="budget">{{ item.tax.code }} - {{ item.tax.percentage }}%</td>
                                 <td class="budget">{{ item.price | to_kwanza }}</td>
+                                <td>
+                                    <span class="badge badge-{{ item.is_stocked ? 'success' : 'primary' }}">{{
+                                        item.is_stocked ? 'SIM' : 'NÃO' }}</span>
+                                </td>
+
                                 <td>
                                     <span class="badge badge-dot mr-4">
                                         <i class="bg-green"></i>

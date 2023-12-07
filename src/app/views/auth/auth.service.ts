@@ -2,7 +2,6 @@ import { Injectable, EventEmitter } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 
 import { Router } from '@angular/router'
-import { ApplicationService } from 'src/app/api/application.service'
 import { environment } from 'src/environments/environment'
 
 @Injectable({
@@ -11,7 +10,7 @@ import { environment } from 'src/environments/environment'
 
 export class AuthService {
     showLayoutEmitter = new EventEmitter<boolean>()
-    private userLogged = false
+    userLogged = false
 
 
     private token = sessionStorage.getItem('sessionToken')
@@ -23,8 +22,7 @@ export class AuthService {
 
     constructor(
         private router: Router,
-        private _http_client: HttpClient,
-        private _applicationService: ApplicationService
+        private _http_client: HttpClient
     ) { }
 
     signIn(user: any) {
@@ -33,30 +31,9 @@ export class AuthService {
         formData.append("username", user.username)
         formData.append("password", user.password)
 
-        this._http_client.post<any>(
+        return this._http_client.post<any>(
             `${environment.fullBaseUrl}/users/login`,
             formData
-        ).subscribe(
-            response => {
-                let result = response
-                sessionStorage.setItem('sessionToken', result.access_token)
-
-                let user = JSON.stringify(result.data)
-                sessionStorage.setItem('currentUser', user)
-
-                this.userLogged = true
-                this.showLayoutEmitter.emit(true)
-                this._applicationService.SwalSuccess('Sessão iniciada com sucesso')
-                this.router.navigateByUrl('/dashboard/manager-roles')
-            },
-            (error) => {
-                if (!error.ok) {
-                    this.userLogged = false
-                    this.showLayoutEmitter.emit(false)
-                    this._applicationService.SwalDanger('Senha ou e-mail invalido')
-                    this.router.navigate(['/'])
-                }
-            }
         )
     }
 

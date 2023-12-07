@@ -59,6 +59,18 @@
                         </div>
                     </div>
 
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="is_stocked" formControlName="is_stocked"
+                            name="is_stocked"
+                            [ngClass]="{ 'is-invalid': submitted && f.is_stocked.errors, 'is-valid': f.is_stocked.touched && !f.is_stocked.errors }">
+                        <label class="form-check-label" for="is_stocked">{{ 'Selecionar se movimenta Stock' |
+                            translate}}</label>
+                        <div *ngIf="submitted && f['is_stocked'].errors" class="invalid-feedback">
+                            <div *ngIf="f['is_stocked'].errors.required">{{ 'errors.required' | translate}}</div>
+                        </div>
+                    </div>
+
+
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-danger btn-sm" type="reset" [disabled]="productForm.pristine && !submitted"
@@ -66,7 +78,9 @@
                     <button class="btn btn-success btn-sm mr-1" type="submit" [disabled]="productForm.valid">{{
                         'btn.validate' | translate}}</button>
                     <button type="submit" [disabled]="productForm.pristine || productForm.invalid"
-                        class="btn btn-primary btn-sm">{{ 'btn.save' | translate}}</button>
+                        class="btn btn-primary btn-sm">{{ 'btn.save' | translate}}
+                        <spinner [loading]='submitted'></spinner>
+                    </button>
                 </div>
 
             </form>
