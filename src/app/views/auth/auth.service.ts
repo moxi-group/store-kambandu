@@ -54,6 +54,9 @@ export class AuthService {
     removeTokenOfUser() {
         sessionStorage.removeItem('currentUser')
         sessionStorage.removeItem('sessionToken')
+        sessionStorage.removeItem('CURRENT_COMPANY_DATA')
+        sessionStorage.removeItem('CURRENT_ROLE')
+        sessionStorage.removeItem('CURRENT_COMPANY')
         this.userLogged = false
         this.showLayoutEmitter.emit(false)
         this.router.navigateByUrl('/')
