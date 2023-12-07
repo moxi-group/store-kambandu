@@ -47,7 +47,9 @@
                     <button class="btn btn-success btn-sm mr-1" type="submit" [disabled]="serieForm.valid">{{
                         'btn.validate' | translate}}</button>
                     <button type="submit" [disabled]="serieForm.pristine || serieForm.invalid"
-                        class="btn btn-primary btn-sm">{{ 'btn.save' | translate}}</button>
+                        class="btn btn-primary btn-sm">{{ 'btn.save' | translate}}
+                        <spinner [loading]='submitted'></spinner>
+                    </button>
                 </div>
 
             </form>

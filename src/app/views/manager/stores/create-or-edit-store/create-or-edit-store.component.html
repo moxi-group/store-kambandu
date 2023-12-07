@@ -69,7 +69,9 @@
                     <button class="btn btn-success btn-sm mr-1" type="submit" [disabled]="storeForm.valid">{{
                         'btn.validate' | translate}}</button>
                     <button type="submit" [disabled]="storeForm.pristine || storeForm.invalid"
-                        class="btn btn-primary btn-sm">{{ 'btn.save' | translate}}</button>
+                        class="btn btn-primary btn-sm">{{ 'btn.save' | translate}}
+                        <spinner [loading]='submitted'></spinner>
+                    </button>
                 </div>
 
             </form>

@@ -109,9 +109,11 @@
                                 </div>
 
                                 <div class="text-center">
-                                    <button (click)="_signIn()" type="button"
-                                        class="btn btn-primary my-4 btn-block">{{'sign_in' |
-                                        translate}}</button>
+                                    <button [disabled]='loading' (click)="_signIn()" type="button"
+                                        class="btn btn-primary my-4 btn-block">
+                                        {{'sign_in' | translate}}
+                                        <spinner [loading]='loading'></spinner>
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -127,7 +129,7 @@
             <div class="row align-items-center justify-content-xl-between">
                 <div class="col-xl-6">
                     <div class="copyright text-center text-xl-left text-muted">
-                        &copy; 2023 <a href="#" class="font-weight-bold ml-1" target="_blank">MoxiCapital</a>
+                        &copy; 2023 <a href="#" class="font-weight-bold ml-1" target="_blank">Moxi Capital</a>
                     </div>
                 </div>
                 <div class="col-xl-6">

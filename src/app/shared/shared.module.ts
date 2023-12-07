@@ -5,19 +5,23 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
 
+
 import { FormatCurrencyPipe } from '../pipes/currency.pipe';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 
 
 @NgModule({
     declarations: [
-        FormatCurrencyPipe
+        FormatCurrencyPipe,
+        SpinnerComponent
     ],
     imports: [
-
+        CommonModule
     ],
     exports: [
         FormatCurrencyPipe,
+        SpinnerComponent
     ]
 })
 
