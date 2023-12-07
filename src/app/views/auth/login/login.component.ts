@@ -62,6 +62,10 @@ export class LoginComponent implements OnInit {
                 this._authService.showLayoutEmitter.emit(true)
                 this._applicationService.SwalSuccess('Sessão iniciada com sucesso')
                 this.router.navigateByUrl('/dashboard/manager-roles')
+                .then(() => {
+                    window.location.reload();
+                })
+                
                 this.loading = false
             },
             (error) => {

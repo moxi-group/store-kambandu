@@ -40,11 +40,13 @@
                                 <button *ngIf="item.status == 'pending'" (click)="_reject(item)" type="button"
                                     class="btn btn-danger btn-sm">
                                     {{ 'Rejeitar' | translate}}
+                                    <spinner [loading]='loading'></spinner>
                                 </button>
 
                                 <button *ngIf="item.status == 'pending'" (click)="_approve(item)" type="button"
                                     class="btn btn-success btn-sm">
                                     {{ 'Aprovar' | translate}}
+                                    <spinner [loading]='loading'></spinner>
                                 </button>
                             </td>
                         </tr>

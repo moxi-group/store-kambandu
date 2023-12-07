@@ -58,7 +58,11 @@ export class ManagerRolesComponent implements OnInit {
             let result = Object(response)            
             sessionStorage.setItem('CURRENT_COMPANY_DATA', JSON.stringify(result))
             sessionStorage.setItem('CURRENT_ROLE', role.role_type)
+            
             this.router.navigateByUrl('/dashboard')
+            .then(() => {
+                window.location.reload();
+            })
         })
     }
 

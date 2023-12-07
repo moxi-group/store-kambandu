@@ -41,8 +41,8 @@
                                 <th scope="col">Opções</th>
                             </tr>
                         </thead>
-                        <tbody class="list" *ngIf="stocks">
-                            <tr *ngFor="let item of stocks; index as i">
+                        <tbody class="list" *ngIf="_stockService.stocks">
+                            <tr *ngFor="let item of _stockService.stocks; index as i">
                                 <td>{{ i+1 }}</td>
                                 <th scope="row"><span class="name mb-0 text-sm">{{ item?.product?.code }}</span></th>
                                 <th scope="row"><span class="name mb-0 text-sm">{{ item?.product?.name}}</span></th>

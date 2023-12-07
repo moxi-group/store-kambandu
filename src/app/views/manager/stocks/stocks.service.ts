@@ -12,8 +12,8 @@ export class StocksService {
     private token = sessionStorage.getItem('sessionToken')
     private companyToken = sessionStorage.getItem('CURRENT_COMPANY')
 
-
-
+    stocks: any = []
+    
     public headers = new HttpHeaders()
     .set('content-type', 'application/json')
     .set('Access-Control-Allow-Origin', '*')

@@ -11,6 +11,7 @@ import { ApplicationService } from 'src/app/api/application.service';
 export class ListMovimentStockComponent implements OnInit {
     @Input() modal: any = "ListMovimentStockModal"
 
+    loading: boolean = false
     stock_moviments: any = []
     @Input() stock: any
 
@@ -36,23 +37,37 @@ export class ListMovimentStockComponent implements OnInit {
         .subscribe(response => {
             this.stock_moviments = Object(response)
         })
+
+        this.get_stocks()
     }
 
     _approve(item: any){
+        this.loading = true
         this._stockService
         .approve_moviment_stock(item.uuid)
         .subscribe(response => {
+            this.loading = false
             this._applicationService.SwalSuccess("Stock aprovado com sucesso!");
             this.loading_init()
         })
     }
 
     _reject(item: any){
+        this.loading = true
         this._stockService
         .reject_moviment_stock(item.uuid)
         .subscribe(response => {
+            this.loading = false
             this._applicationService.SwalSuccess("Stock regeitado!");
             this.loading_init()
+        })
+    }
+
+    get_stocks() {
+        this._stockService
+        .get_stocks()
+        .subscribe(response => {
+            this._stockService.stocks = Object(response)
         })
     }
 

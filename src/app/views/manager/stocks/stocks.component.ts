@@ -11,11 +11,9 @@ import { StocksService } from './stocks.service';
 export class StocksComponent implements OnInit {
     moviment_stock: any = {}
     stock: any = {}
-    stocks: any = []
     
-
     constructor(
-        private _serieService: StocksService,
+        public _stockService: StocksService,
         public translate: TranslateService
     ) { }
 
@@ -24,14 +22,14 @@ export class StocksComponent implements OnInit {
     }
 
     loading_data() {
-        this.get_series();
+        this.get_stocks();
     }
 
-    get_series() {
-        this._serieService
+    get_stocks() {
+        this._stockService
         .get_stocks()
         .subscribe(response => {
-            this.stocks = Object(response)
+            this._stockService.stocks = Object(response)
         })
     }
 
@@ -42,6 +40,4 @@ export class StocksComponent implements OnInit {
     pachValueStock(item: any) {
         this.stock = item
     }
-
-
 }
