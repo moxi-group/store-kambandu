@@ -37,7 +37,6 @@
 
     <div class="row justify-content-md-center">
         <div class="col-md-8">
-
             <h3 class="control-label">Linhas da Factura</h3>
 
             <div class="table-responsive table-lines">
@@ -59,9 +58,9 @@
                             <td>{{ i + 1 }}</td>
                             <td class="budget">{{ line.name }}</td>
                             <td class="budget text-center">{{ line.quantity }}</td>
-                            <td class="budget text-right">{{ line.price }}</td>
-                            <td class="budget text-right">{{ line.total_without_tax }}</td>
-                            <td class="budget text-right">{{ line.total }}</td>
+                            <td class="budget text-right">{{ line.price | to_kwanza }}</td>
+                            <td class="budget text-right">{{ line.total_without_tax | to_kwanza }}</td>
+                            <td class="budget text-right">{{ line.total | to_kwanza }}</td>
                             <td class="text-right">
                                 <button type="button" class="btn btn-sm btn-danger btn-round btn-icon"
                                     (click)="remove_line(line.uuid)">
@@ -101,10 +100,13 @@
         </div>
     </div>
 
+    <hr>
+
     <div class="row justify-content-md-center">
         <div class="col-md-12">
-            <button (click)="_submitte_invoice()" class='btn btn-success'>
+            <button [disabled]='loading' (click)="_submitte_invoice()" class='btn btn-success'>
                 Finalizar Faturação
+                <spinner [loading]='loading'></spinner>
             </button>
         </div>
     </div>

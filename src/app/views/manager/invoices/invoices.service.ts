@@ -69,7 +69,26 @@ export class InvoicesService {
         )
     }
 
+    add_or_update_lines(product: any){
+        /*
+        const element = this.invoiceObject.lines.find((item: any) => item.uuid === product.uuid)
+
+        if ( Boolean(element) ) {
+            this.invoiceObject.lines = this.invoiceObject.lines.filter((line: any) => line.uuid != product.uuid)            
+            product.quantity = this.invoiceObject.lines.filter((item: any) => item.uuid === product.uuid).length + 1
+            this.invoiceObject.lines.push( product )
+        }else {
+            this.invoiceObject.lines.push( product )
+        }
+        */
+       
+        this.invoiceObject.lines.push( product )
+    }
+
     full_calculation(){
+
+
+
         let lines = this.invoiceObject.lines
         this.total_without_tax = lines.reduce((partialSum: any, line: any) => (partialSum + line.total_without_tax), 0 )
         this.total_tax = lines.reduce((partialSum: any, line: any) => (partialSum + line.total_tax), 0 )

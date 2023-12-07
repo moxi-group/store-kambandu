@@ -13,7 +13,7 @@ import { Route, Router } from '@angular/router';
 })
 export class QuickSaleComponent implements OnInit {
 
-    submitted = false
+    loading = false
     disabled_btn_submit = false
     active_payment_line = false
 
@@ -68,7 +68,10 @@ export class QuickSaleComponent implements OnInit {
             product.total = total
 
             let line = this._remove_property( product)
-            this._invoicesService.invoiceObject.lines.push(line)
+            //this._invoicesService.invoiceObject.lines.push(line)
+
+            this._invoicesService.add_or_update_lines( product )
+
             this._invoicesService.full_calculation()
         }else{
             this.disabled_btn_submit = false
@@ -83,11 +86,12 @@ export class QuickSaleComponent implements OnInit {
         }
     }
 
-    _create() {        
+    _create() {      
+        this.loading = true  
         this._invoicesService.create(this._invoicesService.invoiceObject)
         .subscribe(response => {
-            console.log( response )
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
+            this.loading = false
             this.router.navigate(['/managers/invoices'])
         })
     }
