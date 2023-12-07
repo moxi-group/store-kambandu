@@ -58,6 +58,11 @@ export class AsideComponent implements OnInit {
             name: 'menu.banks',
             link: '/managers/banks',
             icon: 'ni ni-building'
+        },
+        {
+            name: 'Colaboradores',
+            link: '/managers/employees',
+            icon: 'ni ni-single-02'
         }
     ]
 
