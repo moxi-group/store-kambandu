@@ -40,8 +40,8 @@
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody class="list" *ngIf="customers">
-                            <tr *ngFor="let item of customers; index as i">
+                        <tbody class="list" *ngIf="_customersService.customers">
+                            <tr *ngFor="let item of _customersService.customers; index as i">
                                 <td>{{ i+1 }}</td>
                                 <th scope="row"><span class="name mb-0 text-sm">{{ item.name}}</span></th>
                                 <th scope="row"><span class="name mb-0 text-sm">{{ item.phone_number }}</span></th>

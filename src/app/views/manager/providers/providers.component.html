@@ -39,8 +39,8 @@
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody class="list" *ngIf="providers">
-                            <tr *ngFor="let item of providers; index as i">
+                        <tbody class="list" *ngIf="_providerService.providers">
+                            <tr *ngFor="let item of _providerService.providers; index as i">
                                 <td>{{ i+1 }}</td>
                                 <th scope="row"><span class="name mb-0 text-sm">{{ item.name }}</span></th>
                                 <th scope="row"><span class="name mb-0 text-sm">{{ item.nif }}</span></th>

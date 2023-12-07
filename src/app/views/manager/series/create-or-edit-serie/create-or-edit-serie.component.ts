@@ -74,6 +74,7 @@ export class CreateOrEditSerieComponent implements OnInit {
         this._serieService.create(form)
         .subscribe(response => {
             this.submitted = false;
+            this.get_series()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this.onReset()
         })
@@ -83,6 +84,7 @@ export class CreateOrEditSerieComponent implements OnInit {
         this._serieService.update(uuid, form)
         .subscribe(res => {
             this.submitted = false;
+            this.get_series()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this.onReset()
         })
@@ -93,6 +95,14 @@ export class CreateOrEditSerieComponent implements OnInit {
         .get_documents({ filters: {} })
         .subscribe(response => {
             this.documents = Object(response)
+        })
+    }
+
+    get_series() {
+        this._serieService
+        .get_series()
+        .subscribe(response => {
+            this._serieService.series = Object(response)
         })
     }
 

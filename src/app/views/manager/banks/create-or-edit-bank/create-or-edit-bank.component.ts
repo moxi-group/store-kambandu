@@ -18,7 +18,7 @@ export class CreateOrEditBankComponent implements OnInit {
     submitted = false
 
     constructor(
-        private _banksService: BanksService,
+        private _bankService: BanksService,
         private _applicationService: ApplicationService,
         private _formBuild: FormBuilder
     ) {
@@ -67,22 +67,31 @@ export class CreateOrEditBankComponent implements OnInit {
     }
 
     _create(form: FormGroup) {
-        this._banksService.create(form)
+        this._bankService.create(form)
         .subscribe(response => {
             this.submitted = false;
+            this.get_banks()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this.onReset()
         })
     }
 
     _update(uuid: string, form: FormGroup){
-        this._banksService.update(uuid, form)
+        this._bankService.update(uuid, form)
         .subscribe(res => {
             this.submitted = false;
+            this.get_banks()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this.onReset()
         })
     }
 
+    get_banks() {
+        this._bankService
+        .get_banks()
+        .subscribe(response => {
+            this._bankService.banks = Object(response)
+        })
+    }
 
 }

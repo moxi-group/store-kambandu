@@ -9,10 +9,9 @@ import { ProductsService } from './products.service';
 })
 export class ProductsComponent implements OnInit {
     product: any = {}
-    products: any = []
 
     constructor(
-        private _productsService: ProductsService,
+        public _productsService: ProductsService,
         public translate: TranslateService
     ) { }
 
@@ -29,7 +28,7 @@ export class ProductsComponent implements OnInit {
         this._productsService
         .get_products()
         .subscribe(response => {
-            this.products = Object(response)
+            this._productsService.products = Object(response)
         })
     }
 

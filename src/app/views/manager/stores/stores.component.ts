@@ -10,10 +10,9 @@ import { TranslateService } from '@ngx-translate/core';
 export class StoresComponent implements OnInit {
 
     store: any = {}
-    stores: any = []
 
     constructor(
-        private _storeService: StoresService,
+        public _storeService: StoresService,
         public translate: TranslateService
     ) {
         
@@ -24,14 +23,14 @@ export class StoresComponent implements OnInit {
     }
 
     loading_data() {
-        this.get_series();
+        this.get_stores();
     }
 
-    get_series() {
+    get_stores() {
         this._storeService
         .get_stores()
         .subscribe(response => {
-            this.stores = Object(response)
+            this._storeService.stores = Object(response)
         })
     }
 

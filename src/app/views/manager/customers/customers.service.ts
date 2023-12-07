@@ -6,8 +6,11 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class CustomersService {
+    customers: any = []
 
-    constructor(private _http_client: HttpClient) { }
+    constructor(
+        private _http_client: HttpClient) 
+    { }
 
     private token = sessionStorage.getItem('sessionToken')
     private companyToken = sessionStorage.getItem('CURRENT_COMPANY')

@@ -39,8 +39,8 @@
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody class="list" *ngIf="banks">
-                            <tr *ngFor="let item of banks; index as i">
+                        <tbody class="list" *ngIf="_bankService.banks">
+                            <tr *ngFor="let item of _bankService.banks; index as i">
                                 <td>{{ i+1 }}</td>
                                 <th scope="row"><span class="name mb-0 text-sm">{{ item.name }}</span></th>
                                 <th scope="row"><span class="name mb-0 text-sm">{{ item.account_number }}</span></th>

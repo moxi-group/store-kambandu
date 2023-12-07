@@ -9,10 +9,9 @@ import { BanksService } from './banks.service';
 })
 export class BanksComponent implements OnInit {
     bank: any = {}
-    banks: any = []
 
     constructor(
-        private _bankService: BanksService,
+        public _bankService: BanksService,
         public translate: TranslateService
     ) { }
 
@@ -21,14 +20,14 @@ export class BanksComponent implements OnInit {
     }
 
     loading_data() {
-        this.get_series();
+        this.get_banks();
     }
 
-    get_series() {
+    get_banks() {
         this._bankService
         .get_banks()
         .subscribe(response => {
-            this.banks = Object(response)
+            this._bankService.banks = Object(response)
         })
     }
 

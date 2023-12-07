@@ -71,6 +71,7 @@ export class CreateOrEditCustomerComponent implements OnInit {
         this._customersService.create(form)
         .subscribe(response => {
             this.submitted = false;
+            this.get_customers()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this.onReset()
         })
@@ -82,6 +83,14 @@ export class CreateOrEditCustomerComponent implements OnInit {
             this.submitted = false;
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this.onReset()
+        })
+    }
+
+    get_customers() {
+        this._customersService
+        .get_customers()
+        .subscribe(response => {
+            this._customersService.customers = Object(response)
         })
     }
 

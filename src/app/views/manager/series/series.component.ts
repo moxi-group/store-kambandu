@@ -10,10 +10,9 @@ import { SeriesService } from './series.service';
 
 export class SeriesComponent implements OnInit {
     serie: any = {}
-    series: any = []
 
     constructor(
-        private _serieService: SeriesService,
+        public _serieService: SeriesService,
         public translate: TranslateService
     ) {
         
@@ -31,7 +30,7 @@ export class SeriesComponent implements OnInit {
         this._serieService
         .get_series()
         .subscribe(response => {
-            this.series = Object(response)
+            this._serieService.series = Object(response)
         })
     }
 

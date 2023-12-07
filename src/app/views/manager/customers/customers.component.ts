@@ -9,10 +9,9 @@ import { CustomersService } from './customers.service';
 })
 export class CustomersComponent implements OnInit {
     customer: any = {}
-    customers: any = []
 
     constructor(
-        private _customersService: CustomersService,
+        public _customersService: CustomersService,
         public translate: TranslateService
     ) { }
 
@@ -21,14 +20,14 @@ export class CustomersComponent implements OnInit {
     }
 
     loading_data() {
-        this.get_series();
+        this.get_customers();
     }
 
-    get_series() {
+    get_customers() {
         this._customersService
         .get_customers()
         .subscribe(response => {
-            this.customers = Object(response)
+            this._customersService.customers = Object(response)
         })
     }
 

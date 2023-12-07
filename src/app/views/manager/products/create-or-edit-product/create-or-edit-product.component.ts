@@ -76,6 +76,7 @@ export class CreateOrEditProductComponent implements OnInit {
         this._productsService.create(form)
         .subscribe(response => {
             this.submitted = false;
+            this.get_products()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this.onReset()
         })
@@ -85,6 +86,7 @@ export class CreateOrEditProductComponent implements OnInit {
         this._productsService.update(uuid, form)
         .subscribe(res => {
             this.submitted = false;
+            this.get_products()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this.onReset()
         })
@@ -95,6 +97,14 @@ export class CreateOrEditProductComponent implements OnInit {
         .get_taxes()
         .subscribe(response => {
             this.taxes = Object(response)
+        })
+    }
+
+    get_products() {
+        this._productsService
+        .get_products()
+        .subscribe(response => {
+            this._productsService.products = Object(response)
         })
     }
 

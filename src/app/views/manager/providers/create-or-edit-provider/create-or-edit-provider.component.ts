@@ -71,6 +71,7 @@ export class CreateOrEditProviderComponent implements OnInit {
         this._providerService.create(form)
         .subscribe(response => {
             this.submitted = false;
+            this.get_providers()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this.onReset()
         })
@@ -80,8 +81,17 @@ export class CreateOrEditProviderComponent implements OnInit {
         this._providerService.update(uuid, form)
         .subscribe(res => {
             this.submitted = false;
+            this.get_providers()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this.onReset()
+        })
+    }
+
+    get_providers() {
+        this._providerService
+        .get_providers()
+        .subscribe(response => {
+            this._providerService.providers = Object(response)
         })
     }
 

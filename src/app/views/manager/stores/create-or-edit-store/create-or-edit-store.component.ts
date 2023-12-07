@@ -73,6 +73,7 @@ export class CreateOrEditStoreComponent implements OnInit {
         this._storeService.create(form)
         .subscribe(response => {
             this.submitted = false;
+            this.get_stores()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this.onReset()
         })
@@ -82,8 +83,17 @@ export class CreateOrEditStoreComponent implements OnInit {
         this._storeService.update(uuid, form)
         .subscribe(res => {
             this.submitted = false;
+            this.get_stores()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this.onReset()
+        })
+    }
+
+    get_stores() {
+        this._storeService
+        .get_stores()
+        .subscribe(response => {
+            this._storeService.stores = Object(response)
         })
     }
 }

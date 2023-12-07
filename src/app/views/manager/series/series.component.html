@@ -39,8 +39,8 @@
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody class="list" *ngIf="series">
-                            <tr *ngFor="let item of series; index as i">
+                        <tbody class="list" *ngIf="_serieService.series">
+                            <tr *ngFor="let item of _serieService.series; index as i">
                                 <td>{{ i+1 }}</td>
                                 <th scope="row"><span class="name mb-0 text-sm">{{ item.document.slug
                                         }} - {{ item.name }}</span></th>

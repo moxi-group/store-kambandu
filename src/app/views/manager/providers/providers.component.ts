@@ -10,10 +10,9 @@ import { ProvidersService } from './providers.service';
 export class ProvidersComponent implements OnInit {
 
     provider: any = {}
-    providers: any = []
 
     constructor(
-        private _providerService: ProvidersService,
+        public _providerService: ProvidersService,
         public translate: TranslateService
     ) {
         
@@ -31,7 +30,7 @@ export class ProvidersComponent implements OnInit {
         this._providerService
         .get_providers()
         .subscribe(response => {
-            this.providers = Object(response)
+            this._providerService.providers = Object(response)
         })
     }
 

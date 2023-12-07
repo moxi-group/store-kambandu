@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class StoresService {
+    stores: any = []
 
     constructor(private _http_client: HttpClient) { }
 
