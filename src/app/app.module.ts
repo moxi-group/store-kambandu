@@ -19,6 +19,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxLoadingModule } from 'ngx-loading';
 import { QuickSaleComponent } from './views/quick-sale/quick-sale.component';
+import { SharedModule } from './shared/shared.module';
+
 
 
 export function httpTranslateLoaderFactory(http: HttpClient) {
@@ -36,7 +38,7 @@ const APP_CONTAINERS = [
         NotFoundComponentComponent,
         HeaderComponent,
         AsideComponent,
-        QuickSaleComponent
+        QuickSaleComponent,
     ],
     imports: [
         HttpClientModule,
@@ -44,6 +46,7 @@ const APP_CONTAINERS = [
         LayoutModule,
         AppRoutingModule,
         FormsModule,
+        SharedModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
         TranslateModule.forRoot({

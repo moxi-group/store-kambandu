@@ -8,9 +8,28 @@
                 <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3"
                     placeholder='escrever o código' (keyup)="_search_produt($event.target)">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-success" type="button">Adicionar</button>
+                    <button [disabled]="disabled_btn_submit" class="btn btn-outline-success"
+                        type="button">Adicionar</button>
                 </div>
             </div>
+        </div>
+
+        <div class="col-md-8 col-sm-12 text-right">
+            <h5>
+                {{ 'table.tax_value' | translate}}
+                <br>
+                <span class="font-weight-light">{{this._invoicesService.total | to_kwanza}}</span>
+            </h5>
+            <h5>
+                {{ 'table.tax_without_tax' | translate}}
+                <br>
+                <span class="font-weight-light">{{this._invoicesService.total | to_kwanza }} </span>
+            </h5>
+            <h5>
+                {{ 'table.total' | translate}}
+                <br>
+                <span class="font-weight-light">{{this._invoicesService.total |to_kwanza }} </span>
+            </h5>
         </div>
     </div>
 
@@ -19,6 +38,41 @@
     <div class="row justify-content-md-center">
         <div class="col-md-8">
 
+            <h3 class="control-label">Linhas da Factura</h3>
+
+            <div class="table-responsive table-lines">
+                <table class="table align-items-center table-flush table-striped">
+                    <thead class="thead-light">
+                        <tr class="mt-2">
+                            <th>#</th>
+                            <th class="">{{ 'table.name' | translate}}</th>
+                            <th class="text-center">{{ 'table.quantity' | translate}}</th>
+                            <th class="text-right">{{ 'table.price' | translate}}</th>
+                            <th class="text-right">{{ 'table.tax_without_tax' | translate}}</th>
+                            <th class="text-right">{{ 'table.total' | translate}}</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="list border-line">
+                        <tr *ngFor="let line of this._invoicesService.invoiceObject.lines; index as i">
+                            <td>{{ i + 1 }}</td>
+                            <td class="budget">{{ line.name }}</td>
+                            <td class="budget text-center">{{ line.quantity }}</td>
+                            <td class="budget text-right">{{ line.price }}</td>
+                            <td class="budget text-right">{{ line.total_without_tax }}</td>
+                            <td class="budget text-right">{{ line.total }}</td>
+                            <td class="text-right">
+                                <button type="button" class="btn btn-sm btn-danger btn-round btn-icon"
+                                    (click)="remove_line(line.uuid)">
+                                    <i class="ni ni-fat-remove"></i>
+                                </button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="row">
@@ -44,10 +98,16 @@
                 </div>
 
             </div>
-
         </div>
     </div>
 
+    <div class="row justify-content-md-center">
+        <div class="col-md-12">
+            <button (click)="_submitte_invoice()" class='btn btn-success'>
+                Finalizar Faturação
+            </button>
+        </div>
+    </div>
 
 
 </div>

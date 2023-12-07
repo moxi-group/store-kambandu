@@ -63,7 +63,6 @@ export class CreateOrEditInvoiceComponent implements OnInit {
         if ( is_valid_form ) {
             this._create()
         }
-
     }
 
     _create() {

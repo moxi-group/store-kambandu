@@ -45,8 +45,9 @@
                             <tr *ngFor="let item of stocks; index as i">
                                 <td>{{ i+1 }}</td>
                                 <th scope="row"><span class="name mb-0 text-sm">{{ item?.product?.code }}</span></th>
-                                <th scope="row"><span class="name mb-0 text-sm">{{ item?.product?.name }}</span></th>
-                                <th scope="row"><span class="name mb-0 text-sm">{{ item?.product?.price }}</span></th>
+                                <th scope="row"><span class="name mb-0 text-sm">{{ item?.product?.name}}</span></th>
+                                <th scope="row"><span class="name mb-0 text-sm">{{ item?.product?.price | to_kwanza
+                                        }}</span></th>
                                 <td class="budget bg-warning text-center text-white">{{ item.pending_quantity }}</td>
                                 <td class="budget bg-primary text-center text-white">{{ item.accounting_quantity }}</td>
                                 <td class="budget bg-green text-center text-white">{{ item.quantity_available }}</td>

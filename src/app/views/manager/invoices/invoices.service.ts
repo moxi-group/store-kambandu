@@ -19,6 +19,7 @@ export class InvoicesService {
         customer_uuid: null,
         serie_uuid: null,
         lines: [],
+        store_uuid: '13877b6d-5481-4676-90db-277298049e31',
         payment_lines: []
     }
     

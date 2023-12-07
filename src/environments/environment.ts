@@ -5,7 +5,7 @@ export const environment = {
     fullBaseUrl: `https://api.kambandu.com/api/v1`,
     invoiceServe: {
         baseUrl: 'http://79.98.30.68:7403/api/v1/document',
-        doc_uuid: 'bf815926-c74e-4f52-beec-5717239ed079',
+        doc_uuid: 'f20d588d-acff-4278-9887-c8eeb93903e1',
         output: 'generate?output_format=pdf'
     }
 };

@@ -73,7 +73,6 @@ export class AddQuantityInvoiceComponent implements OnInit {
         let line = this._remove_property(this.product)
         
         this._invoicesService.invoiceObject.lines.push(line)
-
         this._invoicesService.full_calculation()
 
         this.onReset()
