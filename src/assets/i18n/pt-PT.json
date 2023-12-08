@@ -1,5 +1,6 @@
 {
     "admin": "Administrador",
+    "employer": "Colaborador",
     "default": {
         "name": "Nome"
     },

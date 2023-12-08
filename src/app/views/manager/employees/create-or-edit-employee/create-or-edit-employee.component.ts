@@ -28,9 +28,8 @@ export class CreateOrEditEmployeeComponent implements OnInit {
             uuid: [{ value: null, disabled: true }],
             name: [null, Validators.required],
             email: [null, Validators.required],
-            address: [null, Validators.required],
-            cell_phone: [null, Validators.required],
-            description: [null, Validators.required],
+            password: ['123456'],
+            phone_number: [null, Validators.required],
             store_uuid: [null, Validators.required]
         })
     }

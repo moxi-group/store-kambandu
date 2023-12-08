@@ -23,13 +23,13 @@ export class EmployeesService {
 
     get_employees() {
         return this._http_client.get<any>(
-            `${environment.fullBaseUrl}/employees`, { headers: this.headers }
+            `${environment.fullBaseUrl}/collaborators`, { headers: this.headers }
         )
     }
 
     create(data: any) {
         return this._http_client.post<any>(
-            `${environment.fullBaseUrl}/employees`,
+            `${environment.fullBaseUrl}/collaborators`,
             data,
             { headers: this.headers }
         )
@@ -37,7 +37,7 @@ export class EmployeesService {
 
     update(uuid:string, data: any) {
         return this._http_client.post<any>(
-            `${environment.fullBaseUrl}/employees/${uuid}`,
+            `${environment.fullBaseUrl}/collaborators/${uuid}`,
             data,
             { headers: this.headers }
         )

@@ -13,9 +13,9 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label class="control-label">{{ 'label.description' | translate}}</label>
+                        <label class="control-label">{{ 'Nome do colaborador' | translate}}</label>
                         <input type="text" formControlName="name" name="name" class="form-control"
-                            placeholder="Nome da loja"
+                            placeholder="João António Paulo"
                             [ngClass]="{ 'is-invalid': submitted && f.name.errors, 'is-valid': f.name.touched && !f.name.errors }" />
                         <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
                             <div *ngIf="f['name'].errors.required">{{ 'errors.required' | translate}}</div>
@@ -34,31 +34,11 @@
 
                     <div class="form-group">
                         <label class="control-label">{{ 'label.cell_phone' | translate}}</label>
-                        <input type="text" formControlName="cell_phone" name="cell_phone" class="form-control"
-                            placeholder="e-mail"
-                            [ngClass]="{ 'is-invalid': submitted && f.cell_phone.errors, 'is-valid': f.cell_phone.touched && !f.cell_phone.errors }" />
-                        <div *ngIf="submitted && f['cell_phone'].errors" class="invalid-feedback">
-                            <div *ngIf="f['cell_phone'].errors.required">{{ 'errors.required' | translate}}</div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label">{{ 'label.address' | translate}}</label>
-                        <input type="text" formControlName="address" name="address" class="form-control"
-                            placeholder="endereço da loja"
-                            [ngClass]="{ 'is-invalid': submitted && f.address.errors, 'is-valid': f.address.touched && !f.address.errors }" />
-                        <div *ngIf="submitted && f['address'].errors" class="invalid-feedback">
-                            <div *ngIf="f['address'].errors.required">{{ 'errors.required' | translate}}</div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label">{{ 'label.description' | translate}}</label>
-                        <input type="text" formControlName="description" name="description" class="form-control"
-                            placeholder="Detalhes"
-                            [ngClass]="{ 'is-invalid': submitted && f.description.errors, 'is-valid': f.description.touched && !f.description.errors }" />
-                        <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
-                            <div *ngIf="f['description'].errors.required">{{ 'errors.required' | translate}}</div>
+                        <input type="text" formControlName="phone_number" name="phone_number" class="form-control"
+                            placeholder="934000987"
+                            [ngClass]="{ 'is-invalid': submitted && f.phone_number.errors, 'is-valid': f.phone_number.touched && !f.phone_number.errors }" />
+                        <div *ngIf="submitted && f['phone_number'].errors" class="invalid-feedback">
+                            <div *ngIf="f['phone_number'].errors.required">{{ 'errors.required' | translate}}</div>
                         </div>
                     </div>
 
@@ -67,7 +47,7 @@
                         <select formControlName="store_uuid" name="store_uuid" class="form-control"
                             [ngClass]="{ 'is-invalid': submitted && f.store_uuid.errors, 'is-valid': f.store_uuid.touched && !f.store_uuid.errors }">
                             <option *ngFor="let store of stores" [value]="store.uuid">{{ store.name }} - {{
-                                store.nif }}</option>
+                                store.address }}</option>
                         </select>
                     </div>
 
