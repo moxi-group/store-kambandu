@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { InvoicesService } from './invoices.service';
-import { saveAs } from 'file-saver';
 import { ApplicationService } from 'src/app/api/application.service';
+import { saveAs } from 'file-saver';
 
 
 @Component({
@@ -46,62 +46,28 @@ export class InvoicesComponent implements OnInit {
         this._invoicesService
         .print(invoice)
         .subscribe(response => {
-        
-            /*
-
-            const blob = new Blob([response], { type: 'application/octet-stream' });
+            const blob = new Blob([response], { type: 'application/pdf' });
             const blobUrl = URL.createObjectURL(blob);
 
-            var newWindow = window.open(blobUrl, '_blank');
+            // Decide whether to print or download based on your condition
+            const shouldPrint = true; // Replace this with your condition
 
-            if ( newWindow ) {
-                newWindow.onload = function() {
-                    if ( newWindow ) {
-                        newWindow.print();
-                    }
-                };
+            if (shouldPrint) {
+                // Use window.open for printing
+                const printWindow = window.open(blobUrl, '_blank');
+                printWindow?.print();
+                if (printWindow) {
+                    printWindow.onafterprint = () => {
+                        // Clean up the URL object after printing
+                        URL.revokeObjectURL(blobUrl);
+                    };
+                }
+            } else {
+                // Use file-saver library to trigger the download
+                saveAs(blobUrl, `${invoice.sigla_doc}.pdf`);
+                // Clean up the URL object to release resources
+                URL.revokeObjectURL(blobUrl);
             }
-
-            */
-            /*
-
-            //window.open(blobUrl);
-
-            let iframe =  document.createElement('iframe');
-            document.body.appendChild(iframe);
-
-            iframe.style.display = 'none';
-            iframe.src = blobUrl;
-
-            iframe.onload = function() {
-                setTimeout(function() {
-                    if (iframe.contentWindow) {
-                        iframe.focus();
-                        iframe.contentWindow.print();
-                    }
-                }, 1);
-            };
-
-            */
-
-        
-
-            console.log( "======================================" )
-
-            
-            // var blob = new Blob([response], {type: "application/pdf"});
-            // saveAs(blob, `${invoice.sigla_doc}.pdf`);
-            // Create a Blob object from the response
-            const blob = new Blob([response], { type: 'application/octet-stream' });
-
-            // Generate a URL for the Blob
-            const blobUrl = URL.createObjectURL(blob);
-
-            // Use the file-saver library to trigger the download
-            saveAs(blobUrl, `${invoice.sigla_doc}.pdf`);
-
-            // Clean up the URL object to release resources
-            URL.revokeObjectURL(blobUrl);
             
         }, (error) => {
             if ( error.status === 404) {

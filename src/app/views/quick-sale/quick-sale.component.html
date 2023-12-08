@@ -96,6 +96,15 @@
                     </select>
                 </div>
 
+                <div class="col-sm-12 mt-3">
+                    <label id="customer_uuid" class="control-label">{{ 'Forma de Pagamento' | translate}}</label>
+                    <select (change)="set_payment_method($event.target)" id="payment_uuid" name="payment_uuid"
+                        class="form-control">
+                        <option *ngFor="let payment of payment_methods" [value]="payment.uuid">{{ payment.name }}
+                        </option>
+                    </select>
+                </div>
+
             </div>
         </div>
     </div>

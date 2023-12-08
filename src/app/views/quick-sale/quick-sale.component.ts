@@ -4,7 +4,8 @@ import { InvoicesService } from '../manager/invoices/invoices.service';
 import { SeriesService } from '../manager/series/series.service';
 import { ApplicationService } from 'src/app/api/application.service';
 import { ProductsService } from '../manager/products/products.service';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { saveAs } from 'file-saver';
 
 @Component({
     selector: 'app-quick-sale',
@@ -80,46 +81,49 @@ export class QuickSaleComponent implements OnInit {
 
     _submitte_invoice(){
         let is_valid_form = this._validations()
-
         if ( is_valid_form ) {
             this._create()
         }
     }
 
-    async _create() {      
+    _create() {      
         this.loading = true  
         this._invoicesService.create(this._invoicesService.invoiceObject)
         .subscribe(response => {
             this._print_after_create( response )
-
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this.loading = false
-            //this.router.navigate(['/managers/invoices'])
         })
     }
 
-    async _print_after_create( invoice: any ){
+    _print_after_create( invoice: any ){
         this._invoicesService
         .print(invoice)
-        .subscribe( response => {
-            const blob = new Blob([response], { type: 'application/octet-stream' });
+        .subscribe(response => {
+            const blob = new Blob([response], { type: 'application/pdf' });
             const blobUrl = URL.createObjectURL(blob);
+            const shouldPrint = true; // Replace this with your condition
 
-            console.log( blobUrl )
-            console.log( "======================================" )
-
-
-            //const blob = new Blob([doc.output('bloburl', 'test')], { type: 'application/pdf' });
-            //const blobUrl = URL.createObjectURL(blob);
-
-
-            //doc.autoPrint();
-            //doc.output("dataurlnewwindow");
-
-            //console.log( blobUrl )
-
+            if (shouldPrint) {
+                const printWindow = window.open(blobUrl, '_blank');
+                printWindow?.print();
+                if (printWindow) {
+                    printWindow.onafterprint = () => {
+                        URL.revokeObjectURL(blobUrl);
+                    };
+                }
+            } else {
+                saveAs(blobUrl, `${invoice.sigla_doc}.pdf`);
+                URL.revokeObjectURL(blobUrl);
+            }
+            
+        }, (error) => {
+            if ( error.status === 404) {
+                this._applicationService.SwalDanger('Template de Imprensão não encontrado')
+            } else {
+                this._applicationService.SwalDanger('Problemas ao se conectar ao serviço externo')
+            }
         })
-
 
     }
 
@@ -142,19 +146,6 @@ export class QuickSaleComponent implements OnInit {
             return false
         }
 
-        //================ validar linhas === FR
-        if ( this._invoicesService.invoiceObject.serie_uuid && this._invoicesService.serie.document.slug === 'FR' ) {
-            if ( !this._invoicesService.invoiceObject.payment_lines.length ) {
-                this._applicationService.SwalDanger("Por favor Pagar a Fatura-Recibo");
-                return false
-            } else {
-                if ( this._invoicesService.total_received <  this._invoicesService.total ) {
-                    this._applicationService.SwalDanger(`Por favor o valor deve ser superior ou igual à ${this._invoicesService.total.toFixed()}`);
-                    return false 
-                }
-            }
-        }
-
         return true
     }
 
@@ -175,22 +166,6 @@ export class QuickSaleComponent implements OnInit {
         return line
     }
 
-    get_products() {
-        this._productsService
-        .get_products()
-        .subscribe(response => {
-            this.products = Object(response)
-        })
-    }
-
-    get_customers() {
-        this._customersService
-        .get_customers()
-        .subscribe(response => {
-            this.customers = Object(response)
-        })
-    }
-
     _check_serie(target: any){
         let uuid = target.value
         let serie = this.series.find((item: any) => item.uuid === uuid)
@@ -204,13 +179,6 @@ export class QuickSaleComponent implements OnInit {
         }
     }
 
-    get_series() {
-        this._seriesService
-        .get_series()
-        .subscribe(response => {
-            this.series = Object(response)
-        })
-    }
 
     set_customer(target: any){
         let uuid = target.value
@@ -222,11 +190,50 @@ export class QuickSaleComponent implements OnInit {
         this._invoicesService.serie = this.series.find((serie: any) => serie.uuid == uuid)
     }
 
+    set_payment_method(target: any){
+        let uuid = target.value
+        let payment = this.payment_methods.find((item: any) => item.uuid === uuid )
+        this._invoicesService.total_received = this._invoicesService.total
+
+        let payload_payment = {
+            kind: payment.name,
+            payment_method_uuid: payment.uuid,
+            payment_date: new Date(),
+            amount_received: this._invoicesService.total
+        }
+        
+        this._invoicesService.invoiceObject.payment_lines = [payload_payment]
+    }
+
     get_payment_methods(){
         this._invoicesService
         .get_payment_methods()
         .subscribe(response => {
             this.payment_methods = Object(response)
+        })
+    }
+
+    get_series() {
+        this._seriesService
+        .get_series()
+        .subscribe(response => {
+            this.series = Object(response).filter((serie: any) => serie?.document?.slug === 'FR')
+        })
+    }
+
+    get_customers() {
+        this._customersService
+        .get_customers()
+        .subscribe(response => {
+            this.customers = Object(response).filter((item: any) => item.nif === "999999999")
+        })
+    }
+
+    get_products() {
+        this._productsService
+        .get_products()
+        .subscribe(response => {
+            this.products = Object(response)
         })
     }
 }
