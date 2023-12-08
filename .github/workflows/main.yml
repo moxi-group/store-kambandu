@@ -28,8 +28,8 @@ jobs:
           export NVM_DIR=~/.nvm
           source ~/.nvm/nvm.sh
           npm --help
-          
+
           cd /var/www/store-kambandu/
           git pull origin main
           git status
-          npm install --only=prod
+          npm install --legacy-peer-deps
