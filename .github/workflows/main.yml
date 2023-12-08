@@ -14,7 +14,9 @@ jobs:
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:       
+    steps:   
+    - name: Node Js
+      uses: actions/setup-node@v1    
     - name: Deploy using ssh
       uses: appleboy/ssh-action@master
       with:
