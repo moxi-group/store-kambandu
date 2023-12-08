@@ -38,7 +38,7 @@ const APP_CONTAINERS = [
         NotFoundComponentComponent,
         HeaderComponent,
         AsideComponent,
-        QuickSaleComponent,
+        QuickSaleComponent
     ],
     imports: [
         HttpClientModule,
