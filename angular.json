@@ -35,8 +35,6 @@
             ],
             "styles": [
               "src/styles.scss",
-              "./node_modules/flag-icon-css/css/flag-icons.min.css",
-              "./node_modules/ngx-spinner/animations/ball-scale-multiple.css",
               "node_modules/ng-wizard/themes/ng_wizard.min.css",
               "ng-wizard/themes/ng_wizard_theme_arrows.min.css"
             ],

@@ -17,7 +17,6 @@ import { HeaderComponent } from './containers/default-layout/header/header.compo
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgxLoadingModule } from 'ngx-loading';
 import { QuickSaleComponent } from './views/quick-sale/quick-sale.component';
 import { SharedModule } from './shared/shared.module';
 
@@ -56,13 +55,6 @@ const APP_CONTAINERS = [
                 useFactory: httpTranslateLoaderFactory,
                 deps: [HttpClient]
             }
-        }),
-        NgxLoadingModule.forRoot({
-            backdropBorderRadius: "3px",
-            backdropBackgroundColour: "rgba(255, 255, 255, 0.78)",
-            primaryColour: "#20a8d8",
-            secondaryColour: "#20a8d8",
-            tertiaryColour: "#20a8d8",
         })
     ],
     providers: [

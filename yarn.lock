@@ -3964,11 +3964,6 @@ find-up@^4.0.0:
     locate-path "^5.0.0"
     path-exists "^4.0.0"
 
-flag-icon-css@^4.1.7:
-  version "4.1.7"
-  resolved "https://registry.yarnpkg.com/flag-icon-css/-/flag-icon-css-4.1.7.tgz#5471197f9ab965a3603b3e0face31dd513fec289"
-  integrity sha512-AFjSU+fv98XbU0vnTQ32vcLj89UEr1MhwDFcooQv14qWJCjg9fGZzfh9BVyDhAhIOZW/pGmJmq38RqpgPaeybQ==
-
 flat-cache@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/flat-cache/-/flat-cache-3.0.4.tgz#61b0338302b2fe9f957dcc32fc2a87f1c3048b11"
@@ -5810,20 +5805,6 @@ ng-wizard@^1.3.0:
   integrity sha512-jf+uNON3bShnwlqEcLy2njYsOACJadpUyJpdW1q0lF/rwtfIKaj7/SgZmP/4gW1i0cEAVYiDGpUJrcYnIQUDRw==
   dependencies:
     tslib "^1.10.0"
-
-ngx-loading@^13.0.0:
-  version "13.0.0"
-  resolved "https://registry.yarnpkg.com/ngx-loading/-/ngx-loading-13.0.0.tgz#918030a19e77132a19820cbbbaf8074d75513be8"
-  integrity sha512-bkBeEmb/NlqBfjAqgNojos7UKXQvhlqElLczh3nlecp8OGLIkwaod5NacxNhVrMLi2pec+thGHs5rrWg/pSBcg==
-  dependencies:
-    tslib "^2.3.0"
-
-ngx-spinner@^13.1.1:
-  version "13.1.1"
-  resolved "https://registry.yarnpkg.com/ngx-spinner/-/ngx-spinner-13.1.1.tgz#3dfd97644d051398a4707d6b69655e35036a5419"
-  integrity sha512-6aJz4KxIsBrlQckJxcM3CEvMcYbZoSDnQZPu0F/ZYAYunbBOTb9iydw0Gjczg9moum1VURWjX5dTVKmFo85c2Q==
-  dependencies:
-    tslib "^2.3.0"
 
 nice-napi@^1.0.2:
   version "1.0.2"

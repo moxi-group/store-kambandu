@@ -37,19 +37,7 @@ import { CreateOrEditPaymentMethodComponent } from './payment-methods/create-or-
         FormsModule,
         ReactiveFormsModule,
         ConfigurationsRoutingModule,
-        TranslateModule.forChild(),
-
-        /*
-        NgxSpinnerModule,
-        NgxLoadingModule.forRoot({
-        backdropBorderRadius: "3px",
-        backdropBackgroundColour: "rgba(255, 255, 255, 0.78)",
-        primaryColour: "#20a8d8",
-        secondaryColour: "#20a8d8",
-        tertiaryColour: "#20a8d8",
-        })
-        */
-
+        TranslateModule.forChild()
     ]
 })
 
