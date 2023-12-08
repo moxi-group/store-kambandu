@@ -4,6 +4,7 @@ import { InvoicesService } from './invoices.service';
 import { saveAs } from 'file-saver';
 import { ApplicationService } from 'src/app/api/application.service';
 
+
 @Component({
     selector: 'app-invoices',
     templateUrl: './invoices.component.html',
@@ -45,6 +46,49 @@ export class InvoicesComponent implements OnInit {
         this._invoicesService
         .print(invoice)
         .subscribe(response => {
+        
+            /*
+
+            const blob = new Blob([response], { type: 'application/octet-stream' });
+            const blobUrl = URL.createObjectURL(blob);
+
+            var newWindow = window.open(blobUrl, '_blank');
+
+            if ( newWindow ) {
+                newWindow.onload = function() {
+                    if ( newWindow ) {
+                        newWindow.print();
+                    }
+                };
+            }
+
+            */
+            /*
+
+            //window.open(blobUrl);
+
+            let iframe =  document.createElement('iframe');
+            document.body.appendChild(iframe);
+
+            iframe.style.display = 'none';
+            iframe.src = blobUrl;
+
+            iframe.onload = function() {
+                setTimeout(function() {
+                    if (iframe.contentWindow) {
+                        iframe.focus();
+                        iframe.contentWindow.print();
+                    }
+                }, 1);
+            };
+
+            */
+
+        
+
+            console.log( "======================================" )
+
+            
             // var blob = new Blob([response], {type: "application/pdf"});
             // saveAs(blob, `${invoice.sigla_doc}.pdf`);
             // Create a Blob object from the response
@@ -58,6 +102,7 @@ export class InvoicesComponent implements OnInit {
 
             // Clean up the URL object to release resources
             URL.revokeObjectURL(blobUrl);
+            
         }, (error) => {
             if ( error.status === 404) {
                 this._applicationService.SwalDanger('Template de Imprensão não encontrado')

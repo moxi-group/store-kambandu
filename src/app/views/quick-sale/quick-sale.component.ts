@@ -86,14 +86,41 @@ export class QuickSaleComponent implements OnInit {
         }
     }
 
-    _create() {      
+    async _create() {      
         this.loading = true  
         this._invoicesService.create(this._invoicesService.invoiceObject)
         .subscribe(response => {
+            this._print_after_create( response )
+
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this.loading = false
-            this.router.navigate(['/managers/invoices'])
+            //this.router.navigate(['/managers/invoices'])
         })
+    }
+
+    async _print_after_create( invoice: any ){
+        this._invoicesService
+        .print(invoice)
+        .subscribe( response => {
+            const blob = new Blob([response], { type: 'application/octet-stream' });
+            const blobUrl = URL.createObjectURL(blob);
+
+            console.log( blobUrl )
+            console.log( "======================================" )
+
+
+            //const blob = new Blob([doc.output('bloburl', 'test')], { type: 'application/pdf' });
+            //const blobUrl = URL.createObjectURL(blob);
+
+
+            //doc.autoPrint();
+            //doc.output("dataurlnewwindow");
+
+            //console.log( blobUrl )
+
+        })
+
+
     }
 
     _validations(){
