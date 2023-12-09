@@ -23,7 +23,7 @@
                         <div class="col">
                             <h5 class="card-title text-uppercase text-muted mb-0 text-white">{{ 'text.daily_billing' |
                                 translate }}</h5>
-                            <span class="h2 font-weight-bold mb-0 text-white">{{ resume.daily_billing | to_kwanza
+                            <span class="h2 font-weight-bold mb-0 text-white">{{ resume.daily_bill | to_kwanza
                                 }}</span>
                             <div class="progress progress-xs mt-3 mb-0">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -48,7 +48,7 @@
                         <div class="col">
                             <h5 class="card-title text-uppercase text-muted mb-0 text-white">{{ 'text.month_billing' |
                                 translate }}</h5>
-                            <span class="h2 font-weight-bold mb-0 text-white">{{ resume.month_billing | to_kwanza
+                            <span class="h2 font-weight-bold mb-0 text-white">{{ resume.monthly_bill | to_kwanza
                                 }}</span>
                             <div class="progress progress-xs mt-3 mb-0">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -74,7 +74,8 @@
                             <h5 class="card-title text-uppercase text-muted mb-0 text-white">{{
                                 'COBRANÇA DIÁRIA' |
                                 translate }}</h5>
-                            <span class="h2 font-weight-bold mb-0 text-white">{{ resume.month_receipts | to_kwanza
+                            <span class="h2 font-weight-bold mb-0 text-white">{{ resume.monthly_receipt |
+                                to_kwanza
                                 }}</span>
                             <div class="progress progress-xs mt-3 mb-0">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -100,7 +101,7 @@
                             <h5 class="card-title text-uppercase text-muted mb-0 text-white">{{
                                 'text.month_receipts' |
                                 translate }}</h5>
-                            <span class="h2 font-weight-bold mb-0 text-white">{{ resume.month_receipts | to_kwanza
+                            <span class="h2 font-weight-bold mb-0 text-white">{{ resume.daily_receipt | to_kwanza
                                 }}</span>
                             <div class="progress progress-xs mt-3 mb-0">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"

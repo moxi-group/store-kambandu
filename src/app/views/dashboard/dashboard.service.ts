@@ -23,7 +23,7 @@ export class DashboardService {
 
     get_resume() {
         return this._http_client.get<any>(
-            `${environment.fullBaseUrl}/dashboard`, { headers: this.headers }
+            `${environment.fullBaseUrl}/invoices/dashboard/`, { headers: this.headers }
         )
     }
 

@@ -11,7 +11,7 @@ Chart.register(...registerables)
 
 export class DashboardComponent implements OnInit {
     currentRole: boolean = sessionStorage.getItem('CURRENT_ROLE')? true : false
-    resume: any
+    resume: any = {}
 
     constructor(
         private _dashService: DashboardService,
@@ -20,20 +20,17 @@ export class DashboardComponent implements OnInit {
         if (!this.currentRole) {
             this.router.navigateByUrl('/dashboard/manager-roles')
         }
+        this.get_resume()
     }
     
     ngOnInit(): void {
-        this.get_resume()
         this.render_barchart()
         this.render_piechart()
     }
 
     get_resume(){
-        
         this._dashService.get_resume()
         .subscribe(response => {
-            console.log( response )
-
             this.resume = Object(response)
         },error => {
             console.log( error )
