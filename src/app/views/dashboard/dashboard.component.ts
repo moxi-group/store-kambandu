@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 import { Chart, registerables } from 'chart.js/auto';
+import { DashboardService } from './dashboard.service';
 Chart.register(...registerables)
 
 @Component({
@@ -10,8 +11,10 @@ Chart.register(...registerables)
 
 export class DashboardComponent implements OnInit {
     currentRole: boolean = sessionStorage.getItem('CURRENT_ROLE')? true : false
+    resume: any
 
     constructor(
+        private _dashService: DashboardService,
         private router: Router
     ){
         if (!this.currentRole) {
@@ -20,8 +23,21 @@ export class DashboardComponent implements OnInit {
     }
     
     ngOnInit(): void {
+        this.get_resume()
         this.render_barchart()
         this.render_piechart()
+    }
+
+    get_resume(){
+        
+        this._dashService.get_resume()
+        .subscribe(response => {
+            console.log( response )
+
+            this.resume = Object(response)
+        },error => {
+            console.log( error )
+        })
     }
 
     render_barchart(){

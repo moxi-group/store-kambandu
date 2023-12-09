@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { ManagerRolesComponent } from './manager-roles/manager-roles.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { ManagerRolesComponent } from './manager-roles/manager-roles.component';
         DashboardRoutingModule,
         HttpClientModule,
         ReactiveFormsModule,
+        SharedModule,
         CommonModule,
         TranslateModule.forChild()
     ]
