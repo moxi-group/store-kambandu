@@ -13,6 +13,9 @@ export class DashboardComponent implements OnInit {
     currentRole: boolean = sessionStorage.getItem('CURRENT_ROLE')? true : false
     resume: any = {}
 
+    labels = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ']
+
+
     constructor(
         private _dashService: DashboardService,
         private router: Router
@@ -20,31 +23,42 @@ export class DashboardComponent implements OnInit {
         if (!this.currentRole) {
             this.router.navigateByUrl('/dashboard/manager-roles')
         }
-        this.get_resume()
     }
     
     ngOnInit(): void {
-        this.render_barchart()
-        this.render_piechart()
+        this.get_resume()
     }
 
     get_resume(){
         this._dashService.get_resume()
         .subscribe(response => {
-            this.resume = Object(response)
+            let result = Object(response)
+            this.resume = result
+            this.render_barchart(result)
+            this.render_piechart(result)
         },error => {
             console.log( error )
         })
     }
 
-    render_barchart(){
+    render_barchart(response: any){
+        let data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        let bill_by_month = response.bill_by_month
+
+        for(let item of bill_by_month){
+            if (this.labels.includes( item.month_name)) {
+                const position = this.labels.findIndex(label => label === item.month_name)
+                data[position] = item.total
+            }
+        }
+
         new Chart('barchart', {
             type: 'bar',
             data: {
-                labels: ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'],
+                labels: this.labels,
                 datasets: [{
                 label: 'FATURAÇÃO / MÊS',
-                data: [12, 19, 3, 5, 2, 3, 12, 2, 4, 12, 15, 20],
+                data: data,
                 borderWidth: 1
                 }]
             },
@@ -58,14 +72,24 @@ export class DashboardComponent implements OnInit {
         });
     }
 
-    render_piechart(){
+    render_piechart(response: any){
+        let data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        let receipt_by_month = response.receipt_by_month
+
+        for(let item of receipt_by_month){
+            if (this.labels.includes( item.month_name)) {
+                const position = this.labels.findIndex(label => label === item.month_name)
+                data[position] = item.total
+            }
+        }
+
         new Chart('piechart', {
             type: 'bar',
             data: {
-                labels: ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'],
+                labels: this.labels,
                 datasets: [{
                     label: 'RECEBIMENTO / MÊS',
-                    data: [2, 9, 13, 15, 19, 13, 2, 5, 4, 2, 5, 2],
+                    data: data,
                     borderWidth: 0
                 }]
             },
