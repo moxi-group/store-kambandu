@@ -6,8 +6,6 @@
 <div class="main-content" id="panel">
     <app-header></app-header>
     <router-outlet></router-outlet>
-
-
 </div>
 
 <!-- Default dropleft button -->
@@ -21,12 +19,14 @@
             Faturar agora
         </a>
 
-        <a class="dropdown-item" href="#">Abrir Caixa</a>
+        <button type="button" class="btn btn-sm dropdown-item" data-toggle="modal" data-target="#OpenSaleBoxModal">
+            {{ 'Abrir Caixa' | translate }}
+        </button>
 
     </div>
 </div>
 
-
+<OpenSaleBoxModal></OpenSaleBoxModal>
 
 
 <style>

@@ -20,6 +20,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 
 import { QuickSaleComponent } from './views/quick-options/quick-sale/quick-sale.component';
+import { CloseSaleBoxComponent } from './views/quick-options/close-sale-box/close-sale-box.component';
+import { OpenSaleBoxComponent } from './views/quick-options/open-sale-box/open-sale-box.component';
 
 
 
@@ -39,7 +41,9 @@ const APP_CONTAINERS = [
         NotFoundComponentComponent,
         HeaderComponent,
         AsideComponent,
-        QuickSaleComponent
+        QuickSaleComponent,
+        CloseSaleBoxComponent,
+        OpenSaleBoxComponent
     ],
     imports: [
         HttpClientModule,

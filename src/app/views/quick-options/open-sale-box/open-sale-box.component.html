@@ -1,0 +1,40 @@
+<div class="modal fade" id="{{modal}}" tabindex="-1" role="dialog" aria-labelledby="OpenSaleBoxModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form [formGroup]="openForm" (submit)="onSubmit();">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="OpenSaleBoxModal">{{title}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label">{{ 'Valor de abertura' | translate}}</label>
+                        <input type="text" formControlName="opening_value" name="opening_value" class="form-control"
+                            placeholder="0"
+                            [ngClass]="{ 'is-invalid': submitted && f.opening_value.errors, 'is-valid': f.opening_value.touched && !f.opening_value.errors }" />
+                        <div *ngIf="submitted && f['opening_value'].errors" class="invalid-feedback">
+                            <div *ngIf="f['opening_value'].errors.required">{{ 'errors.required' | translate}}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-danger btn-sm" type="reset" [disabled]="openForm.pristine && !submitted"
+                        (click)="onReset()">{{ 'btn.clean' | translate}}</button>
+                    <button class="btn btn-success btn-sm mr-1" type="submit" [disabled]="openForm.valid">{{
+                        'btn.validate' | translate}}</button>
+                    <button type="submit" [disabled]="openForm.pristine || openForm.invalid"
+                        class="btn btn-primary btn-sm">{{ 'btn.save' | translate}}
+                        <spinner [loading]='submitted'></spinner>
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

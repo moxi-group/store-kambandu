@@ -91,7 +91,7 @@ export class QuickSaleComponent implements OnInit {
         this._invoicesService.create(this._invoicesService.invoiceObject)
         .subscribe(response => {
             this._print_after_create( response )
-            this._applicationService.SwalSuccess("Registo feito com sucesso!");
+            this._applicationService.SwalSuccess("Faturação feito com sucesso!");
             this.loading = false
         }, (error) => {            
             this._applicationService.SwalDanger(error.error.detail)
