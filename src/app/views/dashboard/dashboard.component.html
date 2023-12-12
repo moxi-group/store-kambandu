@@ -14,7 +14,7 @@
 </div>
 
 <!-- Page content -->
-<div class="container-fluid mt--6">
+<div *ngIf="my_role !== 'super_admin'" class="container-fluid mt--6">
     <div class="row">
         <div class="col-xl-3 col-md-6">
             <div class="card bg-gradient-default border-0">

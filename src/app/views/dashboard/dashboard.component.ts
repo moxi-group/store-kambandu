@@ -10,6 +10,8 @@ Chart.register(...registerables)
 })
 
 export class DashboardComponent implements OnInit {
+    my_role = sessionStorage.getItem('CURRENT_ROLE')
+
     currentRole: boolean = sessionStorage.getItem('CURRENT_ROLE')? true : false
     resume: any = {}
 
@@ -26,7 +28,9 @@ export class DashboardComponent implements OnInit {
     }
     
     ngOnInit(): void {
-        this.get_resume()
+        if ( this.my_role !== 'super_admin' ) {
+            this.get_resume()
+        }
     }
 
     get_resume(){

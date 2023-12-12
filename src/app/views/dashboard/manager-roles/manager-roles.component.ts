@@ -31,8 +31,6 @@ export class ManagerRolesComponent implements OnInit {
 		}else{
             this.router.navigate(['/auth/login'])
         }
-
-
     }
 
     ngOnInit(): void {
@@ -51,19 +49,24 @@ export class ManagerRolesComponent implements OnInit {
 
 
     set_role(role: any){
-        sessionStorage.setItem('CURRENT_COMPANY', role.company_uuid)
-        
-        this._authService.getCompanyByUuid(role.company_uuid)
-        .subscribe(response => {
-            let result = Object(response)            
-            sessionStorage.setItem('CURRENT_COMPANY_DATA', JSON.stringify(result))
-            sessionStorage.setItem('CURRENT_ROLE', role.role_type)
-            
-            this.router.navigateByUrl('/dashboard')
-            .then(() => {
-                window.location.reload();
+        if ( role === 'super_admin') {
+            sessionStorage.setItem('CURRENT_ROLE', role)
+        } else {
+            sessionStorage.setItem('CURRENT_COMPANY', role.company_uuid)
+
+            this._authService.getCompanyByUuid(role.company_uuid)
+            .subscribe(response => {
+                let result = Object(response)            
+                sessionStorage.setItem('CURRENT_COMPANY_DATA', JSON.stringify(result))
+                sessionStorage.setItem('CURRENT_ROLE', role.role_type)
+                
+                this.router.navigateByUrl('/dashboard')
+                .then(() => {
+                    window.location.reload();
+                })
             })
-        })
+        }
+
     }
 
 }
