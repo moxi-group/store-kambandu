@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApplicationService } from 'src/app/api/application.service';
 import { Router } from '@angular/router';
-import { saveAs } from 'file-saver';
 import { SeriesService } from '../../manager/series/series.service';
 import { InvoicesService } from '../../manager/invoices/invoices.service';
 import { CustomersService } from '../../manager/customers/customers.service';
@@ -72,7 +71,6 @@ export class QuickSaleComponent implements OnInit {
             //this._invoicesService.invoiceObject.lines.push(line)
 
             this._invoicesService.add_or_update_lines( product )
-
             this._invoicesService.full_calculation()
         }else{
             this.disabled_btn_submit = false
@@ -91,15 +89,14 @@ export class QuickSaleComponent implements OnInit {
         this._invoicesService.create(this._invoicesService.invoiceObject)
         .subscribe(response => {
             this._invoicesService._print_after_create( response )
-            this._applicationService.SwalSuccess("Faturação feito com sucesso!");
+            this._applicationService.SwalSuccess("Faturação feito com sucesso!")
+            this._invoicesService.reset()
             this.loading = false
         }, (error) => {            
             this._applicationService.SwalDanger(error.error.detail)
             this.loading = false
         })
     }
-
-
 
     _validations(){
         //================ validar cliente

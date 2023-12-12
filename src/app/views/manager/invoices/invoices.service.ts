@@ -22,7 +22,6 @@ export class InvoicesService {
         customer_uuid: null,
         serie_uuid: null,
         lines: [],
-        store_uuid: '13877b6d-5481-4676-90db-277298049e31',
         payment_lines: []
     }
     
@@ -98,8 +97,6 @@ export class InvoicesService {
         this.total_received = this.invoiceObject.payment_lines.reduce((partialSum: any, line: any) => (partialSum + line.amount_received), 0 )
     }
 
-    
-
     get_payment_methods() {
         return this._http_client.get<any>(
             `${environment.fullBaseUrl}/invoices/payment_methods`, { headers: this.headers }
@@ -135,4 +132,21 @@ export class InvoicesService {
         })
     }
 
+    reset(){
+        this.customer = {}
+        this.serie = {}
+    
+        this.total_without_tax  = 0
+        this.total_received  = 0
+        this.total_tax  = 0
+        this.total  = 0
+    
+        this.invoiceObject = {
+            uuid: null,
+            customer_uuid: null,
+            serie_uuid: null,
+            lines: [],
+            payment_lines: []
+        }
+    }
 }

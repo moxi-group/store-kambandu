@@ -48,8 +48,6 @@ export class InvoicesComponent implements OnInit {
         .subscribe(response => {
             const blob = new Blob([response], { type: 'application/pdf' });
             const blobUrl = URL.createObjectURL(blob);
-
-            // Decide whether to print or download based on your condition
             const shouldPrint = true; // Replace this with your condition
 
             if (shouldPrint) {

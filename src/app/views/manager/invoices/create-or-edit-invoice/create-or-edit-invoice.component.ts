@@ -73,6 +73,7 @@ export class CreateOrEditInvoiceComponent implements OnInit {
         .subscribe(response => {
             this._applicationService.SwalSuccess("Faturação feito com sucesso!");
             this._invoicesService._print_after_create( response )
+            this._invoicesService.reset()
             this.router.navigate(['/managers/invoices'])
         }, (error) => {            
             this._applicationService.SwalDanger(error.error.detail)
