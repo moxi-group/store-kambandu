@@ -12,6 +12,8 @@ import { ApplicationService } from 'src/app/api/application.service';
 })
 
 export class CreateOrEditInvoiceComponent implements OnInit {
+    loading = false
+
     stepStates = {
         normal: STEP_STATE.normal,
         disabled: STEP_STATE.disabled,
@@ -66,10 +68,15 @@ export class CreateOrEditInvoiceComponent implements OnInit {
     }
 
     _create() {
+        this.loading = true
         this._invoicesService.create(this._invoicesService.invoiceObject)
         .subscribe(response => {
-            this._applicationService.SwalSuccess("Registo feito com sucesso!");
+            this._applicationService.SwalSuccess("Faturação feito com sucesso!");
+            this._invoicesService._print_after_create( response )
             this.router.navigate(['/managers/invoices'])
+        }, (error) => {            
+            this._applicationService.SwalDanger(error.error.detail)
+            this.loading = false
         })
     }
 

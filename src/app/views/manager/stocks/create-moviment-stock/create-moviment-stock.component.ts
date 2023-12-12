@@ -22,7 +22,7 @@ export class CreateMovimentStockComponent implements OnInit {
     products: any = []
     providers: any = []
     stores: any = []
-
+    
     constructor(
         private _stockService: StocksService,
         private _productService: ProductsService,
@@ -60,6 +60,12 @@ export class CreateMovimentStockComponent implements OnInit {
         .get_stores()
         .subscribe(response => {
             this.stores = Object(response)
+        })
+
+        this._stockService
+        .get_stocks()
+        .subscribe(response => {
+            this._stockService.stocks = Object(response)
         })
     }
 

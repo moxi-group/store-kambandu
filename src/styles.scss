@@ -154,3 +154,18 @@ h2,
   line-height: 1.5;
   border-radius: 3px;
 }
+
+.quick.dropdown-menu.show {
+  top: -40px !important;
+}
+
+.dropdown-menu .dropdown-item {
+  font-size: 15px;
+  margin: 3px;
+  background-color: #31a36c1c;
+}
+
+.close-text {
+  font-size: 12px;
+  color: #d30000;
+}

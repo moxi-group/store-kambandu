@@ -90,7 +90,7 @@ export class QuickSaleComponent implements OnInit {
         this.loading = true  
         this._invoicesService.create(this._invoicesService.invoiceObject)
         .subscribe(response => {
-            this._print_after_create( response )
+            this._invoicesService._print_after_create( response )
             this._applicationService.SwalSuccess("Faturação feito com sucesso!");
             this.loading = false
         }, (error) => {            
@@ -99,36 +99,7 @@ export class QuickSaleComponent implements OnInit {
         })
     }
 
-    _print_after_create( invoice: any ){
-        this._invoicesService
-        .print(invoice)
-        .subscribe(response => {
-            const blob = new Blob([response], { type: 'application/pdf' });
-            const blobUrl = URL.createObjectURL(blob);
-            const shouldPrint = true; // Replace this with your condition
 
-            if (shouldPrint) {
-                const printWindow = window.open(blobUrl, '_blank');
-                printWindow?.print();
-                if (printWindow) {
-                    printWindow.onafterprint = () => {
-                        URL.revokeObjectURL(blobUrl);
-                    };
-                }
-            } else {
-                saveAs(blobUrl, `${invoice.sigla_doc}.pdf`);
-                URL.revokeObjectURL(blobUrl);
-            }
-            
-        }, (error) => {
-            if ( error.status === 404) {
-                this._applicationService.SwalDanger('Template de Imprensão não encontrado')
-            } else {
-                this._applicationService.SwalDanger('Problemas ao se conectar ao serviço externo')
-            }
-        })
-
-    }
 
     _validations(){
         //================ validar cliente

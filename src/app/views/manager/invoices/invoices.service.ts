@@ -2,6 +2,9 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
+import { saveAs } from 'file-saver';
+import { ApplicationService } from 'src/app/api/application.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,6 +27,7 @@ export class InvoicesService {
     }
     
     constructor(
+        private _applicationService: ApplicationService,
         private _http_client: HttpClient
     ) { }
 
@@ -86,9 +90,6 @@ export class InvoicesService {
     }
 
     full_calculation(){
-
-
-
         let lines = this.invoiceObject.lines
         this.total_without_tax = lines.reduce((partialSum: any, line: any) => (partialSum + line.total_without_tax), 0 )
         this.total_tax = lines.reduce((partialSum: any, line: any) => (partialSum + line.total_tax), 0 )
@@ -105,7 +106,33 @@ export class InvoicesService {
         )
     }
 
+    _print_after_create( invoice: any ){
+        this.print(invoice)
+        .subscribe(response => {
+            const blob = new Blob([response], { type: 'application/pdf' });
+            const blobUrl = URL.createObjectURL(blob);
+            const shouldPrint = true; // Replace this with your condition
 
-
+            if (shouldPrint) {
+                const printWindow = window.open(blobUrl, '_blank');
+                printWindow?.print();
+                if (printWindow) {
+                    printWindow.onafterprint = () => {
+                        URL.revokeObjectURL(blobUrl);
+                    };
+                }
+            } else {
+                saveAs(blobUrl, `${invoice.sigla_doc}.pdf`);
+                URL.revokeObjectURL(blobUrl);
+            }
+            
+        }, (error) => {
+            if ( error.status === 404) {
+                this._applicationService.SwalDanger('Template de Imprensão não encontrado')
+            } else {
+                this._applicationService.SwalDanger('Problemas ao se conectar ao serviço externo')
+            }
+        })
+    }
 
 }
