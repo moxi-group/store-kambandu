@@ -10,17 +10,47 @@
 
 </div>
 
-<a routerLink="/quick-sale" class='btn btn-success billing-now'>
-    Faturar
-</a>
+<!-- Default dropleft button -->
+<div class="btn-group dropleft billing-now">
+    <button type="button" class="btn btn-success dropdown-toggle btn-quick" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        <span class="fa fa-plus" aria-hidden="true"></span>
+    </button>
+    <div class="dropdown-menu">
+        <a routerLink="/quick-sale" class='dropdown-item'>
+            Faturar agora
+        </a>
+
+        <a class="dropdown-item" href="#">Abrir Caixa</a>
+
+    </div>
+</div>
+
+
+
 
 <style>
     .billing-now {
-        border-radius: 50%;
-        padding: 25px 10px;
         position: absolute;
         right: 2%;
-        bottom: 2%;
+        bottom: 4%;
         color: #fff;
+    }
+
+    .btn-quick:hover {
+        box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.4);
+        transform: scale(1.05, 1.05);
+    }
+
+    .btn-quick {
+        box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+        border-radius: 70% !important;
+        padding: 18px 25px !important;
+        font-size: 25px !important;
+    }
+
+    .dropleft .dropdown-toggle::before {
+        display: none;
+        visibility: hidden;
     }
 </style>

@@ -17,8 +17,9 @@ import { HeaderComponent } from './containers/default-layout/header/header.compo
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { QuickSaleComponent } from './views/quick-sale/quick-sale.component';
 import { SharedModule } from './shared/shared.module';
+
+import { QuickSaleComponent } from './views/quick-options/quick-sale/quick-sale.component';
 
 
 

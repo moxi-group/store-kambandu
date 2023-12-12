@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomersService } from '../manager/customers/customers.service';
-import { InvoicesService } from '../manager/invoices/invoices.service';
-import { SeriesService } from '../manager/series/series.service';
 import { ApplicationService } from 'src/app/api/application.service';
-import { ProductsService } from '../manager/products/products.service';
 import { Router } from '@angular/router';
 import { saveAs } from 'file-saver';
+import { SeriesService } from '../../manager/series/series.service';
+import { InvoicesService } from '../../manager/invoices/invoices.service';
+import { CustomersService } from '../../manager/customers/customers.service';
+import { ProductsService } from '../../manager/products/products.service';
 
 @Component({
     selector: 'app-quick-sale',
