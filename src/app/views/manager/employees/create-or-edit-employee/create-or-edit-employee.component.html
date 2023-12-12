@@ -42,15 +42,6 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="control-label">{{ 'Selecionar Fornecedor' | translate}}</label>
-                        <select formControlName="store_uuid" name="store_uuid" class="form-control"
-                            [ngClass]="{ 'is-invalid': submitted && f.store_uuid.errors, 'is-valid': f.store_uuid.touched && !f.store_uuid.errors }">
-                            <option *ngFor="let store of stores" [value]="store.uuid">{{ store.name }} - {{
-                                store.address }}</option>
-                        </select>
-                    </div>
-
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-danger btn-sm" type="reset" [disabled]="employeeForm.pristine && !submitted"

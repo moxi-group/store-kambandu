@@ -34,6 +34,13 @@ export class EmployeesService {
             { headers: this.headers }
         )
     }
+    associate_employee_in_store(data: any){
+        return this._http_client.post<any>(
+            `${environment.fullBaseUrl}/stores/set-user-on-store`,
+            data,
+            { headers: this.headers }
+        )
+    }
 
     update(uuid:string, data: any) {
         return this._http_client.post<any>(

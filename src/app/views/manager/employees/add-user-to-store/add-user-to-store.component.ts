@@ -1,17 +1,18 @@
 import { Component, OnInit, Input, SimpleChange } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ApplicationService } from 'src/app/api/application.service';
 import { EmployeesService } from '../employees.service';
+import { ApplicationService } from 'src/app/api/application.service';
 import { StoresService } from '../../stores/stores.service';
 
 @Component({
-    selector: 'CreateOrEditEmployeeModal',
-    templateUrl: './create-or-edit-employee.component.html',
-    styleUrls: ['./create-or-edit-employee.component.scss']
+    selector: 'AddEmployeeToStoreModal',
+    templateUrl: './add-user-to-store.component.html',
+    styleUrls: ['./add-user-to-store.component.scss']
 })
-export class CreateOrEditEmployeeComponent implements OnInit {
-    @Input() modal: any = "CreateOrEditEmployeeModal"
-    @Input() title: string = "Registar Colaborador"
+
+export class AddUserToStoreComponent implements OnInit {
+    @Input() modal: any = "AddEmployeeToStoreModal"
+    @Input() title: string = "Associar Colaborador na Loja"
     @Input() employee: any
     @Input() employeeForm: FormGroup
 
@@ -25,24 +26,18 @@ export class CreateOrEditEmployeeComponent implements OnInit {
         private _formBuild: FormBuilder
     ) {
         this.employeeForm = this._formBuild.group({
-            uuid: [{ value: null, disabled: true }],
-            name: [null, Validators.required],
-            email: [null, Validators.required],
-            password: ['123456'],
-            phone_number: [null, Validators.required]
+            user_uuid: null,
+            store_uuid: [null, Validators.required]
         })
     }
-    
+
     ngOnInit(): void {
         this.get_stores()
     }
 
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
         if (this.employee !== undefined) {
-            this.title = "Registar Colaborador";
             this.employeeForm.patchValue(this.employee);
-        } else {
-            this.title = "Atualizar Colaborador";
         }
     }
 
@@ -61,33 +56,21 @@ export class CreateOrEditEmployeeComponent implements OnInit {
             return;
         }
 
-        if ( Boolean(this.employeeForm.getRawValue().uuid) ) {
-            this._update(this.employeeForm.getRawValue().uuid, this.employeeForm.value)
-        } else {
-            this._create(this.employeeForm.value)
-        }
+        this.employeeForm.value.user_uuid = this.employee.uuid
+        this._associate(this.employeeForm.value)
     }
 
-    _create(form: FormGroup) {
-        this._employeesService.create(form)
+    _associate(form: FormGroup) {
+
+        this._employeesService.associate_employee_in_store(form)
         .subscribe(response => {
             this.submitted = false;
             this.get_employees()
-            this._applicationService.SwalSuccess("Registo feito com sucesso!");
+            this._applicationService.SwalSuccess("Utilizador associado com sucesso!");
             this.onReset()
         })
     }
-
-    _update(uuid: string, form: FormGroup){
-        this._employeesService.update(uuid, form)
-        .subscribe(res => {
-            this.submitted = false;
-            this.get_employees()
-            this._applicationService.SwalSuccess("Registo feito com sucesso!");
-            this.onReset()
-        })
-    }
-
+    
     get_employees() {
         this._employeesService
         .get_employees()
@@ -103,5 +86,4 @@ export class CreateOrEditEmployeeComponent implements OnInit {
             this.stores = Object(response)
         })
     }
-
 }
