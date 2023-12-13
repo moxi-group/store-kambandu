@@ -93,7 +93,7 @@ export class QuickSaleComponent implements OnInit {
             this._invoicesService.reset()
             this.loading = false
         }, (error) => {            
-            this._applicationService.SwalDanger(error.error.detail)
+            this._applicationService.SwalDangerConfirmation(error.error.detail)
             this.loading = false
         })
     }
