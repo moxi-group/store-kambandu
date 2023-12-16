@@ -39,4 +39,8 @@ export class CompaniesComponent implements OnInit {
         this.company = item
     }
 
+    pachValueTemplate(item: any) {
+        this.company = item
+    }
+
 }

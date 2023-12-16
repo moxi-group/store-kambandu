@@ -58,7 +58,12 @@
                                             <i class="fas fa-ellipsis-v"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                            <a class="dropdown-item" href="#">Opções</a>
+                                            <button type="button" class="dropdown-item" data-toggle="modal"
+                                                (click)="pachValueTemplate(item)"
+                                                data-target="#ListTemplateCompanyModal">
+                                                {{ 'Ver Templates' | translate}}
+                                            </button>
+
                                             <button type="button" class="dropdown-item" data-toggle="modal"
                                                 (click)="pachValue(item)" data-target="#CreateOrEditDocumentModal">
                                                 {{ 'btn.update' | translate}}
@@ -77,3 +82,5 @@
     </div>
 
 </div>
+
+<ListTemplateCompanyModal [company]="company" [modal]=""></ListTemplateCompanyModal>

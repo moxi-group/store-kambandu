@@ -24,8 +24,6 @@ import { CloseSaleBoxComponent } from './views/quick-options/close-sale-box/clos
 import { OpenSaleBoxComponent } from './views/quick-options/open-sale-box/open-sale-box.component';
 
 
-
-
 export function httpTranslateLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json')
 }

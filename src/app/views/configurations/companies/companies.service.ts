@@ -20,7 +20,20 @@ export class CompaniesService {
             return this._http_client.get<any>(
             `${environment.fullBaseUrl}/staffs/companies`, 
             { headers: this.headers }
-        )
-    }
+        )}
+
+        create_config_template(data: any) {
+            return this._http_client.post<any>(
+                `${environment.fullBaseUrl}/companies/document-templater`,
+                data,
+                { headers: this.headers }
+            )
+        }
+
+        get_config_templates() {
+            return this._http_client.get<any>(
+            `${environment.fullBaseUrl}/staffs/companies`, 
+            { headers: this.headers }
+        )}
 
 }

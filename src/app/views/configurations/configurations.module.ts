@@ -15,6 +15,9 @@ import { TaxesComponent } from './taxes/taxes.component';
 import { CreateOrEditTaxComponent } from './taxes/create-or-edit-tax/create-or-edit-tax.component';
 import { PaymentMethodsComponent } from './payment-methods/payment-methods.component';
 import { CreateOrEditPaymentMethodComponent } from './payment-methods/create-or-edit-payment-method/create-or-edit-payment-method.component';
+import { CreateOrEditTemplateCompanyComponent } from './companies/create-or-edit-template-company/create-or-edit-template-company.component';
+import { ListTemplateCompanyComponent } from './companies/list-template-company/list-template-company.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -28,7 +31,10 @@ import { CreateOrEditPaymentMethodComponent } from './payment-methods/create-or-
         TaxesComponent,
         CreateOrEditTaxComponent,
         PaymentMethodsComponent,
-        CreateOrEditPaymentMethodComponent
+        CreateOrEditPaymentMethodComponent,
+
+        CreateOrEditTemplateCompanyComponent,
+        ListTemplateCompanyComponent
     ],
 
     imports: [
@@ -36,6 +42,7 @@ import { CreateOrEditPaymentMethodComponent } from './payment-methods/create-or-
         HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
+        SharedModule,
         ConfigurationsRoutingModule,
         TranslateModule.forChild()
     ]
