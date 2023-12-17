@@ -57,6 +57,8 @@ export class AuthService {
         sessionStorage.removeItem('CURRENT_COMPANY_DATA')
         sessionStorage.removeItem('CURRENT_ROLE')
         sessionStorage.removeItem('CURRENT_COMPANY')
+        sessionStorage.removeItem('templates')
+        
         this.userLogged = false
         this.showLayoutEmitter.emit(false)
         this.router.navigateByUrl('/')

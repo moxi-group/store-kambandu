@@ -1,1 +1,53 @@
-<p>create-or-edit-template-company works!</p>
+<div class="modal fade" id="{{modal}}" tabindex="-1" role="dialog" aria-labelledby="CreateOrEditTemplateModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form [formGroup]="templateForm" (submit)="onSubmit();">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="CreateOrEditTemplateModal">{{title}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h2>{{company.name}}</h2>
+
+                    <div class="form-group">
+                        <label class="control-label">{{ 'Selecionar Documento' | translate}}</label>
+                        <select formControlName="document_uuid" name="document_uuid" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.document_uuid.errors, 'is-valid': f.document_uuid.touched && !f.document_uuid.errors }">
+                            <option *ngFor="let document of documents" [value]="document.uuid">{{ document.name }} - {{
+                                document.slug }}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">{{ 'Ref. Documento Template' | translate}}</label>
+                        <input type="text" formControlName="document_templater_uuid" name="document_templater_uuid"
+                            class="form-control" placeholder="Adicionar a Quantidade"
+                            [ngClass]="{ 'is-invalid': submitted && f.document_templater_uuid.errors, 'is-valid': f.document_templater_uuid.touched && !f.document_templater_uuid.errors }" />
+                        <div *ngIf="submitted && f['document_templater_uuid'].errors" class="invalid-feedback">
+                            <div *ngIf="f['document_templater_uuid'].errors.required">{{ 'errors.required' | translate}}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger btn-sm" type="reset" [disabled]="templateForm.pristine && !submitted"
+                        (click)="onReset()">{{ 'btn.clean' |
+                        translate}}</button>
+                    <button class="btn btn-success btn-sm mr-1" type="submit" [disabled]="templateForm.valid">{{
+                        'btn.validate' | translate}}</button>
+                    <button type="submit" [disabled]="templateForm.pristine || templateForm.invalid"
+                        class="btn btn-primary btn-sm">{{ 'btn.save' | translate}}
+                        <spinner [loading]='submitted'></spinner>
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

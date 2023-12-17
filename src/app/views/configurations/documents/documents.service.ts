@@ -16,7 +16,7 @@ export class DocumentsService {
     .set('Access-Control-Allow-Origin', '*')
     .set('Authorization', `Bearer ${this.token}`)
 
-    get_documents(filters: any) {
+    get_documents() {
         return this._http_client.get<any>(
             `${environment.fullBaseUrl}/documents`, { headers: this.headers }
         )

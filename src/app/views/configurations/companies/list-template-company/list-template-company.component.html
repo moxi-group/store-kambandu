@@ -20,7 +20,6 @@
                             <th class="sort">{{ 'Produto' | translate}}</th>
                             <th class="sort text-center">{{ 'Quant. Pendente' | translate}}</th>
                             <th class="text-center">{{ 'Tipo' | translate}}</th>
-                            <th class="text-center">{{ 'Estado' | translate}}</th>
                             <th class="sort text-right">{{ 'Data Registo' | translate}}</th>
                             <th class="text-right">{{ 'Opções' | translate}}</th>
                         </tr>
@@ -32,14 +31,7 @@
                             <th scope="row"><span class="name mb-0 text-sm">{{ item?.product?.name }}</span></th>
                             <td class="budget bg-warning text-center text-white">{{ item.quantity }}</td>
                             <td class="text-center">{{ item.kind_moviment }}</td>
-                            <td class="text-center">
-                                <button *ngIf="item.status == 'pending'" type="button"
-                                    class="btn btn-warning btn-sm">Pendente</button>
-                                <button *ngIf="item.status == 'rejected'" type="button"
-                                    class="btn btn-danger btn-sm">Rejeitado</button>
-                                <button *ngIf="item.status == 'approved'" type="button"
-                                    class="btn btn-success btn-sm">Aprovado</button>
-                            </td>
+
                             <td class="budget text-light">{{ item.created_at | date }}</td>
                             <td class="text-right">
                                 <button *ngIf="item.status == 'pending'" (click)="_edit(item)" type="button"
@@ -56,3 +48,5 @@
         </div>
     </div>
 </div>
+
+<CreateOrEditTemplateModal [company]="company" [modal]=""></CreateOrEditTemplateModal>

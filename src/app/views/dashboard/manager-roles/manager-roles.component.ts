@@ -44,6 +44,7 @@ export class ManagerRolesComponent implements OnInit {
         .subscribe(response => {              
             let result = Object(response)
             this.roles = result.roles
+            this.set_documents(result.documents )
         })
     }
 
@@ -69,4 +70,17 @@ export class ManagerRolesComponent implements OnInit {
 
     }
 
+    set_documents(documents: []){
+        if ( documents.length ) {
+            const templates = documents.map( (item: any) => {
+                return {
+                    document_templater_uuid: item.document_templater_uuid,
+                    document: item.document.slug
+
+                }
+            })
+
+            sessionStorage.setItem('templates', JSON.stringify(templates))
+        }
+    }
 }

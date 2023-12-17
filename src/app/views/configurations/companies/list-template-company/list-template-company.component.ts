@@ -42,7 +42,7 @@ export class ListTemplateCompanyComponent implements OnInit {
     }
 
     pachValue(item: any) {
-        this.template = item
+        this.company = item
     }
 
     _edit(template: any){

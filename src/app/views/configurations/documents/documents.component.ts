@@ -29,7 +29,7 @@ export class DocumentsComponent implements OnInit {
 
     get_documents() {
         this._documentService
-        .get_documents({ filters: {} })
+        .get_documents()
         .subscribe(response => {
             this.documents = Object(response)
         })

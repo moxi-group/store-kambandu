@@ -54,15 +54,25 @@ export class InvoicesService {
     }
 
     print(data: any) {
-        let _headers = new HttpHeaders()
-            .set('content-type', '*/*')
-            .set('Access-Control-Allow-Origin', '*')
-            
+        let doc_uuid = this.get_documents(data.sigla_doc.substring(0,2))        
         return this._http_client.post(
-            `${environment.invoiceServe.baseUrl}/${environment.invoiceServe.doc_uuid}/${environment.invoiceServe.output}`,
+            `${environment.invoiceServe.baseUrl}/${doc_uuid}/${environment.invoiceServe.output}`,
             data, { responseType: 'blob', }
         )
     }
+
+    get_documents(slug: string): any {
+        let data: any = sessionStorage.getItem('templates')
+        let templates = JSON.parse(data)
+    
+        let template = templates.find((item: any) => item.document === slug)
+        if ( Boolean(template.document_templater_uuid) ) {
+            return template.document_templater_uuid
+        }
+
+        return null
+    }
+
 
     update(data: any) {
         return this._http_client.post<any>(
