@@ -30,9 +30,9 @@ export class CompaniesService {
             )
         }
 
-        get_config_templates() {
+        get_config_templates_by_company(uuid: string) {
             return this._http_client.get<any>(
-            `${environment.fullBaseUrl}/staffs/companies`, 
+            `${environment.fullBaseUrl}/companies/document-templater/${uuid}`, 
             { headers: this.headers }
         )}
 

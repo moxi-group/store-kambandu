@@ -32,13 +32,11 @@ export class ListTemplateCompanyComponent implements OnInit {
     }
 
     loading_init(){
-        /*
         this._companiesService
-        .get_config_templates(this.template.uuid)
+        .get_config_templates_by_company(this.company.uuid)
         .subscribe(response => {
             this.templates = Object(response)
         })
-        */
     }
 
     pachValue(item: any) {

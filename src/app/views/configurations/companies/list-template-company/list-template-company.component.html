@@ -16,28 +16,20 @@
                     <thead class="thead-light">
                         <tr>
                             <th>#</th>
-                            <th class="sort">{{ 'Código' | translate}}</th>
-                            <th class="sort">{{ 'Produto' | translate}}</th>
-                            <th class="sort text-center">{{ 'Quant. Pendente' | translate}}</th>
-                            <th class="text-center">{{ 'Tipo' | translate}}</th>
-                            <th class="sort text-right">{{ 'Data Registo' | translate}}</th>
+                            <th class="sort">{{ 'Referência Doc.' | translate}}</th>
+                            <th class="sort text-center">{{ 'Data Registo' | translate}}</th>
                             <th class="text-right">{{ 'Opções' | translate}}</th>
                         </tr>
                     </thead>
                     <tbody class="list" *ngIf="templates">
                         <tr *ngFor="let item of templates; index as i">
                             <td>{{ i+1 }}</td>
-                            <th scope="row"><span class="name mb-0 text-sm">{{ item?.product?.code }}</span></th>
-                            <th scope="row"><span class="name mb-0 text-sm">{{ item?.product?.name }}</span></th>
-                            <td class="budget bg-warning text-center text-white">{{ item.quantity }}</td>
-                            <td class="text-center">{{ item.kind_moviment }}</td>
-
-                            <td class="budget text-light">{{ item.created_at | date }}</td>
+                            <th scope="row"><span class="name mb-0 text-sm">{{ item.document_templater_uuid }}</span>
+                            </th>
+                            <td class="budget text-center">{{ item.created_at | date }}</td>
                             <td class="text-right">
-                                <button *ngIf="item.status == 'pending'" (click)="_edit(item)" type="button"
-                                    class="btn btn-success btn-sm">
-                                    {{ 'Aprovar' | translate}}
-                                    <spinner [loading]='loading'></spinner>
+                                <button (click)="_edit(item)" type="button" class="btn btn-success btn-sm">
+                                    {{ 'Atualizar' | translate}}
                                 </button>
                             </td>
                         </tr>
