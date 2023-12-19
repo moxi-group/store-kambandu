@@ -40,6 +40,11 @@ export class AsideComponent implements OnInit {
             icon: 'ni ni-ungroup'
         },
         {
+            name: 'Categorias',
+            link: '/managers/categories',
+            icon: 'ni ni-ungroup'
+        },
+        {
             name: 'Lojas',
             link: '/managers/stores',
             icon: 'ni ni-shop'

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductsService } from '../products.service';
 import { TaxesService } from 'src/app/views/configurations/taxes/taxes.service';
 import { ApplicationService } from 'src/app/api/application.service';
+import { CategoriesService } from '../../category/categories.service';
 
 @Component({
   selector: 'CreateOrEditProductModal',
@@ -18,8 +19,10 @@ export class CreateOrEditProductComponent implements OnInit {
 
     submitted = false
     taxes: any = []
+    categories: any = []
 
     constructor(
+        private _categoryService: CategoriesService,
         private _productsService: ProductsService,
         private _taxesService: TaxesService,
         private _applicationService: ApplicationService,
@@ -32,10 +35,12 @@ export class CreateOrEditProductComponent implements OnInit {
             code: [null, Validators.required],
             description: [null, Validators.required],
             tax_uuid: [null, Validators.required],
-            is_stocked: [true, Validators.required]
+            category_uuid: [null, Validators.required],
+            is_stocked: true
         })
 
         this.get_taxes()
+        this.get_categories()
     }
 
 
@@ -99,6 +104,17 @@ export class CreateOrEditProductComponent implements OnInit {
             this.taxes = Object(response)
         })
     }
+
+    get_categories() {
+        this._categoryService
+        .get_categories()
+        .subscribe(response => {
+            this.categories = Object(response)
+        })
+    }
+
+
+    
 
     get_products() {
         this._productsService

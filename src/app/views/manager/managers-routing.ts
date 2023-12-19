@@ -11,6 +11,7 @@ import { StoresComponent } from './stores/stores.component';
 import { ProvidersComponent } from './providers/providers.component';
 import { StocksComponent } from './stocks/stocks.component';
 import { EmployeesComponent } from './employees/employees.component';
+import { CategoryComponent } from './category/category.component';
 
 const routes: Routes = [
     {
@@ -62,6 +63,10 @@ const routes: Routes = [
             {
                 path: 'employees',
                 component: EmployeesComponent
+            },
+            {
+                path: 'categories',
+                component: CategoryComponent
             }
         ]
     }

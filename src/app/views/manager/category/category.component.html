@@ -4,11 +4,11 @@
         <div class="header-body">
             <div class="row align-items-center py-4">
                 <div class="col-lg-6 col-7">
-                    <h6 class="h2 text-white d-inline-block mb-0">{{ 'Gestão de Colaboradores' | translate }}</h6>
+                    <h6 class="h2 text-white d-inline-block mb-0">{{ 'Gestão de Categorias' | translate }}</h6>
                 </div>
                 <div class="col-lg-6 col-5 text-right">
                     <button type="button" class="btn btn-outline-default btn-sm" data-toggle="modal"
-                        data-target="#CreateOrEditEmployeeModal">
+                        data-target="#CreateOrEditCategoryModal">
                         {{ 'btn.register' | translate }}
                     </button>
                 </div>
@@ -32,18 +32,14 @@
                             <tr>
                                 <th>#</th>
                                 <th scope="col" class="sort">{{ 'table.name' | translate}}</th>
-                                <th scope="col" class="sort">{{ 'table.email' | translate}}</th>
-                                <th scope="col" class="sort">{{ 'table.cell_phone' | translate}}</th>
                                 <th scope="col" class="sort">{{ 'table.date' | translate}}</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody class="list" *ngIf="_employeesService.employees">
-                            <tr *ngFor="let item of _employeesService.employees; index as i">
+                        <tbody class="list" *ngIf="_categoryService.categories">
+                            <tr *ngFor="let item of _categoryService.categories; index as i">
                                 <td>{{ i+1 }}</td>
                                 <th scope="row"><span class="name mb-0 text-sm">{{ item.name }}</span></th>
-                                <th scope="row"><span class="name mb-0 text-sm">{{ item.email }}</span></th>
-                                <td class="budget">{{ item.phone_number }}</td>
                                 <td class="budget">{{ item.created_at | date }}</td>
                                 <td class="text-right">
                                     <div class="dropdown">
@@ -53,12 +49,7 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                             <button type="button" class="dropdown-item" data-toggle="modal"
-                                                (click)="pachValue(item)" data-target="#AddEmployeeToStoreModal">
-                                                {{ 'Associar à Loja' | translate}}
-                                            </button>
-
-                                            <button type="button" class="dropdown-item" data-toggle="modal"
-                                                (click)="pachValue(item)" data-target="#CreateOrEditEmployeeModal">
+                                                (click)="pachValue(item)" data-target="#CreateOrEditCategoryModal">
                                                 {{ 'btn.update' | translate}}
                                             </button>
                                         </div>
@@ -76,5 +67,4 @@
 
 </div>
 
-<CreateOrEditEmployeeModal [employee]="employee" [modal]=""></CreateOrEditEmployeeModal>
-<AddEmployeeToStoreModal [employee]="employee" [modal]=""></AddEmployeeToStoreModal>
+<CreateOrEditCategoryModal [category]="category" [modal]=""></CreateOrEditCategoryModal>
