@@ -13,12 +13,12 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label class="control-label">{{ 'Valor de fecho' | translate}}</label>
-                        <input type="text" formControlName="opening_value" name="opening_value" class="form-control"
+                        <input type="text" formControlName="closing_value" name="closing_value" class="form-control"
                             placeholder="0"
-                            [ngClass]="{ 'is-invalid': submitted && f.opening_value.errors, 'is-valid': f.opening_value.touched && !f.opening_value.errors }" />
+                            [ngClass]="{ 'is-invalid': submitted && f.closing_value.errors, 'is-valid': f.closing_value.touched && !f.opening_value.errors }" />
                         <p class='close-text'>* este valor deve ser o total da sua venda</p>
-                        <div *ngIf="submitted && f['opening_value'].errors" class="invalid-feedback">
-                            <div *ngIf="f['opening_value'].errors.required">{{ 'errors.required' | translate}}</div>
+                        <div *ngIf="submitted && f['closing_value'].errors" class="invalid-feedback">
+                            <div *ngIf="f['closing_value'].errors.required">{{ 'errors.required' | translate}}</div>
                         </div>
                     </div>
                 </div>

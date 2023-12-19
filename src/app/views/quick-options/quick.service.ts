@@ -34,7 +34,12 @@ export class QuickService {
         )
     }
 
-
+    close_sale_box(data: any) {
+        return this._http_client.post<any>(
+            `${environment.fullBaseUrl}/stores/close-sales-box`,
+            data, {headers: this.headers}
+        )
+    }
 
 
 

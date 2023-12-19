@@ -26,8 +26,8 @@ export class CloseSaleBoxComponent implements OnInit {
         private _formBuild: FormBuilder
     ) {
         this.openForm = this._formBuild.group({
-            opening_value: [null, Validators.required],
-            opening_date: [new Date()]
+            closing_value: [null, Validators.required],
+            closing_date: [new Date()]
         })
     }
 
@@ -52,10 +52,10 @@ export class CloseSaleBoxComponent implements OnInit {
     }
 
     _create(form: FormGroup) {
-        this._quickService.open_sale_box(form)
+        this._quickService.close_sale_box(form)
         .subscribe(response => {
             this.submitted = false;
-            this._applicationService.SwalSuccess("Caixa aberto com sucesso!");
+            this._applicationService.SwalSuccess("Caixa fechado com sucesso!");
             this.onReset()
         }, (error) => {
             this._applicationService.SwalDanger(error.error.detail)
