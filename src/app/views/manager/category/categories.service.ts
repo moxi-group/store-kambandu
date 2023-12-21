@@ -35,7 +35,7 @@ export class CategoriesService {
     }
 
     update(uuid:string, data: any) {
-        return this._http_client.post<any>(
+        return this._http_client.put<any>(
             `${environment.fullBaseUrl}/categories/${uuid}`,
             data,
             { headers: this.headers }
