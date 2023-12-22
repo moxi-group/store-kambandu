@@ -20,6 +20,11 @@ export class AsideComponent implements OnInit {
             icon: 'ni ni-tablet-button'
         },
         {
+            name: 'Caixas de venda',
+            link: '/managers/caixas-vendas',
+            icon: 'ni ni-tablet-button'
+        },
+        {
             name: 'menu.receipts',
             link: '/managers/receipts',
             icon: 'ni ni-archive-2'

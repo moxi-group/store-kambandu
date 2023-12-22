@@ -12,6 +12,7 @@ import { ProvidersComponent } from './providers/providers.component';
 import { StocksComponent } from './stocks/stocks.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { CategoryComponent } from './category/category.component';
+import { SalesBoxesComponent } from './sales-boxes/sales-boxes.component';
 
 const routes: Routes = [
     {
@@ -67,6 +68,10 @@ const routes: Routes = [
             {
                 path: 'categories',
                 component: CategoryComponent
+            },
+            {
+                path: 'caixas-vendas',
+                component: SalesBoxesComponent
             }
         ]
     }

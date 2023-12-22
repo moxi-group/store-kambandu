@@ -7,6 +7,7 @@ import { ProvidersService } from './providers.service';
     templateUrl: './providers.component.html',
     styleUrls: ['./providers.component.scss']
 })
+
 export class ProvidersComponent implements OnInit {
 
     provider: any = {}

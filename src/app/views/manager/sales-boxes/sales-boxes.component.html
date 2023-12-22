@@ -1,0 +1,79 @@
+<!-- Header -->
+<div class="header bg-green pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <h6 class="h2 text-white d-inline-block mb-0">{{ 'Gestão de Caixas' | translate }}</h6>
+                </div>
+                <div class="col-lg-6 col-5 text-right">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page content -->
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header border-0">
+                </div>
+                <!-- Light table -->
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>#</th>
+                                <th scope="col" class="sort">{{ 'Data Ref. - caixa' | translate}}</th>
+                                <th scope="col" class="sort text-center">{{ 'Estado' | translate}}</th>
+                                <th scope="col" class="sort">{{ 'Valor de Abertura' | translate}}</th>
+                                <th scope="col" class="sort">{{ 'Valor de Fecho' | translate}}</th>
+                                <th scope="col" class="sort">{{ 'Data de fecho' | translate}}</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="list" *ngIf="_salesService.sales_boxes">
+                            <tr *ngFor="let item of _salesService.sales_boxes; index as i">
+                                <td>{{ i+1 }}</td>
+                                <td scope="row"><span class="name mb-0 text-sm">{{ item.opening_date | date }}</span>
+                                </td>
+                                <td class="m-0 text-center">
+                                    <span class="badge badge-lg badge-{{item.is_closed ? 'success' : 'warning'}}">{{
+                                        item.is_closed ? 'Fechado' : 'Aberto'}}</span>
+                                </td>
+                                <td scope="row"><span class="name mb-0 text-sm">{{ item.opening_value | to_kwanza
+                                        }}</span></td>
+                                <td scope="row"><span class="name mb-0 text-sm">{{ item.closing_value | to_kwanza
+                                        }}</span></td>
+                                <td class="budget">{{ item.closing_date | date }}</td>
+                                <td class="text-right">
+                                    <div class="dropdown">
+                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                            <button *ngIf="!item.is_closed" type="button" class="dropdown-item"
+                                                data-toggle="modal" (click)="pachValue(item)"
+                                                data-target="#EditSaleBoxModal">
+                                                {{ 'Fechar Caixa' | translate}}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<EditSaleBoxModal [sale_box]="sale_box" [modal]=""></EditSaleBoxModal>
