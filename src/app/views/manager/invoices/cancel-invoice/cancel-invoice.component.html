@@ -1,0 +1,45 @@
+<div class="modal fade" id="{{modal}}" tabindex="-1" role="dialog" aria-labelledby="CancelInvoiceModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form [formGroup]="cancelForm" (submit)="onSubmit();">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="CancelInvoiceModal">{{title}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body pb-0">
+                    <div class="row">
+                        <div class="col">
+                            <h5 class="h3">{{ invoice.sigla_doc | translate}}</h5>
+                        </div>
+                    </div>
+
+                    <hr class="m0">
+
+                    <div class="form-group">
+                        <label class="control-label">{{ 'Motivo de Anulação' | translate}}</label>
+                        <input type="text" formControlName="description" name="description"
+                            class="form-control input-sm" placeholder=""
+                            [ngClass]="{ 'is-invalid': submitted && f.description.errors, 'is-valid': f.description.touched && !f.description.errors }" />
+                        <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
+                            <div *ngIf="f['description'].errors.required">{{ 'errors.required' | translate}}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer py-1">
+                    <button class="btn btn-success btn-sm mr-1" type="submit" [disabled]="cancelForm.valid">{{
+                        'btn.validate' | translate}}</button>
+                    <button type="submit" [disabled]="cancelForm.pristine || cancelForm.invalid"
+                        class="btn btn-primary btn-sm">{{ 'btn.save' | translate}}</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

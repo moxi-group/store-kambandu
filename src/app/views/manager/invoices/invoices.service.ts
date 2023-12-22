@@ -12,6 +12,7 @@ export class InvoicesService {
     customer: any
     serie: any
 
+
     total_without_tax: number = 0
     total_received: number = 0
     total_tax: number = 0
@@ -24,6 +25,8 @@ export class InvoicesService {
         lines: [],
         payment_lines: []
     }
+
+    invoices: any = []
     
     constructor(
         private _applicationService: ApplicationService,
@@ -77,6 +80,14 @@ export class InvoicesService {
     update(data: any) {
         return this._http_client.post<any>(
             `${environment.fullBaseUrl}/invoices`,
+            data,
+            { headers: this.headers }
+        )
+    }
+
+    cancel(data: any) {
+        return this._http_client.post<any>(
+            `${environment.fullBaseUrl}/invoices/cancel_invoice`,
             data,
             { headers: this.headers }
         )

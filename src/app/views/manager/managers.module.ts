@@ -37,6 +37,7 @@ import { CreateOrEditEmployeeComponent } from './employees/create-or-edit-employ
 import { AddUserToStoreComponent } from './employees/add-user-to-store/add-user-to-store.component';
 import { CategoryComponent } from './category/category.component';
 import { CreateOrEditCategoryComponent } from './category/create-or-edit-category/create-or-edit-category.component';
+import { CancelInvoiceComponent } from './invoices/cancel-invoice/cancel-invoice.component';
 
 
 
@@ -54,6 +55,7 @@ const ngWizardConfig: NgWizardConfig = {
         CreateOrEditInvoiceComponent,
         AddCustomerAndInvoiceKindComponent,
         AddProductInvoiceComponent,
+        CancelInvoiceComponent,
         
         AddQuantityInvoiceComponent,
         ReceiptsComponent,
