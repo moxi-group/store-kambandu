@@ -53,18 +53,23 @@ export class EditSaleBoxeComponent implements OnInit {
 
     _create(form: FormGroup) {
 
-        console.log( this.sale_box.uuid )
-        console.log( form )
-
-
         this._salesService.close_box_sale(this.sale_box.uuid, form)
         .subscribe(response => {
             this.submitted = false;
             this._applicationService.SwalSuccess("Caixa fechado com sucesso!");
+            this.get_sales()
             this.onReset()
         }, (error) => {
             this._applicationService.SwalDanger(error.error.detail)
             this.submitted = false
+        })
+    }
+
+    get_sales() {
+        this._salesService
+        .get_seles_boxes()
+        .subscribe(response => {
+            this._salesService.sales_boxes = Object(response)
         })
     }
 
