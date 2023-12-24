@@ -23,7 +23,8 @@ export class SalesService {
 
     get_seles_boxes() {
         return this._http_client.get<any>(
-            `${environment.fullBaseUrl}/stores/get-all-open-sales-box`, { headers: this.headers }
+            `${environment.fullBaseUrl}/stores/get-all-sales-box-by-store`, 
+            { headers: this.headers }
         )
     }
 
