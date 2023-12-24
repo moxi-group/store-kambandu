@@ -5,7 +5,6 @@
             <form [formGroup]="openForm" (submit)="onSubmit();">
 
                 <div class="modal-header">
-                    total_facturado
                     <h5 class="modal-title" id="EditSaleBoxModal">{{title}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -26,11 +25,9 @@
 
                     <h3 class='text-resume'>Resumo - formas de pagamento</h3>
                     <h4 class='text-left' *ngFor="let resume of sale_box.resumo?.forma_pagamentos">{{resume.nome}}:
-                        {{resume.valor}}</h4>
+                        {{resume.valor | to_kwanza }}</h4>
                     <hr>
                 </div>
-
-
 
                 <div class="modal-footer">
                     <button class="btn btn-danger btn-sm" type="reset" [disabled]="openForm.pristine && !submitted"

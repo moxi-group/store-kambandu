@@ -46,7 +46,8 @@
                                 </td>
                                 <td scope="row"><span class="name mb-0 text-sm">{{ item.opening_value | to_kwanza
                                         }}</span></td>
-                                <td scope="row"><span class="name mb-0 text-sm">{{ item.closing_value | to_kwanza
+                                <td scope="row"><span class="name mb-0 text-sm">{{ item.is_closed ? (item.closing_value
+                                        | to_kwanza) : ''
                                         }}</span></td>
                                 <td class="budget">{{ item.closing_date | date }}</td>
                                 <td class="text-right">
