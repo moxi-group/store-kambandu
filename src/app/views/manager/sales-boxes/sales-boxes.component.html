@@ -62,6 +62,11 @@
                                                 data-target="#EditSaleBoxModal">
                                                 {{ 'Fechar Caixa' | translate}}
                                             </button>
+
+                                            <button *ngIf="item.is_closed" type="button" class="dropdown-item"
+                                                (click)="_print(item)">
+                                                {{ 'Imprimir' | translate}}
+                                            </button>
                                         </div>
                                     </div>
                                 </td>
