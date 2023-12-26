@@ -36,9 +36,10 @@
                                 <th scope="col" class="sort">{{ 'Código' | translate}}</th>
                                 <th scope="col" class="sort">{{ 'table.tax' | translate}}</th>
                                 <th scope="col" class="sort">{{ 'table.price' | translate}}</th>
+                                <th scope="col" class="sort">{{ 'Total' | translate}}</th>
                                 <th scope="col" class="sort">{{ 'Usar Stock' | translate}}</th>
                                 <th scope="col" class="sort">{{ 'table.status' | translate}}</th>
-                                <th scope="col" class="sort">{{ 'table.date' | translate}}</th>
+                                <th scope="col" class="sort">{{ 'Categoria' | translate}}</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -50,6 +51,7 @@
                                 <th scope="row"><span class="name mb-0 text-sm">{{ item.code }}</span></th>
                                 <td class="budget">{{ item.tax.code }} - {{ item.tax.percentage }}%</td>
                                 <td class="budget">{{ item.price | to_kwanza }}</td>
+                                <td class="budget">{{ item.price * (item.tax.percentage/100 + 1) | to_kwanza }}</td>
                                 <td>
                                     <span class="badge badge-{{ item.is_stocked ? 'success' : 'primary' }}">{{
                                         item.is_stocked ? 'SIM' : 'NÃO' }}</span>
@@ -62,7 +64,7 @@
                                             }}</span>
                                     </span>
                                 </td>
-                                <td class="budget">{{ item.created_at | date }}</td>
+                                <td class="budget">{{ item.category.name }}</td>
                                 <td class="text-right">
                                     <div class="dropdown">
                                         <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
