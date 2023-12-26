@@ -36,6 +36,7 @@ export class CreateOrEditProductComponent implements OnInit {
             description: [null, Validators.required],
             tax_uuid: [null, Validators.required],
             category_uuid: [null, Validators.required],
+            image: [null],
             is_stocked: true
         })
 
