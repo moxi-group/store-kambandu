@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  version_app: string = '1.0.3, 24-12-2023'
+  version_app: string = '1.0.4, 26-12-2023'
   constructor() { }
 
   ngOnInit(): void {
