@@ -32,6 +32,7 @@
                             <tr>
                                 <th>#</th>
                                 <th scope="col" class="sort">{{ 'table.name' | translate}}</th>
+                                <th scope="col" class="sort">{{ 'image Path' | translate}}</th>
                                 <th scope="col" class="sort">{{ 'Código' | translate}}</th>
                                 <th scope="col" class="sort">{{ 'table.tax' | translate}}</th>
                                 <th scope="col" class="sort">{{ 'table.price' | translate}}</th>
@@ -45,6 +46,7 @@
                             <tr *ngFor="let item of _productsService.products; index as i">
                                 <td>{{ i+1 }}</td>
                                 <th scope="row"><span class="name mb-0 text-sm">{{ item.name}}</span></th>
+                                <th scope="row"><span class="name mb-0 text-sm">{{ item.image}}</span></th>
                                 <th scope="row"><span class="name mb-0 text-sm">{{ item.code }}</span></th>
                                 <td class="budget">{{ item.tax.code }} - {{ item.tax.percentage }}%</td>
                                 <td class="budget">{{ item.price | to_kwanza }}</td>
