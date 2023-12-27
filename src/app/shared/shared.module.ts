@@ -8,6 +8,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { FormatCurrencyPipe } from '../pipes/currency.pipe';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -17,10 +18,12 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
         SpinnerComponent
     ],
     imports: [
-        CommonModule
+        CommonModule,
+        NgxPaginationModule
     ],
     exports: [
         FormatCurrencyPipe,
+        NgxPaginationModule,
         SpinnerComponent
     ]
 })

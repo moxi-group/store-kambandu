@@ -64,7 +64,7 @@ export class CancelInvoiceComponent implements OnInit {
 
     get_invoices() {
         this._invoicesService
-        .get_invoices()
+        .get_invoices({})
         .subscribe(response => {
             this._invoicesService.invoices = Object(response)
         })

@@ -43,9 +43,13 @@ export class InvoicesService {
     .set('Authorization', `Bearer ${this.token}`)
     .set('header-company-uuid', `${this.companyToken}`)
 
-    get_invoices() {
+    get_invoices(filter: any) {
         return this._http_client.get<any>(
-            `${environment.fullBaseUrl}/invoices`, { headers: this.headers }
+            `${environment.fullBaseUrl}/invoices`, 
+            {
+                params: filter,
+                headers: this.headers
+            }
         )
     }
 

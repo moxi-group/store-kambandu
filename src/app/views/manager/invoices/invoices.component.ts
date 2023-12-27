@@ -15,6 +15,12 @@ export class InvoicesComponent implements OnInit {
     invoice: any = {}
     invoices: any = []
     
+    filter: any = {
+        page: 1,
+        limit: 10,
+        order_by: 'sigla_doc'
+    }
+
     constructor(
         public _invoicesService: InvoicesService,
         private _applicationService: ApplicationService,
@@ -31,10 +37,22 @@ export class InvoicesComponent implements OnInit {
 
     get_invoices() {
         this._invoicesService
-        .get_invoices()
+        .get_invoices( this.filter )
         .subscribe(response => {
             this.invoices = Object(response)
         })
+    }
+
+    _onTableDataChange(event: any): void{
+
+        console.log( event )
+        
+        this.filter = {
+            limit: event,
+            page: 1
+        }
+
+        this.get_invoices()
     }
 
     print(invoice:any) {
