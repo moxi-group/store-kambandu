@@ -17,8 +17,10 @@ export class InvoicesComponent implements OnInit {
     
     filter: any = {
         page: 1,
-        limit: 10,
-        order_by: '-created_at'
+        limit: 5,
+        order_by: '-created_at',
+        filter_column: null,
+        filter_value: ''
     }
 
     constructor(
