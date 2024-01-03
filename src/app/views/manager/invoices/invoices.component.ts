@@ -18,7 +18,7 @@ export class InvoicesComponent implements OnInit {
     filter: any = {
         page: 1,
         limit: 10,
-        order_by: 'sigla_doc'
+        order_by: '-created_at'
     }
 
     constructor(
@@ -32,7 +32,7 @@ export class InvoicesComponent implements OnInit {
     }
 
     loading_data() {
-        this.get_invoices();
+        this._onTableDataChange(1)
     }
 
     get_invoices() {
@@ -44,14 +44,7 @@ export class InvoicesComponent implements OnInit {
     }
 
     _onTableDataChange(event: any): void{
-
-        console.log( event )
-        
-        this.filter = {
-            limit: event,
-            page: 1
-        }
-
+        this.filter.page = Number.isInteger(event) ? event : 1 
         this.get_invoices()
     }
 
