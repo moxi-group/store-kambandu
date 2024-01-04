@@ -27,17 +27,21 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>#</th>
+                                <th scope="col" class="sort">{{ 'Caixa de :' | translate}}</th>
                                 <th scope="col" class="sort">{{ 'Data Ref. - caixa' | translate}}</th>
                                 <th scope="col" class="sort text-center">{{ 'Estado' | translate}}</th>
                                 <th scope="col" class="sort">{{ 'Valor de Abertura' | translate}}</th>
                                 <th scope="col" class="sort">{{ 'Valor de Fecho' | translate}}</th>
                                 <th scope="col" class="sort">{{ 'Data de fecho' | translate}}</th>
+                                <th scope="col" class="sort">{{ 'Op. Fecho' | translate}}</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody class="list" *ngIf="_salesService.sales_boxes">
                             <tr *ngFor="let item of _salesService.sales_boxes; index as i">
                                 <td>{{ i+1 }}</td>
+                                <td scope="row"><span class="name mb-0 text-sm">{{ item.opened_user.name }}</span>
+                                </td>
                                 <td scope="row"><span class="name mb-0 text-sm">{{ item.opening_date | date }}</span>
                                 </td>
                                 <td class="m-0 text-center">
@@ -50,6 +54,7 @@
                                         | to_kwanza) : ''
                                         }}</span></td>
                                 <td class="budget">{{ item.closing_date | date }}</td>
+                                <td class="budget">{{ item.closed_user?.name }}</td>
                                 <td class="text-right">
                                     <div class="dropdown">
                                         <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
