@@ -37,7 +37,8 @@ export class CreateOrEditProductComponent implements OnInit {
             tax_uuid: [null, Validators.required],
             category_uuid: [null, Validators.required],
             image: [null],
-            is_stocked: true
+            is_stocked: true,
+            is_active: true
         })
 
         this.get_taxes()
@@ -113,9 +114,6 @@ export class CreateOrEditProductComponent implements OnInit {
             this.categories = Object(response)
         })
     }
-
-
-    
 
     get_products() {
         this._productsService

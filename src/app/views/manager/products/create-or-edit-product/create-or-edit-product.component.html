@@ -89,7 +89,16 @@
                         </div>
                     </div>
 
-
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="is_active" formControlName="is_active"
+                            name="is_active"
+                            [ngClass]="{ 'is-invalid': submitted && f.is_active.errors, 'is-valid': f.is_active.touched && !f.is_active.errors }">
+                        <label class="form-check-label" for="is_active">{{ 'Selecionar para Disponibilizar - Ativar' |
+                            translate}}</label>
+                        <div *ngIf="submitted && f['is_active'].errors" class="invalid-feedback">
+                            <div *ngIf="f['is_active'].errors.required">{{ 'errors.required' | translate}}</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-danger btn-sm" type="reset" [disabled]="productForm.pristine && !submitted"
