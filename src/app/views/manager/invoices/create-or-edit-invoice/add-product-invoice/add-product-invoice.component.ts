@@ -90,7 +90,7 @@ export class AddProductInvoiceComponent implements OnInit {
 
     get_products() {
         this._productsService
-        .get_products()
+        .get_products({})
         .subscribe(response => {
             this.products = Object(response)
         })

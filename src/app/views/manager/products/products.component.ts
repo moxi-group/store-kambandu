@@ -10,6 +10,14 @@ import { ProductsService } from './products.service';
 export class ProductsComponent implements OnInit {
     product: any = {}
 
+    filter: any = {
+        page: 1,
+        limit: 5,
+        order_by: 'name',
+        filter_column: null,
+        filter_value: ''
+    }
+
     constructor(
         public _productsService: ProductsService,
         public translate: TranslateService
@@ -21,16 +29,23 @@ export class ProductsComponent implements OnInit {
     }
 
     loading_data() {
-        this.get_products();
+        this._onTableDataChange(1)
+    }
+
+    _onTableDataChange(event: any): void{
+        this.filter.page = Number.isInteger(event) ? event : 1 
+        this.get_products()
     }
 
     get_products() {
         this._productsService
-        .get_products()
+        .get_products(this.filter)
         .subscribe(response => {
             this._productsService.products = Object(response)
         })
     }
+
+
 
     pachValue(item: any) {
         this.product = item

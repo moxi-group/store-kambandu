@@ -22,9 +22,13 @@ export class ProductsService {
     .set('Authorization', `Bearer ${this.token}`)
     .set('header-company-uuid', `${this.companyToken}`)
 
-    get_products() {
+    get_products(filter: any = {}) {
         return this._http_client.get<any>(
-            `${environment.fullBaseUrl}/products`, { headers: this.headers }
+            `${environment.fullBaseUrl}/products`, 
+            {
+                params: filter,
+                headers: this.headers 
+            }
         )
     }
 
