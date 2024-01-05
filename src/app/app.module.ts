@@ -41,7 +41,7 @@ const APP_CONTAINERS = [
         AsideComponent,
         QuickSaleComponent,
         CloseSaleBoxComponent,
-        OpenSaleBoxComponent
+        OpenSaleBoxComponent    
     ],
     imports: [
         HttpClientModule,

@@ -1,0 +1,45 @@
+<div class="row align-items-center py-0">
+    <div class="col-lg-1 p-filter">
+        <div class="form-group">
+            <label for="enter_by">Entrada</label>
+            <select (change)='_onTableDataChange($event)' class="form-control" id="enter_by" name="enter_by"
+                [(ngModel)]="_filterService.pagination.limit">
+                <option>5</option>
+                <option>10</option>
+                <option>20</option>
+                <option>30</option>
+                <option>50</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="col-lg-1 p-filter">
+        <div class="form-group">
+            <label for="order_by">Ordem</label>
+            <select name="order_by" id='order_by' (change)="_onTableDataChange($event)"
+                [(ngModel)]="_filterService.pagination.order_by" class="form-control">
+                <option value="-created_at">Data</option>
+                <option value="-sigla_doc">Sigla Doc</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="col-lg-1 p-filter">
+        <div class="form-group">
+            <label for="filter_column">Tipo</label>
+            <select name="filter_column" id='filter_column' (change)="_onTableDataChange($event)"
+                [(ngModel)]="_filterService.pagination.filter_column" class="form-control">
+                <option value="sigla_doc">Sigla Doc</option>
+                <option value="sequence">Número</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-lg-2 p-filter">
+        <div class="form-group">
+            <label for="filter_value">Pesquisar</label>
+            <input type="text" name="filter_value" id="filter_value"
+                [(ngModel)]="_filterService.pagination.filter_value" (keyup)="_onTableDataChange($event)"
+                placeholder="Pesquisa por ..." class="form-control">
+        </div>
+    </div>
+</div>

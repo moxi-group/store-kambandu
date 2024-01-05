@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { InvoicesService } from './invoices.service';
 import { ApplicationService } from 'src/app/api/application.service';
 import { saveAs } from 'file-saver';
+import { FilterService } from 'src/app/services/filter.service';
 
 
 @Component({
@@ -15,15 +16,8 @@ export class InvoicesComponent implements OnInit {
     invoice: any = {}
     invoices: any = []
     
-    filter: any = {
-        page: 1,
-        limit: 5,
-        order_by: '-created_at',
-        filter_column: null,
-        filter_value: ''
-    }
-
     constructor(
+        public _filterService: FilterService,
         public _invoicesService: InvoicesService,
         private _applicationService: ApplicationService,
         public translate: TranslateService
@@ -34,20 +28,21 @@ export class InvoicesComponent implements OnInit {
     }
 
     loading_data() {
-        this._onTableDataChange(1)
+        this._onTableDataChange( this._filterService.pagination )
     }
 
-    get_invoices() {
+    _onTableDataChange(filterEmit: any): void{
+        this._filterService.pagination = filterEmit
         this._invoicesService
-        .get_invoices( this.filter )
+        .get_invoices( this._filterService.pagination )
         .subscribe(response => {
             this.invoices = Object(response)
         })
     }
 
-    _onTableDataChange(event: any): void{
-        this.filter.page = Number.isInteger(event) ? event : 1 
-        this.get_invoices()
+    _onTableDataChangePage(page: any){
+        this._filterService.pagination.page = page
+        this._onTableDataChange( this._filterService.pagination )
     }
 
     print(invoice:any) {
