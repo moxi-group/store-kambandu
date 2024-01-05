@@ -10,12 +10,14 @@ import {TranslateModule} from '@ngx-translate/core';
 import { CreateOrEditSubscriptionComponent } from './create-or-edit-subscription/create-or-edit-subscription.component'
 import { SharedModule } from 'src/app/shared/shared.module'
 import { FooterComponent } from '../layout/footer/footer.component'
+import { ChangePasswordComponent } from './change-password/change-password.component'
 
 
 @NgModule({
 
     declarations: [
         LoginComponent,
+        ChangePasswordComponent,
         CreateOrEditSubscriptionComponent,
         FooterComponent
     ],

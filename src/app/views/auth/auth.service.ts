@@ -44,7 +44,14 @@ export class AuthService {
         )
     }
 
+    changePassword(user:any) {
 
+        return this._http_client.post<any>(
+            `${environment.fullBaseUrl}/users/change-password`,
+            user, { headers: this.headers }
+        )
+    }
+    
     current_user(): any {
         let data: any = sessionStorage.getItem('currentUser')
         let response = JSON.parse(data)
