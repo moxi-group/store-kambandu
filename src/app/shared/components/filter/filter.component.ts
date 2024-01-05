@@ -9,7 +9,7 @@ import { FilterService } from 'src/app/services/filter.service';
 })
 
 export class FilterComponent implements OnInit {
-    @Input() options: any
+    @Input() options: any = []
     @Output() filterEmitter = new EventEmitter<any>()
 
     constructor(
@@ -19,6 +19,7 @@ export class FilterComponent implements OnInit {
     }
 
     ngOnInit(): void {
+
     }
 
     _onTableDataChange(event: any): any {

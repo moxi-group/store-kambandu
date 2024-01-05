@@ -19,7 +19,6 @@
             <select name="order_by" id='order_by' (change)="_onTableDataChange($event)"
                 [(ngModel)]="_filterService.pagination.order_by" class="form-control">
                 <option value="-created_at">Data</option>
-                <option value="-sigla_doc">Sigla Doc</option>
             </select>
         </div>
     </div>
@@ -29,8 +28,7 @@
             <label for="filter_column">Tipo</label>
             <select name="filter_column" id='filter_column' (change)="_onTableDataChange($event)"
                 [(ngModel)]="_filterService.pagination.filter_column" class="form-control">
-                <option value="sigla_doc">Sigla Doc</option>
-                <option value="sequence">Número</option>
+                <option *ngFor="let item of options" [value]="item.value">{{ item.description }}</option>
             </select>
         </div>
     </div>

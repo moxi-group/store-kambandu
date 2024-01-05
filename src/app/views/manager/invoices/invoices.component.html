@@ -23,7 +23,7 @@
             <div class="card">
                 <!-- Card header -->
                 <div class="card-header border-0">
-                    <Filter (filterEmitter)='(_onTableDataChange($event))'></Filter>
+                    <Filter [options]='filter_options' (filterEmitter)='(_onTableDataChange($event))'></Filter>
                 </div>
                 <!-- Light table -->
                 <div class="table-responsive">

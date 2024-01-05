@@ -15,6 +15,17 @@ import { FilterService } from 'src/app/services/filter.service';
 export class InvoicesComponent implements OnInit {
     invoice: any = {}
     invoices: any = []
+
+    filter_options: any = [
+        {
+            value: 'sigla_doc',
+            description: 'Sigla Doc'
+        },
+        {
+            value: 'sequence',
+            description: 'Número'
+        }
+    ]
     
     constructor(
         public _filterService: FilterService,
