@@ -31,9 +31,9 @@
                                     name="enter_by" [(ngModel)]="filter.limit">
                                     <option>5</option>
                                     <option>10</option>
+                                    <option>20</option>
+                                    <option>30</option>
                                     <option>50</option>
-                                    <option>100</option>
-                                    <option>Todos</option>
                                 </select>
                             </div>
                         </div>
@@ -88,8 +88,8 @@
                         </thead>
                         <tbody class="list" *ngIf="invoices.items">
                             <tr *ngFor="let item of invoices.items | paginate: {
-                                itemsPerPage: invoices.count,
-                                currentPage: invoices.page,
+                                itemsPerPage: filter.limit,
+                                currentPage: filter.page,
                                 totalItems: invoices.total
                             } ; index as i" class="{{item.status == 'A' ? 'bg-danger-line' : ''}}">
                                 <td>{{ i+1 }}</td>
@@ -143,12 +143,10 @@
 
                     <hr>
 
-                    <div class='row justify-content-center'>
-                        <div class="col-5">
-                            <pagination-controls (pageChange)="_onTableDataChange($event)" previousLabel="Anterior"
-                                nextLabel="Proximo">
-                            </pagination-controls>
-                        </div>
+                    <div class="d-flex justify-content-center">
+                        <pagination-controls (pageChange)="_onTableDataChange($event)" previousLabel="Anterior"
+                            nextLabel="Proximo">
+                        </pagination-controls>
                     </div>
 
                 </div>
