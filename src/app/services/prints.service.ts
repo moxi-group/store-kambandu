@@ -30,6 +30,15 @@ export class PrintsService {
         )
     }
 
+    report_invoice(data: any){
+        let doc_uuid = 'a5f6fd65-a743-4ec5-9e3d-3bb98824e252'
+                
+        return this._http_client.post(
+            `${environment.invoiceServe.baseUrl}/${doc_uuid}/generate?output_format=xlsx`,
+            data, { responseType: 'blob', }
+        )
+    }
+
     invoice(data: any) {
         let doc_uuid = this.get_documents(data.sigla_doc.substring(0,2))        
         return this._http_client.post(

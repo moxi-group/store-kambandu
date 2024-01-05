@@ -4,6 +4,7 @@ import { InvoicesService } from './invoices.service';
 import { ApplicationService } from 'src/app/api/application.service';
 import { saveAs } from 'file-saver';
 import { FilterService } from 'src/app/services/filter.service';
+import { PrintsService } from 'src/app/services/prints.service';
 
 
 @Component({
@@ -24,12 +25,17 @@ export class InvoicesComponent implements OnInit {
         {
             value: 'sequence',
             description: 'Número'
+        },
+        {
+            value: 'created_at',
+            description: 'Data'
         }
     ]
     
     constructor(
         public _filterService: FilterService,
         public _invoicesService: InvoicesService,
+        public _printService: PrintsService,
         private _applicationService: ApplicationService,
         public translate: TranslateService
     ) { }
@@ -107,5 +113,38 @@ export class InvoicesComponent implements OnInit {
         let result = (((total - open_amount) * 100) /(total))
         return parseInt(result.toString())
     }
+
+
+    _print_report_invoice() {
+
+        this._printService
+        .report_invoice( this.invoices )
+        .subscribe(response => {
+            const blob = new Blob([response], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+            const blobUrl = URL.createObjectURL(blob);
+            const shouldPrint = false;
+
+            if (shouldPrint) {
+                const printWindow = window.open(blobUrl, '_blank');
+                printWindow?.print();
+                if (printWindow) {
+                    printWindow.onafterprint = () => {
+                        URL.revokeObjectURL(blobUrl);
+                    };
+                }
+            } else {
+                saveAs(blobUrl, `resumo-report.xlsx`);
+                URL.revokeObjectURL(blobUrl);
+            }
+            
+        }, (error) => {
+            if ( error.status === 404) {
+                this._applicationService.SwalDanger('Template de Imprensão não encontrado')
+            } else {
+                this._applicationService.SwalDanger('Problemas ao se conectar ao serviço externo')
+            }
+        })
+    }
+    
 
 }

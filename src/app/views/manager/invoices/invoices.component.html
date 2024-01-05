@@ -7,6 +7,10 @@
                     <h6 class="h2 text-white d-inline-block mb-0">{{ 'header.invoice.title' | translate }}</h6>
                 </div>
                 <div class="col-lg-6 col-5 text-right">
+                    <button (click)="_print_report_invoice()" type='button' class="btn btn-outline-white btn-sm">
+                        <span class="nav-link-text">{{ 'Exportar EXCEL' | translate }}</span>
+                    </button>
+
                     <a class="btn btn-outline-default btn-sm" href="#" routerLink="register">
                         <span class="nav-link-text">{{ 'btn.register' | translate }}</span>
                     </a>
