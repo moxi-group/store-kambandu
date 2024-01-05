@@ -32,9 +32,9 @@
                                     name="enter_by" [(ngModel)]="filter.limit">
                                     <option>5</option>
                                     <option>10</option>
+                                    <option>20</option>
+                                    <option>30</option>
                                     <option>50</option>
-                                    <option>100</option>
-                                    <option>Todos</option>
                                 </select>
                             </div>
                         </div>
@@ -86,13 +86,13 @@
                                 <th scope="col" class="sort">{{ 'Usar Stock' | translate}}</th>
                                 <th scope="col" class="sort">{{ 'table.status' | translate}}</th>
                                 <th scope="col" class="sort">{{ 'Categoria' | translate}}</th>
-                                <th scope="col"></th>
+                                <th scope="col">Opções</th>
                             </tr>
                         </thead>
                         <tbody class="list" *ngIf="_productsService.products.items">
                             <tr *ngFor="let item of _productsService.products.items | paginate: {
-                                itemsPerPage: _productsService.products.count,
-                                currentPage: _productsService.products.page,
+                                itemsPerPage: filter.limit,
+                                currentPage: filter.page,
                                 totalItems: _productsService.products.total}
                                 ; index as i">
                                 <td>{{ i+1 }}</td>
