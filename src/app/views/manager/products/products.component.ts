@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ProductsService } from './products.service';
+import { FilterService } from 'src/app/services/filter.service';
 
 @Component({
   selector: 'app-products',
@@ -10,15 +11,23 @@ import { ProductsService } from './products.service';
 export class ProductsComponent implements OnInit {
     product: any = {}
 
-    filter: any = {
-        page: 1,
-        limit: 5,
-        order_by: 'name',
-        filter_column: null,
-        filter_value: ''
-    }
+    filter_options: any = [
+        {
+            value: 'name',
+            description: 'Nome'
+        },
+        {
+            value: 'code',
+            description: 'Código do produto'
+        },
+        {
+            value: 'created_at',
+            description: 'Data'
+        }
+    ]
 
     constructor(
+        public _filterService: FilterService,
         public _productsService: ProductsService,
         public translate: TranslateService
     ) { }
@@ -29,23 +38,17 @@ export class ProductsComponent implements OnInit {
     }
 
     loading_data() {
-        this._onTableDataChange(1)
+        this._onTableDataChange( this._filterService.pagination )
     }
 
-    _onTableDataChange(event: any): void{
-        this.filter.page = Number.isInteger(event) ? event : 1 
-        this.get_products()
-    }
-
-    get_products() {
+    _onTableDataChange(filterEmit: any): void{
+        this._filterService.pagination = filterEmit
         this._productsService
-        .get_products(this.filter)
+        .get_products( this._filterService.pagination )
         .subscribe(response => {
             this._productsService.products = Object(response)
         })
     }
-
-
 
     pachValue(item: any) {
         this.product = item
