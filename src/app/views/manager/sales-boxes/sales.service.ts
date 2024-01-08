@@ -21,10 +21,13 @@ export class SalesService {
     .set('Authorization', `Bearer ${this.token}`)
     .set('header-company-uuid', `${this.companyToken}`)
 
-    get_seles_boxes() {
+    get_seles_boxes(filter: any) {
         return this._http_client.get<any>(
             `${environment.fullBaseUrl}/stores/get-all-sales-box-by-store`, 
-            { headers: this.headers }
+            { 
+                params: filter,
+                headers: this.headers 
+            }
         )
     }
 

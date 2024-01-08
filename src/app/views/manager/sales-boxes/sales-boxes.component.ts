@@ -4,6 +4,7 @@ import { SalesService } from './sales.service';
 import { saveAs } from 'file-saver';
 import { ApplicationService } from 'src/app/api/application.service';
 import { PrintsService } from 'src/app/services/prints.service';
+import { FilterService } from 'src/app/services/filter.service';
 
 @Component({
     selector: 'app-sales-boxes',
@@ -14,7 +15,19 @@ import { PrintsService } from 'src/app/services/prints.service';
 export class SalesBoxesComponent implements OnInit {
     sale_box: any = {}
 
+    filter_options: any = [
+        {
+            value: 'is_closed',
+            description: 'Estado Aberto'
+        },
+        {
+            value: '-is_closed',
+            description: 'Estado Fechado'
+        }
+    ]
+
     constructor(
+        public _filterService: FilterService,
         public _printService: PrintsService,
         private _applicationService: ApplicationService,
         public _salesService: SalesService,
@@ -24,18 +37,22 @@ export class SalesBoxesComponent implements OnInit {
     ngOnInit(): void {
         this.loading_data()
     }
-
+    
     loading_data() {
-        this.get_sales()
+        this._onTableDataChange( this._filterService.pagination )
     }
 
-
-    get_sales() {
+    _onTableDataChange(filterEmit: any): void{
         this._salesService
-        .get_seles_boxes()
+        .get_seles_boxes(this._filterService.pagination)
         .subscribe(response => {
             this._salesService.sales_boxes = Object(response)
         })
+    }
+
+    _onTableDataChangePage(page: any){
+        this._filterService.pagination.page = page
+        this._onTableDataChange( this._filterService.pagination )
     }
 
     pachValue(item: any) {

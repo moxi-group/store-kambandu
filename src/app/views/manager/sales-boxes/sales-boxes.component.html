@@ -20,7 +20,7 @@
             <div class="card">
                 <!-- Card header -->
                 <div class="card-header border-0">
-
+                    <Filter [options]='filter_options' (filterEmitter)='(_onTableDataChange($event))'></Filter>
                 </div>
                 <!-- Light table -->
                 <div class="table-responsive">
@@ -38,8 +38,12 @@
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody class="list" *ngIf="_salesService.sales_boxes">
-                            <tr *ngFor="let item of _salesService.sales_boxes; index as i">
+                        <tbody class="list" *ngIf="_salesService.sales_boxes.items">
+                            <tr *ngFor="let item of _salesService.sales_boxes.items | paginate: {
+                                itemsPerPage: _filterService.pagination.limit,
+                                currentPage: _filterService.pagination.page,
+                                totalItems: _salesService.sales_boxes.total
+                                }; index as i">
                                 <td>{{ i+1 }}</td>
                                 <td scope="row"><span class="name mb-0 text-sm">{{ item.opened_user.name }}</span>
                                 </td>
@@ -80,6 +84,14 @@
 
                         </tbody>
                     </table>
+
+                    <hr>
+
+                    <div class="d-flex justify-content-center">
+                        <pagination-controls (pageChange)="_onTableDataChangePage($event)" previousLabel="Anterior"
+                            nextLabel="Proximo">
+                        </pagination-controls>
+                    </div>
                 </div>
 
             </div>

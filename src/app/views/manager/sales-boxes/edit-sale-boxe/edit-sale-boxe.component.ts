@@ -67,7 +67,7 @@ export class EditSaleBoxeComponent implements OnInit {
 
     get_sales() {
         this._salesService
-        .get_seles_boxes()
+        .get_seles_boxes({})
         .subscribe(response => {
             this._salesService.sales_boxes = Object(response)
         })
