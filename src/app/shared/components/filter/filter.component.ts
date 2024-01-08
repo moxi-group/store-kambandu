@@ -27,4 +27,8 @@ export class FilterComponent implements OnInit {
         this.filterEmitter.emit(this._filterService.pagination)
     }
 
+    _init_filter(){
+        this.filterEmitter.emit(this._filterService.pagination)
+    }
+
 }

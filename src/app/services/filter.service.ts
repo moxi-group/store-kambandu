@@ -11,7 +11,9 @@ export class FilterService {
         limit: 5,
         order_by: '-created_at',
         filter_column: null,
-        filter_value: null
+        filter_value: null,
+        start_date: Date.now(),
+        end_date: Date.now()
     }
 
     constructor() {
@@ -24,7 +26,9 @@ export class FilterService {
             limit: 5,
             order_by: '-created_at',
             filter_column: null,
-            filter_value: null
+            filter_value: null,
+            start_date: Date.now(),
+            end_date: Date.now()
         }
     }
 

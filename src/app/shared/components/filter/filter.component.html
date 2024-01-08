@@ -32,12 +32,36 @@
             </select>
         </div>
     </div>
+
+
     <div class="col-lg-2 p-filter">
         <div class="form-group">
             <label for="filter_value">Pesquisar</label>
             <input type="text" name="filter_value" id="filter_value"
                 [(ngModel)]="_filterService.pagination.filter_value" (keyup)="_onTableDataChange($event)"
                 placeholder="Pesquisa por ..." class="form-control">
+        </div>
+    </div>
+
+    <div class="col-lg-1 p-filter">
+        <div class="form-group">
+            <label for="filter_column">Data Inicio</label>
+            <input type="date" name="start_date" id="start_date" [(ngModel)]="_filterService.pagination.start_date"
+                (keyup)="_onTableDataChange($event)" placeholder="Pesquisa por ..." class="form-control">
+        </div>
+    </div>
+
+    <div class="col-lg-1 p-filter">
+        <div class="form-group">
+            <label for="filter_column">Data Fim</label>
+            <input type="date" name="end_date" id="end_date" [(ngModel)]="_filterService.pagination.end_date"
+                (keyup)="_onTableDataChange($event)" placeholder="Pesquisa por ..." class="form-control">
+        </div>
+    </div>
+
+    <div class="col-lg-1 p-filter">
+        <div class="form-group">
+            <button (click)="_init_filter()" class='btn btn-success mt-4' type="button">Buscar</button>
         </div>
     </div>
 </div>
