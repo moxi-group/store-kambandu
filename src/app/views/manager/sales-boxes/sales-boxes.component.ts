@@ -34,7 +34,7 @@ export class SalesBoxesComponent implements OnInit {
         this._salesService
         .get_seles_boxes()
         .subscribe(response => {
-            this._salesService.sales_boxes = Object(response)
+            this._salesService.sales_boxes = Object(response).items
         })
     }
 
