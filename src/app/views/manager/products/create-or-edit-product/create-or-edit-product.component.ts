@@ -20,10 +20,12 @@ export class CreateOrEditProductComponent implements OnInit {
     submitted = false
     taxes: any = []
     categories: any = []
+    disabled_check: boolean = true
+    
 
     constructor(
         private _categoryService: CategoriesService,
-        private _productsService: ProductsService,
+        public _productsService: ProductsService,
         private _taxesService: TaxesService,
         private _applicationService: ApplicationService,
         private _formBuild: FormBuilder
@@ -37,8 +39,9 @@ export class CreateOrEditProductComponent implements OnInit {
             tax_uuid: [null, Validators.required],
             category_uuid: [null, Validators.required],
             image: [null],
-            is_stocked: true,
-            is_active: true
+            is_stocked: [false, Validators.required],
+            is_active: true,
+            compounds: [[]]
         })
 
         this.get_taxes()
@@ -76,6 +79,26 @@ export class CreateOrEditProductComponent implements OnInit {
             this._update(this.productForm.getRawValue().uuid, this.productForm.value)
         } else {
             this._create(this.productForm.value)
+        }
+    }
+
+    _check_use_stock(){
+        if (this.productForm.getRawValue().is_stocked) { //checked
+            this.disabled_check = true
+            //this.productForm.getRawValue().compounds = []
+        } else {
+            this.disabled_check = false
+        }
+    }
+
+    _set_associate_product(product: any){
+        let exist = this.productForm.getRawValue().compounds.includes(product.uuid)
+
+        if( exist ){
+            this.productForm.getRawValue().compounds = this.productForm.getRawValue().compounds
+            .filter((uuid: any) => uuid != product.uuid)
+        } else {
+            this.productForm.getRawValue().compounds.push( product.uuid )
         }
     }
 

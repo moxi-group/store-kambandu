@@ -51,7 +51,7 @@
                                 itemsPerPage: _filterService.pagination.limit,
                                 currentPage: _filterService.pagination.page,
                                 totalItems: invoices.total
-                            } ; index as i" class="{{item.status == 'A' ? 'bg-danger-line' : ''}}">
+                            } ; index as i" class="{{item.status === 'A' ? 'bg-danger-line' : ''}}">
                                 <td>{{ i+1 }}</td>
                                 <th scope="row"><span class="name mb-0 text-sm">{{ item.customer.name}}</span></th>
                                 <th scope="row"><span class="name mb-0 text-sm">{{ item.sigla_doc }}</span></th>
@@ -86,8 +86,9 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 
-                                            <button (click)="pachValue(item)" type="button" class="dropdown-item"
-                                                data-toggle="modal" data-target="#CancelInvoiceModal">
+                                            <button *ngIf="item.status == 'N'" (click)="pachValue(item)" type="button"
+                                                class="dropdown-item" data-toggle="modal"
+                                                data-target="#CancelInvoiceModal">
                                                 {{ 'Anular Doc' | translate }}
                                             </button>
 
