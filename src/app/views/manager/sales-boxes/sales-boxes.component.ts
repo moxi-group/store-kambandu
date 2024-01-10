@@ -46,7 +46,7 @@ export class SalesBoxesComponent implements OnInit {
         this._salesService
         .get_seles_boxes(this._filterService.pagination)
         .subscribe(response => {
-            this._salesService.sales_boxes = Object(response)
+            this._salesService.sales_boxes = Object(response).items
         })
     }
 
