@@ -20,6 +20,8 @@ export class CreateOrEditProductComponent implements OnInit {
     submitted = false
     taxes: any = []
     categories: any = []
+    composed_products: any = []
+    association_products: any = []
     disabled_check: boolean = true
     
 
@@ -40,12 +42,14 @@ export class CreateOrEditProductComponent implements OnInit {
             category_uuid: [null, Validators.required],
             image: [null],
             is_stocked: [false, Validators.required],
+            is_composed: [false, Validators.required],
             is_active: true,
-            compounds: [[]]
+            composed_products: [[]]
         })
 
         this.get_taxes()
         this.get_categories()
+        this.get_products_map()
     }
 
 
@@ -53,6 +57,7 @@ export class CreateOrEditProductComponent implements OnInit {
     }
 
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
+     
         if (this.product !== undefined) {
             this.title = "Registar Produto";
             this.productForm.patchValue(this.product);
@@ -75,6 +80,20 @@ export class CreateOrEditProductComponent implements OnInit {
         if (this.productForm.invalid) {
             return;
         }
+
+        if ( this.productForm.getRawValue().is_composed && this.composed_products.length === 0) {            
+            this._applicationService.SwalDangerConfirmation("Produtos compostos devem ter os seus associados!");
+            return;
+        }
+
+        this.productForm.patchValue({
+            composed_products: this.composed_products.map((product: any) => ({
+                product_uuid: product.product_uuid,
+                quantity: Number(product.quantity),
+                stock_uuid: null
+            }))
+        })
+
         if ( Boolean(this.productForm.getRawValue().uuid) ) {
             this._update(this.productForm.getRawValue().uuid, this.productForm.value)
         } else {
@@ -83,23 +102,34 @@ export class CreateOrEditProductComponent implements OnInit {
     }
 
     _check_use_stock(){
-        if (this.productForm.getRawValue().is_stocked) { //checked
+        if (this.productForm.getRawValue().is_composed) { //checked
             this.disabled_check = true
-            //this.productForm.getRawValue().compounds = []
+            //this.productForm.getRawValue().composed_products = []
         } else {
             this.disabled_check = false
         }
     }
 
     _set_associate_product(product: any){
-        let exist = this.productForm.getRawValue().compounds.includes(product.uuid)
-
+        let exist = this.composed_products.find((item: any) => item.product_uuid === product.product_uuid)
+        
         if( exist ){
-            this.productForm.getRawValue().compounds = this.productForm.getRawValue().compounds
-            .filter((uuid: any) => uuid != product.uuid)
+            product.quantity = 1
+            this.composed_products = this.composed_products
+            .filter((line: any) => line.product_uuid !== product.product_uuid)
         } else {
-            this.productForm.getRawValue().compounds.push( product.uuid )
+            this.composed_products.push( product )
         }
+    }
+
+    _set_quantity(event: any, product: any){
+        let quantity = event.target.value
+
+        if (Boolean(quantity)) {
+            product.quantity = quantity
+            return
+        }
+        product.quantity = 1
     }
 
     _create(form: FormGroup) {
@@ -143,6 +173,21 @@ export class CreateOrEditProductComponent implements OnInit {
         .get_products()
         .subscribe(response => {
             this._productsService.products = Object(response)
+        })
+    }
+
+    get_products_map() {
+        this._productsService
+        .get_products()
+        .subscribe(response => {
+            let result = Object(response)
+            
+            this.association_products = result.items.map((product: any) => ({
+                product_uuid: product.uuid,
+                name: product.name,
+                quantity: 1,
+                cheked: false
+            }))
         })
     }
 

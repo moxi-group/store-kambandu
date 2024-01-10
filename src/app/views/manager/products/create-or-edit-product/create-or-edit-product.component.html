@@ -75,6 +75,20 @@
                                                 translate}}</div>
                                         </div>
                                     </div>
+
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="is_stocked"
+                                            formControlName="is_stocked" name="is_stocked"
+                                            [ngClass]="{ 'is-invalid': submitted && f.is_stocked.errors, 'is-valid': f.is_stocked.touched && !f.is_stocked.errors }">
+                                        <label class="form-check-label" for="is_stocked">{{ 'Movimenta Stock ?' |
+                                            translate}}</label>
+                                        <div *ngIf="submitted && f['is_stocked'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['is_stocked'].errors.required">{{ 'errors.required' |
+                                                translate}}
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
 
                                 <div class="col-md-6">
@@ -115,16 +129,19 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="row">
+                            <span *ngIf="!productForm.getRawValue().is_stocked" class='advanced-settings'>Configurações
+                                Avançadas para produtos compostos</span>
+                            <div class="row" *ngIf="productForm.getRawValue().is_stocked">
                                 <div class="col-md-12">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="is_stocked"
-                                            formControlName="is_stocked" name="is_stocked" (click)="_check_use_stock()"
-                                            [ngClass]="{ 'is-invalid': submitted && f.is_stocked.errors, 'is-valid': f.is_stocked.touched && !f.is_stocked.errors }">
-                                        <label class="form-check-label" for="is_stocked">{{ 'Movimenta Stock ?' |
+                                        <input type="checkbox" class="form-check-input" id="is_composed"
+                                            formControlName="is_composed" name="is_composed"
+                                            (click)="_check_use_stock()"
+                                            [ngClass]="{ 'is-invalid': submitted && f.is_composed.errors, 'is-valid': f.is_composed.touched && !f.is_composed.errors }">
+                                        <label class="form-check-label" for="is_composed">{{ 'É um Produto Composto ?' |
                                             translate}}</label>
-                                        <div *ngIf="submitted && f['is_stocked'].errors" class="invalid-feedback">
-                                            <div *ngIf="f['is_stocked'].errors.required">{{ 'errors.required' |
+                                        <div *ngIf="submitted && f['is_composed'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['is_composed'].errors.required">{{ 'errors.required' |
                                                 translate}}
                                             </div>
                                         </div>
@@ -138,39 +155,32 @@
                                                 <tr>
                                                     <th># Check</th>
                                                     <th scope="col" class="sort">{{ 'table.name' | translate}}</th>
-                                                    <th scope="col" class="sort">{{ 'table.price' | translate}}</th>
-                                                    <th scope="col" class="sort">{{ 'table.status' | translate}}</th>
+                                                    <th scope="col" class="sort">{{ 'Quant. Movimentar' | translate}}
+                                                    </th>
                                                 </tr>
                                             </thead>
-                                            <tbody class="list" *ngIf="_productsService.products.items">
-                                                <tr *ngFor="let item of _productsService.products.items 
-                                                    ; index as i">
+                                            <tbody class="list" *ngIf="association_products">
+                                                <tr *ngFor="let item of association_products">
                                                     <td>
-                                                        <input [disabled]='disabled_check'
+                                                        <input [value]="item.cheked" [disabled]='disabled_check'
                                                             (click)="_set_associate_product(item)" type="checkbox"
-                                                            name="quantity" class="form-control" />
+                                                            class="form-control" />
                                                     </td>
                                                     <th scope="row"><span class="name mb-0 text-sm">{{item.name}}</span>
                                                     </th>
-                                                    <td class="budget">{{ item.price | to_kwanza }}</td>
                                                     <td>
-                                                        <span class="badge badge-dot mr-4">
-                                                            <i class="bg-green"></i>
-                                                            <span class="status">{{ 'status.' +
-                                                                item.is_active.toString() | translate
-                                                                }}</span>
-                                                        </span>
+                                                        <input (keyup)="_set_quantity($event, item)"
+                                                            [value]="item.quantity" [disabled]='disabled_check' min="1"
+                                                            max="5" type="number" name="quantity"
+                                                            class="form-control" />
                                                     </td>
 
                                                 </tr>
 
                                             </tbody>
                                         </table>
-
                                     </div>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>

@@ -47,7 +47,7 @@ export class CreateMovimentStockComponent implements OnInit {
         this._productService
         .get_products()
         .subscribe(response => {
-            this.products = Object(response)
+            this.products = Object(response).items
         })
 
         this._providerService
@@ -104,6 +104,7 @@ export class CreateMovimentStockComponent implements OnInit {
         this._stockService.create_stock_moviment(form)
         .subscribe(response => {
             this.submitted = false;
+            this.loading_init()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this.onReset()
         })
