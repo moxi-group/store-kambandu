@@ -44,6 +44,7 @@ export class CreateOrEditProductComponent implements OnInit {
             is_stocked: [false, Validators.required],
             is_composed: [false, Validators.required],
             is_active: true,
+            is_part_of_composed: false,
             composed_products: [[]]
         })
 

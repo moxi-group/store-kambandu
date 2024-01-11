@@ -64,6 +64,10 @@
                                                 (click)="pachValueStock(item)" data-target="#ListMovimentStockModal">
                                                 {{ 'Ver Movimentos' | translate}}
                                             </button>
+                                            <button type="button" class="dropdown-item" data-toggle="modal"
+                                                (click)="pachValueStock(item)" data-target="#ComposerProductkModal">
+                                                {{ 'Compor Produto' | translate}}
+                                            </button>
                                         </div>
                                     </div>
                                 </td>
@@ -81,3 +85,4 @@
 
 <CreateMovimentStockModal [moviment_stock]="moviment_stock" [modal]=""></CreateMovimentStockModal>
 <ListMovimentStockModal [stock]="stock" [modal]=""></ListMovimentStockModal>
+<ComposerProductkModal [stock]="stock" [modal]=""></ComposerProductkModal>

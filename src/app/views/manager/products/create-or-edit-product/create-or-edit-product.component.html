@@ -76,6 +76,8 @@
                                         </div>
                                     </div>
 
+                                    <br>
+
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" id="is_stocked"
                                             formControlName="is_stocked" name="is_stocked"
@@ -84,6 +86,23 @@
                                             translate}}</label>
                                         <div *ngIf="submitted && f['is_stocked'].errors" class="invalid-feedback">
                                             <div *ngIf="f['is_stocked'].errors.required">{{ 'errors.required' |
+                                                translate}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <br>
+
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="is_part_of_composed"
+                                            formControlName="is_part_of_composed" name="is_part_of_composed"
+                                            [ngClass]="{ 'is-invalid': submitted && f.is_part_of_composed.errors, 'is-valid': f.is_part_of_composed.touched && !f.is_part_of_composed.errors }">
+                                        <label class="form-check-label" for="is_part_of_composed">{{ 'É parte de
+                                            Composto ?' |
+                                            translate}}</label>
+                                        <div *ngIf="submitted && f['is_part_of_composed'].errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="f['is_part_of_composed'].errors.required">{{ 'errors.required' |
                                                 translate}}
                                             </div>
                                         </div>

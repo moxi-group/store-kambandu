@@ -11,6 +11,7 @@ import { StocksService } from './stocks.service';
 export class StocksComponent implements OnInit {
     moviment_stock: any = {}
     stock: any = {}
+    product_constitution: any = {}
     
     constructor(
         public _stockService: StocksService,
