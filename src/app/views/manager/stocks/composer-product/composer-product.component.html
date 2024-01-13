@@ -11,7 +11,34 @@
                     </button>
                 </div>
                 <div class="modal-body">
-
+                    <div class="table-responsive tableFixHead">
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th># Check</th>
+                                    <th scope="col" class="sort">{{ 'table.name' | translate}}</th>
+                                    <th scope="col" class="sort">{{ 'Quant. Movimentar' | translate}}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="list" *ngIf="association_products">
+                                <tr *ngFor="let item of association_products">
+                                    <td>
+                                        <input [value]="item.cheked" [disabled]='disabled_check'
+                                            (click)="_set_associate_product(item)" type="checkbox"
+                                            class="form-control" />
+                                    </td>
+                                    <th scope="row"><span class="name mb-0 text-sm">{{item.name}}</span>
+                                    </th>
+                                    <td>
+                                        <input (keyup)="_set_quantity($event, item)" [value]="item.quantity"
+                                            [disabled]='disabled_check' min="1" max="5" type="number" name="quantity"
+                                            class="form-control" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
                 </div>
                 <div class="modal-footer">
@@ -27,7 +54,6 @@
                 </div>
 
             </form>
-
         </div>
     </div>
 </div>

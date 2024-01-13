@@ -16,10 +16,11 @@ export class ComposerProductComponent implements OnInit {
     @Input() composerForm: FormGroup
     @Input() stock: any
 
-    
-
     submitted = false
-    products: any = []
+    disabled_check = false
+
+    association_products: any = []
+    composed_products: any = []
 
     constructor(
         private _productService: ProductsService,
@@ -37,7 +38,7 @@ export class ComposerProductComponent implements OnInit {
 
 
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
-
+        this.get_products_map()
     }
 
     get f() {
@@ -69,5 +70,80 @@ export class ComposerProductComponent implements OnInit {
         })
         */
     }
+
+    _set_associate_product(product: any){
+        let exist = this.composed_products.find((item: any) => item.product_uuid === product.product_uuid)
+        
+        if( exist ){
+            product.quantity = 1
+            this.composed_products = this.composed_products
+            .filter((line: any) => line.product_uuid !== product.product_uuid)
+        } else {
+            this.composed_products.push( product )
+        }
+    }
+
+    _set_quantity(event: any, product: any){
+        let quantity = event.target.value
+
+        if (Boolean(quantity)) {
+            product.quantity = quantity
+            return
+        }
+        product.quantity = 1
+    }
+
+    get_products_map() {
+        this._productService
+        .get_products()
+        .subscribe(response => {
+            let result = Object(response)
+            
+            this.association_products = result.items.map((product: any) => ({
+                product_uuid: product.uuid,
+                name: product.name,
+                quantity: 1,
+                cheked: false
+            }))
+        })
+    }
+
+
+    /*
+
+
+
+
+        if ( this.productForm.getRawValue().is_composed && this.composed_products.length === 0) {            
+            this._applicationService.SwalDangerConfirmation("Produtos compostos devem ter os seus associados!");
+            return;
+        }
+
+        this.productForm.patchValue({
+            composed_products: this.composed_products.map((product: any) => ({
+                product_uuid: product.product_uuid,
+                quantity: Number(product.quantity),
+                stock_uuid: null
+            }))
+        })
+
+            _check_use_stock(){
+        if (this.productForm.getRawValue().is_composed) { //checked
+            this.disabled_check = true
+            //this.productForm.getRawValue().composed_products = []
+        } else {
+            this.disabled_check = false
+        }
+    }
+
+
+
+
+
+
+
+
+
+    */
 
 }
