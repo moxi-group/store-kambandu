@@ -61,6 +61,10 @@
                                                 (click)="pachValue(item)" data-target="#CreateOrEditEmployeeModal">
                                                 {{ 'btn.update' | translate}}
                                             </button>
+
+                                            <button type="button" class="dropdown-item" (click)="_reset_password(item)">
+                                                {{ 'Redifinir senha' | translate}}
+                                            </button>
                                         </div>
                                     </div>
                                 </td>

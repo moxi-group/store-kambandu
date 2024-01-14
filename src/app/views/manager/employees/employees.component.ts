@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { EmployeesService } from './employees.service';
+import Swal  from 'sweetalert2'
+
 
 @Component({
     selector: 'app-employees',
@@ -33,6 +35,24 @@ export class EmployeesComponent implements OnInit {
 
     pachValue(item: any) {
         this.employee = item
+    }
+
+    _reset_password(collaborator: any){
+
+        Swal.fire({
+            title: "Tem certeza?",
+            showDenyButton: false,
+            showCancelButton: true,
+            confirmButtonText: "Sim",
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                this._employeesService.reset_password( collaborator.uuid )
+                Swal.fire("Senha redifinida com sucesso\nVálide à SMS no seu telefone!", "", "success");
+            } else if (result.isDenied) {
+                Swal.fire("Changes are not saved", "", "info");
+            }
+        });
     }
 
 

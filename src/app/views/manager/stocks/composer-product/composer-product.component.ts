@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ProductsService } from '../../products/products.service';
 import { ApplicationService } from 'src/app/api/application.service';
+import { StocksService } from '../stocks.service';
 
 @Component({
     selector: 'ComposerProductkModal',
@@ -25,11 +26,12 @@ export class ComposerProductComponent implements OnInit {
     constructor(
         private _productService: ProductsService,
         private _applicationService: ApplicationService,
+        private _stockService: StocksService,
         private _formBuild: FormBuilder
     ) {
         this.composerForm = this._formBuild.group({
-            provider_uuid: [null, Validators.required],
-            product_uuid: [null, Validators.required],
+            provider_uuid: [null],
+            product_uuid: [null],
         })
     }
 
@@ -52,23 +54,25 @@ export class ComposerProductComponent implements OnInit {
 
     onSubmit() {
         this.submitted = true
-        if (this.composerForm.invalid) {
-            return;
-        }
 
-        this._create(this.composerForm.value)
+        //this._create()
     }
 
-    _create(form: FormGroup) {
-        /*
-        this._stockService.create_stock_moviment(form)
+    _create() {
+        let products = this.composed_products.map((item: any) => ({
+            stock_uuid: item.stock_uuid,
+            product_uuid: item.product_uuid,
+            quantity: item.quantity
+        }))
+        
+        this._stockService.associate_composition(products, this.stock.product_uuid)
         .subscribe(response => {
             this.submitted = false;
-            this.loading_init()
+
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this.onReset()
         })
-        */
+        
     }
 
     _set_associate_product(product: any){
@@ -100,6 +104,7 @@ export class ComposerProductComponent implements OnInit {
             let result = Object(response)
             
             this.association_products = result.items.map((product: any) => ({
+                stock_uuid: this.stock.uuid,
                 product_uuid: product.uuid,
                 name: product.name,
                 quantity: 1,

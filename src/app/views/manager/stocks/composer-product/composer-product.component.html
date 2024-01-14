@@ -45,10 +45,7 @@
                     <button class="btn btn-danger btn-sm" type="reset" [disabled]="composerForm.pristine && !submitted"
                         (click)="onReset()">{{ 'btn.clean' |
                         translate}}</button>
-                    <button class="btn btn-success btn-sm mr-1" type="submit" [disabled]="composerForm.valid">{{
-                        'btn.validate' | translate}}</button>
-                    <button type="submit" [disabled]="composerForm.pristine || composerForm.invalid"
-                        class="btn btn-primary btn-sm">{{ 'btn.save' | translate}}
+                    <button (click)='_create()' type="submit" class="btn btn-primary btn-sm">{{ 'btn.save' | translate}}
                         <spinner [loading]='submitted'></spinner>
                     </button>
                 </div>

@@ -33,6 +33,13 @@ export class StocksService {
         )
     }
 
+    associate_composition(data: any, product_uuid: string) {
+        return this._http_client.post<any>(
+            `${environment.fullBaseUrl}/products/add-composed-products/${product_uuid}`,
+            data,{ headers: this.headers}
+        )
+    }
+
     get_stock_moviments(stock_uuid: string) {
         return this._http_client.get<any>(
             `${environment.fullBaseUrl}/stocks/find-stock-moviment-by-stock-uuid/${stock_uuid}`, 
