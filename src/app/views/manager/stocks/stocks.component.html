@@ -7,6 +7,11 @@
                     <h6 class="h2 text-white d-inline-block mb-0">{{ 'Gestão de Stock' | translate }}</h6>
                 </div>
                 <div class="col-lg-6 col-5 text-right">
+
+                    <button (click)="_print_report_stock()" type='button' class="btn btn-outline-white btn-sm">
+                        <span class="nav-link-text">{{ 'Exportar EXCEL' | translate }}</span>
+                    </button>
+
                     <button type="button" class="btn btn-outline-default btn-sm" data-toggle="modal"
                         data-target="#CreateMovimentStockModal">
                         {{ 'Movimentar Stock' | translate }}

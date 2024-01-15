@@ -118,7 +118,7 @@ export class InvoicesComponent implements OnInit {
         items = Object.assign({}, items);
         let data = items['items']
         for (let index = 0; index < data.length; index++) {
-            
+
             delete data[index].payments;
             delete data[index].lines;
             delete data[index].taxes_resume;
@@ -147,7 +147,7 @@ export class InvoicesComponent implements OnInit {
                     };
                 }
             } else {
-                saveAs(blobUrl, `resumo-report.xlsx`);
+                saveAs(blobUrl, `resumo-report-${Date.now()}.xlsx`);
                 URL.revokeObjectURL(blobUrl);
             }
             
