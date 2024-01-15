@@ -1,154 +1,159 @@
 {
-    "admin": "Administrador",
-    "employer": "Colaborador",
-    "default": {
-        "name": "Nome"
-    },
+  "admin": "Administrador",
+  "employer": "Colaborador",
+  "default": {
+    "name": "Nome"
+  },
+  "description": "Descrição",
+  "configuration": "Configurações",
+  "sign_in": "Iniciar sessão",
+  "company_info": "Informações da Empresa",
+  "user_info": "Informações do Utilizador",
+  "register_now": "Subscrever Agora",
+  "remove_role": "Alterar acesso",
+  "menu": {
+    "start": "Inicio",
+    "users": "Utilizadores",
+    "subscriptions": "Subscrições",
+    "comapnies": "Empresas",
+    "documents": "Documentos",
+    "taxes": "Impostos",
+    "invoices": "Facturas",
+    "receipts": "Recibos",
+    "series": "Series",
+    "products": "Produtos",
+    "products_and_sercives": "Produtos/Serviços",
+    "services": "Serviços",
+    "customers": "Clientes",
+    "payment_methods": "Formas Pagamento",
+    "banks": "Bancos"
+  },
+  "status": {
+    "true": "Activo",
+    "false": "Inactivo"
+  },
+  "text": {
+    "daily_billing": "Faturação Diária",
+    "month_billing": "Faturação Mensal",
+    "month_receipts": "Cobrança Mensal",
+    "registered_customers": "Registo Clientes"
+  },
+  "btn": {
+    "update": "Atualizar",
+    "register": "Registar",
+    "continue": "Continuar",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "clean": "Limpar",
+    "validate": "Validar",
+    "approve": "Aprovar",
+    "change_role": "Alterar acesso",
+    "more": "Ver mais"
+  },
+  "label": {
+    "name": "Nome",
+    "tax": "Imposto",
     "description": "Descrição",
-    "configuration": "Configurações",
-    "sign_in": "Iniciar sessão",
-    "company_info": "Informações da Empresa",
-    "user_info": "Informações do Utilizador",
-    "register_now": "Subscrever Agora",
-    "remove_role": "Alterar acesso",
-    "menu": {
-        "start": "Inicio",
-        "users": "Utilizadores",
-        "subscriptions": "Subscrições",
-        "comapnies": "Empresas",
-        "documents": "Documentos",
-        "taxes": "Impostos",
-        "invoices": "Facturas",
-        "receipts": "Recibos",
-        "series": "Series",
-        "products": "Produtos",
-        "customers": "Clientes",
-        "payment_methods": "Formas Pagamento",
-        "banks": "Bancos"
+    "sigla": "Sigla",
+    "code": "Código",
+    "percentage": "Percentagem",
+    "cell_phone": "Nº telefone",
+    "email": "E-mail",
+    "address": "Endereço",
+    "nif": "NIF",
+    "use_bank": "Usar banco",
+    "account_number": "Nº Conta",
+    "iban": "IBAN",
+    "price": "Preço",
+    "quantity": "Quantidade",
+    "customer": "Cliente",
+    "serie": "serie",
+    "total": "Total",
+    "document": "Documento"
+  },
+  "errors": {
+    "required": "Campo obrigatório"
+  },
+  "table": {
+    "name": "Nome",
+    "nif": "NIF",
+    "regime": "Regime",
+    "description": "Descrição",
+    "tax": "Imposto",
+    "sigla": "Sigla",
+    "status": "Estado",
+    "date": "Data",
+    "user_name": "Nome Utilizador",
+    "user_email": "E-mail Utilizador",
+    "user_phone_number": "Nº telefone Utilizador",
+    "cell_phone": "Nº telefone",
+    "company_name": "Nome empresa",
+    "company_nif": "NIF - empresa",
+    "company_street_name": "Rua da empresa",
+    "company_address_detail": "Endereço da empresa",
+    "company_city": "Cidade empresa",
+    "company_email": "E-mail empresa",
+    "company_cell_phone": "Nº telefone empresa",
+    "company_regime": "Regime empresa",
+    "company_postal_code": "Código Postal",
+    "email": "E-mail",
+    "address": "Endereço",
+    "use_bank": "Usar banco",
+    "account_number": "Nº Conta",
+    "iban": "IBAN",
+    "price": "Preço",
+    "quantity": "Quantidade",
+    "customer": "Cliente",
+    "serie": "serie",
+    "total": "Total",
+    "tax_value": "Valor Imposto",
+    "tax_without_tax": "Total S/Imposto",
+    "document": "Documento",
+    "sequence": "Nº Sequencia",
+    "sigla_doc": "Ref. Documento",
+    "N": "Normal",
+    "A": "Anulado",
+    "open_amount": "Em aberto"
+  },
+  "header": {
+    "tax": {
+      "title": "Gestão de Impostos"
     },
-    "status": {
-        "true": "Activo",
-        "false": "Inactivo"
+    "subscription": {
+      "title": "Gestão de Subscrições"
     },
-    "text": {
-        "daily_billing": "Faturação Diária",
-        "month_billing": "Faturação Mensal",
-        "month_receipts": "Cobrança Mensal",
-        "registered_customers": "Registo Clientes"
+    "company": {
+      "title": "Gestão de Empresas"
     },
-    "btn": {
-        "update": "Atualizar",
-        "register": "Registar",
-        "continue": "Continuar",
-        "save": "Salvar",
-        "cancel": "Cancelar",
-        "clean": "Limpar",
-        "validate": "Validar",
-        "approve": "Aprovar",
-        "change_role": "Alterar acesso",
-        "more": "Ver mais"
+    "document": {
+      "title": "Gestão de Documentos"
     },
-    "label": {
-        "name": "Nome",
-        "tax": "Imposto",
-        "description": "Descrição",
-        "sigla": "Sigla",
-        "code": "Código",
-        "percentage": "Percentagem",
-        "cell_phone": "Nº telefone",
-        "email": "E-mail",
-        "address": "Endereço",
-        "nif": "NIF",
-        "use_bank": "Usar banco",
-        "account_number": "Nº Conta",
-        "iban": "IBAN",
-        "price": "Preço",
-        "quantity": "Quantidade",
-        "customer": "Cliente",
-        "serie": "serie",
-        "total": "Total",
-        "document": "Documento"
+    "user": {
+      "title": "Gestão de Utilizadores"
     },
-    "errors": {
-        "required": "Campo obrigatório"
+    "invoice": {
+      "title": "Gestão de facturas"
     },
-    "table": {
-        "name": "Nome",
-        "nif": "NIF",
-        "regime": "Regime",
-        "description": "Descrição",
-        "tax": "Imposto",
-        "sigla": "Sigla",
-        "status": "Estado",
-        "date": "Data",
-        "user_name": "Nome Utilizador",
-        "user_email": "E-mail Utilizador",
-        "user_phone_number": "Nº telefone Utilizador",
-        "cell_phone": "Nº telefone",
-        "company_name": "Nome empresa",
-        "company_nif": "NIF - empresa",
-        "company_street_name": "Rua da empresa",
-        "company_address_detail": "Endereço da empresa",
-        "company_city": "Cidade empresa",
-        "company_email": "E-mail empresa",
-        "company_cell_phone": "Nº telefone empresa",
-        "company_regime": "Regime empresa",
-        "company_postal_code": "Código Postal",
-        "email": "E-mail",
-        "address": "Endereço",
-        "use_bank": "Usar banco",
-        "account_number": "Nº Conta",
-        "iban": "IBAN",
-        "price": "Preço",
-        "quantity": "Quantidade",
-        "customer": "Cliente",
-        "serie": "serie",
-        "total": "Total",
-        "tax_value": "Valor Imposto",
-        "tax_without_tax": "Total S/Imposto",
-        "document": "Documento",
-        "sequence": "Nº Sequencia",
-        "sigla_doc": "Ref. Documento",
-        "N": "Normal",
-        "A": "Anulado",
-        "open_amount": "Em aberto"
+    "receipt": {
+      "title": "Gestão de Cobranças"
     },
-    "header": {
-        "tax": {
-            "title": "Gestão de Impostos"
-        },
-        "subscription": {
-            "title": "Gestão de Subscrições"
-        },
-        "company": {
-            "title": "Gestão de Empresas"
-        },
-        "document": {
-            "title": "Gestão de Documentos"
-        },
-        "user": {
-            "title": "Gestão de Utilizadores"
-        },
-        "invoice": {
-            "title": "Gestão de facturas"
-        },
-        "receipt": {
-            "title": "Gestão de Cobranças"
-        },
-        "serie": {
-            "title": "Gestão de Séries"
-        },
-        "product": {
-            "title": "Gestão de Productos"
-        },
-        "customer": {
-            "title": "Gestão de Clientes"
-        },
-        "payment_method": {
-            "title": "Gestão de Formas de Pagamentos"
-        },
-        "bank": {
-            "title": "Gestão de Bancos"
-        }
+    "serie": {
+      "title": "Gestão de Séries"
+    },
+    "product": {
+      "title": "Gestão de Productos"
+    },
+    "customer": {
+      "title": "Gestão de Clientes"
+    },
+    "payment_method": {
+      "title": "Gestão de Formas de Pagamentos"
+    },
+    "bank": {
+      "title": "Gestão de Bancos"
+    },
+    "operations": {
+      "title": "Operações"
     }
+  }
 }

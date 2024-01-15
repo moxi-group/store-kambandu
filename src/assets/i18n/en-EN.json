@@ -1,154 +1,159 @@
 {
-    "admin": "Management",
-    "employer": "Collaborator",
-    "default": {
-        "name": "Nome"
-    },
+  "admin": "Management",
+  "employer": "Collaborator",
+  "default": {
+    "name": "Nome"
+  },
+  "description": "Description",
+  "configuration": "Configuration",
+  "sign_in": "Sign In",
+  "register_now": "Subscription Now",
+  "company_info": "Company Informations",
+  "user_info": "User Informations",
+  "remove_role": "Change Role",
+  "menu": {
+    "start": "Start",
+    "users": "Users",
+    "subscriptions": "subscriptions",
+    "comapnies": "comapnies",
+    "documents": "documents",
+    "taxes": "Taxes",
+    "invoices": "Invoices",
+    "receipts": "Receipts",
+    "series": "Series",
+    "products": "Products",
+    "products_and_sercives": "Products/Services",
+    "services": "Services",
+    "customers": "Customers",
+    "payment_methods": "Payment methods",
+    "banks": "Banks"
+  },
+  "status": {
+    "true": "Active",
+    "false": "Inactive"
+  },
+  "text": {
+    "daily_billing": "Daily billing",
+    "month_billing": "Month billing",
+    "month_receipts": "Cobrança Mensal",
+    "registered_customers": "Registo Clientes"
+  },
+  "btn": {
+    "update": "Update",
+    "register": "Register",
+    "continue": "Continuar",
+    "save": "Save",
+    "cancel": "Cancel",
+    "clean": "Clean",
+    "validate": "Validate",
+    "approve": "approve",
+    "change_role": "change role",
+    "more": "More"
+  },
+  "label": {
+    "name": "Name",
+    "tax": "Tax",
     "description": "Description",
-    "configuration": "Configuration",
-    "sign_in": "Sign In",
-    "register_now": "Subscription Now",
-    "company_info": "Company Informations",
-    "user_info": "User Informations",
-    "remove_role": "Change Role",
-    "menu": {
-        "start": "Start",
-        "users": "Users",
-        "subscriptions": "subscriptions",
-        "comapnies": "comapnies",
-        "documents": "documents",
-        "taxes": "Taxes",
-        "invoices": "Invoices",
-        "receipts": "Receipts",
-        "series": "Series",
-        "products": "Products",
-        "customers": "Customers",
-        "payment_methods": "Payment methods",
-        "banks": "Banks"
+    "sigla": "Sigla",
+    "code": "code",
+    "percentage": "percentage",
+    "cell_phone": "Phone number",
+    "email": "E-mail",
+    "address": "Address",
+    "nif": "NIF",
+    "use_bank": "Use bank",
+    "account_number": "Account number",
+    "iban": "IBAN",
+    "price": "price",
+    "quantity": "Quantity",
+    "customer": "Customer",
+    "serie": "serie",
+    "total": "Total",
+    "document": "document"
+  },
+  "errors": {
+    "required": "Input required"
+  },
+  "table": {
+    "name": "Name",
+    "nif": "NIF",
+    "regime": "Regime",
+    "description": "Description",
+    "tax": "Tax",
+    "sigla": "Sigla",
+    "status": "Status",
+    "date": "Date",
+    "user_name": "User name",
+    "user_email": "User email",
+    "user_phone_number": "User cell phone",
+    "cell_phone": "cell phone",
+    "company_name": "Comapny name",
+    "company_nif": "Comapny NIF",
+    "company_street_name": "Comapny street",
+    "company_address_detail": "Comapny Address",
+    "company_city": "Comapny City",
+    "company_email": "Comapny email",
+    "company_cell_phone": "Comapny cell phone",
+    "company_regime": "Comapny Regime",
+    "company_postal_code": "postal code",
+    "email": "E-mail",
+    "address": "Address",
+    "use_bank": "Use bank",
+    "account_number": "Account number",
+    "iban": "IBAN",
+    "price": "price",
+    "quantity": "Quantity",
+    "customer": "Customer",
+    "serie": "serie",
+    "total": "Total",
+    "tax_value": "Tax Value",
+    "tax_without_tax": "Total S/Tax",
+    "document": "Document",
+    "sequence": "Sequence",
+    "sigla_doc": "Ref. Document",
+    "N": "Normal",
+    "A": "Cancelled",
+    "open_amount": "open amount"
+  },
+  "header": {
+    "tax": {
+      "title": "Taxes Management"
     },
-    "status": {
-        "true": "Active",
-        "false": "Inactive"
+    "subscription": {
+      "title": "Subscriptions Management"
     },
-    "text": {
-        "daily_billing": "Daily billing",
-        "month_billing": "Month billing",
-        "month_receipts": "Cobrança Mensal",
-        "registered_customers": "Registo Clientes"
+    "company": {
+      "title": "Companies Management"
     },
-    "btn": {
-        "update": "Update",
-        "register": "Register",
-        "continue": "Continuar",
-        "save": "Save",
-        "cancel": "Cancel",
-        "clean": "Clean",
-        "validate": "Validate",
-        "approve": "approve",
-        "change_role": "change role",
-        "more": "More"
+    "document": {
+      "title": "Documents Management"
     },
-    "label": {
-        "name": "Name",
-        "tax": "Tax",
-        "description": "Description",
-        "sigla": "Sigla",
-        "code": "code",
-        "percentage": "percentage",
-        "cell_phone": "Phone number",
-        "email": "E-mail",
-        "address": "Address",
-        "nif": "NIF",
-        "use_bank": "Use bank",
-        "account_number": "Account number",
-        "iban": "IBAN",
-        "price": "price",
-        "quantity": "Quantity",
-        "customer": "Customer",
-        "serie": "serie",
-        "total": "Total",
-        "document": "document"
+    "user": {
+      "title": "Users Management"
     },
-    "errors": {
-        "required": "Input required"
+    "invoice": {
+      "title": "Invoices Management"
     },
-    "table": {
-        "name": "Name",
-        "nif": "NIF",
-        "regime": "Regime",
-        "description": "Description",
-        "tax": "Tax",
-        "sigla": "Sigla",
-        "status": "Status",
-        "date": "Date",
-        "user_name": "User name",
-        "user_email": "User email",
-        "user_phone_number": "User cell phone",
-        "cell_phone": "cell phone",
-        "company_name": "Comapny name",
-        "company_nif": "Comapny NIF",
-        "company_street_name": "Comapny street",
-        "company_address_detail": "Comapny Address",
-        "company_city": "Comapny City",
-        "company_email": "Comapny email",
-        "company_cell_phone": "Comapny cell phone",
-        "company_regime": "Comapny Regime",
-        "company_postal_code": "postal code",
-        "email": "E-mail",
-        "address": "Address",
-        "use_bank": "Use bank",
-        "account_number": "Account number",
-        "iban": "IBAN",
-        "price": "price",
-        "quantity": "Quantity",
-        "customer": "Customer",
-        "serie": "serie",
-        "total": "Total",
-        "tax_value": "Tax Value",
-        "tax_without_tax": "Total S/Tax",
-        "document": "Document",
-        "sequence": "Sequence",
-        "sigla_doc": "Ref. Document",
-        "N": "Normal",
-        "A": "Cancelled",
-        "open_amount": "open amount"
+    "receipt": {
+      "title": "Receipts Management"
     },
-    "header": {
-        "tax": {
-            "title": "Taxes Management"
-        },
-        "subscription": {
-            "title": "Subscriptions Management"
-        },
-        "company": {
-            "title": "Companies Management"
-        },
-        "document": {
-            "title": "Documents Management"
-        },
-        "user": {
-            "title": "Users Management"
-        },
-        "invoice": {
-            "title": "Invoices Management"
-        },
-        "receipt": {
-            "title": "Receipts Management"
-        },
-        "serie": {
-            "title": "Series Management"
-        },
-        "product": {
-            "title": "Products Management"
-        },
-        "customer": {
-            "title": "Customers Management"
-        },
-        "payment_method": {
-            "title": "payment method Management"
-        },
-        "bank": {
-            "title": "Bank Management"
-        }
+    "serie": {
+      "title": "Series Management"
+    },
+    "product": {
+      "title": "Products Management"
+    },
+    "customer": {
+      "title": "Customers Management"
+    },
+    "payment_method": {
+      "title": "payment method Management"
+    },
+    "bank": {
+      "title": "Bank Management"
+    },
+    "operations": {
+      "title": "Operations"
     }
+  }
 }

@@ -1,12 +1,28 @@
 .change_role {
-    display: block;
-    bottom: 0;
-    position: absolute;
-    width: 100%;
+  display: block;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
 }
 
 .change_role-btn {
-    background-color: #008f288c !important;
-    margin-bottom: 5px;
-    color: #fff;
+  background-color: #008f288c !important;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+.navi-link-pl {
+  padding-left: 4rem !important;
+}
+
+a.nav-link::after{
+  color: #008f288c !important;
+}
+ .active{
+  background: #008f288c !important;
+  color: #fff !important;
+}
+
+.active i{
+  color: #fff !important;
 }
