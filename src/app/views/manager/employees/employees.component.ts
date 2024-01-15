@@ -37,17 +37,19 @@ export class EmployeesComponent implements OnInit {
         this.employee = item
     }
 
-    _reset_password(collaborator: any){
+    async _reset_password(collaborator: any){
 
         Swal.fire({
             title: "Tem certeza?",
             showDenyButton: false,
             showCancelButton: true,
             confirmButtonText: "Sim",
-        }).then((result) => {
+        }).then(async (result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
-                this._employeesService.reset_password( collaborator.uuid )
+                await this._employeesService.reset_password( collaborator.uuid ).subscribe(
+                    result => {}
+                )
                 Swal.fire("Senha redifinida com sucesso\nVálide à SMS no seu telefone!", "", "success");
             } else if (result.isDenied) {
                 Swal.fire("Changes are not saved", "", "info");

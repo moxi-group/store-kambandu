@@ -53,6 +53,7 @@ export class EmployeesService {
     reset_password(uuid:string) {
         return this._http_client.post<any>(
             `${environment.fullBaseUrl}/collaborators/reset-password/${uuid}`,
+            null,
             { headers: this.headers }
         )
     }
