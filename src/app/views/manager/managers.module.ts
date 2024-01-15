@@ -40,6 +40,7 @@ import { CreateOrEditCategoryComponent } from './category/create-or-edit-categor
 import { CancelInvoiceComponent } from './invoices/cancel-invoice/cancel-invoice.component';
 import { SalesBoxesComponent } from './sales-boxes/sales-boxes.component';
 import { EditSaleBoxeComponent } from './sales-boxes/edit-sale-boxe/edit-sale-boxe.component';
+import { ComposerProductComponent } from './stocks/composer-product/composer-product.component';
 
 
 
@@ -78,6 +79,7 @@ const ngWizardConfig: NgWizardConfig = {
         StocksComponent,
         CreateMovimentStockComponent,
         ListMovimentStockComponent,
+        ComposerProductComponent,
 
         EmployeesComponent,
         CreateOrEditEmployeeComponent,

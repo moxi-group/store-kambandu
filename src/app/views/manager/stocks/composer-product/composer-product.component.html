@@ -1,0 +1,56 @@
+<div class="modal fade" id="{{modal}}" tabindex="-1" role="dialog" aria-labelledby="ComposerProductkModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form [formGroup]="composerForm" (submit)="onSubmit();">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ComposerProductkModal">{{title}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive tableFixHead">
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th># Check</th>
+                                    <th scope="col" class="sort">{{ 'table.name' | translate}}</th>
+                                    <th scope="col" class="sort">{{ 'Quant. Movimentar' | translate}}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="list" *ngIf="association_products">
+                                <tr *ngFor="let item of association_products">
+                                    <td>
+                                        <input [value]="item.cheked" [disabled]='disabled_check'
+                                            (click)="_set_associate_product(item)" type="checkbox"
+                                            class="form-control" />
+                                    </td>
+                                    <th scope="row"><span class="name mb-0 text-sm">{{item.name}}</span>
+                                    </th>
+                                    <td>
+                                        <input (keyup)="_set_quantity($event, item)" [value]="item.quantity"
+                                            [disabled]='disabled_check' min="1" max="5" type="number" name="quantity"
+                                            class="form-control" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger btn-sm" type="reset" [disabled]="composerForm.pristine && !submitted"
+                        (click)="onReset()">{{ 'btn.clean' |
+                        translate}}</button>
+                    <button (click)='_create()' type="submit" class="btn btn-primary btn-sm">{{ 'btn.save' | translate}}
+                        <spinner [loading]='submitted'></spinner>
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

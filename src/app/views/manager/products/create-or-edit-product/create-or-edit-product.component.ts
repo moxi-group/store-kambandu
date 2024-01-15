@@ -20,10 +20,13 @@ export class CreateOrEditProductComponent implements OnInit {
     submitted = false
     taxes: any = []
     categories: any = []
+    association_products: any = []
+    disabled_check: boolean = true
+    
 
     constructor(
         private _categoryService: CategoriesService,
-        private _productsService: ProductsService,
+        public _productsService: ProductsService,
         private _taxesService: TaxesService,
         private _applicationService: ApplicationService,
         private _formBuild: FormBuilder
@@ -37,8 +40,10 @@ export class CreateOrEditProductComponent implements OnInit {
             tax_uuid: [null, Validators.required],
             category_uuid: [null, Validators.required],
             image: [null],
-            is_stocked: true,
-            is_active: true
+            is_stocked: [false, Validators.required],
+            is_composed: false,
+            is_active: true,
+            is_part_of_composed: false
         })
 
         this.get_taxes()
@@ -50,6 +55,7 @@ export class CreateOrEditProductComponent implements OnInit {
     }
 
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
+     
         if (this.product !== undefined) {
             this.title = "Registar Produto";
             this.productForm.patchValue(this.product);
@@ -72,12 +78,18 @@ export class CreateOrEditProductComponent implements OnInit {
         if (this.productForm.invalid) {
             return;
         }
+
         if ( Boolean(this.productForm.getRawValue().uuid) ) {
             this._update(this.productForm.getRawValue().uuid, this.productForm.value)
         } else {
             this._create(this.productForm.value)
         }
     }
+
+
+
+
+
 
     _create(form: FormGroup) {
         this._productsService.create(form)
@@ -122,5 +134,7 @@ export class CreateOrEditProductComponent implements OnInit {
             this._productsService.products = Object(response)
         })
     }
+
+
 
 }

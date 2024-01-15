@@ -63,6 +63,7 @@ export class ApplicationService {
         })
     }
 
+
     SwalDangerConfirmation(title: string){
         Swal.fire({
             icon: "error",
