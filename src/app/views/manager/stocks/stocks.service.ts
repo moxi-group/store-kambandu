@@ -20,9 +20,13 @@ export class StocksService {
     .set('Authorization', `Bearer ${this.token}`)
     .set('header-company-uuid', `${this.companyToken}`)
 
-    get_stocks() {
+    get_stocks(filter: any = {}) {
         return this._http_client.get<any>(
-            `${environment.fullBaseUrl}/stocks`, { headers: this.headers }
+            `${environment.fullBaseUrl}/stocks`, 
+            {
+                params: filter,
+                headers: this.headers
+            }
         )
     }
 

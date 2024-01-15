@@ -5,6 +5,7 @@ import { ReporterService } from 'src/app/services/reporter.service';
 import { ApplicationService } from 'src/app/api/application.service';
 
 import { saveAs } from 'file-saver';
+import { FilterService } from 'src/app/services/filter.service';
 
 
 @Component({
@@ -18,7 +19,19 @@ export class StocksComponent implements OnInit {
     stock: any = {}
     product_constitution: any = {}
     
+    filter_options: any = [
+        {
+            value: 'name',
+            description: 'Nome'
+        },
+        {
+            value: 'created_at',
+            description: 'Data'
+        }
+    ]
+
     constructor(
+        public _filterService: FilterService,
         public _stockService: StocksService,
         public _reportService: ReporterService,
         private _applicationService: ApplicationService,
@@ -30,12 +43,13 @@ export class StocksComponent implements OnInit {
     }
 
     loading_data() {
-        this.get_stocks();
+        this._onTableDataChange( this._filterService.pagination )
     }
 
-    get_stocks() {
+    _onTableDataChange(filterEmit: any): void{
+        this._filterService.pagination = filterEmit
         this._stockService
-        .get_stocks()
+        .get_stocks( this._filterService.pagination )
         .subscribe(response => {
             this._stockService.stocks = Object(response)
         })
