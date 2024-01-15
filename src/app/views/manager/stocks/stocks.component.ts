@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { StocksService } from './stocks.service';
+import { ReporterService } from 'src/app/services/reporter.service';
+import { ApplicationService } from 'src/app/api/application.service';
+
+import { saveAs } from 'file-saver';
+
 
 @Component({
     selector: 'app-stocks',
@@ -15,6 +20,8 @@ export class StocksComponent implements OnInit {
     
     constructor(
         public _stockService: StocksService,
+        public _reportService: ReporterService,
+        private _applicationService: ApplicationService,
         public translate: TranslateService
     ) { }
 
@@ -41,4 +48,36 @@ export class StocksComponent implements OnInit {
     pachValueStock(item: any) {
         this.stock = item
     }
+
+    _print_report_stock() {
+
+        this._reportService
+            .report_stock( this._stockService.stocks )
+        .subscribe(response => {
+            const blob = new Blob([response], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+            const blobUrl = URL.createObjectURL(blob);
+            const shouldPrint = false;
+
+            if (shouldPrint) {
+                const printWindow = window.open(blobUrl, '_blank');
+                printWindow?.print();
+                if (printWindow) {
+                    printWindow.onafterprint = () => {
+                        URL.revokeObjectURL(blobUrl);
+                    };
+                }
+            } else {
+                saveAs(blobUrl, `resumo-report-${Date.now()}.xlsx`);
+                URL.revokeObjectURL(blobUrl);
+            }
+            
+        }, (error) => {
+            if ( error.status === 404) {
+                this._applicationService.SwalDanger('Template de Imprensão não encontrado')
+            } else {
+                this._applicationService.SwalDanger('Problemas ao se conectar ao serviço externo')
+            }
+        })
+    }
+
 }

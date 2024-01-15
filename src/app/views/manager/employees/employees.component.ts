@@ -37,8 +37,26 @@ export class EmployeesComponent implements OnInit {
         this.employee = item
     }
 
-    async _reset_password(collaborator: any){
+    async _turn_manager(collaborator: any){
+        Swal.fire({
+            title: "Tem certeza?\nTornar colaborador como gestor",
+            showDenyButton: false,
+            showCancelButton: true,
+            confirmButtonText: "Sim",
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                await this._employeesService.turn_employee_manager( collaborator.uuid )
+                .subscribe(result => {
+                    console.log( result )
+                    Swal.fire("Acesso de Gestor dado com sucesso", "", "success");
+                })
+            } else if (result.isDenied) {
+                Swal.fire("Alteração não guardada", "", "info");
+            }
+        });
+    }
 
+    async _reset_password(collaborator: any){
         Swal.fire({
             title: "Tem certeza?",
             showDenyButton: false,
@@ -48,11 +66,12 @@ export class EmployeesComponent implements OnInit {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
                 await this._employeesService.reset_password( collaborator.uuid ).subscribe(
-                    result => {}
+                    result => {
+                        Swal.fire("Senha redifinida com sucesso\nVálide à SMS no seu telefone!", "", "success");
+                    }
                 )
-                Swal.fire("Senha redifinida com sucesso\nVálide à SMS no seu telefone!", "", "success");
             } else if (result.isDenied) {
-                Swal.fire("Changes are not saved", "", "info");
+                Swal.fire("Alteração não guardada", "", "info");
             }
         });
     }

@@ -42,6 +42,14 @@ export class EmployeesService {
         )
     }
 
+    turn_employee_manager(uuid:string){
+        return this._http_client.post<any>(
+            `${environment.fullBaseUrl}/collaboratorsset-manage-role-to-collaborator/${uuid}`,
+            null,
+            { headers: this.headers }
+        )
+    }
+
     update(uuid:string, data: any) {
         return this._http_client.post<any>(
             `${environment.fullBaseUrl}/collaborators/${uuid}`,
