@@ -1,0 +1,96 @@
+<!-- Header -->
+<div class="header bg-green pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <h6 class="h2 text-white d-inline-block mb-0">{{ 'header.units.title' | translate }}</h6>
+                </div>
+                <div class="col-lg-6 col-5 text-right">
+                    <button (click)="pachValue({})" type="button" class="btn btn-outline-default btn-sm"
+                        data-toggle="modal" data-target="#CreateOrEditUnitModal">
+                        {{ 'btn.register' | translate }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page content -->
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <!-- Card header -->
+             <!--    <div class="card-header border-0">
+                    <Filter [options]='filter_options' (filterEmitter)='(_onTableDataChange($event))'></Filter>
+                </div> -->
+                <!-- Light table -->
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>#</th>
+                                <th scope="col" class="sort">{{ 'table.name' | translate}}</th>
+                                <th scope="col" class="sort">{{ 'table.description' | translate}}</th>
+                                <th scope="col" class="sort">{{ 'table.status' | translate}}</th>
+                                <th scope="col">Opções</th>
+                            </tr>
+                        </thead>
+                        <tbody class="list" *ngIf="__unitsService.units">
+                            <tr *ngFor="let item of __unitsService.units | paginate: {
+                                itemsPerPage: _filterService.pagination.limit,
+                                currentPage: _filterService.pagination.page,
+                                totalItems: __unitsService.units.total}
+                                ; index as i">
+                                <td>{{ i+1 }}</td>
+                                <th scope="row"><span class="name mb-0 text-sm">{{ item.name}}</span></th>
+                                <th scope="row"><span class="name mb-0 text-sm">{{ item.description}}</span></th>
+
+                                <td>
+                                    <span class="badge badge-dot mr-4">
+                                        <i class="bg-green"></i>
+                                        <span class="status">{{ 'status.' + item.is_active.toString() | translate
+                                            }}</span>
+                                    </span>
+                                </td>
+
+                                <td class="text-right">
+                                    <div class="dropdown">
+                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                            <a class="dropdown-item" href="#">Opções</a>
+                                            <button type="button" class="dropdown-item" data-toggle="modal"
+                                                (click)="pachValue(item)" data-target="#CreateOrEditUnitModal">
+                                                {{ 'btn.update' | translate}}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <hr>
+
+                    <div class='row justify-content-center'>
+                        <div class="col-5">
+                            <pagination-controls (pageChange)="_onTableDataChange($event)" previousLabel="Anterior"
+                                nextLabel="Proximo">
+                            </pagination-controls>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<CreateOrEditUnitModal [product]="unit" [modal]=""></CreateOrEditUnitModal>

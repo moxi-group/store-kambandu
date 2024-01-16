@@ -23,6 +23,7 @@
     "series": "Series",
     "products": "Produtos",
     "products_and_sercives": "Produtos/Serviços",
+    "units": "Unidades",
     "services": "Serviços",
     "customers": "Clientes",
     "payment_methods": "Formas Pagamento",
@@ -142,6 +143,9 @@
     },
     "product": {
       "title": "Gestão de Productos"
+    },
+    "units": {
+      "title": "Gestão de Unidades"
     },
     "customer": {
       "title": "Gestão de Clientes"

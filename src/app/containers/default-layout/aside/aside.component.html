@@ -39,10 +39,21 @@
 
         <div *ngIf="currentUser.is_staff && currentRole">
           <li class="nav-item" *ngFor="let item of ItensMenuStaff">
-            <a class="nav-link" href="#" routerLink="{{ item.link }}">
+          <!--   <a class="nav-link" href="#" routerLink="{{ item.link }}">
               <i class="{{ item.icon }} text-green"></i>
               <span class="nav-link-text">{{ item.name | translate }}</span>
-            </a>
+            </a> -->
+            <a
+            class="nav-link {{
+              this.route.isActive(item.link, true) ? 'active' : ''
+            }}"
+            href="#"
+            routerLink="{{ item.link }}"
+            *ngIf="!item.isSub"
+          >
+            <i class="{{ item.icon }} text-green"></i>
+            <span class="nav-link-text">{{ item.name | translate }}</span>
+          </a>
           </li>
         </div>
 
