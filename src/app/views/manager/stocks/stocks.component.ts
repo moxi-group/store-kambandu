@@ -5,7 +5,6 @@ import { ReporterService } from 'src/app/services/reporter.service';
 import { ApplicationService } from 'src/app/api/application.service';
 
 import { saveAs } from 'file-saver';
-import { FilterService } from 'src/app/services/filter.service';
 
 
 @Component({
@@ -19,19 +18,15 @@ export class StocksComponent implements OnInit {
     stock: any = {}
     product_constitution: any = {}
     
-    filter_options: any = [
-        {
-            value: 'name',
-            description: 'Nome'
-        },
-        {
-            value: 'created_at',
-            description: 'Data'
-        }
-    ]
+    filter: any = {
+        page: 1,
+        limit: 5,
+        order_by: '-created_at',
+        filter_column: null,
+        filter_value: ''
+    }
 
     constructor(
-        public _filterService: FilterService,
         public _stockService: StocksService,
         public _reportService: ReporterService,
         private _applicationService: ApplicationService,
@@ -43,9 +38,25 @@ export class StocksComponent implements OnInit {
     }
 
     loading_data() {
-        this._onTableDataChange( this._filterService.pagination )
+        this._onTableDataChange(1)
     }
 
+    _onTableDataChange(event: any): void{
+        this.filter.page = Number.isInteger(event) ? event : 1 
+        this.get_stocks()
+    }
+
+
+    get_stocks() {
+        this._stockService
+        .get_stocks( this.filter )
+        .subscribe(response => {
+            console.log( response )
+            this._stockService.stocks = Object(response)
+        })
+    }
+
+    /*
     _onTableDataChange(filterEmit: any): void{
         this._filterService.pagination = filterEmit
         this._stockService
@@ -54,6 +65,7 @@ export class StocksComponent implements OnInit {
             this._stockService.stocks = Object(response)
         })
     }
+    */
 
     pachValue(item: any) {
         this.moviment_stock = item

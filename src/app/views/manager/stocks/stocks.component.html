@@ -29,7 +29,7 @@
             <div class="card">
                 <!-- Card header -->
                 <div class="card-header border-0">
-                    <Filter [options]='filter_options' (filterEmitter)='(_onTableDataChange($event))'></Filter>
+
                 </div>
                 <!-- Light table -->
                 <div class="table-responsive">
@@ -48,10 +48,11 @@
                             </tr>
                         </thead>
                         <tbody class="list" *ngIf="_stockService.stocks">
-                            <tr *ngFor="let item of _stockService.stocks.items | paginate: {
-                                itemsPerPage: _filterService.pagination.limit,
-                                currentPage: _filterService.pagination.page,
-                                totalItems: _stockService.stocks.total} index as i">
+                            <tr *ngFor="let item of _stockService.stocks | paginate: {
+                                itemsPerPage: _stockService.stocks.count,
+                                currentPage: _stockService.stocks.page,
+                                totalItems: _stockService.stocks.total
+                                } index as i">
                                 <td>{{ i+1 }}</td>
                                 <th scope="row"><span class="name mb-0 text-sm">{{ item?.product?.code }}</span></th>
                                 <th scope="row"><span class="name mb-0 text-sm">{{ item?.product?.name}}</span></th>

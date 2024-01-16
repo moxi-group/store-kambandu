@@ -4,6 +4,7 @@ import { ProductsService } from '../products.service';
 import { TaxesService } from 'src/app/views/configurations/taxes/taxes.service';
 import { ApplicationService } from 'src/app/api/application.service';
 import { CategoriesService } from '../../category/categories.service';
+import { StoresService } from '../../stores/stores.service';
 
 @Component({
   selector: 'CreateOrEditProductModal',
@@ -25,6 +26,7 @@ export class CreateOrEditProductComponent implements OnInit {
     
 
     constructor(
+        public _storeService: StoresService,
         private _categoryService: CategoriesService,
         public _productsService: ProductsService,
         private _taxesService: TaxesService,
@@ -48,6 +50,7 @@ export class CreateOrEditProductComponent implements OnInit {
 
         this.get_taxes()
         this.get_categories()
+        this.get_stores()
     }
 
 
@@ -86,7 +89,13 @@ export class CreateOrEditProductComponent implements OnInit {
         }
     }
 
-
+    get_stores() {
+        this._storeService
+        .get_stores()
+        .subscribe(response => {
+            this._storeService.stores = Object(response)
+        })
+    }
 
 
 
