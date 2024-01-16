@@ -44,6 +44,8 @@ import { ComposerProductComponent } from './stocks/composer-product/composer-pro
 
 
 
+
+
 const ngWizardConfig: NgWizardConfig = {
     theme: THEME.default
 }
@@ -59,7 +61,7 @@ const ngWizardConfig: NgWizardConfig = {
         AddCustomerAndInvoiceKindComponent,
         AddProductInvoiceComponent,
         CancelInvoiceComponent,
-        
+
         AddQuantityInvoiceComponent,
         ReceiptsComponent,
         CreateOrEditReceiptComponent,
@@ -89,7 +91,10 @@ const ngWizardConfig: NgWizardConfig = {
         CreateOrEditCategoryComponent,
 
         SalesBoxesComponent,
-        EditSaleBoxeComponent
+        EditSaleBoxeComponent,
+
+
+
     ],
 
     imports: [

@@ -6,6 +6,7 @@ import { CompaniesComponent } from './companies/companies.component';
 import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
 import { TaxesComponent } from './taxes/taxes.component';
 import { PaymentMethodsComponent } from './payment-methods/payment-methods.component';
+import { UnitsComponent } from './units/unit.component';
 
 const routes: Routes = [
     {
@@ -34,6 +35,10 @@ const routes: Routes = [
             {
                 path: 'payment_methods',
                 component: PaymentMethodsComponent
+            },
+            {
+              path: 'units',
+              component: UnitsComponent,
             },
         ]
     }

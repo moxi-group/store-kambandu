@@ -117,6 +117,11 @@ export class AsideComponent implements OnInit {
       icon: 'ni ni-single-02',
     },
     {
+      name: 'menu.units',
+      link: '/configurations/units',
+      icon: 'ni ni-ungroup',
+    },
+    {
       name: 'menu.payment_methods',
       link: '/configurations/payment_methods',
       icon: 'ni ni-archive-2',
