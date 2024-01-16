@@ -48,7 +48,7 @@
                                 <td class="budget">{{ item.start_number }}</td>
                                 <td>
                                     <span class="badge badge-dot mr-4">
-                                        <i class="bg-green"></i>
+                                        <i class="bg-{{ item.is_active ? 'green' : 'danger' }}"></i>
                                         <span class="status">{{ 'status.' + item.is_active.toString() | translate
                                             }}</span>
                                     </span>
