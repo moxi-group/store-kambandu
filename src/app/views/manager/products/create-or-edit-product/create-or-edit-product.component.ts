@@ -5,6 +5,7 @@ import { TaxesService } from 'src/app/views/configurations/taxes/taxes.service';
 import { ApplicationService } from 'src/app/api/application.service';
 import { CategoriesService } from '../../category/categories.service';
 import { StoresService } from '../../stores/stores.service';
+import { UnitsService } from 'src/app/views/configurations/units/unit.service';
 
 @Component({
   selector: 'CreateOrEditProductModal',
@@ -20,12 +21,14 @@ export class CreateOrEditProductComponent implements OnInit {
 
     submitted = false
     taxes: any = []
+    units: any = []
     categories: any = []
     association_products: any = []
     disabled_check: boolean = true
     
 
     constructor(
+        public _unitsService: UnitsService,
         public _storeService: StoresService,
         private _categoryService: CategoriesService,
         public _productsService: ProductsService,
@@ -42,6 +45,7 @@ export class CreateOrEditProductComponent implements OnInit {
             tax_uuid: [null, Validators.required],
             category_uuid: [null, Validators.required],
             image: [null],
+            unit_uuid: [null],
             is_stocked: [false, Validators.required],
             is_composed: false,
             is_active: true,
@@ -51,6 +55,7 @@ export class CreateOrEditProductComponent implements OnInit {
         this.get_taxes()
         this.get_categories()
         this.get_stores()
+        this.get_units()
     }
 
 
@@ -58,7 +63,6 @@ export class CreateOrEditProductComponent implements OnInit {
     }
 
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
-     
         if (this.product !== undefined) {
             this.title = "Registar Produto";
             this.productForm.patchValue(this.product);
@@ -125,6 +129,14 @@ export class CreateOrEditProductComponent implements OnInit {
         .get_taxes()
         .subscribe(response => {
             this.taxes = Object(response)
+        })
+    }
+
+    get_units() {
+        this._unitsService
+        .get_units()
+        .subscribe(response => {
+            this.units = Object(response)
         })
     }
 

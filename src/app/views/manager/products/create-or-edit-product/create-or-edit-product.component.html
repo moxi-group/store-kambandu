@@ -97,6 +97,17 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <label class="control-label">{{ 'Associar Unidade' | translate}}</label>
+                                <select formControlName="unit_uuid" name="unit_uuid" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.unit_uuid.errors, 'is-valid': f.unit_uuid.touched && !f.unit_uuid.errors }">
+
+                                    <option *ngFor="let unit of units" [value]="unit.uuid">{{ unit.name }}</option>
+                                </select>
+                            </div>
+
+
                         </div>
                     </div>
 
@@ -211,8 +222,6 @@
 
                         </div>
                     </div>
-
-
 
                 </div>
 

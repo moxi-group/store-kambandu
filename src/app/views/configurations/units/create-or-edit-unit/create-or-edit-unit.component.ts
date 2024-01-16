@@ -97,7 +97,6 @@ export class CreateOrEditUnitComponent implements OnInit {
 
   get_products() {
     this._unitsService.get_units().subscribe((response) => {
-      console.log(response);
       this._unitsService.units = Object(response);
     });
   }
