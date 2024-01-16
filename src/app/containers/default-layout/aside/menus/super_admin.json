@@ -1,0 +1,39 @@
+{
+    "menu": [
+        {
+            "name": "menu.subscriptions",
+            "link": "/configurations/subscriptions",
+            "icon": "ni ni-tablet-button"
+        },
+        {
+            "name": "menu.comapnies",
+            "link": "/configurations/companies",
+            "icon": "ni ni-archive-2"
+        },
+        {
+            "name": "menu.documents",
+            "link": "/configurations/documents",
+            "icon": "ni ni-app"
+        },
+        {
+            "name": "menu.taxes",
+            "link": "/configurations/taxes",
+            "icon": "ni ni-single-02"
+        },
+        {
+            "name": "menu.units",
+            "link": "/configurations/units",
+            "icon": "ni ni-ungroup"
+        },
+        {
+            "name": "menu.payment_methods",
+            "link": "/configurations/payment_methods",
+            "icon": "ni ni-archive-2"
+        },
+        {
+            "name": "menu.users",
+            "link": "/configurations/users",
+            "icon": "ni ni-ui-04"
+        }
+    ]
+}

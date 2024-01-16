@@ -3,11 +3,17 @@ import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/views/auth/auth.service';
 
+import MenuStaff from './menus/super_admin.json'
+import MenuAdmin from './menus/admin.json'
+import MenuManager from './menus/manager.json'
+import MenuCollaborator from './menus/collaborator.json'
+
 @Component({
     selector: 'app-aside',
     templateUrl: './aside.component.html',
     styleUrls: ['./aside.component.scss'],
 })
+
 export class AsideComponent implements OnInit {
     currentRole: boolean = sessionStorage.getItem('CURRENT_ROLE') ? true : false;
     role_is: any = sessionStorage.getItem('CURRENT_ROLE')
@@ -96,60 +102,42 @@ export class AsideComponent implements OnInit {
     },
     ];
 
-    ItensMenuStaff: any = [
-    {
-        name: 'menu.subscriptions',
-        link: '/configurations/subscriptions',
-        icon: 'ni ni-tablet-button',
-    },
-    {
-        name: 'menu.comapnies',
-        link: '/configurations/companies',
-        icon: 'ni ni-archive-2',
-    },
-    {
-        name: 'menu.documents',
-        link: '/configurations/documents',
-        icon: 'ni ni-app',
-    },
-    {
-        name: 'menu.taxes',
-        link: '/configurations/taxes',
-        icon: 'ni ni-single-02',
-    },
-    {
-        name: 'menu.units',
-        link: '/configurations/units',
-        icon: 'ni ni-ungroup',
-    },
-    {
-        name: 'menu.payment_methods',
-        link: '/configurations/payment_methods',
-        icon: 'ni ni-archive-2',
-    },
-    {
-        name: 'menu.users',
-        link: '/configurations/users',
-        icon: 'ni ni-ui-04',
-    },
-    ];
+    ItensMenuStaff: any = []
+    ItensMenuAdmin: any = []
+    ItensMenuManager: any = []
+    ItensMenuEmployee: any = []
 
     constructor(
-    private router: Router,
-    private _authService: AuthService,
-    public translate: TranslateService,
-    public route: Router
+        private router: Router,
+        private _authService: AuthService,
+        public translate: TranslateService,
+        public route: Router
     ) {
-    this.currentUser = this._authService.current_user();
+        this.currentUser = this._authService.current_user();
     }
 
     ngOnInit(): void {
-    console.log('chacking route::');
+
+        if (this.role_is === 'super_admin') {
+            this.ItensMenuStaff = MenuStaff.menu
+        }
+
+        if (this.role_is === 'admin') {
+            this.ItensMenuAdmin = MenuAdmin.menu
+        }
+
+        if (this.role_is === 'manager') {
+            this.ItensMenuManager = MenuManager.menu
+        }
+
+        if (this.role_is === 'employee') {
+            this.ItensMenuEmployee = MenuCollaborator.menu
+        }
     }
 
     remove_role() {
-    sessionStorage.removeItem('CURRENT_COMPANY');
-    sessionStorage.removeItem('CURRENT_ROLE');
-    this.router.navigate(['/dashboard/manager-roles']);
+        sessionStorage.removeItem('CURRENT_COMPANY');
+        sessionStorage.removeItem('CURRENT_ROLE');
+        this.router.navigate(['/dashboard/manager-roles']);
     }
 }
