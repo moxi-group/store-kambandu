@@ -5,6 +5,7 @@ import { ReporterService } from 'src/app/services/reporter.service';
 import { ApplicationService } from 'src/app/api/application.service';
 
 import { saveAs } from 'file-saver';
+import { FilterService } from 'src/app/services/filter.service';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class StocksComponent implements OnInit {
     }
 
     constructor(
+        public _filterService: FilterService,
         public _stockService: StocksService,
         public _reportService: ReporterService,
         private _applicationService: ApplicationService,
@@ -38,34 +40,25 @@ export class StocksComponent implements OnInit {
     }
 
     loading_data() {
-        this._onTableDataChange(1)
+        this._onTableDataChange(this._filterService.pagination)
     }
 
     _onTableDataChange(event: any): void{
-        this.filter.page = Number.isInteger(event) ? event : 1 
+        this._filterService.pagination.page = Number.isInteger(event) ? event : 1 
         this.get_stocks()
     }
 
-
-    get_stocks() {
-        this._stockService
-        .get_stocks( this.filter )
-        .subscribe(response => {
-            console.log( response )
-            this._stockService.stocks = Object(response)
-        })
+    _search(){
+        this.get_stocks()
     }
 
-    /*
-    _onTableDataChange(filterEmit: any): void{
-        this._filterService.pagination = filterEmit
+    get_stocks() {
         this._stockService
         .get_stocks( this._filterService.pagination )
         .subscribe(response => {
             this._stockService.stocks = Object(response)
         })
     }
-    */
 
     pachValue(item: any) {
         this.moviment_stock = item
