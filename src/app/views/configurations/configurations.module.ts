@@ -18,7 +18,8 @@ import { CreateOrEditPaymentMethodComponent } from './payment-methods/create-or-
 import { CreateOrEditTemplateCompanyComponent } from './companies/create-or-edit-template-company/create-or-edit-template-company.component';
 import { ListTemplateCompanyComponent } from './companies/list-template-company/list-template-company.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-
+import { UnitsComponent } from './units/unit.component';
+import { CreateOrEditUnitComponent } from './units/create-or-edit-unit/create-or-edit-unit.component';
 
 @NgModule({
     declarations: [
@@ -34,7 +35,13 @@ import { SharedModule } from 'src/app/shared/shared.module';
         CreateOrEditPaymentMethodComponent,
 
         CreateOrEditTemplateCompanyComponent,
-        ListTemplateCompanyComponent
+        ListTemplateCompanyComponent,
+
+
+        UnitsComponent,
+        CreateOrEditUnitComponent
+
+
     ],
 
     imports: [

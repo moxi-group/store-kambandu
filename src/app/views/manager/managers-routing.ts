@@ -15,71 +15,68 @@ import { CategoryComponent } from './category/category.component';
 import { SalesBoxesComponent } from './sales-boxes/sales-boxes.component';
 
 const routes: Routes = [
-    {
-        path: '',
-        children: [
-            {
-                path: 'invoices',
-                component: InvoicesComponent,
-                children: [
-
-                ]
-            },
-            {
-                path: 'invoices/register',
-                component: CreateOrEditInvoiceComponent
-            },
-            {
-                path: 'receipts',
-                component: ReceiptsComponent
-            },
-            {
-                path: 'customers',
-                component: CustomersComponent
-            },
-            {
-                path: 'series',
-                component: SeriesComponent
-            },
-            {
-                path: 'products',
-                component: ProductsComponent
-            },
-            {
-                path: 'banks',
-                component: BanksComponent
-            },
-            {
-                path: 'stores',
-                component: StoresComponent
-            },
-            {
-                path: 'providers',
-                component: ProvidersComponent
-            },
-            {
-                path: 'stocks',
-                component: StocksComponent
-            },
-            {
-                path: 'employees',
-                component: EmployeesComponent
-            },
-            {
-                path: 'categories',
-                component: CategoryComponent
-            },
-            {
-                path: 'caixas-vendas',
-                component: SalesBoxesComponent
-            }
-        ]
-    }
+  {
+    path: '',
+    children: [
+      {
+        path: 'invoices',
+        component: InvoicesComponent,
+        children: [],
+      },
+      {
+        path: 'invoices/register',
+        component: CreateOrEditInvoiceComponent,
+      },
+      {
+        path: 'receipts',
+        component: ReceiptsComponent,
+      },
+      {
+        path: 'customers',
+        component: CustomersComponent,
+      },
+      {
+        path: 'series',
+        component: SeriesComponent,
+      },
+      {
+        path: 'products',
+        component: ProductsComponent,
+      },
+      {
+        path: 'banks',
+        component: BanksComponent,
+      },
+      {
+        path: 'stores',
+        component: StoresComponent,
+      },
+      {
+        path: 'providers',
+        component: ProvidersComponent,
+      },
+      {
+        path: 'stocks',
+        component: StocksComponent,
+      },
+      {
+        path: 'employees',
+        component: EmployeesComponent,
+      },
+      {
+        path: 'categories',
+        component: CategoryComponent,
+      },
+      {
+        path: 'caixas-vendas',
+        component: SalesBoxesComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-
 export class ManagersRoutingModule {}
