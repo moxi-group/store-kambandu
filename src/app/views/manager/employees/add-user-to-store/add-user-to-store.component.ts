@@ -64,6 +64,7 @@ export class AddUserToStoreComponent implements OnInit {
 
         this._employeesService.associate_employee_in_store(form)
         .subscribe(response => {
+            this._applicationService.CloseModal('AddEmployeeToStoreModal')
             this.submitted = false;
             this.get_employees()
             this._applicationService.SwalSuccess("Utilizador associado com sucesso!");

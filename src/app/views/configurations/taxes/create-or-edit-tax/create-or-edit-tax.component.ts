@@ -72,6 +72,7 @@ export class CreateOrEditTaxComponent implements OnInit {
     _create(form: FormGroup) {
         this._taxService.create(form)
         .subscribe(response => {
+            this._applicationService.CloseModal('createOrEditTax')
             this.submitted = false;
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this.onReset()
@@ -81,6 +82,7 @@ export class CreateOrEditTaxComponent implements OnInit {
     _update(url: any, form: FormGroup){
         this._taxService.update(form)
         .subscribe(res => {
+            this._applicationService.CloseModal('createOrEditTax')
             this.submitted = false;
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this.onReset()

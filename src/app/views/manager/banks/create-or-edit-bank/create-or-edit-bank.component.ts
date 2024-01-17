@@ -69,6 +69,7 @@ export class CreateOrEditBankComponent implements OnInit {
     _create(form: FormGroup) {
         this._bankService.create(form)
         .subscribe(response => {
+            this._applicationService.CloseModal('CreateOrEditBankModal')
             this.submitted = false;
             this.get_banks()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
@@ -79,6 +80,7 @@ export class CreateOrEditBankComponent implements OnInit {
     _update(uuid: string, form: FormGroup){
         this._bankService.update(uuid, form)
         .subscribe(res => {
+            this._applicationService.CloseModal('CreateOrEditBankModal')
             this.submitted = false;
             this.get_banks()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");

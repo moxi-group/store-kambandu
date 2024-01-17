@@ -80,11 +80,9 @@ export class CreateOrEditTemplateCompanyComponent implements OnInit {
     }
 
     _create(form: FormGroup) {
-
-        console.log( form )
-
         this._companiesService.create_config_template(form)
         .subscribe(response => {
+            this._applicationService.CloseModal('CreateOrEditTemplateModal')
             this.submitted = false;
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this.onReset()

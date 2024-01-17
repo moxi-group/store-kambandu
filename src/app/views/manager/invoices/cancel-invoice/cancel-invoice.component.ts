@@ -55,6 +55,7 @@ export class CancelInvoiceComponent implements OnInit {
 
         this._invoicesService.cancel(form)
         .subscribe(res => {
+            this._applicationService.CloseModal('CancelInvoiceModal')
             this.submitted = false;
             this.get_invoices()
             this._applicationService.SwalSuccess("Fatura Anulada com sucesso!");

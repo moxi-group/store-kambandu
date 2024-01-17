@@ -17,127 +17,20 @@ export class AsideComponent implements OnInit {
   currentRole: boolean = sessionStorage.getItem('CURRENT_ROLE') ? true : false;
   role_is: any = sessionStorage.getItem('CURRENT_ROLE');
   currentUser: any;
+  
+    ItensMenuStaff: any = []
+    ItensMenuAdmin: any = []
+    ItensMenuManager: any = []
+    ItensMenuEmployee: any = []
 
-  ItensMenu: any = [
-    {
-      isSub: true,
-      id: 'customer',
-      name: 'header.customer.title',
-      link: '#',
-      icon: 'ni ni-single-02',
-      subMenu: [
-        {
-          name: 'menu.customers',
-          link: '/managers/customers',
-          icon: 'ni ni-single-02',
-        },
-      ],
-    },
-    {
-      isSub: true,
-      id: 'operations',
-      name: 'header.operations.title',
-      link: '#',
-      icon: 'ni ni-ruler-pencil',
-      subMenu: [
-        {
-          name: 'menu.series',
-          link: '/managers/series',
-          icon: 'ni ni-app',
-        },
-        {
-          name: 'menu.products_and_sercives',
-          link: '/managers/products',
-          icon: 'ni ni-ungroup',
-        },
-        {
-          name: 'Categorias',
-          link: '/managers/categories',
-          icon: 'ni ni-ungroup',
-        },
-        {
-          name: 'Lojas',
-          link: '/managers/stores',
-          icon: 'ni ni-shop',
-        },
-
-        {
-          name: 'Gestão Stock',
-          link: '/managers/stocks',
-          icon: 'ni ni-shop',
-        },
-      ],
-    },
-
-    {
-      name: 'menu.invoices',
-      link: '/managers/invoices',
-      icon: 'ni ni-tablet-button',
-    },
-    {
-      isSub: true,
-      id: 'reports',
-      name: 'header.reports.title',
-      link: '#',
-      icon: 'ni ni-single-02',
-      subMenu: [
-        {
-          name: 'menu.stock_nalysis',
-          link: '/reports/stock-nalysis',
-          icon: 'ni ni-single-02',
-        },  {
-          name: 'menu.billigs',
-          link: '/reports/billigs',
-          icon: 'ni ni-single-02',
-        },  {
-          name: 'menu.cash_movements',
-          link: '/reports/cash-movements',
-          icon: 'ni ni-single-02',
-        },  {
-          name: 'menu.variations',
-          link: '/reports/variations',
-          icon: 'ni ni-single-02',
-        },  {
-          name: 'menu.customers',
-          link: '/reports/customers',
-          icon: 'ni ni-single-02',
-        },  {
-          name: 'menu.suppliers',
-          link: '/reports/suppliers',
-          icon: 'ni ni-single-02',
-        },  {
-          name: 'menu.self_consumption',
-          link: '/reports/self-consumption',
-          icon: 'ni ni-single-02',
-        },
-      ],
-    },
-    {
-      name: 'Caixas de venda',
-      link: '/managers/caixas-vendas',
-      icon: 'ni ni-tablet-button',
-    },
-    {
-      name: 'menu.receipts',
-      link: '/managers/receipts',
-      icon: 'ni ni-archive-2',
-    },
-    {
-      name: 'Fornecedores',
-      link: '/managers/providers',
-      icon: 'ni ni-single-02',
-    },
-    {
-      name: 'menu.banks',
-      link: '/managers/banks',
-      icon: 'ni ni-building',
-    },
-    {
-      name: 'Colaboradores',
-      link: '/managers/employees',
-      icon: 'ni ni-single-02',
-    },
-  ];
+    constructor(
+        private router: Router,
+        private _authService: AuthService,
+        public translate: TranslateService,
+        public route: Router
+    ) {
+        this.currentUser = this._authService.current_user();
+    }
 
   ItensMenuStaff: any = [];
   ItensMenuAdmin: any = [];

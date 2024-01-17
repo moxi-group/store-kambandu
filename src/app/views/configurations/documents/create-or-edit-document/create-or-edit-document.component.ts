@@ -4,7 +4,7 @@ import { DocumentsService } from '../documents.service';
 import { ApplicationService } from 'src/app/api/application.service';
 
 @Component({
-  selector: 'CreateOrEditDocument',
+  selector: 'CreateOrEditDocumentModal',
   templateUrl: './create-or-edit-document.component.html',
   styleUrls: ['./create-or-edit-document.component.scss']
 })
@@ -72,6 +72,7 @@ export class CreateOrEditDocumentComponent implements OnInit {
 
         this._documentService.create(form)
         .subscribe(response => {
+            this._applicationService.CloseModal('CreateOrEditDocumentModal')
             this.submitted = false;
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this.onReset()

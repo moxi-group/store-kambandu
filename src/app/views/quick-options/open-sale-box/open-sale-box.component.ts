@@ -54,6 +54,8 @@ export class OpenSaleBoxComponent implements OnInit {
     _create(form: FormGroup) {
         this._quickService.open_sale_box(form)
         .subscribe(response => {
+            this._applicationService.CloseModal('OpenSaleBoxModal')
+
             this.submitted = false;
             this._applicationService.SwalSuccess("Caixa aberto com sucesso!");
             this.onReset()
