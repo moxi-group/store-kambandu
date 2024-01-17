@@ -1,3 +1,82 @@
 {
-    "menu": []
+    "menu": [
+        {
+            "isSub": true,
+            "id": "customer",
+            "name": "header.customer.title",
+            "link": "#",
+            "icon": "ni ni-single-02",
+            "subMenu": [
+                {
+                    "name": "menu.customers",
+                    "link": "/managers/customers",
+                    "icon": "ni ni-single-02"
+                }
+            ]
+        },
+        {
+            "isSub": true,
+            "id": "operations",
+            "name": "header.operations.title",
+            "link": "#",
+            "icon": "ni ni-ruler-pencil",
+            "subMenu": [
+                {
+                    "name": "menu.series",
+                    "link": "/managers/series",
+                    "icon": "ni ni-app"
+                },
+                {
+                    "name": "menu.products_and_sercives",
+                    "link": "/managers/products",
+                    "icon": "ni ni-ungroup"
+                },
+                {
+                    "name": "Categorias",
+                    "link": "/managers/categories",
+                    "icon": "ni ni-ungroup"
+                },
+                {
+                    "name": "Lojas",
+                    "link": "/managers/stores",
+                    "icon": "ni ni-shop"
+                },
+                {
+                    "name": "Gestão Stock",
+                    "link": "/managers/stocks",
+                    "icon": "ni ni-shop"
+                }
+            ]
+        },
+        {
+            "name": "menu.invoices",
+            "link": "/managers/invoices",
+            "icon": "ni ni-tablet-button"
+        },
+        {
+            "name": "Caixas de venda",
+            "link": "/managers/caixas-vendas",
+            "icon": "ni ni-tablet-button"
+        },
+        {
+            "name": "menu.receipts",
+            "link": "/managers/receipts",
+            "icon": "ni ni-archive-2"
+        },
+        {
+            "name": "Fornecedores",
+            "link": "/managers/providers",
+            "icon": "ni ni-single-02"
+        },
+        {
+            "name": "menu.banks",
+            "link": "/managers/banks",
+            "icon": "ni ni-building"
+        },
+        {
+            "name": "Colaboradores",
+            "link": "/managers/employees",
+            "icon": "ni ni-single-02"
+        }
+    ]
 }
