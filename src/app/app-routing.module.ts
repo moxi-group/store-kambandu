@@ -31,14 +31,19 @@ export const routes: Routes = [
                 .then(m => m.ManagersModule)
             },
             {
+              path: 'reports',
+              loadChildren: () => import('./views/reports/reports.module')
+              .then(m => m.ReportsModule)
+          },
+            {
                 path: 'quick-sale',
                 component: QuickSaleComponent
             }
         ]
     },
     {
-        path: '**', 
-        redirectTo: '', 
+        path: '**',
+        redirectTo: '',
         pathMatch: 'full',
         component: NotFoundComponentComponent
     }

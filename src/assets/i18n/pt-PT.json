@@ -19,10 +19,16 @@
     "documents": "Documentos",
     "taxes": "Impostos",
     "invoices": "Facturas",
+    "billigs": "Facturação",
+    "cash_movements": "Movimento de Caixa",
+    "variations": "Variações",
+    "suppliers": "fornecedores",
+    "self_consumption": "Autoconsumo",
     "receipts": "Recibos",
     "series": "Series",
     "products": "Produtos",
     "products_and_sercives": "Produtos/Serviços",
+    "stock_nalysis": "Análise de Stock",
     "units": "Unidades",
     "services": "Serviços",
     "customers": "Clientes",
@@ -146,6 +152,9 @@
     },
     "units": {
       "title": "Gestão de Unidades"
+    },
+    "reports": {
+      "title": "Report e BI"
     },
     "customer": {
       "title": "Gestão de Clientes"
