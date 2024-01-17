@@ -19,10 +19,16 @@
     "documents": "documents",
     "taxes": "Taxes",
     "invoices": "Invoices",
+    "billigs": "Facturação",
+    "cash_movements": "Cash Movements",
+    "variations": "Variations",
+    "suppliers": "fornecedores",
+    "self_consumption": "Self Consumption",
     "receipts": "Receipts",
     "series": "Series",
     "products": "Products",
     "products_and_sercives": "Products/Services",
+    "stock_nalysis": "Atock Nalysis",
     "units": "Units",
     "services": "Services",
     "customers": "Customers",
@@ -146,6 +152,9 @@
     },
     "units": {
       "title": "Units Management"
+    },
+    "reports": {
+      "title": "Reports and BI"
     },
     "customer": {
       "title": "Customers Management"
