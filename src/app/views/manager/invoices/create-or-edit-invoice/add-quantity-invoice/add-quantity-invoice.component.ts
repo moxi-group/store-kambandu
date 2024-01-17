@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InvoicesService } from '../../invoices.service';
+import { ApplicationService } from 'src/app/api/application.service';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class AddQuantityInvoiceComponent implements OnInit {
     documents: any = []
 
     constructor(
+        private _applicationService: ApplicationService,
         private _invoicesService: InvoicesService,
         private _formBuild: FormBuilder
     ) {
@@ -76,6 +78,8 @@ export class AddQuantityInvoiceComponent implements OnInit {
         this._invoicesService.full_calculation()
 
         this.onReset()
+        this._applicationService.CloseModal('AddQuantiteModal')
+
     }
 
     _remove_property(line: any){

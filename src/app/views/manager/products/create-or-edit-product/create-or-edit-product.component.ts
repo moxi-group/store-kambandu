@@ -101,12 +101,10 @@ export class CreateOrEditProductComponent implements OnInit {
         })
     }
 
-
-
-
     _create(form: FormGroup) {
         this._productsService.create(form)
         .subscribe(response => {
+            this._applicationService.CloseModal('CreateOrEditProductModal')
             this.submitted = false;
             this.get_products()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
@@ -117,6 +115,7 @@ export class CreateOrEditProductComponent implements OnInit {
     _update(uuid: string, form: FormGroup){
         this._productsService.update(uuid, form)
         .subscribe(res => {
+            this._applicationService.CloseModal('CreateOrEditProductModal')
             this.submitted = false;
             this.get_products()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");

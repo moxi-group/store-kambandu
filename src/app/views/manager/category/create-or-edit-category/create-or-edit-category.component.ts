@@ -67,6 +67,8 @@ export class CreateOrEditCategoryComponent implements OnInit {
     _create(form: FormGroup) {
         this._categoryService.create(form)
         .subscribe(response => {
+            this._applicationService.CloseModal('CreateOrEditCategoryModal')
+
             this.submitted = false;
             this.get_categories()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
@@ -77,6 +79,8 @@ export class CreateOrEditCategoryComponent implements OnInit {
     _update(uuid: string, form: FormGroup){
         this._categoryService.update(uuid, form)
         .subscribe(res => {
+            this._applicationService.CloseModal('CreateOrEditCategoryModal')
+
             this.submitted = false;
             this.get_categories()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");

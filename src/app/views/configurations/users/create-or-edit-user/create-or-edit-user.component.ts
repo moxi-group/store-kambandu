@@ -3,8 +3,6 @@ import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApplicationService } from 'src/app/api/application.service';
 import { environment } from 'src/environments/environment';
-import { CountryService } from '../../countries/country.service';
-import { GendersService } from '../../genders/genders.service';
 import { UsersService } from '../users.service';
 
 @Component({
@@ -45,8 +43,7 @@ export class CreateOrEditUserComponent implements OnInit {
       country_id: [null, Validators.required],
     });
 
-    this.selectBoxCountries();
-    this.selectBoxGenders();
+
   }
 
   ngOnInit(): void { }
@@ -62,21 +59,9 @@ export class CreateOrEditUserComponent implements OnInit {
   }
 
 
-  selectBoxCountries() {
-    this.countryService
-      .listOfCountries()
-      .subscribe(res => {
-        this.countries = Object(res).data
-      })
-  }
 
-  selectBoxGenders() {
-    this.genderService
-      .listOfGenders(null)
-      .subscribe(res => {
-        this.genders = Object(res).data
-      })
-  }
+
+
 
   ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
     if (this.user !== undefined) {

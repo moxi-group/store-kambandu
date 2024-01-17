@@ -70,6 +70,7 @@ export class CreateOrEditProviderComponent implements OnInit {
     _create(form: FormGroup) {
         this._providerService.create(form)
         .subscribe(response => {
+            this._applicationService.CloseModal('CreateOrEditProviderModal')
             this.submitted = false;
             this.get_providers()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
@@ -80,6 +81,7 @@ export class CreateOrEditProviderComponent implements OnInit {
     _update(uuid: string, form: FormGroup){
         this._providerService.update(uuid, form)
         .subscribe(res => {
+            this._applicationService.CloseModal('CreateOrEditProviderModal')
             this.submitted = false;
             this.get_providers()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");

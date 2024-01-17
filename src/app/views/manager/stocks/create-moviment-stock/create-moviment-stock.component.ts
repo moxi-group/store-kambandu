@@ -103,6 +103,7 @@ export class CreateMovimentStockComponent implements OnInit {
     _create(form: FormGroup) {
         this._stockService.create_stock_moviment(form)
         .subscribe(response => {
+            this._applicationService.CloseModal('CreateMovimentStockModal')
             this.submitted = false;
             this.loading_init()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");

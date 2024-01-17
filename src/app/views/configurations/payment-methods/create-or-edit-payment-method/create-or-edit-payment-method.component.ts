@@ -70,6 +70,7 @@ export class CreateOrEditPaymentMethodComponent implements OnInit {
     _create(form: FormGroup) {
         this._paymentMethodsService.create(form)
         .subscribe(response => {
+            this._applicationService.CloseModal('createOrEditPaymentMethod')
             this.submitted = false;
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this.onReset()
@@ -79,6 +80,7 @@ export class CreateOrEditPaymentMethodComponent implements OnInit {
     _update(uuid: string, form: FormGroup){
         this._paymentMethodsService.update(form)
         .subscribe(response => {
+            this._applicationService.CloseModal('createOrEditPaymentMethod')
             this.submitted = false;
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this.onReset()

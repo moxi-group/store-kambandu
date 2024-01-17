@@ -71,6 +71,7 @@ export class CreateOrEditEmployeeComponent implements OnInit {
     _create(form: FormGroup) {
         this._employeesService.create(form)
         .subscribe(response => {
+            this._applicationService.CloseModal('CreateOrEditEmployeeModal')
             this.submitted = false;
             this.get_employees()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
@@ -81,6 +82,7 @@ export class CreateOrEditEmployeeComponent implements OnInit {
     _update(uuid: string, form: FormGroup){
         this._employeesService.update(uuid, form)
         .subscribe(res => {
+            this._applicationService.CloseModal('CreateOrEditEmployeeModal')
             this.submitted = false;
             this.get_employees()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");

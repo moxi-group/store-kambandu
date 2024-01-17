@@ -70,6 +70,8 @@ export class CreateOrEditCustomerComponent implements OnInit {
     _create(form: FormGroup) {
         this._customersService.create(form)
         .subscribe(response => {
+            this._applicationService.CloseModal('CreateOrEditCustomerModal')
+
             this.submitted = false;
             this.get_customers()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
@@ -80,6 +82,8 @@ export class CreateOrEditCustomerComponent implements OnInit {
     _update(uuid: string, form: FormGroup){
         this._customersService.update(uuid, form)
         .subscribe(res => {
+            this._applicationService.CloseModal('CreateOrEditCustomerModal')
+
             this.submitted = false;
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this.onReset()
