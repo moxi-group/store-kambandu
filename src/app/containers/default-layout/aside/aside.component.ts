@@ -32,20 +32,6 @@ export class AsideComponent implements OnInit {
         this.currentUser = this._authService.current_user();
     }
 
-  ItensMenuStaff: any = [];
-  ItensMenuAdmin: any = [];
-  ItensMenuManager: any = [];
-  ItensMenuEmployee: any = [];
-
-  constructor(
-    private router: Router,
-    private _authService: AuthService,
-    public translate: TranslateService,
-    public route: Router
-  ) {
-    this.currentUser = this._authService.current_user();
-  }
-
   ngOnInit(): void {
     if (this.role_is === 'super_admin') {
       this.ItensMenuStaff = MenuStaff.menu;

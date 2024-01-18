@@ -57,6 +57,20 @@
             "name": "Fornecedores",
             "link": "/managers/providers",
             "icon": "ni ni-single-02"
+        },
+        {
+            "isSub": true,
+            "id": "taxation",
+            "name": "AG Tributária",
+            "link": "#",
+            "icon": "ni ni-books",
+            "subMenu": [
+                {
+                    "name": "SAF-T AO",
+                    "link": "#",
+                    "icon": "ni ni-ungroup"
+                }
+            ]
         }
     ]
 }
