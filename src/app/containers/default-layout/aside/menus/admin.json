@@ -45,10 +45,29 @@
                     "name": "Lojas",
                     "link": "/managers/stores",
                     "icon": "ni ni-shop"
+                }
+            ]
+        },
+        {
+            "isSub": true,
+            "id": "stocks",
+            "name": "Gestão Stock",
+            "link": "#",
+            "icon": "ni ni-single-02",
+            "subMenu": [
+                {
+                    "name": "Listagem de Stock",
+                    "link": "/managers/listing-stocks",
+                    "icon": "ni ni-shop"
                 },
                 {
-                    "name": "Gestão Stock",
-                    "link": "/managers/stocks",
+                    "name": "Movimentos de Stock",
+                    "link": "/managers/moviments-stocks",
+                    "icon": "ni ni-shop"
+                },
+                {
+                    "name": "Análise de Stock",
+                    "link": "/managers/analitics-stocks",
                     "icon": "ni ni-shop"
                 }
             ]

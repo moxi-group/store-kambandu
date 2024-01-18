@@ -20,15 +20,20 @@ export class StocksComponent implements OnInit {
     product_constitution: any = {}
     
     filter: any = {
-        page: 1,
-        limit: 5,
-        order_by: '-created_at',
-        filter_column: null,
-        filter_value: ''
+        pagination: {
+            page: 1,
+            limit: 5,
+            order_by: '-created_at',
+            filter_column: null,
+            filter_value: null,
+            start_date: Date.now(),
+            end_date: Date.now()
+        }
     }
 
+
+
     constructor(
-        public _filterService: FilterService,
         public _stockService: StocksService,
         public _reportService: ReporterService,
         private _applicationService: ApplicationService,
@@ -40,11 +45,11 @@ export class StocksComponent implements OnInit {
     }
 
     loading_data() {
-        this._onTableDataChange(this._filterService.pagination)
+        this._onTableDataChange(this.filter.pagination)
     }
 
     _onTableDataChange(event: any): void{
-        this._filterService.pagination.page = Number.isInteger(event) ? event : 1 
+        this.filter.pagination.page = Number.isInteger(event) ? event : 1 
         this.get_stocks()
     }
 
@@ -54,7 +59,7 @@ export class StocksComponent implements OnInit {
 
     get_stocks() {
         this._stockService
-        .get_stocks( this._filterService.pagination )
+        .get_stocks( {} )
         .subscribe(response => {
             this._stockService.stocks = Object(response)
         })
@@ -71,7 +76,7 @@ export class StocksComponent implements OnInit {
     _print_report_stock() {
 
         this._reportService
-            .report_stock( this._stockService.stocks )
+        .report_stock( this._stockService.stocks )
         .subscribe(response => {
             const blob = new Blob([response], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
             const blobUrl = URL.createObjectURL(blob);

@@ -41,7 +41,7 @@
                                 <th class="text-center">{{ 'table.status' | translate}}</th>
                                 <th class="text-right">{{ 'table.total' | translate}}</th>
                                 <th class="text-right">{{ 'table.open_amount' | translate}}</th>
-                                <th class="text-center">{{ 'table.status' | translate}}</th>
+                                <th class="text-center">{{ 'Progresso' | translate}}</th>
                                 <th class="sort">{{ 'table.date' | translate}}</th>
                                 <th scope="col">Opções</th>
                             </tr>
@@ -63,18 +63,13 @@
                                 </td>
                                 <td class="text-right">{{ item.total | to_kwanza }}</td>
                                 <td class="text-right">{{ item.open_amount | to_kwanza }}</td>
-                                <td>
-                                    <div class="row align-items-center">
-                                        <div class="col">
-                                            <h5>{{progressbar(item.total, item.open_amount)}}%</h5>
-                                            <div class="progress progress-xs mb-0">
-                                                <div class="progress-bar bg-orange" role="progressbar"
-                                                    aria-valuenow="{progressbar(item.total, item.open_amount)}"
-                                                    aria-valuemin="0" aria-valuemax="100"
-                                                    ng-style="{'width': progressbar(item.total, item.open_amount) + '%'}">
-                                                </div>
-                                            </div>
-                                        </div>
+                                <td class="text-center">
+                                    <div class="progress">
+                                        <div class="progress-bar bg-success" role="progressbar"
+                                            [style]="'width:' + progressbar(item.total, item.open_amount) + '%'"
+                                            aria-valuenow="{progressbar(item.total, item.open_amount)}"
+                                            aria-valuemin="0" aria-valuemax="100">{{progressbar(item.total,
+                                            item.open_amount)}}%</div>
                                     </div>
                                 </td>
                                 <td class="budget">{{ item.created_at | date }}</td>

@@ -34,7 +34,7 @@
                             <div class="form-group">
                                 <label for="enter_by">Entrada</label>
                                 <select (change)='_onTableDataChange($event)' class="form-control" id="enter_by"
-                                    name="enter_by" [(ngModel)]="_filterService.pagination.limit">
+                                    name="enter_by" [(ngModel)]="filter.pagination.limit">
                                     <option>5</option>
                                     <option>10</option>
                                     <option>20</option>
@@ -48,9 +48,8 @@
                             <div class="form-group">
                                 <label for="filter_column">Data Inicio</label>
                                 <input type="date" name="start_date" id="start_date"
-                                    [(ngModel)]="_filterService.pagination.start_date"
-                                    (keyup)="_onTableDataChange($event)" placeholder="Pesquisa por ..."
-                                    class="form-control">
+                                    [(ngModel)]="filter.pagination.start_date" (keyup)="_onTableDataChange($event)"
+                                    placeholder="Pesquisa por ..." class="form-control">
                             </div>
                         </div>
 
@@ -58,9 +57,8 @@
                             <div class="form-group">
                                 <label for="filter_column">Data Fim</label>
                                 <input type="date" name="end_date" id="end_date"
-                                    [(ngModel)]="_filterService.pagination.end_date"
-                                    (keyup)="_onTableDataChange($event)" placeholder="Pesquisa por ..."
-                                    class="form-control">
+                                    [(ngModel)]="filter.pagination.end_date" (keyup)="_onTableDataChange($event)"
+                                    placeholder="Pesquisa por ..." class="form-control">
                             </div>
                         </div>
 
@@ -91,8 +89,8 @@
                         </thead>
                         <tbody class="list" *ngIf="_stockService.stocks.items">
                             <tr *ngFor="let item of _stockService.stocks.items | paginate: {
-                                itemsPerPage: _filterService.pagination.limit,
-                                currentPage: _filterService.pagination.page,
+                                itemsPerPage: filter.pagination.limit,
+                                currentPage: filter.pagination.page,
                                 totalItems: _stockService.stocks.total
                                 } index as i">
                                 <td>{{ i+1 }}</td>

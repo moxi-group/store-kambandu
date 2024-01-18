@@ -56,7 +56,15 @@ const routes: Routes = [
         component: ProvidersComponent,
       },
       {
-        path: 'stocks',
+        path: 'listing-stocks',
+        component: StocksComponent,
+      },
+      {
+        path: 'moviments-stocks',
+        component: StocksComponent,
+      },
+      {
+        path: 'analitics-stocks',
         component: StocksComponent,
       },
       {
