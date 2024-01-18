@@ -1,10 +1,12 @@
 import { Component, Input, OnInit, SimpleChange } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { StocksService } from '../stocks.service';
 import { ApplicationService } from 'src/app/api/application.service';
 import { ProductsService } from '../../products/products.service';
 import { ProvidersService } from '../../providers/providers.service';
 import { StoresService } from '../../stores/stores.service';
+
+
 
 @Component({
     selector: 'CreateMovimentStockModal',
@@ -13,16 +15,28 @@ import { StoresService } from '../../stores/stores.service';
 })
 
 export class CreateMovimentStockComponent implements OnInit {
+
+    movimentStockForm: any = FormGroup
+
+
     @Input() modal: any = "CreateMovimentStockModal"
     @Input() title: string = "Movimentar Stock"
     @Input() moviment_stock: any
-    @Input() movimentStockForm: FormGroup
+    //@Input() movimentStockForm: FormGroup
+
+
 
     submitted = false
     products: any = []
     providers: any = []
     stores: any = []
     
+    constructor(
+        private _formBuild: FormBuilder
+    ) {}
+
+      
+    /*
     constructor(
         private _stockService: StocksService,
         private _productService: ProductsService,
@@ -31,6 +45,9 @@ export class CreateMovimentStockComponent implements OnInit {
         private _applicationService: ApplicationService,
         private _formBuild: FormBuilder
     ) {
+
+
+
         this.movimentStockForm = this._formBuild.group({
             uuid: [{ value: null, disabled: true }],
             quantity: [ 1, Validators.required ],
@@ -41,9 +58,51 @@ export class CreateMovimentStockComponent implements OnInit {
         })
 
         this.loading_init()
+
+        
     }
 
-    loading_init(){
+    */
+
+    ngOnInit(): void {
+        this.creatForm();
+    }
+
+
+    creatForm(){
+        this.movimentStockForm = this._formBuild.group({
+            contacts: this._formBuild.array([this.contactFrom()])
+        });
+    }
+
+    contactFrom(){
+        return this._formBuild.group({
+            phone: [null],
+            email: [null]
+        })
+    }
+
+    addNewContacts(){
+        this.contacts.push(this.contactFrom());
+    }
+
+    removeContact(i:Required<number>){
+        this.contacts.removeAt(i);
+    }
+
+    get contacts(){
+        return this.movimentStockForm.get("contacts") as FormArray;
+    }
+
+
+
+
+
+
+
+    /*
+
+        loading_init(){
         this._productService
         .get_products()
         .subscribe(response => {
@@ -67,10 +126,6 @@ export class CreateMovimentStockComponent implements OnInit {
         .subscribe(response => {
             this._stockService.stocks = Object(response)
         })
-    }
-
-
-    ngOnInit(): void {
     }
 
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
@@ -110,6 +165,8 @@ export class CreateMovimentStockComponent implements OnInit {
             this.onReset()
         })
     }
+
+    */
 
 
 
