@@ -12,10 +12,9 @@
                         <span class="nav-link-text">{{ 'Exportar EXCEL' | translate }}</span>
                     </button>
 
-                    <button type="button" class="btn btn-outline-default btn-sm" data-toggle="modal"
-                        data-target="#CreateMovimentStockModal">
-                        {{ 'Movimentar Stock' | translate }}
-                    </button>
+                    <a class="btn btn-outline-default btn-sm" routerLink="/managers/create-moviment-stock">
+                        <span class="nav-link-text">{{ 'Atualizar Stock' | translate }}</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -44,7 +43,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-1 p-filter">
+                        <div class="col-lg-2 p-filter">
                             <div class="form-group">
                                 <label for="filter_column">Data Inicio</label>
                                 <input type="date" name="start_date" id="start_date"
@@ -53,7 +52,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-1 p-filter">
+                        <div class="col-lg-2 p-filter">
                             <div class="form-group">
                                 <label for="filter_column">Data Fim</label>
                                 <input type="date" name="end_date" id="end_date"
@@ -144,6 +143,5 @@
 
 </div>
 
-<CreateMovimentStockModal [moviment_stock]="moviment_stock" [modal]=""></CreateMovimentStockModal>
 <ListMovimentStockModal [stock]="stock" [modal]=""></ListMovimentStockModal>
 <ComposerProductkModal [stock]="stock" [modal]=""></ComposerProductkModal>

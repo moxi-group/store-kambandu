@@ -13,6 +13,9 @@ import { StocksComponent } from './stocks/stocks.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { CategoryComponent } from './category/category.component';
 import { SalesBoxesComponent } from './sales-boxes/sales-boxes.component';
+import { MovimentsStockComponent } from './stocks/moviments-stock/moviments-stock.component';
+import { AnaliticsStockComponent } from './stocks/analitics-stock/analitics-stock.component';
+import { CreateMovimentStockComponent } from './stocks/create-moviment-stock/create-moviment-stock.component';
 
 const routes: Routes = [
   {
@@ -61,11 +64,15 @@ const routes: Routes = [
       },
       {
         path: 'moviments-stocks',
-        component: StocksComponent,
+        component: MovimentsStockComponent,
       },
       {
         path: 'analitics-stocks',
-        component: StocksComponent,
+        component: AnaliticsStockComponent,
+      },
+      {
+        path: 'create-moviment-stock',
+        component: CreateMovimentStockComponent,
       },
       {
         path: 'employees',
