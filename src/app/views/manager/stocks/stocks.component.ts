@@ -26,8 +26,8 @@ export class StocksComponent implements OnInit {
             order_by: '-created_at',
             filter_column: null,
             filter_value: null,
-            start_date: Date.now(),
-            end_date: Date.now()
+            start_date: null,
+            end_date: null
         }
     }
 
