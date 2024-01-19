@@ -13,7 +13,7 @@ export const routes: Routes = [
     },
     {
         path: '', component: DefaultLayoutComponent,
-        data: { title: 'Inicio'},
+        data: { title: 'Início'},
         children: [
             {
                 path: 'dashboard',

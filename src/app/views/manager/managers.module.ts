@@ -102,6 +102,8 @@ const ngWizardConfig: NgWizardConfig = {
         SaftAoComponent,
         GenerateSaftComponent,
 
+        SaftAoComponent,
+        GenerateSaftComponent
 
 
     ],

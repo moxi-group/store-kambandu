@@ -145,7 +145,7 @@
             "subMenu": [
                 {
                     "name": "SAF-T AO",
-                    "link": "#",
+                    "link": "/managers/saft-ao",
                     "icon": "ni ni-ungroup"
                 }
             ]

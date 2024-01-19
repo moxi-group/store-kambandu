@@ -1,1 +1,75 @@
-<p>saft-ao works!</p>
+<!-- Header -->
+<div class="header bg-green pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <h6 class="h2 text-white d-inline-block mb-0">{{ 'Gestão de SAF-T' | translate }}</h6>
+                </div>
+                <div class="col-lg-6 col-5 text-right">
+                    <button type="button" class="btn btn-outline-default btn-sm" data-toggle="modal"
+                        data-target="#GenerateSaftModal">
+                        {{ 'Gerar Saft-AO' | translate }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page content -->
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header border-0">
+                </div>
+                <!-- Light table -->
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>#</th>
+                                <th scope="col" class="sort">{{ 'Ref.' | translate}}</th>
+                                <th scope="col" class="sort text-center">{{ 'Mês Início' | translate}}</th>
+                                <th scope="col" class="sort text-center">{{ 'Mês Fim' | translate}}</th>
+                                <th scope="col" class="sort text-center">{{ 'Ano Ref.' | translate}}</th>
+                                <th scope="col" class="sort">{{ 'table.date' | translate}}</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="list" *ngIf="_saftService.safts">
+                            <tr *ngFor="let item of _saftService.safts; index as i">
+                                <td>{{ i+1 }}</td>
+                                <th scope="row"><span class="name mb-0 text-sm">{{ item.name }}</span></th>
+                                <td class="budget text-center">{{ item.start_month }}</td>
+                                <td class="budget text-center">{{ item.end_month }}</td>
+                                <td class="budget text-center">{{ item.year }}</td>
+                                <td class="budget">{{ item.created_at | date }}</td>
+                                <td class="text-right">
+                                    <div class="dropdown">
+                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                            <button type="button" class="dropdown-item" (click)="_download(item)">
+                                                {{ 'Download ficheiro' | translate}}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<GenerateSaftModal [saft]="saft" [modal]=""></GenerateSaftModal>
