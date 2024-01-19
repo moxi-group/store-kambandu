@@ -5,7 +5,6 @@ import { ReporterService } from 'src/app/services/reporter.service';
 import { ApplicationService } from 'src/app/api/application.service';
 
 import { saveAs } from 'file-saver';
-import { FilterService } from 'src/app/services/filter.service';
 
 
 @Component({
@@ -26,8 +25,8 @@ export class StocksComponent implements OnInit {
             order_by: '-created_at',
             filter_column: null,
             filter_value: null,
-            start_date: null,
-            end_date: null
+            start_date: Date.now(),
+            end_date: Date.now()
         }
     }
 
@@ -59,7 +58,7 @@ export class StocksComponent implements OnInit {
 
     get_stocks() {
         this._stockService
-        .get_stocks( {} )
+        .get_stocks( this.filter.pagination )
         .subscribe(response => {
             this._stockService.stocks = Object(response)
         })

@@ -30,6 +30,7 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>#</th>
+                                <th>Ordem</th>
                                 <th scope="col" class="sort">{{ 'Produto' | translate}}</th>
                                 <th scope="col" class="sort">{{ 'Quantidade' | translate}}</th>
                                 <th scope="col" class="sort">{{ 'Operação' | translate}}</th>
@@ -37,28 +38,38 @@
                                 <th scope="col" class="sort">{{ 'Observações' | translate}}</th>
                             </tr>
                         </thead>
-                        <tbody class="list">
-                            <tr *ngFor="let item of [1, 2, 3, 4, 5]">
-                                <td>
-                                    <a href="#" class="delete-item">
-                                        <i class="fa fa-times-circle text-danger fa-lg dialogButton"
-                                            data-state="eliminar o produto"></i>
-                                    </a>
-                                </td>
-                                <th scope="row"><span class="name mb-0 text-sm">{{ 'Coca cola' }}</span></th>
-                                <th scope="row"><span class="name mb-0 text-sm">{{ 'Preço Fornecedor'}}</span></th>
-                                <th scope="row"><span class="name mb-0 text-sm">{{ 'Preço Fornecedor'}}</span></th>
-                                <th scope="row"><span class="name mb-0 text-sm">{{ 'Preço Fornecedor'}}</span></th>
-                                <th scope="row"><span class="name mb-0 text-sm">{{ 'Preço Fornecedor'}}</span></th>
+                        <tbody class="list" [formGroup]="movimentStockForm">
+                            <tr formArrayName="contacts" *ngFor="let o of contacts.controls; let i = index">
+                                <div>
+                                    <td>
+                                        <button (click)="removeContact(i)" class="btn delete-item btn-sm">
+                                            <i class="fa fa-times-circle text-danger fa-lg"></i>
+                                        </button>
+                                    </td>
+                                    <td>{{ i + 1 }}</td>
+                                    <th scope="row"><span class="name mb-0 text-sm">{{ 'Coca cola' }}</span></th>
+                                    <th scope="row"><span class="name mb-0 text-sm">{{ 'Preço Fornecedor'}}</span></th>
+                                    <th scope="row"><span class="name mb-0 text-sm">{{ 'Preço Fornecedor'}}</span></th>
+                                    <th scope="row"><span class="name mb-0 text-sm">{{ 'Preço Fornecedor'}}</span></th>
+                                    <th scope="row">
+                                        <input formControlName="email" type="text" class="form-control">
+                                    </th>
+                                </div>
                             </tr>
                         </tbody>
                     </table>
 
+                    <hr>
+
+                    <div class='pl-2'>
+                        <button class="btn btn-outline-primary btn-sm" (click)="addNewContacts()">
+                            Adicionar Produto
+                        </button>
+                    </div>
 
                 </div>
 
             </div>
         </div>
     </div>
-
 </div>

@@ -1,10 +1,14 @@
 import { Component, Input, OnInit, SimpleChange } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+
+/*
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { StocksService } from '../stocks.service';
 import { ApplicationService } from 'src/app/api/application.service';
 import { ProductsService } from '../../products/products.service';
 import { ProvidersService } from '../../providers/providers.service';
 import { StoresService } from '../../stores/stores.service';
+*/
 
 
 
@@ -17,6 +21,7 @@ import { StoresService } from '../../stores/stores.service';
 export class CreateMovimentStockComponent implements OnInit {
 
     movimentStockForm: any = FormGroup
+    result: any
 
 
     @Input() modal: any = "CreateMovimentStockModal"
@@ -32,7 +37,7 @@ export class CreateMovimentStockComponent implements OnInit {
     stores: any = []
     
     constructor(
-        private _formBuild: FormBuilder
+        public _formBuild: FormBuilder
     ) {}
 
       
@@ -84,6 +89,9 @@ export class CreateMovimentStockComponent implements OnInit {
 
     addNewContacts(){
         this.contacts.push(this.contactFrom());
+
+        console.log( this.contacts.controls )
+
     }
 
     removeContact(i:Required<number>){
@@ -94,7 +102,10 @@ export class CreateMovimentStockComponent implements OnInit {
         return this.movimentStockForm.get("contacts") as FormArray;
     }
 
-
+    onSave(){
+        //console.log(this._formBuild.value )
+        //this.result = this._formBuild.value;
+    }
 
 
 
