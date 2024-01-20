@@ -16,79 +16,84 @@ import { SalesBoxesComponent } from './sales-boxes/sales-boxes.component';
 import { MovimentsStockComponent } from './stocks/moviments-stock/moviments-stock.component';
 import { AnaliticsStockComponent } from './stocks/analitics-stock/analitics-stock.component';
 import { CreateMovimentStockComponent } from './stocks/create-moviment-stock/create-moviment-stock.component';
+import { SaftAoComponent } from './saft-ao/saft-ao.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    children: [
-      {
-        path: 'invoices',
-        component: InvoicesComponent,
-        children: [],
-      },
-      {
-        path: 'invoices/register',
-        component: CreateOrEditInvoiceComponent,
-      },
-      {
-        path: 'receipts',
-        component: ReceiptsComponent,
-      },
-      {
-        path: 'customers',
-        component: CustomersComponent,
-      },
-      {
-        path: 'series',
-        component: SeriesComponent,
-      },
-      {
-        path: 'products',
-        component: ProductsComponent,
-      },
-      {
-        path: 'banks',
-        component: BanksComponent,
-      },
-      {
-        path: 'stores',
-        component: StoresComponent,
-      },
-      {
-        path: 'providers',
-        component: ProvidersComponent,
-      },
-      {
-        path: 'listing-stocks',
-        component: StocksComponent,
-      },
-      {
-        path: 'moviments-stocks',
-        component: MovimentsStockComponent,
-      },
-      {
-        path: 'analitics-stocks',
-        component: AnaliticsStockComponent,
-      },
-      {
-        path: 'create-moviment-stock',
-        component: CreateMovimentStockComponent,
-      },
-      {
-        path: 'employees',
-        component: EmployeesComponent,
-      },
-      {
-        path: 'categories',
-        component: CategoryComponent,
-      },
-      {
-        path: 'caixas-vendas',
-        component: SalesBoxesComponent,
-      },
-    ],
-  },
-];
+    {
+        path: '',
+        children: [
+            {
+                path: 'invoices',
+                component: InvoicesComponent,
+                children: [],
+            },
+            {
+                path: 'invoices/register',
+                component: CreateOrEditInvoiceComponent,
+            },
+            {
+                path: 'receipts',
+                component: ReceiptsComponent,
+            },
+            {
+                path: 'customers',
+                component: CustomersComponent,
+            },
+            {
+                path: 'series',
+                component: SeriesComponent,
+            },
+            {
+                path: 'products',
+                component: ProductsComponent,
+            },
+            {
+                path: 'banks',
+                component: BanksComponent,
+            },
+            {
+                path: 'stores',
+                component: StoresComponent,
+            },
+            {
+                path: 'providers',
+                component: ProvidersComponent,
+            },
+            {
+                path: 'listing-stocks',
+                component: StocksComponent,
+            },
+            {
+                path: 'moviments-stocks',
+                component: MovimentsStockComponent,
+            },
+            {
+                path: 'analitics-stocks',
+                component: AnaliticsStockComponent,
+            },
+            {
+                path: 'create-moviment-stock',
+                component: CreateMovimentStockComponent,
+            },
+            {
+                path: 'employees',
+                component: EmployeesComponent,
+            },
+            {
+                path: 'categories',
+                component: CategoryComponent,
+            },
+            {
+                path: 'caixas-vendas',
+                component: SalesBoxesComponent,
+            },
+            {
+                path: 'saft-ao',
+                component: SaftAoComponent,
+            }
+        ]
+    }
+]
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

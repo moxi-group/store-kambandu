@@ -1,0 +1,63 @@
+<div class="modal fade" id="{{modal}}" tabindex="-1" role="dialog" aria-labelledby="GenerateSaftModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form [formGroup]="saftForm" (submit)="onSubmit();">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="GenerateSaftModal">{{title}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">{{ 'Mês Início' | translate}}</label>
+                                <select formControlName="start_month" name="start_month" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.start_month.errors, 'is-valid': f.start_month.touched && !f.start_month.errors }">
+                                    <option *ngFor="let item of get_months()" [value]="item.value">{{ item.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">{{ 'Mês Fim' | translate}}</label>
+                                <select formControlName="end_month" name="end_month" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.end_month.errors, 'is-valid': f.end_month.touched && !f.end_month.errors }">
+                                    <option *ngFor="let item of get_months()" [value]="item.value">{{ item.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">{{ 'Ano' | translate}}</label>
+                                <select formControlName="year" name="year" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.year.errors, 'is-valid': f.year.touched && !f.year.errors }">
+                                    <option *ngFor="let item of get_years()" [value]="item">{{ item }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger btn-sm" type="reset" [disabled]="saftForm.pristine && !submitted"
+                        (click)="onReset()">{{ 'btn.clean' | translate}}</button>
+                    <button class="btn btn-success btn-sm mr-1" type="submit" [disabled]="saftForm.valid">{{
+                        'btn.validate' | translate}}</button>
+                    <button type="submit" [disabled]="saftForm.pristine || saftForm.invalid"
+                        class="btn btn-primary btn-sm">{{ 'btn.save' | translate}}
+                        <spinner [loading]='submitted'></spinner>
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

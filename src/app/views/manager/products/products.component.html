@@ -56,7 +56,7 @@
                                 <th scope="row"><span class="name mb-0 text-sm">{{ item.code }}</span></th>
                                 <td class="budget">{{ item.tax.code }} - {{ item.tax.percentage }}%</td>
                                 <td class="budget">{{ item.price | to_kwanza }}</td>
-                                <td class="budget">{{ item.price * (item.tax.percentage/100 + 1) | to_kwanza }}</td>
+                                <td class="budget">{{ _total_with_tax(item) | to_kwanza }}</td>
                                 <td>
                                     <span class="badge badge-{{ item.is_stocked ? 'success' : 'primary' }}">{{
                                         item.is_stocked ? 'SIM' : 'NÃO' }}</span>
