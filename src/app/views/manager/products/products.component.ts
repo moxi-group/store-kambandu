@@ -54,5 +54,13 @@ export class ProductsComponent implements OnInit {
         this.product = item
     }
 
+    _total_with_tax(product: any){
+
+        console.log( (product.tax.percentage / 100) )
+
+        let result = product.price + (product.price * (product.tax.percentage/100) )
+        return result
+    }
+
 
 }

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { map } from 'rxjs/operators'
+import { saveAs } from 'file-saver';
 
 @Injectable({
   providedIn: 'root'
@@ -32,42 +32,20 @@ export class SaftService {
         return this._http_client.post<any>(
             `${environment.fullBaseUrl}/safts`,
             data,
-            { 
-                headers: this.headers
-            }
+            { headers: this.headers, responseType: 'blob' as 'json'}
         )
     }
 
     download(uuid:string) {
         let header = new HttpHeaders()
-        .set('responseType', 'text')
+        .set('content-type', 'application/json')
         .set('Access-Control-Allow-Origin', '*')
         .set('Authorization', `Bearer ${this.token}`)
         .set('header-company-uuid', `${this.companyToken}`)
         
         return this._http_client.get(
             `${environment.fullBaseUrl}/safts/download/${uuid}`, 
-            {headers: header})
-
-
-        /*
-        let header = new HttpHeaders()
-        .set('content-type', 'application/octet-stream')
-        .set('Accept', 'application/octet-stream')
-        .set('Access-Control-Allow-Origin', '*')
-        .set('Authorization', `Bearer ${this.token}`)
-        .set('header-company-uuid', `${this.companyToken}`)
-
-
-
-        return this._http_client.get<any>(
-            `${environment.fullBaseUrl}/safts/download/${uuid}`,
-            { 
-                headers: header
-            }
-        )
-
-        */
+            { headers: header, responseType: 'blob'})
     }
 
 

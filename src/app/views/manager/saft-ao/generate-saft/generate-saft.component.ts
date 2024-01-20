@@ -2,6 +2,7 @@ import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApplicationService } from 'src/app/api/application.service';
 import { SaftService } from '../saft.service';
+import { saveAs } from 'file-saver';
 
 @Component({
     selector: 'GenerateSaftModal',
@@ -63,7 +64,9 @@ export class GenerateSaftComponent implements OnInit {
 
     _create(form: FormGroup) {
         this._saftService.create(form)
-        .subscribe(response => {
+        .subscribe((response: Blob) => {
+            saveAs(response, `saft-${new Date()}.xml`)
+
             this._applicationService.CloseModal('GenerateSaftModal')
             this.submitted = false;
             this.get_safts()
