@@ -5,6 +5,7 @@ import { ReporterService } from 'src/app/services/reporter.service';
 import { ApplicationService } from 'src/app/api/application.service';
 
 import { saveAs } from 'file-saver';
+import { FilterService } from 'src/app/services/filter.service';
 
 
 @Component({
@@ -21,23 +22,26 @@ export class StocksComponent implements OnInit {
     filter: any = {
         pagination: {
             page: 1,
-            limit: 5,
+            limit: 10,
             order_by: '-created_at',
             filter_column: null,
             filter_value: null,
-            start_date: Date.now(),
-            end_date: Date.now()
+            start_date: this._filterService.startOfMonth(),
+            end_date: this._filterService.currentOfMonth()
         }
     }
 
 
 
     constructor(
+        public _filterService: FilterService,
         public _stockService: StocksService,
         public _reportService: ReporterService,
         private _applicationService: ApplicationService,
         public translate: TranslateService
     ) { }
+
+
 
     ngOnInit(): void {
         this.loading_data()

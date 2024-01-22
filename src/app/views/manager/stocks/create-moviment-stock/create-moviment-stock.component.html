@@ -25,39 +25,43 @@
                     </div>
                 </div>
                 <!-- Light table -->
-                <div class="table-responsive">
-                    <table class="table align-items-center table-flush">
-                        <thead class="thead-light">
-                            <tr>
-                                <th>#</th>
-                                <th>Ordem</th>
-                                <th scope="col" class="sort">{{ 'Produto' | translate}}</th>
-                                <th scope="col" class="sort">{{ 'Quantidade' | translate}}</th>
-                                <th scope="col" class="sort">{{ 'Operação' | translate}}</th>
-                                <th scope="col" class="sort">{{ 'Fornecedor' | translate}}</th>
-                                <th scope="col" class="sort">{{ 'Observações' | translate}}</th>
-                            </tr>
-                        </thead>
-                        <tbody class="list" [formGroup]="movimentStockForm">
-                            <tr formArrayName="contacts" *ngFor="let o of contacts.controls; let i = index">
-                                <div>
-                                    <td>
+                <div style="padding: 10px 30px;">
+                    <div class="row">
+                        <div class="col-md-1">{{ 'Acção' | translate}}</div>
+                        <div class="col-md-3">{{ 'Produto' | translate}}</div>
+                        <div class="col-md-3">{{ 'Quantidade' | translate}}</div>
+                        <div class="col-md-2">{{ 'Operação' | translate}}</div>
+                        <div class="col-md-3">{{ 'Fornecedor' | translate}}</div>
+                    </div>
+
+                    <div [formGroup]="movimentStockForm">
+                        <div>
+                            <div class="row" formArrayName="contacts"
+                                *ngFor="let o of contacts.controls; let i = index">
+                                <div class="row mt-2" [formGroupName]="i">
+                                    <div class="col-md-1">
                                         <button (click)="removeContact(i)" class="btn delete-item btn-sm">
                                             <i class="fa fa-times-circle text-danger fa-lg"></i>
                                         </button>
-                                    </td>
-                                    <td>{{ i + 1 }}</td>
-                                    <th scope="row"><span class="name mb-0 text-sm">{{ 'Coca cola' }}</span></th>
-                                    <th scope="row"><span class="name mb-0 text-sm">{{ 'Preço Fornecedor'}}</span></th>
-                                    <th scope="row"><span class="name mb-0 text-sm">{{ 'Preço Fornecedor'}}</span></th>
-                                    <th scope="row"><span class="name mb-0 text-sm">{{ 'Preço Fornecedor'}}</span></th>
-                                    <th scope="row">
-                                        <input formControlName="email" type="text" class="form-control">
-                                    </th>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input formControlName="phone" type="text" class="form-control">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input formControlName="phone" type="text" class="form-control">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input formControlName="phone" type="text" class="form-control">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input formControlName="phone" type="text" class="form-control">
+                                    </div>
                                 </div>
-                            </tr>
-                        </tbody>
-                    </table>
+                            </div>
+                        </div>
+                    </div>
+
+
 
                     <hr>
 
