@@ -16,7 +16,9 @@ import MenuCollaborator from './menus/collaborator.json';
 export class AsideComponent implements OnInit {
   currentRole: boolean = sessionStorage.getItem('CURRENT_ROLE') ? true : false;
   role_is: any = sessionStorage.getItem('CURRENT_ROLE');
+
   currentUser: any;
+  currentCompany: any
   
     ItensMenuStaff: any = []
     ItensMenuAdmin: any = []
@@ -24,12 +26,13 @@ export class AsideComponent implements OnInit {
     ItensMenuEmployee: any = []
 
     constructor(
-        private router: Router,
         private _authService: AuthService,
         public translate: TranslateService,
         public route: Router
     ) {
-        this.currentUser = this._authService.current_user();
+      this.currentUser = this._authService.current_user();
+      this.currentCompany = this._authService.current_company();
+      
     }
 
   ngOnInit(): void {
@@ -50,9 +53,4 @@ export class AsideComponent implements OnInit {
     }
   }
 
-  remove_role() {
-    sessionStorage.removeItem('CURRENT_COMPANY');
-    sessionStorage.removeItem('CURRENT_ROLE');
-    this.router.navigate(['/dashboard/manager-roles']);
-  }
 }

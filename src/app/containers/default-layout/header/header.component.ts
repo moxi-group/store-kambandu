@@ -1,6 +1,7 @@
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from './../../../views/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-header',
@@ -13,6 +14,7 @@ export class HeaderComponent implements OnInit {
 
     constructor(
         private _authService: AuthService,
+        public router: Router,
         public translate: TranslateService
     ) {
         this.currentUser = this._authService.current_user()
@@ -30,5 +32,11 @@ export class HeaderComponent implements OnInit {
         sessionStorage.setItem('locale', locale)
         this.translate.use(locale)
     }
+
+    remove_role() {
+        sessionStorage.removeItem('CURRENT_COMPANY');
+        sessionStorage.removeItem('CURRENT_ROLE');
+        this.router.navigate(['/dashboard/manager-roles']);
+      }
 
 }
