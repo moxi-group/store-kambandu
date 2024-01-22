@@ -144,7 +144,7 @@ export class CreateOrEditInvoiceComponent implements OnInit {
 
 
     stepChanged(args: StepChangedArgs) {
-        //console.log( this._invoicesService.invoiceObject )
+
         
     }
 
