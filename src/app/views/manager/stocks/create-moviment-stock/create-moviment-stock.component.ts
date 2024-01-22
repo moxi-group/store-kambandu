@@ -1,5 +1,11 @@
 import { Component, Input, OnInit, SimpleChange } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ProvidersService } from '../../providers/providers.service';
+import { ProductsService } from '../../products/products.service';
+import { ApplicationService } from 'src/app/api/application.service';
+import { StoresService } from '../../stores/stores.service';
+import { StocksService } from '../stocks.service';
+import { Router } from '@angular/router';
 
 /*
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
@@ -27,50 +33,40 @@ export class CreateMovimentStockComponent implements OnInit {
     @Input() modal: any = "CreateMovimentStockModal"
     @Input() title: string = "Movimentar Stock"
     @Input() moviment_stock: any
-    //@Input() movimentStockForm: FormGroup
-
-
 
     submitted = false
     products: any = []
     providers: any = []
     stores: any = []
+    kind_moviments: any = [
+        {
+            name: 'Entrada',
+            value: 'entrada'
+        },
+        {
+            name: 'Saida',
+            value: 'saida'
+        },
+        {
+            name: 'Transferência',
+            value: 'transferencia'
+        }
+    ]
     
     constructor(
-        public _formBuild: FormBuilder
-    ) {}
-
-      
-    /*
-    constructor(
+        public _formBuild: FormBuilder,
+        private _storeService: StoresService,
         private _stockService: StocksService,
+        private _applicationService: ApplicationService,
         private _productService: ProductsService,
         private _providerService: ProvidersService,
-        private _storeService: StoresService,
-        private _applicationService: ApplicationService,
-        private _formBuild: FormBuilder
+        private router: Router
     ) {
-
-
-
-        this.movimentStockForm = this._formBuild.group({
-            uuid: [{ value: null, disabled: true }],
-            quantity: [ 1, Validators.required ],
-            kind_moviment: ["entrada", Validators.required],
-            provider_uuid: [null, Validators.required],
-            product_uuid: [null, Validators.required],
-            store_uuid: [null, Validators.required]
-        })
-
-        this.loading_init()
-
-        
+        this.loading()
     }
 
-    */
-
     ngOnInit(): void {
-        this.creatForm();
+        this.creatForm()
     }
 
 
@@ -82,16 +78,17 @@ export class CreateMovimentStockComponent implements OnInit {
 
     contactFrom(){
         return this._formBuild.group({
-            phone: [null],
-            email: [null]
+            uuid: [{ value: null, disabled: true }],
+            quantity: [ 1, Validators.required ],
+            kind_moviment: ['entrada', Validators.required],
+            provider_uuid: [null, Validators.required],
+            product_uuid: [null, Validators.required],
+            store_uuid: [null, Validators.required]
         })
     }
 
     addNewContacts(){
-        this.contacts.push(this.contactFrom());
-
-        console.log( this.contacts.controls )
-
+        this.contacts.push(this.contactFrom())
     }
 
     removeContact(i:Required<number>){
@@ -103,41 +100,57 @@ export class CreateMovimentStockComponent implements OnInit {
     }
 
     onSave(){
-        //console.log(this._formBuild.value )
-        //this.result = this._formBuild.value;
+        this.submitted = true
+        let moviments = this.movimentStockForm.value.contacts
+        this._create(moviments)
+
     }
 
-
-
-
-
-    /*
-
-        loading_init(){
-        this._productService
-        .get_products()
+    _create(moviments: any) {
+        this._stockService.create_stock_moviment(moviments)
         .subscribe(response => {
-            this.products = Object(response).items
+            this.submitted = false;
+            this.loading()
+            this._applicationService.SwalSuccess("Stock atualizado com sucesso!");
+            this.router.navigate(['/managers/listing-stocks'])
         })
+    }
 
+    loading(){
+
+        this.get_providers()
+        this.get_products()
+        this.get_stores()
+
+    }
+
+    get_providers(){
         this._providerService
         .get_providers()
         .subscribe(response => {
             this.providers = Object(response)
         })
+    }
 
+    get_stores(){
         this._storeService
         .get_stores()
         .subscribe(response => {
             this.stores = Object(response)
         })
+    }
 
-        this._stockService
-        .get_stocks()
+    get_products(){
+        this._productService
+        .get_products()
         .subscribe(response => {
-            this._stockService.stocks = Object(response)
+            this.products = Object(response).items
         })
     }
+
+    /*
+
+
 
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
         if (this.moviment_stock !== undefined) {
@@ -166,16 +179,7 @@ export class CreateMovimentStockComponent implements OnInit {
         this._create(this.movimentStockForm.value)
     }
 
-    _create(form: FormGroup) {
-        this._stockService.create_stock_moviment(form)
-        .subscribe(response => {
-            this._applicationService.CloseModal('CreateMovimentStockModal')
-            this.submitted = false;
-            this.loading_init()
-            this._applicationService.SwalSuccess("Registo feito com sucesso!");
-            this.onReset()
-        })
-    }
+
 
     */
 
