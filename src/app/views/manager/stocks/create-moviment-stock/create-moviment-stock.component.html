@@ -34,28 +34,26 @@
                         <div class="col-md-3">{{ 'Fornecedor' | translate}}</div>
                     </div>
 
+
                     <div [formGroup]="movimentStockForm">
-                        <div>
-                            <div class="row" formArrayName="contacts"
-                                *ngFor="let o of contacts.controls; let i = index">
-                                <div class="row mt-2" [formGroupName]="i">
-                                    <div class="col-md-1">
-                                        <button (click)="removeContact(i)" class="btn delete-item btn-sm">
-                                            <i class="fa fa-times-circle text-danger fa-lg"></i>
-                                        </button>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <input formControlName="phone" type="text" class="form-control">
-                                    </div>
-                                    <div class="col-md-3">
-                                        <input formControlName="phone" type="text" class="form-control">
-                                    </div>
-                                    <div class="col-md-2">
-                                        <input formControlName="phone" type="text" class="form-control">
-                                    </div>
-                                    <div class="col-md-3">
-                                        <input formControlName="phone" type="text" class="form-control">
-                                    </div>
+                        <div class="row" formArrayName="contacts" *ngFor="let o of contacts.controls; let i = index">
+                            <div class="row mt-2" [formGroupName]="i">
+                                <div class="col-md-1">
+                                    <button (click)="removeContact(i)" class="btn delete-item btn-sm">
+                                        <i class="fa fa-times-circle text-danger fa-lg"></i>
+                                    </button>
+                                </div>
+                                <div class="col-md-3">
+                                    <input formControlName="phone" type="text" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                    <input formControlName="phone" type="text" class="form-control">
+                                </div>
+                                <div class="col-md-2">
+                                    <input formControlName="phone" type="text" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                    <input formControlName="phone" type="text" class="form-control">
                                 </div>
                             </div>
                         </div>
