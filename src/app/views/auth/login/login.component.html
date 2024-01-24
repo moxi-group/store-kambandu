@@ -27,13 +27,13 @@
                         </div>
                     </div>
                 </div>
-                <ul class="navbar-nav mr-auto">
+               <!--  <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <span class="nav-link-inner--text">Dashboard</span>
                         </a>
                     </li>
-                </ul>
+                </ul> -->
 
                 <hr class="d-lg-none" />
                 <ul class="navbar-nav align-items-lg-center ml-lg-auto">
@@ -80,13 +80,13 @@
         </div>
         <!-- Page content -->
         <div class="container mt--8 pb-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-4 col-md-7">
+            <div class="row justify-content-center" >
+                <div class="col-lg-4 col-md-7" >
                     <div class="card bg-secondary border-0 mb-0">
 
                         <div class="card-body px-lg-5 py-lg-5">
                             <div class="text-center text-muted mb-4">
-                                <small>{{'sign_in' | translate}}</small>
+                                <strong class="format_bold" style="font-weight: bold !important;">{{'sign_in' | translate}}</strong>
                             </div>
                             <form role="form">
                                 <div class="form-group mb-3">
@@ -111,7 +111,7 @@
                                 <div class="text-center">
                                     <button [disabled]='loading' (click)="_signIn()" type="button"
                                         class="btn btn-primary my-4 btn-block">
-                                        {{'sign_in' | translate}}
+                                        {{'Entrar' | translate}}
                                         <spinner [loading]='loading'></spinner>
                                     </button>
                                 </div>
