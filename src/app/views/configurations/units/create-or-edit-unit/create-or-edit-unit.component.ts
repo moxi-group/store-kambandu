@@ -70,8 +70,7 @@ export class CreateOrEditUnitComponent implements OnInit {
 
   _create(form: FormGroup) {
     this._unitsService.create(form).subscribe((response) => {
-
-
+      this._applicationService.CloseModal('CreateOrEditUnitModal')
       this.submitted = false;
       this.get_products();
       this._applicationService.SwalSuccess('Registo feito com sucesso!');
@@ -81,6 +80,8 @@ export class CreateOrEditUnitComponent implements OnInit {
 
   _update(uuid: string, form: FormGroup) {
     this._unitsService.update(uuid, form).subscribe((res) => {
+      this._applicationService.CloseModal('CreateOrEditUnitModal')
+
       this.submitted = false;
       this.get_products();
       this._applicationService.SwalSuccess('Registo feito com sucesso!');

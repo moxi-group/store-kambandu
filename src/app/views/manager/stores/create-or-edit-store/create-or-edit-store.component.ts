@@ -72,6 +72,8 @@ export class CreateOrEditStoreComponent implements OnInit {
     _create(form: FormGroup) {
         this._storeService.create(form)
         .subscribe(response => {
+            this._applicationService.CloseModal('CreateOrEditStoreModal')
+
             this.submitted = false;
             this.get_stores()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
@@ -82,6 +84,8 @@ export class CreateOrEditStoreComponent implements OnInit {
     _update(uuid: string, form: FormGroup){
         this._storeService.update(uuid, form)
         .subscribe(res => {
+            this._applicationService.CloseModal('CreateOrEditStoreModal')
+
             this.submitted = false;
             this.get_stores()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");

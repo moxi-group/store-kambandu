@@ -47,7 +47,6 @@ export class EmployeesComponent implements OnInit {
             if (result.isConfirmed) {
                 await this._employeesService.turn_employee_manager( collaborator.uuid )
                 .subscribe(result => {
-                    console.log( result )
                     Swal.fire("Acesso de Gestor dado com sucesso", "", "success");
                 })
             } else if (result.isDenied) {

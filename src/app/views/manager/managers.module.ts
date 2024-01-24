@@ -41,6 +41,10 @@ import { CancelInvoiceComponent } from './invoices/cancel-invoice/cancel-invoice
 import { SalesBoxesComponent } from './sales-boxes/sales-boxes.component';
 import { EditSaleBoxeComponent } from './sales-boxes/edit-sale-boxe/edit-sale-boxe.component';
 import { ComposerProductComponent } from './stocks/composer-product/composer-product.component';
+import { MovimentsStockComponent } from './stocks/moviments-stock/moviments-stock.component';
+import { AnaliticsStockComponent } from './stocks/analitics-stock/analitics-stock.component';
+import { SaftAoComponent } from './saft-ao/saft-ao.component';
+import { GenerateSaftComponent } from './saft-ao/generate-saft/generate-saft.component';
 
 
 
@@ -78,8 +82,6 @@ const ngWizardConfig: NgWizardConfig = {
         ProvidersComponent,
         CreateOrEditProviderComponent,
 
-        StocksComponent,
-        CreateMovimentStockComponent,
         ListMovimentStockComponent,
         ComposerProductComponent,
 
@@ -93,6 +95,15 @@ const ngWizardConfig: NgWizardConfig = {
         SalesBoxesComponent,
         EditSaleBoxeComponent,
 
+        StocksComponent,
+        CreateMovimentStockComponent,
+        MovimentsStockComponent,
+        AnaliticsStockComponent,
+        SaftAoComponent,
+        GenerateSaftComponent,
+
+        SaftAoComponent,
+        GenerateSaftComponent
 
 
     ],

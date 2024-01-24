@@ -73,6 +73,7 @@ export class CreateOrEditSerieComponent implements OnInit {
     _create(form: FormGroup) {
         this._serieService.create(form)
         .subscribe(response => {
+            this._applicationService.CloseModal('CreateOrEditSerieModal')
             this.submitted = false;
             this.get_series()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
@@ -83,6 +84,7 @@ export class CreateOrEditSerieComponent implements OnInit {
     _update(uuid: string, form: FormGroup){
         this._serieService.update(uuid, form)
         .subscribe(res => {
+            this._applicationService.CloseModal('CreateOrEditSerieModal')
             this.submitted = false;
             this.get_series()
             this._applicationService.SwalSuccess("Registo feito com sucesso!");

@@ -52,9 +52,10 @@ export class EditSaleBoxeComponent implements OnInit {
     }
 
     _create(form: FormGroup) {
-
         this._salesService.close_box_sale(this.sale_box.uuid, form)
         .subscribe(response => {
+            this._applicationService.CloseModal('EditSaleBoxModal')
+
             this.submitted = false;
             this._applicationService.SwalSuccess("Caixa fechado com sucesso!");
             this.get_sales()

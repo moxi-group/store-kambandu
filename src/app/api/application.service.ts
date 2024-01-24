@@ -29,6 +29,10 @@ export class ApplicationService {
     // ===================================== PERMISSIONS =========================================
 
 
+    CloseModal(modalId: string){
+        let element: any = document.getElementById(modalId)
+        element.click()
+    }
 
     SwalSuccess(title: string){
         Swal.fire({
