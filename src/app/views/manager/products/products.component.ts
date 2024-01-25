@@ -10,6 +10,7 @@ import { FilterService } from 'src/app/services/filter.service';
 })
 export class ProductsComponent implements OnInit {
     product: any = {}
+    loading: boolean = false
 
     filter_options: any = [
         {
@@ -42,11 +43,13 @@ export class ProductsComponent implements OnInit {
     }
 
     _onTableDataChange(filterEmit: any): void{
+        this.loading = true
         this._filterService.pagination = filterEmit
         this._productsService
         .get_products( this._filterService.pagination )
         .subscribe(response => {
             this._productsService.products = Object(response)
+            this.loading = false
         })
     }
 

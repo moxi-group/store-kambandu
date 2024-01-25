@@ -8,10 +8,10 @@ import { DocumentsService } from './documents.service';
   styleUrls: ['./documents.component.scss']
 })
 export class DocumentsComponent implements OnInit {
-
+    loading: any
     document: any = {}
     documents: any = []
-    
+
     constructor(
         private _documentService: DocumentsService,
         public translate: TranslateService
@@ -28,10 +28,12 @@ export class DocumentsComponent implements OnInit {
     }
 
     get_documents() {
+       this.loading = true
         this._documentService
         .get_documents()
         .subscribe(response => {
             this.documents = Object(response)
+            this.loading = false
         })
     }
 

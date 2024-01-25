@@ -14,6 +14,7 @@ import { FilterService } from 'src/app/services/filter.service';
 
 export class SalesBoxesComponent implements OnInit {
     sale_box: any = {}
+    loading: boolean = false
 
     filter_options: any = [
         {
@@ -37,16 +38,18 @@ export class SalesBoxesComponent implements OnInit {
     ngOnInit(): void {
         this.loading_data()
     }
-    
+
     loading_data() {
         this._onTableDataChange( this._filterService.pagination )
     }
 
     _onTableDataChange(filterEmit: any): void{
+        this.loading =  true
         this._salesService
         .get_seles_boxes(this._filterService.pagination)
         .subscribe(response => {
             this._salesService.sales_boxes = Object(response)
+            this.loading = false
         })
     }
 
@@ -65,7 +68,7 @@ export class SalesBoxesComponent implements OnInit {
         let created_at = new Date(sale_box.created_at)
 
         sale_box.created_at = created_at.toISOString().split('T')[0]
-        
+
         this._printService
         .cash_summaries( sale_box )
         .subscribe(response => {
@@ -85,7 +88,7 @@ export class SalesBoxesComponent implements OnInit {
                 saveAs(blobUrl, `resumo-de-caixa.pdf`);
                 URL.revokeObjectURL(blobUrl);
             }
-            
+
         }, (error) => {
             if ( error.status === 404) {
                 this._applicationService.SwalDanger('Template de Imprensão não encontrado')
@@ -94,6 +97,6 @@ export class SalesBoxesComponent implements OnInit {
             }
         })
     }
-    
+
 
 }

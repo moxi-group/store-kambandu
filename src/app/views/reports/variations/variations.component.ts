@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./variations.component.scss']
 })
 export class VariationsComponent implements OnInit {
-
+  loading: boolean =  false
   constructor() { }
 
   ngOnInit(): void {

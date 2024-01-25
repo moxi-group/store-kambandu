@@ -9,14 +9,14 @@ import { ProvidersService } from './providers.service';
 })
 
 export class ProvidersComponent implements OnInit {
-
+    loading: boolean = false
     provider: any = {}
 
     constructor(
         public _providerService: ProvidersService,
         public translate: TranslateService
     ) {
-        
+
     }
 
     ngOnInit(): void {
@@ -28,10 +28,12 @@ export class ProvidersComponent implements OnInit {
     }
 
     get_providers() {
+        this.loading = true
         this._providerService
         .get_providers()
         .subscribe(response => {
             this._providerService.providers = Object(response)
+            this.loading = false
         })
     }
 
