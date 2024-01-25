@@ -22,7 +22,7 @@ export class ListMovimentStockComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        
+
     }
 
     ngOnChanges(){
@@ -64,10 +64,12 @@ export class ListMovimentStockComponent implements OnInit {
     }
 
     get_stocks() {
+        this.loading = true
         this._stockService
         .get_stocks()
         .subscribe(response => {
             this._stockService.stocks = Object(response)
+            this.loading = false
         })
     }
 

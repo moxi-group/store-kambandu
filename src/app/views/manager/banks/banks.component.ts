@@ -9,6 +9,7 @@ import { BanksService } from './banks.service';
 })
 export class BanksComponent implements OnInit {
     bank: any = {}
+    loading: boolean =  false
 
     constructor(
         public _bankService: BanksService,
@@ -24,10 +25,12 @@ export class BanksComponent implements OnInit {
     }
 
     get_banks() {
+        this.loading =  true
         this._bankService
         .get_banks()
         .subscribe(response => {
             this._bankService.banks = Object(response)
+            this.loading =  false
         })
     }
 

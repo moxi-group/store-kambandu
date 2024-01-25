@@ -10,6 +10,7 @@ import { FilterService } from 'src/app/services/filter.service';
 })
 export class UnitsComponent implements OnInit {
   unit: any = {};
+  loading: any
 
   filter_options: any = [
     {
@@ -41,11 +42,13 @@ export class UnitsComponent implements OnInit {
   }
 
   _onTableDataChange(filterEmit: any): void {
+    this.loading =  true
     this._filterService.pagination = filterEmit;
     this.__unitsService
       .get_units(this._filterService.pagination)
       .subscribe((response) => {
         this.__unitsService.units = Object(response);
+        this.loading = false
       });
   }
 

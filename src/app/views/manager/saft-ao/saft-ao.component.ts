@@ -10,6 +10,7 @@ import { saveAs } from 'file-saver';
 })
 export class SaftAoComponent implements OnInit {
     saft: any = {}
+    loading: boolean = false
 
     constructor(
         public _saftService: SaftService,
@@ -25,10 +26,12 @@ export class SaftAoComponent implements OnInit {
     }
 
     get_series() {
+        this.loading = true
         this._saftService
         .get_safts()
         .subscribe(response => {
             this._saftService.safts = Object(response)
+            this.loading = false
         })
     }
 

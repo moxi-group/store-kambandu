@@ -9,6 +9,7 @@ import { CategoriesService } from './categories.service';
 })
 export class CategoryComponent implements OnInit {
     category: any = {}
+    loading: boolean = false
 
     constructor(
         public _categoryService: CategoriesService,
@@ -25,10 +26,12 @@ export class CategoryComponent implements OnInit {
     }
 
     get_categories() {
+        this.loading =  true
         this._categoryService
         .get_categories()
         .subscribe(response => {
             this._categoryService.categories = Object(response)
+            this.loading = false
         })
     }
 

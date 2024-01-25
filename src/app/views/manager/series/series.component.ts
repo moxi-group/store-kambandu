@@ -10,12 +10,13 @@ import { SeriesService } from './series.service';
 
 export class SeriesComponent implements OnInit {
     serie: any = {}
+    loading: boolean = false
 
     constructor(
         public _serieService: SeriesService,
         public translate: TranslateService
     ) {
-        
+
     }
 
     ngOnInit(): void {
@@ -27,11 +28,13 @@ export class SeriesComponent implements OnInit {
     }
 
     get_series() {
-        this._serieService
+       this.loading = true
+       this._serieService
         .get_series()
         .subscribe(response => {
             this._serieService.series = Object(response)
-        })
+            this.loading = false
+      })
     }
 
     pachValue(item: any) {

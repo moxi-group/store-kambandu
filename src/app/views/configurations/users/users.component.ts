@@ -28,10 +28,13 @@ export class UsersComponent implements OnInit {
     }
 
     get_users() {
+      this.loading = true
         this.userService
         .get_users()
         .subscribe(response => {
             this.users = Object(response)
+            this.loading = false
+
         })
     }
 

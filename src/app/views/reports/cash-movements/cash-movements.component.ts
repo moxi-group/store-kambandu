@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cash-movements.component.scss']
 })
 export class CashMovementsComponent implements OnInit {
-
+  loading: boolean = false
   constructor() { }
 
   ngOnInit(): void {

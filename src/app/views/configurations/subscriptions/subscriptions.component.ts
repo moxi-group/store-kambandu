@@ -12,6 +12,7 @@ import { ApplicationService } from 'src/app/api/application.service';
 export class SubscriptionsComponent implements OnInit {
     subscription: any = {}
     subscriptions: any = []
+    loading: boolean = false
 
     constructor(
         private subscriptionService: SubscriptionsService,
@@ -30,10 +31,13 @@ export class SubscriptionsComponent implements OnInit {
     }
 
     get_subscriptions() {
+        this.loading = true
         this.subscriptionService
         .get_subscriptions()
         .subscribe(response => {
             this.subscriptions = Object(response)
+            this.loading = false
+
         })
     }
 

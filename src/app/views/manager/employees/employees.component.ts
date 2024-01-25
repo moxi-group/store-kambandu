@@ -11,6 +11,7 @@ import Swal  from 'sweetalert2'
 })
 export class EmployeesComponent implements OnInit {
     employee: any = {}
+    loading: boolean = false
 
     constructor(
         public _employeesService: EmployeesService,
@@ -26,10 +27,13 @@ export class EmployeesComponent implements OnInit {
     }
 
     get_stores() {
+        this.loading = true
         this._employeesService
         .get_employees()
         .subscribe(response => {
             this._employeesService.employees = Object(response)
+            this.loading = true
+
         })
     }
 
