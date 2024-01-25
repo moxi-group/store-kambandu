@@ -18,7 +18,8 @@ export class StocksComponent implements OnInit {
     moviment_stock: any = {}
     stock: any = {}
     product_constitution: any = {}
-    
+    loading: boolean = false
+
     filter: any = {
         pagination: {
             page: 1,
@@ -52,7 +53,7 @@ export class StocksComponent implements OnInit {
     }
 
     _onTableDataChange(event: any): void{
-        this.filter.pagination.page = Number.isInteger(event) ? event : 1 
+        this.filter.pagination.page = Number.isInteger(event) ? event : 1
         this.get_stocks()
     }
 
@@ -61,10 +62,12 @@ export class StocksComponent implements OnInit {
     }
 
     get_stocks() {
+        this.loading = true
         this._stockService
         .get_stocks( this.filter.pagination )
         .subscribe(response => {
             this._stockService.stocks = Object(response)
+            this.loading =  false
         })
     }
 
@@ -97,7 +100,7 @@ export class StocksComponent implements OnInit {
                 saveAs(blobUrl, `resumo-report-${Date.now()}.xlsx`);
                 URL.revokeObjectURL(blobUrl);
             }
-            
+
         }, (error) => {
             if ( error.status === 404) {
                 this._applicationService.SwalDanger('Template de Imprensão não encontrado')

@@ -8,14 +8,14 @@ import { TranslateService } from '@ngx-translate/core';
     styleUrls: ['./stores.component.scss']
 })
 export class StoresComponent implements OnInit {
-
+    loading: boolean =  false
     store: any = {}
 
     constructor(
         public _storeService: StoresService,
         public translate: TranslateService
     ) {
-        
+
     }
 
     ngOnInit(): void {
@@ -27,10 +27,12 @@ export class StoresComponent implements OnInit {
     }
 
     get_stores() {
+        this.loading = true
         this._storeService
         .get_stores()
         .subscribe(response => {
             this._storeService.stores = Object(response)
+            this.loading = false
         })
     }
 

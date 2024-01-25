@@ -8,6 +8,7 @@ import { PaymentMethodsService } from './payment-methods.service';
     styleUrls: ['./payment-methods.component.scss']
 })
 export class PaymentMethodsComponent implements OnInit {
+    loading: any
     payment_method: any = {}
     payment_methods: any = []
 
@@ -25,10 +26,13 @@ export class PaymentMethodsComponent implements OnInit {
     }
 
     get_users() {
+      this.loading = true
         this._paymentMethodsService
         .get_payment_methods()
         .subscribe(response => {
             this.payment_methods = Object(response)
+            this.loading = false
+
         })
     }
 

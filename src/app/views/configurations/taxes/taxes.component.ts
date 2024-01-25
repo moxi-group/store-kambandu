@@ -8,6 +8,7 @@ import { TaxesService } from './taxes.service';
     styleUrls: ['./taxes.component.scss']
 })
 export class TaxesComponent implements OnInit {
+    loading: boolean = false
     tax: any = {}
     taxes: any = []
 
@@ -25,10 +26,12 @@ export class TaxesComponent implements OnInit {
     }
 
     get_users() {
+      this.loading = true
         this._taxService
         .get_taxes()
         .subscribe(response => {
             this.taxes = Object(response)
+            this.loading =  false
         })
     }
 

@@ -34,6 +34,13 @@ export class ReporterService {
         )
     }
 
-
+    report_moviments_stocks(data: any){
+        let doc_uuid = 'fec64b76-4707-4db5-ac31-8b1a0c3abbc2'
+                
+        return this._http_client.post(
+            `${environment.invoiceServe.baseUrl}/${doc_uuid}/generate?output_format=xlsx`,
+            data, { responseType: 'blob', }
+        )
+    }
 
 }

@@ -8,6 +8,7 @@ import { FormatCurrencyPipe } from '../pipes/currency.pipe';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FilterComponent } from './components/filter/filter.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 
 
@@ -15,7 +16,8 @@ import { FilterComponent } from './components/filter/filter.component';
     declarations: [
         FormatCurrencyPipe,
         SpinnerComponent,
-        FilterComponent
+        FilterComponent,
+        LoadingComponent
     ],
     imports: [
         CommonModule,
@@ -26,7 +28,8 @@ import { FilterComponent } from './components/filter/filter.component';
         FormatCurrencyPipe,
         NgxPaginationModule,
         SpinnerComponent,
-        FilterComponent
+        FilterComponent,
+        LoadingComponent
     ]
 })
 

@@ -19,6 +19,7 @@ export class ComposerProductComponent implements OnInit {
 
     submitted = false
     disabled_check = false
+    loading: boolean = false
 
     association_products: any = []
     composed_products: any = []
@@ -64,7 +65,7 @@ export class ComposerProductComponent implements OnInit {
             product_uuid: item.product_uuid,
             quantity: item.quantity
         }))
-        
+
         this._stockService.associate_composition(products, this.stock.product_uuid)
         .subscribe(response => {
             this.submitted = false;
@@ -72,12 +73,12 @@ export class ComposerProductComponent implements OnInit {
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this.onReset()
         })
-        
+
     }
 
     _set_associate_product(product: any){
         let exist = this.composed_products.find((item: any) => item.product_uuid === product.product_uuid)
-        
+
         if( exist ){
             product.quantity = 1
             this.composed_products = this.composed_products
@@ -98,11 +99,12 @@ export class ComposerProductComponent implements OnInit {
     }
 
     get_products_map() {
+        this.loading = true
         this._productService
         .get_products()
         .subscribe(response => {
             let result = Object(response)
-            
+
             this.association_products = result.items.map((product: any) => ({
                 stock_uuid: this.stock.uuid,
                 product_uuid: product.uuid,
@@ -110,6 +112,8 @@ export class ComposerProductComponent implements OnInit {
                 quantity: 1,
                 cheked: false
             }))
+
+            this.loading = false
         })
     }
 
@@ -119,7 +123,7 @@ export class ComposerProductComponent implements OnInit {
 
 
 
-        if ( this.productForm.getRawValue().is_composed && this.composed_products.length === 0) {            
+        if ( this.productForm.getRawValue().is_composed && this.composed_products.length === 0) {
             this._applicationService.SwalDangerConfirmation("Produtos compostos devem ter os seus associados!");
             return;
         }

@@ -9,6 +9,7 @@ import { CustomersService } from './customers.service';
 })
 export class CustomersComponent implements OnInit {
     customer: any = {}
+    loading: boolean = false
 
     constructor(
         public _customersService: CustomersService,
@@ -24,10 +25,12 @@ export class CustomersComponent implements OnInit {
     }
 
     get_customers() {
+        this.loading = true
         this._customersService
         .get_customers()
         .subscribe(response => {
             this._customersService.customers = Object(response)
+            this.loading = false
         })
     }
 

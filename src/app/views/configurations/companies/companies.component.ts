@@ -9,7 +9,7 @@ import { TranslateService } from '@ngx-translate/core'
 })
 
 export class CompaniesComponent implements OnInit {
-
+    loading: any
     company: any = {}
     companies: any = []
 
@@ -28,10 +28,12 @@ export class CompaniesComponent implements OnInit {
     }
 
     get_companies() {
+      this.loading = true
         this.companyService
         .get_companies()
         .subscribe(response => {
             this.companies = Object(response)
+            this.loading = false
         })
     }
 

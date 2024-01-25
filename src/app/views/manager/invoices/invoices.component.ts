@@ -16,6 +16,7 @@ import { PrintsService } from 'src/app/services/prints.service';
 export class InvoicesComponent implements OnInit {
     invoice: any = {}
     invoices: any = []
+    loading: boolean = false
 
     filter_options: any = [
         {
@@ -31,7 +32,7 @@ export class InvoicesComponent implements OnInit {
             description: 'Data'
         }
     ]
-    
+
     constructor(
         public _filterService: FilterService,
         public _invoicesService: InvoicesService,
@@ -49,11 +50,13 @@ export class InvoicesComponent implements OnInit {
     }
 
     _onTableDataChange(filterEmit: any): void{
+        this.loading = true
         this._filterService.pagination = filterEmit
         this._invoicesService
         .get_invoices( this._filterService.pagination )
         .subscribe(response => {
             this.invoices = Object(response)
+            this.loading = false
         })
     }
 
@@ -67,7 +70,7 @@ export class InvoicesComponent implements OnInit {
         invoice = Object.assign(invoice, {company: company_data ? JSON.parse(company_data) : {}})
         let created_at = new Date(invoice.created_at)
         invoice.created_at = created_at.toISOString().split('T')[0]
-        
+
         this._invoicesService
         .print(invoice)
         .subscribe(response => {
@@ -91,7 +94,7 @@ export class InvoicesComponent implements OnInit {
                 // Clean up the URL object to release resources
                 URL.revokeObjectURL(blobUrl);
             }
-            
+
         }, (error) => {
             if ( error.status === 404) {
                 this._applicationService.SwalDanger('Template de Imprensão não encontrado')
@@ -122,9 +125,9 @@ export class InvoicesComponent implements OnInit {
             delete data[index].payments;
             delete data[index].lines;
             delete data[index].taxes_resume;
-            
+
         }
-        
+
         return items
     }
 
@@ -150,7 +153,7 @@ export class InvoicesComponent implements OnInit {
                 saveAs(blobUrl, `resumo-report-${Date.now()}.xlsx`);
                 URL.revokeObjectURL(blobUrl);
             }
-            
+
         }, (error) => {
             if ( error.status === 404) {
                 this._applicationService.SwalDanger('Template de Imprensão não encontrado')
@@ -159,6 +162,6 @@ export class InvoicesComponent implements OnInit {
             }
         })
     }
-    
+
 
 }

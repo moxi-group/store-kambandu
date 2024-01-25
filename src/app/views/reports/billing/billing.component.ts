@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./billing.component.scss']
 })
 export class BillingComponent implements OnInit {
-
+  loading: boolean = false
   constructor() { }
 
   ngOnInit(): void {

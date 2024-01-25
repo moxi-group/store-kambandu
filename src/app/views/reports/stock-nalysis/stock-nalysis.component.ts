@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./stock-nalysis.component.scss']
 })
 export class StockNalysisComponent implements OnInit {
-
+  loading: boolean = false
   constructor() { }
 
   ngOnInit(): void {

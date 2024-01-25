@@ -51,6 +51,13 @@ export class StocksService {
         )
     }
 
+    get_moviments_stock(filter: any = {}) {
+        return this._http_client.get<any>(
+            `${environment.fullBaseUrl}/stocks/moviments-stocks`, 
+            { params: filter, headers: this.headers }
+        )
+    }
+
     approve_moviment_stock(uuid: string) {        
         return this._http_client.get<any>(
             `${environment.fullBaseUrl}/stocks/approve-stock-moviment/${uuid}`,

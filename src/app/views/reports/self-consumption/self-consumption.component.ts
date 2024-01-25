@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./self-consumption.component.scss']
 })
 export class SelfConsumptionComponent implements OnInit {
-
+  loading: boolean = false
   constructor() { }
 
   ngOnInit(): void {
