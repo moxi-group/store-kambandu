@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 
 export class HeaderComponent implements OnInit {
     currentUser: any
+    currentCompany: any
 
     constructor(
         private _authService: AuthService,
@@ -18,6 +19,7 @@ export class HeaderComponent implements OnInit {
         public translate: TranslateService
     ) {
         this.currentUser = this._authService.current_user()
+        this.currentCompany = this._authService.current_company();
     }
 
     ngOnInit(): void {

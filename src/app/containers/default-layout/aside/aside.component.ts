@@ -18,7 +18,6 @@ export class AsideComponent implements OnInit {
   role_is: any = sessionStorage.getItem('CURRENT_ROLE');
 
   currentUser: any;
-  currentCompany: any
   
     ItensMenuStaff: any = []
     ItensMenuAdmin: any = []
@@ -31,7 +30,6 @@ export class AsideComponent implements OnInit {
         public route: Router
     ) {
       this.currentUser = this._authService.current_user();
-      this.currentCompany = this._authService.current_company();
       
     }
 
