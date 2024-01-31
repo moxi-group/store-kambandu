@@ -58,6 +58,13 @@ export class AuthService {
         return response
     }
 
+    current_company(): any {
+        let data: any = sessionStorage.getItem('CURRENT_COMPANY_DATA')
+        let response = JSON.parse(data)
+        return response
+    }
+
+
     removeTokenOfUser() {
         sessionStorage.removeItem('currentUser')
         sessionStorage.removeItem('sessionToken')

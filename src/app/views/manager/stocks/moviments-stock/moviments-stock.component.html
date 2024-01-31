@@ -7,17 +7,123 @@
                     <h6 class="h2 text-white d-inline-block mb-0">{{ 'Movimentos de Stock' | translate }}</h6>
                 </div>
                 <div class="col-lg-6 col-5 text-right">
-
-                    <button type='button' class="btn btn-outline-white btn-sm">
+                    <button (click)="_print_report_moviment_stock()" type='button' class="btn btn-outline-white btn-sm">
                         <span class="nav-link-text">{{ 'Exportar EXCEL' | translate }}</span>
-                    </button>
-
-                    <button type="button" class="btn btn-outline-default btn-sm" data-toggle="modal"
-                        data-target="#CreateMovimentStockModal">
-                        {{ 'Movimentar Stock' | translate }}
                     </button>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<!-- Page content -->
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header border-0">
+                    <div class="row align-items-center py-0">
+                        <div class="col-lg-1 p-filter">
+                            <div class="form-group">
+                                <label for="enter_by">Entrada</label>
+                                <select (change)='_onTableDataChange($event)' class="form-control" id="enter_by"
+                                    name="enter_by" [(ngModel)]="filter.pagination.limit">
+                                    <option>5</option>
+                                    <option>10</option>
+                                    <option>20</option>
+                                    <option>30</option>
+                                    <option>50</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 p-filter">
+                            <div class="form-group">
+                                <label for="filter_column">Data Início</label>
+                                <input type="date" name="start_date" id="start_date"
+                                    [(ngModel)]="filter.pagination.start_date" (keyup)="_onTableDataChange($event)"
+                                    placeholder="Pesquisa por ..." class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 p-filter">
+                            <div class="form-group">
+                                <label for="filter_column">Data Fim</label>
+                                <input type="date" name="end_date" id="end_date"
+                                    [(ngModel)]="filter.pagination.end_date" (keyup)="_onTableDataChange($event)"
+                                    placeholder="Pesquisa por ..." class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-1 p-filter">
+                            <div class="form-group">
+                                <button (click)="_search()" class='btn btn-success mt-4' type="button">Buscar</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- Light table -->
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>#</th>
+                                <th scope="col" class="sort">{{ 'Código' | translate}}</th>
+                                <th scope="col" class="sort">{{ 'Produto' | translate}}</th>
+                                <th scope="col" class="sort">{{ 'Preço' | translate}}</th>
+                                <th class="sort text-center">{{ 'Quant. Pendente' | translate}}</th>
+                                <th class="text-center">{{ 'Tipo' | translate}}</th>
+                                <th class="text-center">{{ 'Estado' | translate}}</th>
+                                <th class="sort text-right">{{ 'Data Registo' | translate}}</th>
+
+                            </tr>
+                        </thead>
+                        <tbody class="list" *ngIf="moviments_stocks.items">
+                            <tr *ngFor="let item of moviments_stocks.items | paginate: {
+                                itemsPerPage: filter.pagination.limit,
+                                currentPage: filter.pagination.page,
+                                totalItems: moviments_stocks.total
+                                } index as i">
+                                <td>{{ i+1 }}</td>
+                                <th scope="row"><span class="name mb-0 text-sm">{{ item?.product?.code }}</span></th>
+                                <th scope="row"><span class="name mb-0 text-sm">{{ item?.product?.name}}</span></th>
+                                <th scope="row"><span class="name mb-0 text-sm">{{ item?.product?.price |
+                                        to_kwanza}}</span></th>
+                                <td class="budget bg-warning text-center text-white">{{ item.quantity }}</td>
+                                <td class="text-center">{{ item.kind_moviment }}</td>
+                                <td class="text-center">
+                                    <button *ngIf="item.status == 'pending'" type="button"
+                                        class="btn btn-warning btn-sm">Pendente</button>
+                                    <button *ngIf="item.status == 'rejected'" type="button"
+                                        class="btn btn-danger btn-sm">Rejeitado</button>
+                                    <button *ngIf="item.status == 'approved'" type="button"
+                                        class="btn btn-success btn-sm">Aprovado</button>
+                                </td>
+                                <td class="budget text-light">{{ item.created_at | date }}</td>
+
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <hr>
+
+                    <div class='row justify-content-center'>
+                        <div class="col-5">
+                            <pagination-controls (pageChange)="_onTableDataChange($event)" previousLabel="Anterior"
+                                nextLabel="Proximo">
+                            </pagination-controls>
+                        </div>
+                    </div>
+                    <app-loading [loading]="this.loading"></app-loading>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 </div>
