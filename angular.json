@@ -62,14 +62,6 @@
               ],
               "outputHashing": "all"
             },
-            "staging": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.staging.ts"
-                }
-              ]
-            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
