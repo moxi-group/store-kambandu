@@ -32,7 +32,7 @@ export class EmployeesComponent implements OnInit {
         .get_employees()
         .subscribe(response => {
             this._employeesService.employees = Object(response)
-            this.loading = false
+            this.loading = true
 
         })
     }
