@@ -45,75 +45,79 @@ import { MovimentsStockComponent } from './stocks/moviments-stock/moviments-stoc
 import { AnaliticsStockComponent } from './stocks/analitics-stock/analitics-stock.component';
 import { SaftAoComponent } from './saft-ao/saft-ao.component';
 import { GenerateSaftComponent } from './saft-ao/generate-saft/generate-saft.component';
-import { InternalConsumptionComponent } from './internal-consumption/internal-consumption.component';
+
+
+
+
 
 const ngWizardConfig: NgWizardConfig = {
-  theme: THEME.default,
-};
+    theme: THEME.default
+}
 
 @NgModule({
-  declarations: [
-    ManagersComponent,
-    SeriesComponent,
-    CreateOrEditSerieComponent,
+    declarations: [
+        ManagersComponent,
+        SeriesComponent,
+        CreateOrEditSerieComponent,
 
-    InvoicesComponent,
-    CreateOrEditInvoiceComponent,
-    AddCustomerAndInvoiceKindComponent,
-    AddProductInvoiceComponent,
-    CancelInvoiceComponent,
+        InvoicesComponent,
+        CreateOrEditInvoiceComponent,
+        AddCustomerAndInvoiceKindComponent,
+        AddProductInvoiceComponent,
+        CancelInvoiceComponent,
 
-    AddQuantityInvoiceComponent,
-    ReceiptsComponent,
-    CreateOrEditReceiptComponent,
-    ProductsComponent,
-    CreateOrEditProductComponent,
-    CustomersComponent,
-    CreateOrEditCustomerComponent,
-    BanksComponent,
-    CreateOrEditBankComponent,
+        AddQuantityInvoiceComponent,
+        ReceiptsComponent,
+        CreateOrEditReceiptComponent,
+        ProductsComponent,
+        CreateOrEditProductComponent,
+        CustomersComponent,
+        CreateOrEditCustomerComponent,
+        BanksComponent,
+        CreateOrEditBankComponent,
 
-    StoresComponent,
-    CreateOrEditStoreComponent,
+        StoresComponent,
+        CreateOrEditStoreComponent,
 
-    ProvidersComponent,
-    CreateOrEditProviderComponent,
+        ProvidersComponent,
+        CreateOrEditProviderComponent,
 
-    ListMovimentStockComponent,
-    ComposerProductComponent,
+        ListMovimentStockComponent,
+        ComposerProductComponent,
 
-    EmployeesComponent,
-    CreateOrEditEmployeeComponent,
-    AddUserToStoreComponent,
+        EmployeesComponent,
+        CreateOrEditEmployeeComponent,
+        AddUserToStoreComponent,
 
-    CategoryComponent,
-    CreateOrEditCategoryComponent,
+        CategoryComponent,
+        CreateOrEditCategoryComponent,
 
-    SalesBoxesComponent,
-    EditSaleBoxeComponent,
+        SalesBoxesComponent,
+        EditSaleBoxeComponent,
 
-    StocksComponent,
-    CreateMovimentStockComponent,
-    MovimentsStockComponent,
-    AnaliticsStockComponent,
-    SaftAoComponent,
-    GenerateSaftComponent,
+        StocksComponent,
+        CreateMovimentStockComponent,
+        MovimentsStockComponent,
+        AnaliticsStockComponent,
+        SaftAoComponent,
+        GenerateSaftComponent,
 
-    SaftAoComponent,
-    GenerateSaftComponent,
+        SaftAoComponent,
+        GenerateSaftComponent
 
-    InternalConsumptionComponent,
-  ],
 
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ManagersRoutingModule,
-    TranslateModule.forChild(),
-    SharedModule,
-    NgWizardModule.forRoot(ngWizardConfig),
-  ],
+    ],
+
+    imports: [
+        CommonModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        ManagersRoutingModule,
+        TranslateModule.forChild(),
+        SharedModule,
+        NgWizardModule.forRoot(ngWizardConfig)
+    ]
 })
-export class ManagersModule {}
+
+export class ManagersModule { }
