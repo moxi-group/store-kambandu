@@ -21,7 +21,6 @@
     "invoices": "Invoices",
     "billigs": "Facturação",
     "cash_movements": "Cash Movements",
-    "internal_consumption": "Internal Consumption",
     "variations": "Variations",
     "suppliers": "fornecedores",
     "self_consumption": "Self Consumption",
@@ -56,8 +55,7 @@
     "validate": "Validate",
     "approve": "approve",
     "change_role": "change role",
-    "more": "More",
-    "showing": "Details"
+    "more": "More"
   },
   "label": {
     "name": "Name",

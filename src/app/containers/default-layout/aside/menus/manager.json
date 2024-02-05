@@ -44,11 +44,6 @@
             "icon": "ni ni-tablet-button"
         },
         {
-          "name": "menu.internal_consumption",
-          "link": "/managers/internal-consumption",
-          "icon": "ni ni-single-02"
-        },
-        {
             "name": "Caixas de venda",
             "link": "/managers/caixas-vendas",
             "icon": "ni ni-tablet-button"
