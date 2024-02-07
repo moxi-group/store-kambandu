@@ -43,6 +43,10 @@ export class BillingComponent implements OnInit {
         this._onTableDataChange(this.filter.pagination)
     }
 
+    _search(){
+        this.get_reports()
+    }
+
     _onTableDataChange(event: any): void{
         this.filter.pagination.page = Number.isInteger(event) ? event : 1
         this.get_reports()
@@ -50,7 +54,7 @@ export class BillingComponent implements OnInit {
 
     get_reports(){
         this._reportsService
-        .reports_billigs(this._filterService.pagination)
+        .reports_billigs(this.filter.pagination)
         .subscribe(response => {
             this.report_list = Object(response)
             this.loading = false
@@ -58,8 +62,8 @@ export class BillingComponent implements OnInit {
     }
 
     _onTableDataChangePage(page: any){
-        this._filterService.pagination.page = page
-        this._onTableDataChange( this._filterService.pagination )
+        this.filter.pagination.page = page
+        this._onTableDataChange( this.filter.pagination )
     }
 
     _print_report_invoice() {
