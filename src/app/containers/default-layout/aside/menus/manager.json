@@ -45,20 +45,15 @@
         },
         {
             "isSub": true,
-            "id": "reports_and_bi",
-            "name": "Reports & BI",
+            "id": "reports",
+            "name": "header.reports.title",
             "link": "#",
-            "icon": "ni ni-archive-2",
+            "icon": "ni ni-chart-bar-32",
             "subMenu": [
                 {
-                    "name": "Relatório Faturação",
+                    "name": "menu.billigs",
                     "link": "/reports/billigs",
-                    "icon": "ni ni-ungroup"
-                },
-                {
-                    "name": "Meios de Pagamentos",
-                    "link": "/reports/payment-methods",
-                    "icon": "ni ni-ungroup"
+                    "icon": "ni ni-chart-bar-32"
                 }
             ]
         },
