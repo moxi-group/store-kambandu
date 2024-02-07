@@ -15,6 +15,11 @@
             ]
         },
         {
+            "name": "menu.invoices",
+            "link": "/managers/invoices",
+            "icon": "ni ni-tablet-button"
+        },
+        {
             "isSub": true,
             "id": "operations",
             "name": "header.operations.title",
@@ -39,14 +44,28 @@
             ]
         },
         {
-            "name": "menu.invoices",
-            "link": "/managers/invoices",
-            "icon": "ni ni-tablet-button"
+            "isSub": true,
+            "id": "reports_and_bi",
+            "name": "Reports & BI",
+            "link": "#",
+            "icon": "ni ni-archive-2",
+            "subMenu": [
+                {
+                    "name": "Relatório Faturação",
+                    "link": "/reports/billigs",
+                    "icon": "ni ni-ungroup"
+                },
+                {
+                    "name": "Meios de Pagamentos",
+                    "link": "/reports/payment-methods",
+                    "icon": "ni ni-ungroup"
+                }
+            ]
         },
         {
-          "name": "menu.internal_consumption",
-          "link": "/managers/internal-consumption",
-          "icon": "ni ni-collection"
+            "name": "menu.internal_consumption",
+            "link": "/managers/internal-consumption",
+            "icon": "ni ni-collection"
         },
         {
             "name": "Caixas de venda",

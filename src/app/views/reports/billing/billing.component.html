@@ -1,69 +1,126 @@
 <div class="header bg-green pb-6">
-  <div class="container-fluid">
-      <div class="header-body">
-          <div class="row align-items-center py-4">
-              <div class="col-lg-6 col-7">
-                  <h6 class="h2 text-white d-inline-block mb-0">{{ 'Relatório de Facturação' | translate }}</h6>
-              </div>
-             <!--  <div class="col-lg-6 col-5 text-right">
-                  <button type="button" class="btn btn-outline-default btn-sm" data-toggle="modal"
-                      data-target="#CreateOrEditCategoryModal">
-                      {{ 'btn.register' | translate }}
-                  </button>
-              </div> -->
-          </div>
-      </div>
-  </div>
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <h6 class="h2 text-white d-inline-block mb-0">{{ 'Relatório de Facturação' | translate }}</h6>
+                </div>
+                <div class="col-lg-6 col-5 text-right">
+                    <button (click)="_print_report_invoice()" type="button" class="btn btn-outline-white btn-sm">
+                        <span class="nav-link-text">{{
+                            "Exportar EXCEL" | translate
+                            }}</span>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Page content -->
 <div class="container-fluid mt--6">
-  <div class="row">
-      <div class="col">
-          <div class="card">
-              <!-- Card header -->
-              <div class="card-header border-0">
-              </div>
-              <!-- Light table -->
-              <div class="table-responsive">
-                  <table class="table align-items-center table-flush">
-                      <thead class="thead-light">
-                          <tr>
-                              <th>#</th>
-                              <th scope="col" class="sort">{{ 'table.name' | translate}}</th>
-                              <th scope="col" class="sort">{{ 'table.date' | translate}}</th>
-                              <th scope="col"></th>
-                          </tr>
-                      </thead>
-                      <tbody class="list">
-                          <tr >
-                              <td>kmgd</td>
-                              <th scope="row"><span class="name mb-0 text-sm">lkmsdlg</span></th>
-                              <td class="budget">kjnfadso</td>
-                              <td class="text-right">
-                                  <div class="dropdown">
-                                      <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                          <i class="fas fa-ellipsis-v"></i>
-                                      </a>
-                                      <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                          <button type="button" class="dropdown-item" data-toggle="modal"
-                                               data-target="#CreateOrEditCategoryModal">
-                                              {{ 'btn.update' | translate}}
-                                          </button>
-                                      </div>
-                                  </div>
-                              </td>
-                          </tr>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header border-0">
+                    <div class="row align-items-center py-0">
+                        <div class="col-lg-1 p-filter">
+                            <div class="form-group">
+                                <label for="enter_by">Entrada</label>
+                                <select (change)='_onTableDataChange($event)' class="form-control" id="enter_by"
+                                    name="enter_by" [(ngModel)]="filter.pagination.limit">
+                                    <option>5</option>
+                                    <option>10</option>
+                                    <option>20</option>
+                                    <option>30</option>
+                                    <option>50</option>
+                                </select>
+                            </div>
+                        </div>
 
-                      </tbody>
-                  </table>
-                <app-loading [loading]="this.loading"></app-loading>
+                        <div class="col-lg-3 p-filter">
+                            <div class="form-group">
+                                <label for="filter_column">Data Início</label>
+                                <input type="date" name="start_date" id="start_date"
+                                    [(ngModel)]="filter.pagination.start_date" (keyup)="_onTableDataChange($event)"
+                                    placeholder="Pesquisa por ..." class="form-control">
+                            </div>
+                        </div>
 
-              </div>
+                        <div class="col-lg-3 p-filter">
+                            <div class="form-group">
+                                <label for="filter_column">Data Fim</label>
+                                <input type="date" name="end_date" id="end_date"
+                                    [(ngModel)]="filter.pagination.end_date" (keyup)="_onTableDataChange($event)"
+                                    placeholder="Pesquisa por ..." class="form-control">
+                            </div>
+                        </div>
 
-          </div>
-      </div>
-  </div>
+                    </div>
+                </div>
+                <!-- Light table -->
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>#</th>
+                                <th class="sort">{{ "table.customer" | translate }}</th>
+                                <th class="sort">{{ "table.sigla_doc" | translate }}</th>
+                                <th class="sort">{{ "table.sequence" | translate }}</th>
+                                <th class="text-center">{{ "table.status" | translate }}</th>
+                                <th class="text-right">{{ "table.total" | translate }}</th>
+                                <th class="text-right">
+                                    {{ "table.open_amount" | translate }}
+                                </th>
+                                <th class="sort">{{ "table.date" | translate }}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="list" *ngIf="report_list.items">
+                            <tr *ngFor="
+                                let item of report_list.items
+                                  | paginate
+                                    : {
+                                        itemsPerPage: _filterService.pagination.limit,
+                                        currentPage: _filterService.pagination.page,
+                                        totalItems: report_list.total
+                                      };
+                                index as i
+                              " class="{{ item.status === 'A' ? 'bg-danger-line' : '' }}">
+                                <td>{{ i + 1 }}</td>
+                                <th scope="row">
+                                    <span class="name mb-0 text-sm">{{
+                                        item.customer.name
+                                        }}</span>
+                                </th>
+                                <th scope="row">
+                                    <span class="name mb-0 text-sm">{{ item.sigla_doc }}</span>
+                                </th>
+                                <td class="text-center">{{ item.sequence }}</td>
+                                <td class="m-0 text-center">
+                                    <span class="badge badge-lg badge-{{
+                                    item.status === 'N' ? 'success' : 'danger'
+                                  }}">{{ "table." + item.status | translate }}</span>
+                                </td>
+                                <td class="text-right">{{ item.total | to_kwanza }}</td>
+                                <td class="text-right">{{ item.open_amount | to_kwanza }}</td>
+                                <td class="budget">{{ item.created_at | date }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <app-loading [loading]="this.loading"></app-loading>
+                    <hr />
+
+                    <div class="d-flex justify-content-center">
+                        <pagination-controls (pageChange)="_onTableDataChangePage($event)" previousLabel="Anterior"
+                            nextLabel="Proximo">
+                        </pagination-controls>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 </div>
