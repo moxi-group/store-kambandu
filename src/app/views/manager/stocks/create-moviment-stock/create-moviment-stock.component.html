@@ -7,9 +7,7 @@
                     <h6 class="h2 text-white d-inline-block mb-0">{{ 'Atualizar Stock' | translate }}</h6>
                 </div>
                 <div class="col-lg-6 col-5 text-right">
-                    <button class="btn btn-outline-default btn-sm" (click)="addNewContacts()">
-                        Adicionar Produto
-                    </button>
+
                 </div>
             </div>
         </div>
@@ -31,12 +29,12 @@
                     <div class="row">
                         <div class="col-md-1">{{ 'Acção' | translate}}</div>
                         <div class="col-md-2">{{ 'Produto' | translate}}</div>
-                        <div class="col-md-2">{{ 'Quantidade' | translate}}</div>
+                        <div class="col-md-1">{{ 'Quant.' | translate}}</div>
+                        <div class="col-md-2">{{ 'Preço Compra' | translate}}</div>
                         <div class="col-md-2">{{ 'Operação' | translate}}</div>
-                        <div class="col-md-3">{{ 'Fornecedor' | translate}}</div>
+                        <div class="col-md-2">{{ 'Fornecedor' | translate}}</div>
                         <div class="col-md-2">{{ 'Loja/Armazem' | translate}}</div>
                     </div>
-
 
                     <div [formGroup]="movimentStockForm">
                         <div class="row" formArrayName="contacts" *ngFor="let o of contacts.controls; let i = index">
@@ -53,8 +51,13 @@
                                             product.price | to_kwanza }}</option>
                                     </select>
                                 </div>
+                                <div class="col-md-1">
+                                    <input formControlName="quantity" name="quantity" type="number"
+                                        class="form-control">
+                                </div>
                                 <div class="col-md-2">
-                                    <input formControlName="quantity" name="quantity" type="text" class="form-control">
+                                    <input formControlName="purchase_price" name="purchase_price" type="number"
+                                        class="form-control">
                                 </div>
                                 <div class="col-md-2">
                                     <select formControlName="kind_moviment" name="kind_moviment" class="form-control">
@@ -62,7 +65,7 @@
                                             }}</option>
                                     </select>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <select formControlName="provider_uuid" name="provider_uuid" class="form-control">
                                         <option *ngFor="let provider of providers" [value]="provider.uuid">{{
                                             provider.name }} - {{
@@ -79,19 +82,23 @@
                         </div>
                     </div>
 
-
-
                     <hr>
 
-                    <div class='pl-2'>
-                        <button class="btn btn-outline-success" (click)="onSave()">
-                            <spinner [loading]='submitted'></spinner>
-                            Atualizar Agora
-                        </button>
+                    <div class='row pl-2'>
+                        <div class="col-md-6">
+                            <button class="btn btn-outline-primary btn-sm" (click)="addNewContacts()">
+                                <i class="fa-solid fa-plus"></i>
+                                Adicionar Produto
+                            </button>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <button class="btn btn-outline-success btn-sm" (click)="onSave()">
+                                <spinner [loading]='submitted'></spinner>
+                                Atualizar Agora
+                            </button>
+                        </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>

@@ -83,7 +83,8 @@ export class CreateMovimentStockComponent implements OnInit {
             kind_moviment: ['entrada', Validators.required],
             provider_uuid: [null, Validators.required],
             product_uuid: [null, Validators.required],
-            store_uuid: [null, Validators.required]
+            store_uuid: [null, Validators.required],
+            purchase_price: [0],
         })
     }
 

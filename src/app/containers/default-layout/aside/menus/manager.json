@@ -27,9 +27,14 @@
             "icon": "ni ni-ruler-pencil",
             "subMenu": [
                 {
-                    "name": "Categorias",
-                    "link": "/managers/categories",
-                    "icon": "ni ni-ungroup"
+                    "name": "Caixas de venda",
+                    "link": "/managers/caixas-vendas",
+                    "icon": "ni ni-tablet-button"
+                },
+                {
+                    "name": "menu.series",
+                    "link": "/managers/series",
+                    "icon": "ni ni-app"
                 },
                 {
                     "name": "menu.products_and_sercives",
@@ -37,8 +42,37 @@
                     "icon": "ni ni-ungroup"
                 },
                 {
-                    "name": "Gestão Stock",
-                    "link": "/managers/stocks",
+                    "name": "Categorias",
+                    "link": "/managers/categories",
+                    "icon": "ni ni-ungroup"
+                },
+                {
+                    "name": "Lojas",
+                    "link": "/managers/stores",
+                    "icon": "ni ni-shop"
+                }
+            ]
+        },
+        {
+            "isSub": true,
+            "id": "stocks",
+            "name": "Gestão Stock",
+            "link": "#",
+            "icon": "ni ni-single-02",
+            "subMenu": [
+                {
+                    "name": "Listagem de Stock",
+                    "link": "/managers/listing-stocks",
+                    "icon": "ni ni-shop"
+                },
+                {
+                    "name": "Movimentos de Stock",
+                    "link": "/managers/moviments-stocks",
+                    "icon": "ni ni-shop"
+                },
+                {
+                    "name": "Análise de Stock",
+                    "link": "/managers/analitics-stocks",
                     "icon": "ni ni-shop"
                 }
             ]
@@ -56,16 +90,6 @@
                     "icon": "ni ni-chart-bar-32"
                 }
             ]
-        },
-        {
-            "name": "menu.internal_consumption",
-            "link": "/managers/internal-consumption",
-            "icon": "ni ni-collection"
-        },
-        {
-            "name": "Caixas de venda",
-            "link": "/managers/caixas-vendas",
-            "icon": "ni ni-tablet-button"
         },
         {
             "name": "menu.receipts",
@@ -86,10 +110,15 @@
             "subMenu": [
                 {
                     "name": "SAF-T AO",
-                    "link": "#",
+                    "link": "/managers/saft-ao",
                     "icon": "ni ni-ungroup"
                 }
             ]
+        },
+        {
+            "name": "Colaboradores",
+            "link": "/managers/employees",
+            "icon": "ni ni-single-02"
         }
     ]
 }

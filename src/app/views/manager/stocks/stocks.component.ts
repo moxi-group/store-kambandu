@@ -23,7 +23,7 @@ export class StocksComponent implements OnInit {
     filter: any = {
         pagination: {
             page: 1,
-            limit: 10,
+            limit: 20,
             order_by: '-created_at',
             filter_column: null,
             filter_value: null,
