@@ -17,6 +17,7 @@ import { MovimentsStockComponent } from './stocks/moviments-stock/moviments-stoc
 import { AnaliticsStockComponent } from './stocks/analitics-stock/analitics-stock.component';
 import { CreateMovimentStockComponent } from './stocks/create-moviment-stock/create-moviment-stock.component';
 import { SaftAoComponent } from './saft-ao/saft-ao.component';
+import { InternalConsumptionComponent } from './internal-consumption/internal-consumption.component';
 
 const routes: Routes = [
     {
@@ -90,7 +91,10 @@ const routes: Routes = [
             {
                 path: 'saft-ao',
                 component: SaftAoComponent,
-            }
+            }, {
+              path: 'internal-consumption',
+              component: InternalConsumptionComponent,
+            },
         ]
     }
 ]

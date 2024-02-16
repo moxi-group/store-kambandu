@@ -45,6 +45,7 @@ import { MovimentsStockComponent } from './stocks/moviments-stock/moviments-stoc
 import { AnaliticsStockComponent } from './stocks/analitics-stock/analitics-stock.component';
 import { SaftAoComponent } from './saft-ao/saft-ao.component';
 import { GenerateSaftComponent } from './saft-ao/generate-saft/generate-saft.component';
+import { InternalConsumptionComponent } from './internal-consumption/internal-consumption.component';
 
 
 
@@ -103,9 +104,9 @@ const ngWizardConfig: NgWizardConfig = {
         GenerateSaftComponent,
 
         SaftAoComponent,
-        GenerateSaftComponent
+        GenerateSaftComponent,
 
-
+        InternalConsumptionComponent
     ],
 
     imports: [
