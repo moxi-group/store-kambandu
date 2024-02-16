@@ -26,9 +26,7 @@ export class StocksComponent implements OnInit {
             limit: 20,
             order_by: '-created_at',
             filter_column: null,
-            filter_value: null,
-            start_date: this._filterService.startOfMonth(),
-            end_date: this._filterService.currentOfMonth()
+            filter_value: null
         }
     }
 
