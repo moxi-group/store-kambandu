@@ -6314,8 +6314,8 @@ a.badge:focus {
 }
 
 .badge-warning {
-    color: #ff3709;
-    background-color: #fee6e0;
+    color: #868405;
+    background-color: #c6c30b4a;
 }
 
 .badge-warning[href]:hover,
@@ -19424,8 +19424,8 @@ textarea[resize='horizontal'] {
 }
 
 .icon-shape-warning {
-    color: #ff3709;
-    background-color: rgba(252, 140, 114, .5);
+    color: #868405;
+    background-color: #c6c30b4a;
 }
 
 .icon-shape-danger {

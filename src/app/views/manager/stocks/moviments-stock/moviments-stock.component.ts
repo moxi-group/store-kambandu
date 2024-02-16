@@ -23,7 +23,7 @@ export class MovimentsStockComponent implements OnInit {
             order_by: '-created_at',
             filter_column: null,
             filter_value: null,
-            start_date: this._filterService.startOfMonth(),
+            start_date: '2024-01-01',
             end_date: this._filterService.currentOfMonth()
         }
     }
@@ -93,6 +93,27 @@ export class MovimentsStockComponent implements OnInit {
         })
     }
 
+    _approve(item: any){
+        this.loading = true
+        this._stockService
+        .approve_moviment_stock(item.uuid)
+        .subscribe(response => {
+            this.loading = false
+            this._applicationService.SwalSuccess("Stock aprovado com sucesso!");
+            this.get_moviments_stocks()
+        })
+    }
+
+    _reject(item: any){
+        this.loading = true
+        this._stockService
+        .reject_moviment_stock(item.uuid)
+        .subscribe(response => {
+            this.loading = false
+            this._applicationService.SwalSuccess("Stock regeitado!");
+            this.get_moviments_stocks()
+        })
+    }
 }
 
 

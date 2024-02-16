@@ -61,8 +61,6 @@
                                 <button (click)="_search()" class='btn btn-success mt-4' type="button">Buscar</button>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
                 <!-- Light table -->
@@ -77,8 +75,8 @@
                                 <th class="sort text-center">{{ 'Quant. Pendente' | translate}}</th>
                                 <th class="text-center">{{ 'Tipo' | translate}}</th>
                                 <th class="text-center">{{ 'Estado' | translate}}</th>
-                                <th class="sort text-right">{{ 'Data Registo' | translate}}</th>
-
+                                <th class="sort text-center">{{ 'Data Registo' | translate}}</th>
+                                <th scope="col text-right">Opções</th>
                             </tr>
                         </thead>
                         <tbody class="list" *ngIf="moviments_stocks.items">
@@ -92,21 +90,30 @@
                                 <th scope="row"><span class="name mb-0 text-sm">{{ item?.product?.name}}</span></th>
                                 <th scope="row"><span class="name mb-0 text-sm">{{ item?.product?.price |
                                         to_kwanza}}</span></th>
-                                <td class="budget bg-warning text-center text-white">{{ item.quantity }}</td>
+                                <td class="text-center">
+                                    <span class="badge badge-pill badge-primary">{{ item.quantity }}</span>
+                                </td>
                                 <td class="text-center">{{ item.kind_moviment }}</td>
                                 <td class="text-center">
-                                    <button *ngIf="item.status == 'pending'" type="button"
-                                        class="btn btn-warning btn-sm">Pendente</button>
-                                    <button *ngIf="item.status == 'rejected'" type="button"
-                                        class="btn btn-danger btn-sm">Rejeitado</button>
-                                    <button *ngIf="item.status == 'approved'" type="button"
-                                        class="btn btn-success btn-sm">Aprovado</button>
+                                    <span *ngIf="item.status == 'pending'" class="badge badge-warning">Pendente</span>
+                                    <span *ngIf="item.status == 'rejected'" class="badge badge-danger">Rejeitado</span>
+                                    <span *ngIf="item.status == 'approved'" class="badge badge-success">Aprovado</span>
                                 </td>
-                                <td class="budget text-light">{{ item.created_at | date }}</td>
+                                <td class="budget text-light text-right">{{ item.created_at | date }}</td>
+                                <td class="text-right">
+                                    <button *ngIf="item.status == 'pending'" (click)="_reject(item)" type="button"
+                                        class="btn btn-danger btn-sm">
+                                        {{ 'Rejeitar' | translate}}
+                                        <spinner [loading]='loading'></spinner>
+                                    </button>
 
-
+                                    <button *ngIf="item.status == 'pending'" (click)="_approve(item)" type="button"
+                                        class="btn btn-success btn-sm">
+                                        {{ 'Aprovar' | translate}}
+                                        <spinner [loading]='loading'></spinner>
+                                    </button>
+                                </td>
                             </tr>
-
                         </tbody>
                     </table>
 
