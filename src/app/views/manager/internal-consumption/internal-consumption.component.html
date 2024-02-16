@@ -1,0 +1,163 @@
+<div class="header bg-green pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2 text-white d-inline-block mb-0">
+            {{ "Consumo Interno" | translate }}
+          </h6>
+        </div>
+       <!--  <div class="col-lg-6 col-5 text-right">
+          <a routerLink="/managers/create-internal-consumption"
+            type="button"
+            class="btn btn-outline-default btn-sm"
+
+          >
+            {{ "btn.register" | translate }}
+          </a>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page content -->
+<div class="container-fluid mt--6">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <!-- Card header -->
+        <div class="card-header border-0"></div>
+        <!-- Light table -->
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th>#</th>
+                <th scope="col" class="sort">{{ "table.name" | translate }}</th>
+                <th scope="col" class="sort">
+                  {{ "table.cell_phone" | translate }}
+                </th>
+                <th scope="col" class="sort">
+                  {{ "table.description" | translate }}
+                </th>
+                <th scope="col" class="sort">{{ "table.date" | translate }}</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody
+              class="list"
+              *ngIf="_internConsumptionService.intern_consumption"
+            >
+              <tr
+                *ngFor="
+                  let item of _internConsumptionService.intern_consumption;
+                  index as i
+                "
+              >
+                <td>{{ i + 1 }}</td>
+                <th scope="row">
+                  <span class="name mb-0 text-sm">{{ item.collaborator.name }}</span>
+                </th>
+                <th scope="row">
+                  <span class="name mb-0 text-sm">{{ item.collaborator.phone_number }}</span>
+                </th>
+                <td class="budget">{{ item.description || '----------' }}</td>
+                <td class="budget">{{ item.created_at | date }}</td>
+                <td class="text-right">
+                  <div class="dropdown">
+                    <a
+                      class="btn btn-sm btn-icon-only text-light"
+                      href="#"
+                      role="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <i class="fas fa-ellipsis-v"></i>
+                    </a>
+                    <div
+                      class="dropdown-menu dropdown-menu-right dropdown-menu-arrow"
+                    >
+                      <a class="dropdown-item" href="#">Opções</a>
+                      <button
+                        type="button"
+                        class="dropdown-item"
+                        data-toggle="modal"
+                        (click)="_internConsumptionService.get_intern_consumption_lines(item.lines)"
+                        data-target="#exampleModal"
+                      >
+                        {{ "btn.showing" | translate }}
+                      </button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+           <app-loading [loading]="this.loading"></app-loading>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width: 900px !important">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Detalhes de Consumo</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group mb-3">
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th>#</th>
+                  <th scope="col" class="sort">
+                    {{ "table.name" | translate }}
+                  </th>
+                  <th scope="col" class="sort">{{ "Código" | translate }}</th>
+                  <th scope="col" class="sort">{{ "table.quantity" | translate }}</th>
+                  <th scope="col-1" [width]="100">{{ "Data" | translate }}</th>
+                </tr>
+              </thead>
+              <tbody class="list">
+                <tr *ngFor="let item of _internConsumptionService.intern_consumption_lines; index as i">
+                  <td>{{ i + 1 }}</td>
+                  <th scope="row">
+                    <span class="name mb-0 text-sm">{{ item.product.name }}</span>
+                  </th>
+                  <td class="budget">
+                    <span class="name mb-0 text-sm">{{ item.product.code }}</span>
+                  </td><td class="budget">
+                    <span class="name mb-0 text-sm">{{ item.quantity }}</span>
+                  </td>
+                  <td class="budget">
+                    <span class="name mb-0 text-sm">{{ item.created_at | date }}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
