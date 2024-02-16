@@ -15,6 +15,7 @@ import { VariationsComponent } from './variations/variations.component';
 import { CustomersComponent } from './customers/customers.component';
 import { SuppliersComponent } from './suppliers/suppliers.component';
 import { SelfConsumptionComponent } from './self-consumption/self-consumption.component';
+import { InternConsumptionsComponent } from './intern-consumptions/intern-consumptions.component';
 
 const ngWizardConfig: NgWizardConfig = {
   theme: THEME.default
@@ -25,11 +26,15 @@ const ngWizardConfig: NgWizardConfig = {
     ReportsComponent,
     StockNalysisComponent,
     BillingComponent,
+    InternConsumptionsComponent,
+
+
     CashMovementsComponent,
     VariationsComponent,
     CustomersComponent,
     SuppliersComponent,
-    SelfConsumptionComponent
+    SelfConsumptionComponent,
+
   ],
   imports: [
     CommonModule,

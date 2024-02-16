@@ -30,5 +30,15 @@ export class ReportsService {
         )
     }
 
+    intern_consumptions_billigs(filter: any) {
+        return this._http_client.get<any>(
+            `${environment.fullBaseUrl}/reports/intern-consumption`, 
+            {
+                params: filter,
+                headers: this.headers
+            }
+        )
+    }
+
 
 }

@@ -85,8 +85,13 @@
             "icon": "ni ni-chart-bar-32",
             "subMenu": [
                 {
-                    "name": "menu.billigs",
+                    "name": "Relatório faturação",
                     "link": "/reports/billigs",
+                    "icon": "ni ni-chart-bar-32"
+                },
+                {
+                    "name": "Relatório Consumo Interno",
+                    "link": "/reports/intern-consumptions",
                     "icon": "ni ni-chart-bar-32"
                 }
             ]
