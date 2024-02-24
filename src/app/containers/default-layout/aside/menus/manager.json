@@ -95,6 +95,11 @@
           "icon": "ni ni-chart-bar-32"
         },
         {
+            "name": "Relatório Por Produto",
+            "link": "/reports/products",
+            "icon": "ni ni-chart-bar-32"
+        },
+        {
           "name": "Relatório Consumo Interno",
           "link": "/reports/intern-consumptions",
           "icon": "ni ni-chart-bar-32"
