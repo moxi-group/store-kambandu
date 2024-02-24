@@ -96,7 +96,7 @@
                 },
                 {
                     "name": "Relatório Por Produto",
-                    "link": "/reports/intern-consumptions",
+                    "link": "/reports/products",
                     "icon": "ni ni-chart-bar-32"
                 },
                 {

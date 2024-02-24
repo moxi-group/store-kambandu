@@ -16,9 +16,8 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th># Check</th>
-                                    <th scope="col" class="sort">{{ 'table.name' | translate}}</th>
-                                    <th scope="col" class="sort">{{ 'Quant. Movimentar' | translate}}
-                                    </th>
+                                    <th class="">{{ 'table.name' | translate}}</th>
+                                    <th class="">{{ 'Quant. Movimentar' | translate}}</th>
                                 </tr>
                             </thead>
                             <tbody class="list" *ngIf="association_products">
@@ -28,8 +27,7 @@
                                             (click)="_set_associate_product(item)" type="checkbox"
                                             class="form-control" />
                                     </td>
-                                    <th scope="row"><span class="name mb-0 text-sm">{{item.name}}</span>
-                                    </th>
+                                    <th scope="row"><span class="name mb-0 text-sm">{{item.name}}</span></th>
                                     <td>
                                         <input (keyup)="_set_quantity($event, item)" [value]="item.quantity"
                                             [disabled]='disabled_check' min="1" max="5" type="number" name="quantity"

@@ -40,5 +40,38 @@ export class ReportsService {
         )
     }
 
+    //====================================================================
+    //====================================================================
+    
+    reports_products(filter: any) {
+        return this._http_client.get<any>(
+            `${environment.fullBaseUrl}/reports/get-all-sales-by-products`, 
+            {
+                params: filter,
+                headers: this.headers
+            }
+        )
+    }
+    
+    reports_payments_methods(filter: any) {
+        return this._http_client.get<any>(
+            `${environment.fullBaseUrl}/reports/payment-methods`, 
+            {
+                params: filter,
+                headers: this.headers
+            }
+        )
+    }
+
+    reports_stores(filter: any) {
+        return this._http_client.get<any>(
+            `${environment.fullBaseUrl}/reports/sales-by-store`, 
+            {
+                params: filter,
+                headers: this.headers
+            }
+        )
+    }
+
 
 }
