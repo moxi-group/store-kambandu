@@ -58,6 +58,15 @@
                             </div>
                         </div>
 
+                        <div class="col-lg-2 p-filter">
+                            <div class="form-group">
+                                <label for="filter_value">Pesquisar</label>
+                                <input type="text" name="filter_value" id="filter_value"
+                                    [(ngModel)]="filter.pagination.filter_value"
+                                    placeholder="Pesquisa por ..." class="form-control">
+                            </div>
+                        </div>
+
                         <div class="col-lg-1 p-filter">
                             <div class="form-group">
                                 <button (click)="_search()" class='btn btn-success mt-4'
