@@ -107,14 +107,33 @@
             ]
         },
         {
+            "isSub": true,
+            "id": "purchases",
+            "name": "Compras",
+            "link": "#",
+            "icon": "ni ni-chart-bar-32",
+            "subMenu": [
+                {
+                    "name": "Fornecedores",
+                    "link": "/managers/providers",
+                    "icon": "ni ni-single-02"
+                },
+                {
+                    "name": "Encomendas",
+                    "link": "/managers/providers",
+                    "icon": "ni ni-single-02"
+                },
+                {
+                    "name": "Faturas",
+                    "link": "/managers/providers",
+                    "icon": "ni ni-single-02"
+                }
+            ]
+        },
+        {
             "name": "menu.receipts",
             "link": "/managers/receipts",
             "icon": "ni ni-archive-2"
-        },
-        {
-            "name": "Fornecedores",
-            "link": "/managers/providers",
-            "icon": "ni ni-single-02"
         },
         {
             "name": "menu.banks",
