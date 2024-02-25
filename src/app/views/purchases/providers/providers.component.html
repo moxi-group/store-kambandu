@@ -7,6 +7,10 @@
                     <h6 class="h2 text-white d-inline-block mb-0">{{ 'Gestão de Fornecedores' | translate }}</h6>
                 </div>
                 <div class="col-lg-6 col-5 text-right">
+                    <button (click)="_print_report_invoice()" type="button" class="btn btn-outline-white btn-sm">
+                        <span class="nav-link-text">{{ "Exportar EXCEL" | translate }}</span>
+                    </button>
+                    
                     <button type="button" class="btn btn-outline-default btn-sm" data-toggle="modal"
                         data-target="#CreateOrEditProviderModal">
                         {{ 'btn.register' | translate }}
@@ -19,6 +23,85 @@
 
 <!-- Page content -->
 <div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-gradient-primary border-0">
+                <!-- Card body -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h5 class="card-title text-uppercase text-muted mb-0 text-white">
+                                {{ "Dívida Total" | translate }}
+                            </h5>
+                            <span class="h2 font-weight-bold mb-0 text-white">{{ 0 | to_kwanza}}</span>
+                            <div class="progress progress-xs mt-3 mb-0">
+                                <div
+                                    class="progress-bar bg-success"
+                                    role="progressbar"
+                                    aria-valuenow="100"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100"
+                                    style="width: 100%"
+                                    ></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-gradient-warning border-0">
+                <!-- Card body -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h5 class="card-title text-uppercase text-muted mb-0 text-white">
+                                {{ "Dívida Corrente" | translate }}
+                            </h5>
+                            <span class="h2 font-weight-bold mb-0 text-white">{{ 0 | to_kwanza }}</span>
+                            <div class="progress progress-xs mt-3 mb-0">
+                                <div
+                                    class="progress-bar bg-success"
+                                    role="progressbar"
+                                    aria-valuenow="100"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100"
+                                    style="width: 100%"
+                                    ></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-gradient-danger border-0">
+                <!-- Card body -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h5 class="card-title text-uppercase text-muted mb-0 text-white">
+                                {{ "Dívida Vencida" | translate }}
+                            </h5>
+                            <span class="h2 font-weight-bold mb-0 text-white">{{ 0 | to_kwanza}}</span>
+                            <div class="progress progress-xs mt-3 mb-0">
+                                <div
+                                    class="progress-bar bg-success"
+                                    role="progressbar"
+                                    aria-valuenow="100"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100"
+                                    style="width: 100%"
+                                    ></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="row">
         <div class="col">
             <div class="card">

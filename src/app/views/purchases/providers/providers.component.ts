@@ -27,6 +27,11 @@ export class ProvidersComponent implements OnInit {
         this.get_providers();
     }
 
+    
+    _print_report_invoice(){
+        
+    }
+
     get_providers() {
         this.loading = true
         this._providerService

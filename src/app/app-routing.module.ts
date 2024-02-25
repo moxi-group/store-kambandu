@@ -37,8 +37,8 @@ export const routes: Routes = [
             },
             {
                 path: 'purchases',
-                loadChildren: () => import('./views/purchases/purchases-routing.module')
-                .then(m => m.PurchasesRoutingModule)
+                loadChildren: () => import('./views/purchases/purchases.module')
+                .then(m => m.PurchasesModule)
             },
             {
                 path: 'quick-sale',

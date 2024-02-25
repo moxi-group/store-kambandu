@@ -120,7 +120,7 @@
                 },
                 {
                     "name": "Encomendas",
-                    "link": "/purchases/providers",
+                    "link": "/purchases/orders",
                     "icon": "ni ni-single-02"
                 },
                 {

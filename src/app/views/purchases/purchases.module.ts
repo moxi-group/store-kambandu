@@ -7,6 +7,9 @@ import { NgWizardModule, NgWizardConfig, THEME } from 'ng-wizard';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PurchasesRoutingModule } from './purchases-routing.module';
 import { ProvidersComponent } from './providers/providers.component';
+import { OrdersComponent } from './orders/orders.component';
+import { CreateOrEditOrderComponent } from './orders/create-or-edit-order/create-or-edit-order.component';
+import { CreateOrEditProviderComponent } from './providers/create-or-edit-provider/create-or-edit-provider.component';
 
 const ngWizardConfig: NgWizardConfig = {
   theme: THEME.default
@@ -14,7 +17,10 @@ const ngWizardConfig: NgWizardConfig = {
 
 @NgModule({
     declarations: [
-        ProvidersComponent
+        ProvidersComponent,
+        CreateOrEditProviderComponent,
+        OrdersComponent,
+        CreateOrEditOrderComponent
     ],
     imports: [
         CommonModule,
@@ -27,4 +33,4 @@ const ngWizardConfig: NgWizardConfig = {
         NgWizardModule.forRoot(ngWizardConfig)
     ]
 })
-export class ReportsModule { }
+export class PurchasesModule { }

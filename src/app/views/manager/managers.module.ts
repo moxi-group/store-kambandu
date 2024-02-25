@@ -27,8 +27,6 @@ import { AddCustomerAndInvoiceKindComponent } from './invoices/create-or-edit-in
 import { AddProductInvoiceComponent } from './invoices/create-or-edit-invoice/add-product-invoice/add-product-invoice.component';
 import { StoresComponent } from './stores/stores.component';
 import { CreateOrEditStoreComponent } from './stores/create-or-edit-store/create-or-edit-store.component';
-import { ProvidersComponent } from '../purchases/providers/providers.component';
-import { CreateOrEditProviderComponent } from '../purchases/providers/create-or-edit-provider/create-or-edit-provider.component';
 import { StocksComponent } from './stocks/stocks.component';
 import { CreateMovimentStockComponent } from './stocks/create-moviment-stock/create-moviment-stock.component';
 import { ListMovimentStockComponent } from './stocks/list-moviment-stock/list-moviment-stock.component';
@@ -79,9 +77,6 @@ const ngWizardConfig: NgWizardConfig = {
 
         StoresComponent,
         CreateOrEditStoreComponent,
-
-        ProvidersComponent,
-        CreateOrEditProviderComponent,
 
         ListMovimentStockComponent,
         ComposerProductComponent,

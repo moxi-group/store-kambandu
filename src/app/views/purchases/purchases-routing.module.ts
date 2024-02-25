@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProvidersComponent } from './providers/providers.component';
-
-
+import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
     {
@@ -10,7 +9,17 @@ const routes: Routes = [
         children: [
             {
                 path: 'providers', 
-                component: ProvidersComponent
+                component: ProvidersComponent,
+                children: [
+                    {
+                        path: 'create-provider', 
+                        component: ProvidersComponent
+                    }
+                ]
+            },
+            {
+                path: 'orders', 
+                component: OrdersComponent
             }
         ]
     },
