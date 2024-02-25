@@ -8,7 +8,6 @@ import { CustomersComponent } from './customers/customers.component';
 import { BanksComponent } from './banks/banks.component';
 import { CreateOrEditInvoiceComponent } from './invoices/create-or-edit-invoice/create-or-edit-invoice.component';
 import { StoresComponent } from './stores/stores.component';
-import { ProvidersComponent } from './providers/providers.component';
 import { StocksComponent } from './stocks/stocks.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { CategoryComponent } from './category/category.component';
@@ -57,10 +56,6 @@ const routes: Routes = [
                 component: StoresComponent,
             },
             {
-                path: 'providers',
-                component: ProvidersComponent,
-            },
-            {
                 path: 'listing-stocks',
                 component: StocksComponent,
             },
@@ -91,9 +86,10 @@ const routes: Routes = [
             {
                 path: 'saft-ao',
                 component: SaftAoComponent,
-            }, {
-              path: 'internal-consumption',
-              component: InternalConsumptionComponent,
+            },
+            {
+                path: 'internal-consumption',
+                component: InternalConsumptionComponent,
             },
         ]
     }

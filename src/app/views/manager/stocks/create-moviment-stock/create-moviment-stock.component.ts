@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ProvidersService } from '../../providers/providers.service';
+import { ProvidersService } from '../../../purchases/providers/providers.service';
 import { ProductsService } from '../../products/products.service';
 import { ApplicationService } from 'src/app/api/application.service';
 import { StoresService } from '../../stores/stores.service';

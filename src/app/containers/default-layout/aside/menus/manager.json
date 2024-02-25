@@ -115,17 +115,17 @@
             "subMenu": [
                 {
                     "name": "Fornecedores",
-                    "link": "/managers/providers",
+                    "link": "/purchases/providers",
                     "icon": "ni ni-single-02"
                 },
                 {
                     "name": "Encomendas",
-                    "link": "/managers/providers",
+                    "link": "/purchases/providers",
                     "icon": "ni ni-single-02"
                 },
                 {
                     "name": "Faturas",
-                    "link": "/managers/providers",
+                    "link": "/purchases/providers",
                     "icon": "ni ni-single-02"
                 }
             ]
