@@ -20,7 +20,11 @@
             <div class="card p-3">
                 <h3>Informações Fornecedor</h3>
                 <hr>
-
+                <select formControlName="provider_uuid" name="provider_uuid" class="form-control">
+                    <option *ngFor="let provider of providers" [value]="provider.uuid">{{
+                        provider.name }} - {{
+                        provider.nif }}</option>
+                </select>
             </div>
         </div>
 
