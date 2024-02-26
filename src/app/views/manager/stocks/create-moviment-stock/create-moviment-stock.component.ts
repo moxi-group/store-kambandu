@@ -64,8 +64,6 @@ export class CreateMovimentStockComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('neloo', this.defaultBindingsList);
-
     this.creatForm();
   }
 
