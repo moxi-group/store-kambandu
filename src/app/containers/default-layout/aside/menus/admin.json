@@ -20,6 +20,11 @@
             "icon": "ni ni-tablet-button"
         },
         {
+            "name": "menu.receipts",
+            "link": "/managers/receipts",
+            "icon": "ni ni-archive-2"
+        },
+        {
             "isSub": true,
             "id": "operations",
             "name": "header.operations.title",
@@ -95,6 +100,11 @@
                     "icon": "ni ni-chart-bar-32"
                 },
                 {
+                    "name": "Relatório Por Produto",
+                    "link": "/reports/products",
+                    "icon": "ni ni-chart-bar-32"
+                },
+                {
                     "name": "Relatório Consumo Interno",
                     "link": "/reports/intern-consumptions",
                     "icon": "ni ni-chart-bar-32"
@@ -102,14 +112,28 @@
             ]
         },
         {
-            "name": "menu.receipts",
-            "link": "/managers/receipts",
-            "icon": "ni ni-archive-2"
-        },
-        {
-            "name": "Fornecedores",
-            "link": "/managers/providers",
-            "icon": "ni ni-single-02"
+            "isSub": true,
+            "id": "purchases",
+            "name": "Compras",
+            "link": "#",
+            "icon": "ni ni-chart-bar-32",
+            "subMenu": [
+                {
+                    "name": "Fornecedores",
+                    "link": "/purchases/providers",
+                    "icon": "ni ni-single-02"
+                },
+                {
+                    "name": "Encomendas",
+                    "link": "/purchases/orders",
+                    "icon": "ni ni-single-02"
+                },
+                {
+                    "name": "Faturas",
+                    "link": "/purchases/providers",
+                    "icon": "ni ni-single-02"
+                }
+            ]
         },
         {
             "name": "menu.banks",
@@ -125,7 +149,7 @@
             "subMenu": [
                 {
                     "name": "SAF-T AO",
-                    "link": "/managers/saft-ao",
+                    "link": "/managers/safts",
                     "icon": "ni ni-ungroup"
                 }
             ]

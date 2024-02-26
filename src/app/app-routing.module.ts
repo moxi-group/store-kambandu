@@ -31,10 +31,15 @@ export const routes: Routes = [
                 .then(m => m.ManagersModule)
             },
             {
-              path: 'reports',
-              loadChildren: () => import('./views/reports/reports.module')
-              .then(m => m.ReportsModule)
-          },
+                path: 'reports',
+                loadChildren: () => import('./views/reports/reports.module')
+                .then(m => m.ReportsModule)
+            },
+            {
+                path: 'purchases',
+                loadChildren: () => import('./views/purchases/purchases.module')
+                .then(m => m.PurchasesModule)
+            },
             {
                 path: 'quick-sale',
                 component: QuickSaleComponent

@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class ReportsService {
+export class PurchasesService {
     constructor(private _http_client: HttpClient) { }
 
     private token = sessionStorage.getItem('sessionToken')
