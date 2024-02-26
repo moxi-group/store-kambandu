@@ -51,7 +51,7 @@ export class InternalConsumptionService{
 
   get_intern_consumption() {
     return this._http_client.get<any>(
-      `${environment.fullBaseUrl}/intern_consumption/?page=4&limit=10`,
+      `${environment.fullBaseUrl}/intern_consumption`,
       {
         headers: this.headers,
       }

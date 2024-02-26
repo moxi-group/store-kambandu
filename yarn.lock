@@ -1379,6 +1379,11 @@
     node-gyp "^7.1.0"
     read-package-json-fast "^2.0.1"
 
+"@scarf/scarf@^1.1.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@scarf/scarf/-/scarf-1.3.0.tgz#f8c75560d0dace4452dee1e31995e6396e61f3ee"
+  integrity sha512-lHKK8M5CTcpFj2hZDB3wIjb0KAbEOgDmiJGDv1WBRfQgRm/a8/XMEkG/N1iM01xgbUDsPQwi42D+dFo1XPAKew==
+
 "@schematics/angular@12.2.13":
   version "12.2.13"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-12.2.13.tgz#5bf3e7b699a42d7fd7f7aa12bbe4534e671e7201"
@@ -5766,12 +5771,28 @@ neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
+ng-select2-component@8.0.1:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/ng-select2-component/-/ng-select2-component-8.0.1.tgz#7031fab75271d5613539e19c8845c786d22bc9b0"
+  integrity sha512-2gf862TH91Rc+rKsloDMeO6K5VSUOwhk4C2M/J2YZcXumSSRHaGSN75FK3m/kA30sHgqXcvUb5QYuYWfM5XqQw==
+  dependencies:
+    ngx-infinite-scroll "10.0.1"
+    tslib "^2.0.0"
+
 ng-wizard@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/ng-wizard/-/ng-wizard-1.3.0.tgz#c691862b635058ba97d2669db1ea15d6199ef99e"
   integrity sha512-jf+uNON3bShnwlqEcLy2njYsOACJadpUyJpdW1q0lF/rwtfIKaj7/SgZmP/4gW1i0cEAVYiDGpUJrcYnIQUDRw==
   dependencies:
     tslib "^1.10.0"
+
+ngx-infinite-scroll@10.0.1:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/ngx-infinite-scroll/-/ngx-infinite-scroll-10.0.1.tgz#6f51f2f8775a7c50d1dd8bad125d4e748abbe880"
+  integrity sha512-7is0eJZ9kJPsaHohRmMhJ/QFHAW9jp9twO5HcHRvFM/Yl/R8QCiokgjwmH0/CR3MuxUanxfHZMfO3PbYTwlBEg==
+  dependencies:
+    "@scarf/scarf" "^1.1.0"
+    opencollective-postinstall "^2.0.2"
 
 ngx-pagination@^6.0.3:
   version "6.0.3"
@@ -6061,6 +6082,11 @@ open@8.2.1:
     define-lazy-prop "^2.0.0"
     is-docker "^2.1.1"
     is-wsl "^2.2.0"
+
+opencollective-postinstall@^2.0.2:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/opencollective-postinstall/-/opencollective-postinstall-2.0.3.tgz#7a0fff978f6dbfa4d006238fbac98ed4198c3259"
+  integrity sha512-8AV/sCtuzUeTo8gQK5qDZzARrulB3egtLzFgteqB2tcT4Mw7B8Kt7JcDHmltjz6FOAHsvTevk70gZEbhM4ZS9Q==
 
 opn@^5.5.0:
   version "5.5.0"
