@@ -49,10 +49,11 @@ export class InternalConsumptionService{
     .set('Authorization', `Bearer ${this._token}`)
     .set('header-company-uuid', `${this._companyToken}`);
 
-  get_intern_consumption() {
+  get_intern_consumption(filter: any = {}) {
     return this._http_client.get<any>(
       `${environment.fullBaseUrl}/intern_consumption`,
       {
+        params: filter,
         headers: this.headers,
       }
     );
@@ -63,16 +64,6 @@ export class InternalConsumptionService{
 
     this.intern_consumption_lines = data;
   }
-
-  /*   create(data: any) {
-    console.log(data);
-
-    return this._http_client.post<any>(
-      `${environment.fullBaseUrl}/intern_consumption/`,
-      data,
-      { headers: this.headers }
-    );
-  } */
 
   update(uuid: string, data: any) {
     return this._http_client.post<any>(

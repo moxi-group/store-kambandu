@@ -32,6 +32,11 @@
                     "icon": "ni ni-tablet-button"
                 },
                 {
+                    "name": "menu.internal_consumption",
+                    "link": "/managers/internal-consumption",
+                    "icon": "ni ni-collection"
+                },
+                {
                     "name": "menu.series",
                     "link": "/managers/series",
                     "icon": "ni ni-app"
