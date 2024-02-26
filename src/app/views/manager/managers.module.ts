@@ -46,6 +46,8 @@ import { AnaliticsStockComponent } from './stocks/analitics-stock/analitics-stoc
 import { SaftAoComponent } from './saft-ao/saft-ao.component';
 import { GenerateSaftComponent } from './saft-ao/generate-saft/generate-saft.component';
 import { InternalConsumptionComponent } from './internal-consumption/internal-consumption.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
 
 
 
@@ -113,6 +115,8 @@ const ngWizardConfig: NgWizardConfig = {
         CommonModule,
         HttpClientModule,
         FormsModule,
+        NgSelectModule,
+        NgOptionHighlightModule,
         ReactiveFormsModule,
         ManagersRoutingModule,
         TranslateModule.forChild(),

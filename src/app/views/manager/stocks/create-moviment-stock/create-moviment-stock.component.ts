@@ -16,140 +16,131 @@ import { ProvidersService } from '../../providers/providers.service';
 import { StoresService } from '../../stores/stores.service';
 */
 
-
-
 @Component({
-    selector: 'CreateMovimentStockModal',
-    templateUrl: './create-moviment-stock.component.html',
-    styleUrls: ['./create-moviment-stock.component.scss']
+  selector: 'CreateMovimentStockModal',
+  templateUrl: './create-moviment-stock.component.html',
+  styleUrls: ['./create-moviment-stock.component.scss'],
 })
-
 export class CreateMovimentStockComponent implements OnInit {
+  movimentStockForm: any = FormGroup;
+  result: any;
 
-    movimentStockForm: any = FormGroup
-    result: any
+  @Input() modal: any = 'CreateMovimentStockModal';
+  @Input() title: string = 'Movimentar Stock';
+  @Input() moviment_stock: any;
 
+  submitted = false;
+  products: any = [];
+  providers: any = [];
+  stores: any = [];
+  kind_moviments: any = [
+    {
+      name: 'Entrada',
+      value: 'entrada',
+    },
+    {
+      name: 'Saida',
+      value: 'saida',
+    },
+    {
+      name: 'Transferência',
+      value: 'transferencia',
+    },
+  ];
+  public defaultBindingsList: any = [];
 
-    @Input() modal: any = "CreateMovimentStockModal"
-    @Input() title: string = "Movimentar Stock"
-    @Input() moviment_stock: any
+  public selectedCity: any;
 
-    submitted = false
-    products: any = []
-    providers: any = []
-    stores: any = []
-    kind_moviments: any = [
-        {
-            name: 'Entrada',
-            value: 'entrada'
-        },
-        {
-            name: 'Saida',
-            value: 'saida'
-        },
-        {
-            name: 'Transferência',
-            value: 'transferencia'
-        }
-    ]
-    
-    constructor(
-        public _formBuild: FormBuilder,
-        private _storeService: StoresService,
-        private _stockService: StocksService,
-        private _applicationService: ApplicationService,
-        private _productService: ProductsService,
-        private _providerService: ProvidersService,
-        private router: Router
-    ) {
-        this.loading()
-    }
+  constructor(
+    public _formBuild: FormBuilder,
+    private _storeService: StoresService,
+    private _stockService: StocksService,
+    private _applicationService: ApplicationService,
+    private _productService: ProductsService,
+    private _providerService: ProvidersService,
+    private router: Router
+  ) {
+    this.loading();
+  }
 
-    ngOnInit(): void {
-        this.creatForm()
-    }
+  ngOnInit(): void {
+    console.log('neloo', this.defaultBindingsList);
 
+    this.creatForm();
+  }
 
-    creatForm(){
-        this.movimentStockForm = this._formBuild.group({
-            contacts: this._formBuild.array([this.contactFrom()])
-        });
-    }
+  creatForm() {
+    this.movimentStockForm = this._formBuild.group({
+      contacts: this._formBuild.array([this.contactFrom()]),
+    });
+  }
 
-    contactFrom(){
-        return this._formBuild.group({
-            uuid: [{ value: null, disabled: true }],
-            quantity: [ 1, Validators.required ],
-            kind_moviment: ['entrada', Validators.required],
-            provider_uuid: [null, Validators.required],
-            product_uuid: [null, Validators.required],
-            store_uuid: [null, Validators.required],
-            purchase_price: [0],
-        })
-    }
+  contactFrom() {
+    return this._formBuild.group({
+      uuid: [{ value: null, disabled: true }],
+      quantity: [1, Validators.required],
+      kind_moviment: ['entrada', Validators.required],
+      provider_uuid: [null, Validators.required],
+      product_uuid: [null, Validators.required],
+      store_uuid: [null, Validators.required],
+      purchase_price: [0],
+    });
+  }
 
-    addNewContacts(){
-        this.contacts.push(this.contactFrom())
-    }
+  addNewContacts() {
+    this.contacts.push(this.contactFrom());
+  }
 
-    removeContact(i:Required<number>){
-        this.contacts.removeAt(i);
-    }
+  removeContact(i: Required<number>) {
+    this.contacts.removeAt(i);
+  }
 
-    get contacts(){
-        return this.movimentStockForm.get("contacts") as FormArray;
-    }
+  get contacts() {
+    return this.movimentStockForm.get('contacts') as FormArray;
+  }
 
-    onSave(){
-        this.submitted = true
-        let moviments = this.movimentStockForm.value.contacts
-        this._create(moviments)
+  onSave() {
+    this.submitted = true;
+    let moviments = this.movimentStockForm.value.contacts;
+    this._create(moviments);
+  }
 
-    }
+  _create(moviments: any) {
+    this._stockService
+      .create_stock_moviment(moviments)
+      .subscribe((response) => {
+        this.submitted = false;
+        this.loading();
+        this._applicationService.SwalSuccess('Stock atualizado com sucesso!');
+        this.router.navigate(['/managers/listing-stocks']);
+      });
+  }
 
-    _create(moviments: any) {
-        this._stockService.create_stock_moviment(moviments)
-        .subscribe(response => {
-            this.submitted = false;
-            this.loading()
-            this._applicationService.SwalSuccess("Stock atualizado com sucesso!");
-            this.router.navigate(['/managers/listing-stocks'])
-        })
-    }
+  loading() {
+    this.get_providers();
+    this.get_products();
+    this.get_stores();
+  }
 
-    loading(){
+  get_providers() {
+    this._providerService.get_providers().subscribe((response) => {
+      this.providers = Object(response);
+    });
+  }
 
-        this.get_providers()
-        this.get_products()
-        this.get_stores()
+  get_stores() {
+    this._storeService.get_stores().subscribe((response) => {
+      this.stores = Object(response);
+    });
+  }
 
-    }
+  get_products() {
+    this._productService.get_products().subscribe((response) => {
+      this.products = Object(response).items;
+    });
+  }
 
-    get_providers(){
-        this._providerService
-        .get_providers()
-        .subscribe(response => {
-            this.providers = Object(response)
-        })
-    }
-
-    get_stores(){
-        this._storeService
-        .get_stores()
-        .subscribe(response => {
-            this.stores = Object(response)
-        })
-    }
-
-    get_products(){
-        this._productService
-        .get_products()
-        .subscribe(response => {
-            this.products = Object(response).items
-        })
-    }
-
-    /*
+  /*
 
 
 
@@ -183,7 +174,4 @@ export class CreateMovimentStockComponent implements OnInit {
 
 
     */
-
-
-
 }

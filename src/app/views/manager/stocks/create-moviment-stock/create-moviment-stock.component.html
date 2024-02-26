@@ -1,105 +1,171 @@
 <!-- Header -->
 <div class="header bg-green pb-6">
-    <div class="container-fluid">
-        <div class="header-body">
-            <div class="row align-items-center py-4">
-                <div class="col-lg-6 col-7">
-                    <h6 class="h2 text-white d-inline-block mb-0">{{ 'Atualizar Stock' | translate }}</h6>
-                </div>
-                <div class="col-lg-6 col-5 text-right">
-
-                </div>
-            </div>
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2 text-white d-inline-block mb-0">
+            {{ "Atualizar Stock" | translate }}
+          </h6>
         </div>
+        <div class="col-lg-6 col-5 text-right"></div>
+      </div>
     </div>
+  </div>
 </div>
 
 <!-- Page content -->
 <div class="container-fluid mt--6">
-    <div class="row">
-        <div class="col">
-            <div class="card">
-                <!-- Card header -->
-                <div class="card-header border-0">
-                    <div class="row align-items-center py-0">
-                    </div>
-                </div>
-                <!-- Light table -->
-                <div style="padding: 10px 30px;">
-                    <div class="row">
-                        <div class="col-md-1">{{ 'Acção' | translate}}</div>
-                        <div class="col-md-2">{{ 'Produto' | translate}}</div>
-                        <div class="col-md-1">{{ 'Quant.' | translate}}</div>
-                        <div class="col-md-2">{{ 'Preço Compra' | translate}}</div>
-                        <div class="col-md-2">{{ 'Operação' | translate}}</div>
-                        <div class="col-md-2">{{ 'Fornecedor' | translate}}</div>
-                        <div class="col-md-2">{{ 'Loja/Armazem' | translate}}</div>
-                    </div>
-
-                    <div [formGroup]="movimentStockForm">
-                        <div class="row" formArrayName="contacts" *ngFor="let o of contacts.controls; let i = index">
-                            <div class="row mt-2" [formGroupName]="i">
-                                <div class="col-md-1">
-                                    <button (click)="removeContact(i)" class="btn delete-item btn-sm">
-                                        <i class="fa fa-times-circle text-danger fa-lg"></i>
-                                    </button>
-                                </div>
-                                <div class="col-md-2">
-                                    <select formControlName="product_uuid" name="product_uuid" class="form-control">
-                                        <option *ngFor="let product of products" [value]="product.uuid">{{ product.name
-                                            }} - {{
-                                            product.price | to_kwanza }}</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-1">
-                                    <input formControlName="quantity" name="quantity" type="number"
-                                        class="form-control">
-                                </div>
-                                <div class="col-md-2">
-                                    <input formControlName="purchase_price" name="purchase_price" type="number"
-                                        class="form-control">
-                                </div>
-                                <div class="col-md-2">
-                                    <select formControlName="kind_moviment" name="kind_moviment" class="form-control">
-                                        <option *ngFor="let kind of kind_moviments" [value]="kind.value">{{ kind.name
-                                            }}</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-2">
-                                    <select formControlName="provider_uuid" name="provider_uuid" class="form-control">
-                                        <option *ngFor="let provider of providers" [value]="provider.uuid">{{
-                                            provider.name }} - {{
-                                            provider.nif }}</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-2">
-                                    <select formControlName="store_uuid" name="store_uuid" class="form-control">
-                                        <option *ngFor="let store of stores" [value]="store.uuid">{{
-                                            store.name }}</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class='row pl-2'>
-                        <div class="col-md-6">
-                            <button class="btn btn-outline-primary btn-sm" (click)="addNewContacts()">
-                                <i class="fa-solid fa-plus"></i>
-                                Adicionar Produto
-                            </button>
-                        </div>
-                        <div class="col-md-6 text-right">
-                            <button class="btn btn-outline-success btn-sm" (click)="onSave()">
-                                <spinner [loading]='submitted'></spinner>
-                                Atualizar Agora
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <!-- Card header -->
+        <div class="card-header border-0">
+          <div class="row align-items-center py-0"></div>
         </div>
+        <!-- Light table -->
+        <div style="padding: 10px 30px">
+          <div class="row">
+            <div class="col-md-1">{{ "Acção" | translate }}</div>
+            <div class="col-md-2">{{ "Produto" | translate }}</div>
+            <div class="col-md-1">{{ "Quant." | translate }}</div>
+            <div class="col-md-2">{{ "Preço Compra" | translate }}</div>
+            <div class="col-md-2">{{ "Operação" | translate }}</div>
+            <div class="col-md-2">{{ "Fornecedor" | translate }}</div>
+            <div class="col-md-2">{{ "Loja/Armazem" | translate }}</div>
+          </div>
+
+          <div [formGroup]="movimentStockForm">
+            <div
+              class="row"
+              formArrayName="contacts"
+              *ngFor="let o of contacts.controls; let i = index"
+            >
+              <div class="row mt-2" [formGroupName]="i">
+                <div class="col-md-1">
+                  <button
+                    (click)="removeContact(i)"
+                    class="btn delete-item btn-sm"
+                  >
+                    <i class="fa fa-times-circle text-danger fa-lg"></i>
+                  </button>
+                </div>
+                <!--  <div class="col-md-2">
+                  <select
+                    formControlName="product_uuid"
+                    name="product_uuid"
+                    class="form-control"
+                  >
+                    <option
+                      *ngFor="let product of products"
+                      [value]="product.uuid"
+                    >
+                      {{ product.name }} - {{ product.price | to_kwanza }}
+                    </option>
+                  </select>
+                </div> -->
+
+                <div class="col-md-2">
+
+                  <ng-select
+                  formControlName="product_uuid"
+                    [(ngModel)]="this.selectedCity"
+                    name="product_uuid"
+                    placeholder="Pesquisar produto"
+                    notFoundText="Nenho produto encotrado"
+                    appearance="underline"
+                    [virtualScroll]="true"
+                  >
+                    <ng-option
+                      *ngFor="let product of products"
+                      [value]="product.uuid"
+                    >
+                      {{ product.name }} -
+                      {{ product.price | to_kwanza }}</ng-option
+                    >
+                  </ng-select>
+                </div>
+
+                <div class="col-md-1">
+                  <input
+                    formControlName="quantity"
+                    name="quantity"
+                    type="number"
+                    class="form-control"
+                  />
+                </div>
+                <div class="col-md-2">
+                  <input
+                    formControlName="purchase_price"
+                    name="purchase_price"
+                    type="number"
+                    class="form-control"
+                  />
+                </div>
+                <div class="col-md-2">
+                  <select
+                    formControlName="kind_moviment"
+                    name="kind_moviment"
+                    class="form-control"
+                  >
+                    <option
+                      *ngFor="let kind of kind_moviments"
+                      [value]="kind.value"
+                    >
+                      {{ kind.name }}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-md-2">
+                  <select
+                    formControlName="provider_uuid"
+                    name="provider_uuid"
+                    class="form-control"
+                  >
+                    <option
+                      *ngFor="let provider of providers"
+                      [value]="provider.uuid"
+                    >
+                      {{ provider.name }} - {{ provider.nif }}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-md-2">
+                  <select
+                    formControlName="store_uuid"
+                    name="store_uuid"
+                    class="form-control"
+                  >
+                    <option *ngFor="let store of stores" [value]="store.uuid">
+                      {{ store.name }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr />
+
+          <div class="row pl-2">
+            <div class="col-md-6">
+              <button
+                class="btn btn-outline-primary btn-sm"
+                (click)="addNewContacts()"
+              >
+                <i class="fa-solid fa-plus"></i>
+                Adicionar Produto
+              </button>
+            </div>
+            <div class="col-md-6 text-right">
+              <button class="btn btn-outline-success btn-sm" (click)="onSave()">
+                <spinner [loading]="submitted"></spinner>
+                Atualizar Agora
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
