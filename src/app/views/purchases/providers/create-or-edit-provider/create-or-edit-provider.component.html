@@ -15,7 +15,7 @@
                     <div class="form-group">
                         <label class="control-label">{{ 'label.description' | translate}}</label>
                         <input type="text" formControlName="name" name="name" class="form-control"
-                            placeholder="Nome da loja"
+                            placeholder="Nome do fornecedor"
                             [ngClass]="{ 'is-invalid': submitted && f.name.errors, 'is-valid': f.name.touched && !f.name.errors }" />
                         <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
                             <div *ngIf="f['name'].errors.required">{{ 'errors.required' | translate}}</div>

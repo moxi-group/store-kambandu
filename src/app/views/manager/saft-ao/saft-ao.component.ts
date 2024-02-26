@@ -18,7 +18,7 @@ export class SaftAoComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        //this.loading_data()
+        this.loading_data()
     }
 
     loading_data() {

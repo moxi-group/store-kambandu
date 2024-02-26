@@ -9,6 +9,7 @@ import { SelfConsumptionComponent } from './self-consumption/self-consumption.co
 import { SuppliersComponent } from './suppliers/suppliers.component';
 import { VariationsComponent } from './variations/variations.component';
 import { InternConsumptionsComponent } from './intern-consumptions/intern-consumptions.component';
+import { ReportProductComponent } from './report-products/report-products.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,9 @@ const routes: Routes = [
     children: [
       { path: 'stock-nalysis', component: StockNalysisComponent },
       { path: 'billigs', component: BillingComponent },
+      { path: 'products', component: ReportProductComponent },
 
+      
 
       { path: 'intern-consumptions', component: InternConsumptionsComponent },
       { path: 'cash-movements', component: CashMovementsComponent },
