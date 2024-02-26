@@ -17,7 +17,8 @@
                                 <label class="control-label">{{ 'Mês Início' | translate}}</label>
                                 <select formControlName="start_month" name="start_month" class="form-control"
                                     [ngClass]="{ 'is-invalid': submitted && f.start_month.errors, 'is-valid': f.start_month.touched && !f.start_month.errors }">
-                                    <option *ngFor="let item of get_months()" [value]="item.value">{{ item.name }}
+                                    <option [value]="null" selected>Início</option>
+                                   <option *ngFor="let item of get_months" [value]="item.value">{{ item.name }}
                                     </option>
                                 </select>
                             </div>
@@ -27,7 +28,8 @@
                                 <label class="control-label">{{ 'Mês Fim' | translate}}</label>
                                 <select formControlName="end_month" name="end_month" class="form-control"
                                     [ngClass]="{ 'is-invalid': submitted && f.end_month.errors, 'is-valid': f.end_month.touched && !f.end_month.errors }">
-                                    <option *ngFor="let item of get_months()" [value]="item.value">{{ item.name }}
+                                    <option [value]="null" selected>Fim</option>
+                                    <option *ngFor="let item of get_months" [value]="item.value">{{ item.name }}
                                     </option>
                                 </select>
                             </div>

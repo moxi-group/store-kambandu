@@ -49,7 +49,7 @@ export class GenerateSaftComponent implements OnInit {
         this.submitted = false;
         this.saftForm.reset();
     }
-    
+
 
     onSubmit() {
         this.submitted = true
@@ -92,8 +92,8 @@ export class GenerateSaftComponent implements OnInit {
         ]
     }
 
-    get_months(){
-        return [
+  /*   get_months(){ */
+       public get_months = [
             {
                 name: 'Janeiro',
                 value: 1
@@ -134,4 +134,4 @@ export class GenerateSaftComponent implements OnInit {
             }
         ]
     }
-}
+
