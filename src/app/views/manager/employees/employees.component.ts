@@ -23,16 +23,16 @@ export class EmployeesComponent implements OnInit {
     }
 
     loading_data() {
-        this.get_stores();
+        this.get_employees();
     }
 
-    get_stores() {
+    get_employees() {
         this.loading = true
         this._employeesService
         .get_employees()
         .subscribe(response => {
             this._employeesService.employees = Object(response)
-            this.loading = true
+            this.loading = false
 
         })
     }
