@@ -127,11 +127,6 @@
                     "name": "Encomendas",
                     "link": "/purchases/orders",
                     "icon": "ni ni-single-02"
-                },
-                {
-                    "name": "Faturas",
-                    "link": "/purchases/providers",
-                    "icon": "ni ni-single-02"
                 }
             ]
         },
