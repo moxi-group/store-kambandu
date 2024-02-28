@@ -92,9 +92,9 @@
                                 <th class="budget">{{ "table.date" | translate }}</th>
                             </tr>
                         </thead>
-                        <tbody class="list" *ngIf="report_list.items.invoices">
+                        <tbody class="list" *ngIf="report_list.items?.invoices">
                             <tr *ngFor="
-                                let item of report_list.items.invoices
+                                let item of report_list.items?.invoices
                                   | paginate
                                     : {
                                         itemsPerPage: filter.pagination.limit,
