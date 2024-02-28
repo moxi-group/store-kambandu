@@ -57,8 +57,7 @@ export class ReportProductComponent implements OnInit {
         this._reportsService
         .reports_products(this.filter.pagination)
         .subscribe(response => {            
-            this.resume = Object(response).resumo
-            this.report_list = Object(response).invoices
+            this.report_list = Object(response)
             this.loading = false
         })
     }
