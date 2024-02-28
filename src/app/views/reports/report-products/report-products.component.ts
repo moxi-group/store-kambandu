@@ -15,6 +15,7 @@ export class ReportProductComponent implements OnInit {
     
     loading: boolean = false
     report_list: any = []
+    resume: any
 
     filter: any = {
         pagination: {
@@ -55,11 +56,9 @@ export class ReportProductComponent implements OnInit {
     get_reports(){
         this._reportsService
         .reports_products(this.filter.pagination)
-        .subscribe(response => {
-
-            console.log( response )
-            
-            this.report_list = Object(response)
+        .subscribe(response => {            
+            this.resume = Object(response).resumo
+            this.report_list = Object(response).invoices
             this.loading = false
         })
     }
