@@ -3,6 +3,10 @@
   height: auto !important;
 }
 
+div.text-align-login{
+  text-align: center;
+  display: block;
+}
 
 /*
 ! tailwindcss v3.4.1 | MIT License | https://tailwindcss.com
