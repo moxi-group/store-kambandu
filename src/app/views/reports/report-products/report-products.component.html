@@ -21,6 +21,106 @@
 <!-- Page content -->
 <div class="container-fluid mt--6">
     <div class="row">
+        <div class="col-xl-3 col-md-6">
+          <div class="card bg-gradient-primary border-0">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0 text-white">
+                    {{ "Total Facturado" | translate }}
+                  </h5>
+                  <span class="h2 font-weight-bold mb-0 text-white">{{report_list.resume_total | to_kwanza}}</span>
+                  <div class="progress progress-xs mt-3 mb-0">
+                    <div
+                      class="progress-bar bg-success"
+                      role="progressbar"
+                      aria-valuenow="100"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style="width: 100%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <!-- <p class="mt-3 mb-0 text-sm">
+                <a
+                  routerLink="/managers/invoices"
+                  href="#!"
+                  class="text-nowrap text-white font-weight-600"
+                >
+                  {{ "btn.more" | translate }}
+                </a>
+              </p> -->
+            </div>
+          </div>
+        </div>
+    
+        <div class="col-xl-3 col-md-6">
+          <div class="card bg-gradient-warning border-0">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0 text-white">
+                    {{ "Total Facturado sem impostos" | translate }}
+                  </h5>
+                  <span class="h2 font-weight-bold mb-0 text-white">{{report_list.resume_total_without_tax | to_kwanza }}</span>
+                  <div class="progress progress-xs mt-3 mb-0">
+                    <div
+                      class="progress-bar bg-success"
+                      role="progressbar"
+                      aria-valuenow="100"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style="width: 100%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <!-- <p class="mt-3 mb-0 text-sm">
+                <a
+                  routerLink="/managers/receipts"
+                  href="#!"
+                  class="text-nowrap text-white font-weight-600"
+                >
+                  {{ "btn.more" | translate }}
+                </a>
+              </p> -->
+             <!--  <h1>gdfg</h1> -->
+            </div>
+          </div>
+        </div>
+    
+        <div class="col-xl-3 col-md-6">
+          <div class="card bg-gradient-danger border-0">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0 text-white">
+                    {{ "Total dos impostos" | translate }}
+                  </h5>
+                  <span class="h2 font-weight-bold mb-0 text-white">{{report_list.resume_total_tax | to_kwanza}}</span>
+                  <div class="progress progress-xs mt-3 mb-0">
+                    <div
+                      class="progress-bar bg-success"
+                      role="progressbar"
+                      aria-valuenow="100"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style="width: 100%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div class="row">
         <div class="col">
             <div class="card">
                 <!-- Card header -->
@@ -63,7 +163,7 @@
                                 <label for="filter_value">Pesquisar</label>
                                 <input type="text" name="filter_value" id="filter_value"
                                     [(ngModel)]="filter.pagination.filter_value"
-                                    placeholder="Pesquisa por ..." class="form-control">
+                                    placeholder="Nome do produto ..." class="form-control">
                             </div>
                         </div>
 
@@ -92,9 +192,9 @@
                                 <th class="budget">{{ "table.date" | translate }}</th>
                             </tr>
                         </thead>
-                        <tbody class="list" *ngIf="report_list.items?.invoices">
+                        <tbody class="list" *ngIf="report_list.items">
                             <tr *ngFor="
-                                let item of report_list.items?.invoices
+                                let item of report_list.items
                                   | paginate
                                     : {
                                         itemsPerPage: filter.pagination.limit,
