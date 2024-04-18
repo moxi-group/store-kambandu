@@ -46,6 +46,8 @@ import { GenerateSaftComponent } from './saft-ao/generate-saft/generate-saft.com
 import { InternalConsumptionComponent } from './internal-consumption/internal-consumption.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
+import { EstimatesComponent } from './estimates/estimates.component';
+import { GenerateInvoiceComponent } from './estimates/generate-invoice/generate-invoice.component';
 
 
 
@@ -103,7 +105,9 @@ const ngWizardConfig: NgWizardConfig = {
         SaftAoComponent,
         GenerateSaftComponent,
 
-        InternalConsumptionComponent
+        InternalConsumptionComponent,
+         EstimatesComponent,
+         GenerateInvoiceComponent
     ],
 
     imports: [

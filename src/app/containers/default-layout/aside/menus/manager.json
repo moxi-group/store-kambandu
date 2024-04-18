@@ -15,14 +15,28 @@
             ]
         },
         {
-            "name": "menu.invoices",
-            "link": "/managers/invoices",
-            "icon": "ni ni-tablet-button"
-        },
-        {
-            "name": "menu.receipts",
-            "link": "/managers/receipts",
-            "icon": "ni ni-archive-2"
+            "isSub": true,
+            "id": "billing",
+            "name": "Faturação & Cobranças",
+            "link": "#",
+            "icon": "ni ni-tablet-button",
+            "subMenu": [
+                {
+                    "name": "Orçamentos",
+                    "link": "/managers/estimates",
+                    "icon": "ni ni-tablet-button"
+                },
+                {
+                    "name": "menu.invoices",
+                    "link": "/managers/invoices",
+                    "icon": "ni ni-tablet-button"
+                },
+                {
+                    "name": "menu.receipts",
+                    "link": "/managers/receipts",
+                    "icon": "ni ni-archive-2"
+                }
+            ]
         },
         {
             "isSub": true,

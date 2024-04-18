@@ -17,6 +17,8 @@ import { AnaliticsStockComponent } from './stocks/analitics-stock/analitics-stoc
 import { CreateMovimentStockComponent } from './stocks/create-moviment-stock/create-moviment-stock.component';
 import { SaftAoComponent } from './saft-ao/saft-ao.component';
 import { InternalConsumptionComponent } from './internal-consumption/internal-consumption.component';
+import { CreateOrEditReceiptComponent } from './receipts/create-or-edit-receipt/create-or-edit-receipt.component';
+import { EstimatesComponent } from './estimates/estimates.component';
 
 const routes: Routes = [
     {
@@ -28,12 +30,20 @@ const routes: Routes = [
                 children: [],
             },
             {
+                path: 'estimates',
+                component: EstimatesComponent,
+            },
+            {
                 path: 'invoices/register',
                 component: CreateOrEditInvoiceComponent,
             },
             {
                 path: 'receipts',
                 component: ReceiptsComponent,
+            },
+            {
+                path: 'create-receipts',
+                component: CreateOrEditReceiptComponent,
             },
             {
                 path: 'customers',

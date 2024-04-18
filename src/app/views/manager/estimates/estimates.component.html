@@ -1,0 +1,145 @@
+<!-- Header -->
+<div class="header bg-green pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <h6 class="h2 text-white d-inline-block mb-0">
+                        {{ "Gestão dos Orçamentos / Pró-Formas" | translate }}
+                    </h6>
+                </div>
+                <div class="col-lg-6 col-5 text-right">
+                    <button
+                        (click)="_print_report_invoice()"
+                        type="button"
+                        class="btn btn-outline-white btn-sm"
+                        >
+                        <span class="nav-link-text">{{"Exportar EXCEL" | translate}}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header border-0">
+                    <div class="row align-items-center py-0">
+                        <div class="col-lg-1 p-filter">
+                            <div class="form-group">
+                                <label for="enter_by">Entrada</label>
+                                <select (change)='_onTableDataChange($event)' class="form-control" id="enter_by" name="enter_by"
+                                    [(ngModel)]="_filter.limit">
+                                    <option>5</option>
+                                    <option>10</option>
+                                    <option>20</option>
+                                    <option>30</option>
+                                    <option>50</option>
+                                </select>
+                            </div>
+                        </div>
+                    
+                        <div class="col-lg-2 p-filter">
+                            <div class="form-group">
+                                <label for="filter_column">Data Início</label>
+                                <input type="date" name="start_date" id="start_date"
+                                    [(ngModel)]="_filter.start_date" (keyup)="_onTableDataChange($event)"
+                                    placeholder="Pesquisa por ..." class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 p-filter">
+                            <div class="form-group">
+                                <label for="filter_column">Data Fim</label>
+                                <input type="date" name="end_date" id="end_date"
+                                    [(ngModel)]="_filter.end_date" (keyup)="_onTableDataChange($event)"
+                                    placeholder="Pesquisa por ..." class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-1 p-filter">
+                            <div class="form-group">
+                                <button (click)="_search()" class='btn btn-success mt-4' type="button">Buscar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Light table -->
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>#</th>
+                                <th class="sort">{{ "table.customer" | translate }}</th>
+                                <th class="sort">{{ "table.sigla_doc" | translate }}</th>
+                                <th class="sort">{{ "table.sequence" | translate }}</th>
+                                <th class="text-center">{{ "table.status" | translate }}</th>
+                                <th class="text-right">{{ "table.total" | translate }}</th>
+                                <th class="sort">{{ "table.date" | translate }}</th>
+                                <th scope="col">Opções</th>
+                            </tr>
+                        </thead>
+                        <tbody class="list" *ngIf="invoices.items">
+                            <tr
+                                *ngFor="let item of invoices.items | paginate : {
+                                    itemsPerPage: _filterService.pagination.limit,
+                                    currentPage: _filterService.pagination.page,
+                                    totalItems: invoices.total
+                                }; index as i " class="{{ item.status === 'A' ? 'bg-danger-line' : '' }}" >
+                                <td>{{ i + 1 }}</td>
+                                <th scope="row"> <span class="name mb-0 text-sm">{{ item.customer.name }}</span> </th>
+                                <th scope="row"><span class="name mb-0 text-sm">{{ item.sigla_doc }}</span></th>
+                                <td class="text-center">{{ item.sequence }}</td>
+                                <td class="m-0 text-center"><span class="badge badge-lg badge-{{item.status === 'N' ? 'success' : 'danger'}}">{{ "table." + item.status | translate }}</span></td>
+                                <td class="text-right">{{ item.total | to_kwanza }}</td>                                
+                                <td class="budget">{{ item.created_at | date }}</td>
+                                <td class="text-right">
+                                    <div class="dropdown">
+                                        <a
+                                            class="btn btn-sm btn-icon-only text-light"
+                                            href="#"
+                                            role="button"
+                                            data-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="false"
+                                        >
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" >
+                                            <button
+                                                *ngIf="item.status == 'N'"
+                                                (click)="pachValue(item)"
+                                                type="button"
+                                                class="dropdown-item"
+                                                data-toggle="modal"
+                                                data-target="#GenerateInvoiceModal"
+                                            >{{ "Gerar Fatura" | translate }}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <app-loading [loading]="this.loading"></app-loading>
+                    <hr />
+                    <div class="d-flex justify-content-center">
+                        <pagination-controls
+                            (pageChange)="_onTableDataChangePage($event)"
+                            previousLabel="Anterior"
+                            nextLabel="Proximo"
+                            >
+                        </pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<GenerateInvoiceModal [invoice]="invoice" [modal]=""></GenerateInvoiceModal>

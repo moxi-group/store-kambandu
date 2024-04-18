@@ -32,7 +32,6 @@ export class CancelInvoiceComponent implements OnInit {
     ngOnInit(): void {
     }
 
-
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
         this.title = "Anular Fatura";
     }

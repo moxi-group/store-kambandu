@@ -72,7 +72,7 @@ export class AddCustomerAndInvoiceKindComponent implements OnInit {
         this._seriesService
         .get_series()
         .subscribe(response => {
-            this.series = Object(response)
+            this.series = Object(response).filter((serie: any) => serie.is_active === true)
         })
     }
 

@@ -1,0 +1,62 @@
+<div class="modal fade" id="{{modal}}" tabindex="-1" role="dialog" aria-labelledby="GenerateInvoiceModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form [formGroup]="invoiceForm" (submit)="onSubmit();">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="GenerateInvoiceModal">{{ title }} - {{ invoice.sigla_doc }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body pb-0">
+
+                    <div class="form-group">
+                        <label class="control-label">Selecionar Série</label>
+                        <select 
+                            formControlName="serie_uuid" 
+                            name="serie_uuid" 
+                            class="form-control"
+                            [ngClass]="{ 
+                                'is-invalid': submitted && f.serie_uuid.errors, 
+                                'is-valid': f.serie_uuid.touched && !f.serie_uuid.errors 
+                            }">
+
+                            <option *ngFor="let serie of series" [value]="serie.uuid">{{ serie.name }} - {{ serie.document.slug }}</option>
+                        </select>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label class="control-label">{{ 'Observação' | translate}}</label>
+                        <input 
+                            type="text" 
+                            formControlName="description" 
+                            name="description"
+                            class="form-control" 
+                            placeholder=""
+                            [ngClass]="{ 
+                                'is-invalid': submitted && f.description.errors, 
+                                'is-valid': f.description.touched && !f.description.errors }" 
+                        />
+                        <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
+                            <div *ngIf="f['description'].errors.required">{{ 'errors.required' | translate}}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer py-1">
+                    <button class="btn btn-success btn-sm mr-1" type="submit" [disabled]="invoiceForm.valid">{{
+                        'btn.validate' | translate}}</button>
+                    <button type="submit" [disabled]="invoiceForm.pristine || invoiceForm.invalid"
+                        class="btn btn-primary btn-sm">{{ 'btn.save' | translate}}</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

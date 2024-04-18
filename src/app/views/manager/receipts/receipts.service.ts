@@ -25,6 +25,16 @@ export class ReceiptsService {
             `${environment.fullBaseUrl}/receipts`, { headers: this.headers }
         )
     }
+    
+    get_invoices_open( filter: any ) {
+        return this._http_client.get<any>(
+            `${environment.fullBaseUrl}/invoices/get-invoices-not-paid`, 
+            {
+                params: filter,
+                headers: this.headers
+            }
+        )
+    }
 
     create(data: any) {
         return this._http_client.post<any>(
