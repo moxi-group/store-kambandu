@@ -1,6 +1,9 @@
 import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SeriesService } from '../../series/series.service';
+import { InvoicesService } from '../../invoices/invoices.service';
+import { ApplicationService } from 'src/app/api/application.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'GenerateInvoiceModal',
@@ -15,10 +18,15 @@ export class GenerateInvoiceComponent implements OnInit {
     @Input() invoiceForm: FormGroup
 
     submitted = false
+    loading: boolean = false
+
     series: any = []
 
     constructor(
+        private router: Router,
         private _formBuild: FormBuilder,
+        public _invoicesService: InvoicesService,
+        private _applicationService: ApplicationService,
         private _seriesService: SeriesService
     ) {
         this.invoiceForm = this._formBuild.group({
@@ -54,14 +62,24 @@ export class GenerateInvoiceComponent implements OnInit {
         this.invoiceForm.patchValue({
             invoice_uuid: this.invoice.uuid
         })
-        this._create(this.invoiceForm.value)
+        this._create( this.invoiceForm.value )
     }
 
     _create(invoice: any){
-
-        console.log( invoice );
-        
-
+        this.loading = true
+        this._invoicesService
+        .convert_badget_to_invoice( invoice )
+        .subscribe(response => {
+            this._applicationService.SwalSuccess("Faturação feito com sucesso!");
+            //this._invoicesService._print_after_create( response )
+            console.log( response );
+            
+            this._invoicesService.reset()
+            this.router.navigate(['/managers/invoices'])
+        }, (error) => {            
+            this._applicationService.SwalDanger(error.error.detail)
+            this.loading = false
+        })
     }
 
     get_series() {

@@ -17,6 +17,7 @@
                         <tr>
                             <th>#</th>
                             <th class="sort">{{ 'Referência Doc.' | translate}}</th>
+                            <th class="sort text-center">{{ 'Documento' | translate}}</th>
                             <th class="sort text-center">{{ 'Data Registo' | translate}}</th>
                             <th class="text-right">{{ 'Opções' | translate}}</th>
                         </tr>
@@ -24,8 +25,8 @@
                     <tbody class="list" *ngIf="templates">
                         <tr *ngFor="let item of templates; index as i">
                             <td>{{ i+1 }}</td>
-                            <th scope="row"><span class="name mb-0 text-sm">{{ item.document_templater_uuid }}</span>
-                            </th>
+                            <th scope="row"><span class="name mb-0 text-sm">{{ item.document_templater_uuid }}</span></th>
+                            <td class="budget text-center">{{ item.document.slug }} - {{ item.document.name }}</td>
                             <td class="budget text-center">{{ item.created_at | date }}</td>
                             <td class="text-right">
                                 <button (click)="_edit(item)" type="button" class="btn btn-success btn-sm">

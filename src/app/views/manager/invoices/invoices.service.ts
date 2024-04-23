@@ -80,6 +80,13 @@ export class InvoicesService {
         return null
     }
 
+    convert_badget_to_invoice(data: any) {
+        return this._http_client.post<any>(
+            `${environment.fullBaseUrl}/invoices/convert-badget-to-invoice`,
+            data,
+            { headers: this.headers }
+        )
+    }
 
     update(data: any) {
         return this._http_client.post<any>(

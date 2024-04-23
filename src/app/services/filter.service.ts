@@ -12,8 +12,8 @@ export class FilterService {
         order_by: '-created_at',
         filter_column: null,
         filter_value: null,
-        start_date: Date.now(),
-        end_date: Date.now()
+        start_date: this.startOfMonth(),
+        end_date: this.currentOfMonth()
     }
 
     constructor() {
@@ -23,12 +23,12 @@ export class FilterService {
     reset(){
         this.pagination = {
             page: 1,
-            limit: 5,
+            limit: 10,
             order_by: '-created_at',
             filter_column: null,
             filter_value: null,
-            start_date: Date.now(),
-            end_date: Date.now()
+            start_date: this.startOfMonth(),
+            end_date: this.currentOfMonth()
         }
     }
 

@@ -23,7 +23,7 @@ export class EstimatesComponent implements OnInit {
         filter_column: 'sigla_doc',
         filter_value: 'FP',
         start_date: this.getFirstDateOfLastMonth(),
-        end_date: Date.now()
+        end_date: this.getCurrentMonth()
     }
 
     invoice: any = {}
@@ -36,7 +36,9 @@ export class EstimatesComponent implements OnInit {
         public _printService: PrintsService,
         private _applicationService: ApplicationService,
         public translate: TranslateService
-    ) { }
+    ) {
+
+    }
 
     ngOnInit(): void {
         this.loading_data()
@@ -165,6 +167,18 @@ export class EstimatesComponent implements OnInit {
         let year: any = lastMonth.getFullYear();
         let month: any = lastMonth.getMonth() + 1;
         let day: any = lastMonth.getDate();
+      
+        month = month < 10 ? '0' + month : month;
+        day = day < 10 ? '0' + day : day;
+      
+        return year + '-' + month + '-' + day;
+    }
+
+    getCurrentMonth() {
+        let today = new Date();
+        let year = today.getFullYear();
+        let month: any = today.getMonth() + 1;
+        let day: any = today.getDate();
       
         month = month < 10 ? '0' + month : month;
         day = day < 10 ? '0' + day : day;
