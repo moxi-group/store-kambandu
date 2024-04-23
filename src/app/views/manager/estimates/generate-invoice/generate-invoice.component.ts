@@ -71,9 +71,9 @@ export class GenerateInvoiceComponent implements OnInit {
         .convert_badget_to_invoice( invoice )
         .subscribe(response => {
             this._applicationService.SwalSuccess("Faturação feito com sucesso!");
-            //this._invoicesService._print_after_create( response )
-            console.log( response );
-            
+            this._invoicesService._print_after_create( response )
+            this._applicationService.CloseModal('GenerateInvoiceModal')
+
             this._invoicesService.reset()
             this.router.navigate(['/managers/invoices'])
         }, (error) => {            
