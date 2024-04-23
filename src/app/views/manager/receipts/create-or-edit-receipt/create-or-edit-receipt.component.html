@@ -1,128 +1,165 @@
-
-<div class="header">
+<!-- Header -->
+<div class="header bg-green pb-6">
     <div class="container-fluid">
         <div class="header-body">
-            <h6 class="h2 d-inline-block mt-2">Registo de Recibo</h6>
-
-            <div class="row align-items-center pt-4">
-                <div class="col-md-6 col-sm-12">
-                    <h3>Cliente</h3>
-                    <select (change)="set_customer($event.target)"
-                        id="customer_uuid" 
-                        name="customer_uuid" 
-                        class="form-control">
-                        
-                        <option [value]="null">Opções</option>
-                        <option *ngFor="let customer of customers" [value]="customer.uuid">{{ customer.name }}
-                        </option>
-                    </select>
-                </div>
-
-                <div class="col-lg-6 col-5 text-right">
-                    <h6 class="h2 d-inline-block mb-0">
-                        TOTAL À PAGAR
-                        <br>
-                        <strong>{{ total_payable | to_kwanza }}</strong>
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <h6 class="h2 text-white d-inline-block mb-0">
+                        Registo de Recibo
                     </h6>
                 </div>
+                <div class="col-lg-6 col-5 text-right">
+                    <div>
+                        <h3 class="text-white">
+                            <span class="mr-3">Total à Pagar:</span> 
+                            <strong class="text-light" style="color: #000000!important">{{ receiptObject.total_payable | to_kwanza }}</strong>
+                        </h3>
+                        <h3 class="text-white">
+                            <span class="mr-3">Troco:</span> 
+                            <strong class="text-light" style="color: #000000!important">{{ receiptObject.change | to_kwanza }}</strong>
+                        </h3>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Page content -->
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-body border-0">
+                    <div class="row align-items-center pt-4">
+                        <div class="col-md-6 col-sm-12">
+                            <h3>Selecione o Cliente:</h3>
+                            <select (change)="set_customer($event.target)"
+                                [(ngModel)]="receiptObject.customer_uuid"
+                                id="customer_uuid" 
+                                name="customer_uuid" 
+                                class="form-control">
+                                
+                                <option [value]="null">Opções</option>
+                                <option *ngFor="let customer of customers" [value]="customer.uuid">{{ customer.name }}
+                                </option>
+                            </select>
+                        </div>
+        
+                        <div class="col-lg-6 col-5 text-right">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12" *ngIf="!this.current_cutomer">
+                            <h3 class="btn-success p-2">Facturas em Aberto</h3>
+                            <div class="table-responsive">
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th class="sort">{{ "table.sigla_doc" | translate }}</th>
+                                            <th class="text-right">{{ "table.total" | translate }}</th>
+                                            <th class="text-right">{{ "table.open_amount" | translate }}</th>
+                                            <th class="sort">{{ "table.date" | translate }}</th>
+                                            <th>#</th>
+                                        </tr>
+                                    </thead>
+                
+                                    <tbody class="list" *ngIf="invoices">
+                                        <tr *ngFor="let item of invoices" class="{{ item.status === 'A' ? 'bg-danger-line' : '' }}">
+                                            <th scope="row"><span class="name mb-0 text-sm">{{ item.sigla_doc }}</span></th>
+                                            <td class="text-right">{{ item.total | to_kwanza }}</td>
+                                            <td class="text-right">{{ item.open_amount | to_kwanza }}</td>
+                                            <td class="budget">{{ item.created_at | date }}</td>
+                                            <td class="">
+                                                <input
+                                                    (click)="_add_line($event, item)" 
+                                                    type="checkbox"
+                                                    class="form-control" 
+                                                    style="width: 80%;"
+                                                />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>       
+                        </div>
+                
+                        <div class="col-md-6 col-sm-12">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12" *ngIf="receiptObject.total_payable">
+                                    <h3>Selecione Série</h3>
+                                    <select (change)="set_customer($event.target)"
+                                        [(ngModel)]="receiptObject.serie_uuid"
+                                        id="serie_uuid" 
+                                        name="serie_uuid" 
+                                        class="form-control">
+                                        
+                                        <option [value]="null">Opções</option>
+                                        <option *ngFor="let serie of series" [value]="serie.uuid">{{ serie.name }} - {{ serie.document.slug }}</option>
+                                    </select>
+                                </div>
+                
+                                <div class="col-md-6 col-sm-12" *ngIf="receiptObject.serie_uuid">
+                                    <h3>Forma de pagamento</h3>
+                                    <select 
+                                        [(ngModel)]="receiptObject.payment.payment_method_uuid" 
+                                        id="payment_method_uuid"
+                                        name="payment_method_uuid" 
+                                        class="form-control">
+                
+                                        <option [value]="null">Opções</option>
+                                        <option *ngFor="let payment of payment_methods" [value]="payment.uuid">
+                                            {{payment.name }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                
+                            <div class="row mt-3">
+                                <div class="col-md-6 col-sm-12" *ngIf="receiptObject.payment.payment_method_uuid">
+                                    <h3>Observação</h3>
+                                    <input 
+                                        [(ngModel)]="receiptObject.description"
+                                        class="form-control"
+                                        type="text" 
+                                    >
+                                </div>
+                
+                                <div class="col-md-6 col-sm-12" *ngIf="receiptObject.payment.payment_method_uuid">
+                                    <h3>Valor de Entrada</h3>
+                                    <input 
+                                        (keyup)="_set_received_value($event.target)"
+                                        [(ngModel)]="receiptObject.total_received"
+                                        class="form-control"
+                                        type="text" 
+                                        value="{{ receiptObject.total_received }}"
+                                    >
+                
+                                    <br>
+                
+                                    <button
+                                        class="btn btn-success btn-block text-white"
+                                        [disabled]="loading"
+                                        (click)="_create()"
+                                        type="button"
+                                    >
+                                        {{ "Pagar agora" | translate }}
+                                        <spinner [loading]="loading"></spinner>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <br>
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-6 col-sm-12" *ngIf="!this.current_cutomer">
-            <h3 class="btn-success p-2">Facturas em Aberto</h3>
-
-            <div class="table-responsive">
-                <table class="table align-items-center table-flush">
-                    <thead class="thead-light">
-                        <tr>
-                            <th class="sort">{{ "table.sigla_doc" | translate }}</th>
-                            <th class="text-right">{{ "table.total" | translate }}</th>
-                            <th class="text-right">{{ "table.open_amount" | translate }}</th>
-                            <th class="sort">{{ "table.date" | translate }}</th>
-                            <th>#</th>
-                        </tr>
-                    </thead>
-
-                    <tbody class="list" *ngIf="invoices">
-                        <tr *ngFor="let item of invoices" class="{{ item.status === 'A' ? 'bg-danger-line' : '' }}">
-                            <th scope="row"><span class="name mb-0 text-sm">{{ item.sigla_doc }}</span></th>
-                            <td class="text-right">{{ item.total | to_kwanza }}</td>
-                            <td class="text-right">{{ item.open_amount | to_kwanza }}</td>
-                            <td class="budget">{{ item.created_at | date }}</td>
-                            <td class="">
-                                <input
-                                    (click)="_add_line($event.target, item)" 
-                                    type="checkbox"
-                                    class="form-control" 
-                                    style="width: 80%;"
-                                />
-                            </td>
-
-                        </tr>
-                    </tbody>
-
-                </table>
-        
-            </div>       
-        </div>
-
-        <div class="col-md-6 col-sm-12">
-            <div class="row">
-                <div class="col-md-6 col-sm-12">
-                    <h3>Selecione Série</h3>
-                    <select (change)="set_customer($event.target)"
-                        id="customer_uuid" 
-                        name="customer_uuid" 
-                        class="form-control">
-                        
-                        <option [value]="null">Opções</option>
-                        <option *ngFor="let customer of customers" [value]="customer.uuid">{{ customer.name }}
-                        </option>
-                    </select>
-                </div>
-
-                <div class="col-md-6 col-sm-12">
-                    <h3>Forma de pagamento</h3>
-                    <select 
-                        [(ngModel)]="payment.payment_method_uuid" 
-                        id="payment_method_uuid"
-                        name="payment_method_uuid" 
-                        class="form-control">
-
-                        <option [value]="null">Opções</option>
-                        <option *ngFor="let payment of payment_methods" [value]="payment.uuid">
-                            {{payment.name }}
-                        </option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row mt-3">
-                <div class="col-md-6 col-sm-12">
-
-                </div>
-
-                <div class="col-md-6 col-sm-12">
-                    <h3>Valor de Entrada</h3>
-                    <input 
-                        (keyup)="_set_received_value($event.target)"
-                        class="form-control"
-                        type="text" 
-                        value="{{ total_received }}"
-                    >
-                </div>
-            </div>
-
-        </div>
-
-
-    </div>
-
-</div>
 
