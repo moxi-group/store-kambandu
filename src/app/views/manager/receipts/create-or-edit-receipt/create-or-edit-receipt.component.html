@@ -35,11 +35,13 @@
                     <div class="row align-items-center pt-4">
                         <div class="col-md-6 col-sm-12">
                             <h3>Selecione o Cliente:</h3>
-                            <select (change)="set_customer($event.target)"
+                            <select 
+                                (change)="set_customer($event.target)"
                                 [(ngModel)]="receiptObject.customer_uuid"
                                 id="customer_uuid" 
                                 name="customer_uuid" 
-                                class="form-control">
+                                class="form-control"
+                            >
                                 
                                 <option [value]="null">Opções</option>
                                 <option *ngFor="let customer of customers" [value]="customer.uuid">{{ customer.name }}
@@ -48,6 +50,22 @@
                         </div>
         
                         <div class="col-lg-6 col-5 text-right">
+
+                            <!--
+                                <ng-select
+                                    (change)="set_customer($event.target)"
+                                    [(ngModel)]="receiptObject.customer_uuid"
+                                    name="customer_uuid"
+                                    placeholder="Pesquisar Cliente"
+                                    notFoundText="Nenhum cliente encontrado"
+                                    appearance="underline"
+                                    [virtualScroll]="true"
+                                >
+                                    <ng-option *ngFor="let customer of customers" [value]="customer.uuid" >
+                                        {{ customer.name }}
+                                    </ng-option>
+                                </ng-select>
+                            -->
                         </div>
                     </div>
 

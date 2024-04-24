@@ -95,6 +95,9 @@ export class CreateOrEditReceiptComponent implements OnInit {
     _create(){
         this.loading = true
 
+        console.log( this.receiptObject );
+        
+        return
         this._receiptService.create( this.receiptObject )
         .subscribe(response => {
             this.loading = false
@@ -130,7 +133,7 @@ export class CreateOrEditReceiptComponent implements OnInit {
         })
     }
 
-    set_customer(target: any){
+    set_customer(target: any){        
         let uuid = target.value
         let customer = this.customers.find((customer: any) => customer.uuid == uuid)
     
@@ -154,17 +157,24 @@ export class CreateOrEditReceiptComponent implements OnInit {
     _add_line(event: any, invoice: any){
         let checked = event.target.checked
 
+        let line_receipt = {
+            invoice_uuid: invoice.uuid,
+            receipt_uuid: null,
+            amount_saved: invoice.open_amount,
+            new_open_value: 0
+        }
+
         if( Boolean(checked) ){
-            this.receiptObject.lines.push( invoice )
+            this.receiptObject.lines.push( line_receipt )
         }else {
-            this.receiptObject.lines = this.receiptObject.lines.filter((line: any) => line.uuid != invoice.uuid)            
+            this.receiptObject.lines = this.receiptObject.lines.filter((line: any) => line.uuid != invoice.invoice_uuid)            
         }
         
         this.calculate()
     }
 
     calculate(){
-        let current_payable = this.receiptObject.lines.reduce((partialSum: any, line: any) => (partialSum + line.open_amount), 0 )
+        let current_payable = this.receiptObject.lines.reduce((partialSum: any, line: any) => (partialSum + line.amount_saved), 0 )
         this.receiptObject.total_payable = current_payable
         this.change_calculate()
         this.check_lines()
