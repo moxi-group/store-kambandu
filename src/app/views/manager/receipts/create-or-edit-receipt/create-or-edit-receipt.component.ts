@@ -19,19 +19,21 @@ export class CreateOrEditReceiptComponent implements OnInit {
         order_by: '-created_at'
     }
 
+    current_object_payment: any = {
+        kind: null,
+        payment_method_uuid: null,
+        payment_date: new Date(),
+        amount_received: 0
+    }
+
     receiptObject: any = {
         total_payable: 0,
-        total_received: 0,
+        total: 0,
         change: 0,
         customer_uuid: null,
         serie_uuid: null,
         description: null,
-        payment: {
-            kind: null,
-            payment_method_uuid: null,
-            payment_date: new Date(),
-            amount_received: 0
-        },
+        payments: [],
         lines: []
     }
 
@@ -70,26 +72,37 @@ export class CreateOrEditReceiptComponent implements OnInit {
 
         this.receiptObject = {
             total_payable: 0,
-            total_received: 0,
+            total: 0,
             change: 0,
             customer_uuid: null,
             serie_uuid: null,
             description: null,
-            payment: {
-                kind: null,
-                payment_method_uuid: null,
-                payment_date: new Date(),
-                amount_received: 0
-            },
-            lines: []
+            lines: [],
+            payments: []
         }
     }
 
-    _set_received_value(target: any){
-        let value = Number(target.value)
-        this.receiptObject.payment.amount_received = value
+    _set_payment_method( target: any ){
+        let uuid = target.value
+        let payment_method = this.payment_methods.find((item: any) => item.uuid == uuid)
+    
+        this.current_object_payment.kind = payment_method.name
+        this.current_object_payment.payment_method_uuid = payment_method.uuid        
+    }
 
-        this.change_calculate()
+    _add_payment(){
+        let payment = this.current_object_payment
+        this.receiptObject.payments.push(payment)
+
+        this.current_object_payment = {
+            payment_method_uuid: null,
+            payment_date: new Date(),
+            amount_received: 0
+        }
+
+        this.calculate()
+
+
     }
 
     _create(){
@@ -159,29 +172,33 @@ export class CreateOrEditReceiptComponent implements OnInit {
 
         let line_receipt = {
             invoice_uuid: invoice.uuid,
-            receipt_uuid: null,
             amount_saved: invoice.open_amount,
             new_open_value: 0
-        }
+        }        
 
         if( Boolean(checked) ){
             this.receiptObject.lines.push( line_receipt )
         }else {
-            this.receiptObject.lines = this.receiptObject.lines.filter((line: any) => line.uuid != invoice.invoice_uuid)            
+            let invoices = this.receiptObject.lines.filter((line: any) => line.invoice_uuid != invoice.uuid)            
+            this.receiptObject.lines = invoices
         }
         
         this.calculate()
     }
 
     calculate(){
-        let current_payable = this.receiptObject.lines.reduce((partialSum: any, line: any) => (partialSum + line.amount_saved), 0 )
+        let total_received_line = this.receiptObject.payments.reduce((partialSum: any, line: any) => (Number(partialSum) + Number(line.amount_received)), 0 )
+        let current_payable = this.receiptObject.lines.reduce((partialSum: any, line: any) => (Number(partialSum) + Number(line.amount_saved)), 0 )
+
         this.receiptObject.total_payable = current_payable
+        this.receiptObject.total = total_received_line
+
         this.change_calculate()
         this.check_lines()
     }
 
     change_calculate(){
-        let change = Number(this.receiptObject.payment.amount_received) - Number(this.receiptObject.total_payable) 
+        let change = Number(this.receiptObject.total) - Number(this.receiptObject.total_payable) 
         this.receiptObject.change = (change <= 0) ? 0 : change
     }
 
@@ -189,18 +206,13 @@ export class CreateOrEditReceiptComponent implements OnInit {
         if ( !this.receiptObject.lines.length ) {
             this.receiptObject = {
                 total_payable: 0,
-                total_received: 0,
+                total: 0,
                 change: 0,
                 customer_uuid: this.receiptObject.customer_uuid,
                 serie_uuid: null,
                 description: null,
-                payment: {
-                    kind: null,
-                    payment_method_uuid: null,
-                    payment_date: new Date(),
-                    amount_received: 0
-                },
-                lines: []
+                lines: [],
+                payments: []
             }
         }
     }

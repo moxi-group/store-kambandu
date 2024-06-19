@@ -71,7 +71,7 @@
 
                     <div class="row">
                         <div class="col-md-6 col-sm-12" *ngIf="!this.current_cutomer">
-                            <h3 class="btn-success p-2">Facturas em Aberto</h3>
+                            <h3 class="btn-primary p-2">Facturas em Aberto</h3>
                             <div class="table-responsive">
                                 <table class="table align-items-center table-flush">
                                     <thead class="thead-light">
@@ -101,7 +101,46 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>       
+                            </div>
+                            
+
+                            <div *ngIf="receiptObject.payments.length">
+                                <hr>
+                                <h3 class="btn-success p-2" *ngIf="receiptObject.payments.length">Linhas de Pagamentos</h3>
+                                <div class="table-responsive" *ngIf="receiptObject.payments.length">
+                                    <table class="table align-items-center table-flush">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th class="sort">{{ "Tipo" | translate }}</th>
+                                                <th class="text-right">{{ "table.total" | translate }}</th>
+                                                <th>#</th>
+                                            </tr>
+                                        </thead>
+                    
+                                        <tbody class="list">
+                                            <tr *ngFor="let item of receiptObject.payments" class="">
+                                                <th scope="row"><span class="name mb-0 text-sm">{{ item.kind }}</span></th>
+                                                <td class="text-right">{{ item.amount_received | to_kwanza }}</td>
+                                                <td class="">
+                                                    Remover
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                        
+                                <button
+                                    class="btn btn-success text-white text-left"
+                                    [disabled]="loading"
+                                    (click)="_create()"
+                                    type="button"
+                                    >
+                                    {{ "Pagar agora" | translate }}
+                                    <spinner [loading]="loading"></spinner>
+                                </button>
+                                    
+                            </div>
+                            
                         </div>
                 
                         <div class="col-md-6 col-sm-12">
@@ -122,7 +161,8 @@
                                 <div class="col-md-6 col-sm-12" *ngIf="receiptObject.serie_uuid">
                                     <h3>Forma de pagamento</h3>
                                     <select 
-                                        [(ngModel)]="receiptObject.payment.payment_method_uuid" 
+                                        [(ngModel)]="current_object_payment.payment_method_uuid" 
+                                        (change)="_set_payment_method($event.target)"
                                         id="payment_method_uuid"
                                         name="payment_method_uuid" 
                                         class="form-control">
@@ -136,7 +176,7 @@
                             </div>
                 
                             <div class="row mt-3">
-                                <div class="col-md-6 col-sm-12" *ngIf="receiptObject.payment.payment_method_uuid">
+                                <div class="col-md-6 col-sm-12" *ngIf="current_object_payment.payment_method_uuid">
                                     <h3>Observação</h3>
                                     <input 
                                         [(ngModel)]="receiptObject.description"
@@ -145,27 +185,25 @@
                                     >
                                 </div>
                 
-                                <div class="col-md-6 col-sm-12" *ngIf="receiptObject.payment.payment_method_uuid">
+                                <div class="col-md-6 col-sm-12" *ngIf="current_object_payment.payment_method_uuid">
                                     <h3>Valor de Entrada</h3>
                                     <input 
-                                        (keyup)="_set_received_value($event.target)"
-                                        [(ngModel)]="receiptObject.total_received"
+                                        [(ngModel)]="current_object_payment.amount_received"
                                         class="form-control"
                                         type="text" 
-                                        value="{{ receiptObject.total_received }}"
+                                        value="{{ receiptObject.open_amount }}"
                                     >
                 
                                     <br>
                 
                                     <button
-                                        class="btn btn-success btn-block text-white"
-                                        [disabled]="loading"
-                                        (click)="_create()"
+                                        class="btn btn-success text-white btn-sm text-right"
+                                        (click)="_add_payment()"
                                         type="button"
-                                    >
-                                        {{ "Pagar agora" | translate }}
-                                        <spinner [loading]="loading"></spinner>
+                                        >
+                                        {{ "Adicionar" | translate }}
                                     </button>
+
                                 </div>
                             </div>
                         </div>
