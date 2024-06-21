@@ -18,3 +18,106 @@
         </div>
     </div>
 </div>
+
+
+<!-- Page content -->
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header border-0">
+                    <Filter [options]='filter_options' (filterEmitter)='(_onTableDataChange($event))'></Filter>
+                </div>
+                <!-- Light table -->
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>#</th>
+                                <th class="sort">{{ "table.customer" | translate }}</th>
+                                <th class="sort">{{ "NIF" | translate }}</th>
+                                <th class="sort text-center">{{ "table.sequence" | translate }}</th>
+                                <th class="text-center">{{ "SIGLA DOC." | translate }}</th>
+                                <th class="text-center">{{ "Estado" | translate }}</th>
+                                <th class="text-right">{{ "Valor Pago" | translate }}</th>
+                                <th class="sort text-center">{{ "table.date" | translate }}</th>
+                                <th scope="col">Opções</th>
+                            </tr>
+                        </thead>
+                        <tbody class="list" *ngIf="receipts.items">
+                            <tr *ngFor="let item of receipts.items | paginate: {
+                                itemsPerPage: _filterService.pagination.limit,
+                                currentPage: _filterService.pagination.page,
+                                totalItems: receipts.total
+                                }; index as i">
+                                <td>{{ i+1 }}</td>
+                                <td scope="row">
+                                    <span class="name mb-0 text-sm">{{ item.customer.name }}</span>
+                                </td>
+                                <td scope="row">
+                                    <span class="name mb-0 text-sm">{{ item.customer.nif }}</span>
+                                </td>
+                                <td class="text-center" scope="row">
+                                    <span class="name mb-0 text-sm">{{ item.sequence }}</span>
+                                </td>
+                                <td class="text-center" scope="row">
+                                    <span class="name mb-0 text-sm">{{ item.sigla_doc }}</span>
+                                </td>
+
+                                <td class="m-0 text-center">
+                                    <span class="badge badge-lg badge-{{ item.status === 'N' ? 'success' : 'warning'}}">
+                                        {{item.status === "N" ? 'Normal' : 'Anulado'}}
+                                    </span>
+                                </td>
+                                <td class="text-right" scope="row">
+                                    <span class="mb-0 text-sm">{{ item.total_received | to_kwanza}}</span>
+                                </td>
+                                
+                                <td class="budget text-center">{{ item.created_at | date }}</td>
+
+                                <td class="text-right">
+                                    <div class="dropdown">
+                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                            <button type="button" class="dropdown-item"
+                                                (click)="_print(item)">
+                                                {{ 'Imprimir' | translate}}
+                                            </button>
+                                            <button
+                                                *ngIf="item.status == 'N'"
+                                                (click)="pachValue(item)"
+                                                type="button"
+                                                class="dropdown-item"
+                                                data-toggle="modal"
+                                                data-target="#CancelInvoiceModal"
+                                                >
+                                                {{ "Anular Doc" | translate }}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <hr>
+
+                    <div class="d-flex justify-content-center">
+                        <pagination-controls (pageChange)="_onTableDataChangePage($event)" previousLabel="Anterior"
+                            nextLabel="Proximo">
+                        </pagination-controls>
+                    </div>
+                    <app-loading [loading]="this.loading"></app-loading>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

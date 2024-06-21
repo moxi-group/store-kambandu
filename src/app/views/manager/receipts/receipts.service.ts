@@ -20,9 +20,13 @@ export class ReceiptsService {
     .set('Authorization', `Bearer ${this.token}`)
     .set('header-company-uuid', `${this.companyToken}`)
 
-    get_receipts() {
+    get_receipts(filter: any) {
         return this._http_client.get<any>(
-            `${environment.fullBaseUrl}/receipts`, { headers: this.headers }
+            `${environment.fullBaseUrl}/receipts`, 
+            {
+                params: filter,
+                headers: this.headers 
+            }
         )
     }
     
@@ -51,7 +55,24 @@ export class ReceiptsService {
         )
     }
 
+    print(data: any) {
+        let doc_uuid = this.get_documents(data.sigla_doc.substring(0,2))        
+        return this._http_client.post(
+            `${environment.invoiceServe.baseUrl}/${doc_uuid}/${environment.invoiceServe.output}`,
+            data, { responseType: 'blob', }
+        )
+    }
 
+    get_documents(slug: string): any {
+        let data: any = sessionStorage.getItem('templates')
+        let templates = JSON.parse(data)
+    
+        let template = templates.find((item: any) => item.document === slug)
+        if ( Boolean(template.document_templater_uuid) ) {
+            return template.document_templater_uuid
+        }
 
+        return null
+    }
 
 }

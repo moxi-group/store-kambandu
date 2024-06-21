@@ -107,16 +107,15 @@ export class CreateOrEditReceiptComponent implements OnInit {
 
     _create(){
         this.loading = true
-
-        console.log( this.receiptObject );
         
-        return
         this._receiptService.create( this.receiptObject )
-        .subscribe(response => {
+        .subscribe(response => {            
             this.loading = false
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this._reset()
-            this.router.navigate(['/managers/invoices'])
+            this.router.navigate(['/managers/receipts'])
+        }, error => {
+            console.error( error )
         })
     }
 
@@ -172,8 +171,7 @@ export class CreateOrEditReceiptComponent implements OnInit {
 
         let line_receipt = {
             invoice_uuid: invoice.uuid,
-            amount_saved: invoice.open_amount,
-            new_open_value: 0
+            open_amount: invoice.open_amount
         }        
 
         if( Boolean(checked) ){
@@ -188,7 +186,7 @@ export class CreateOrEditReceiptComponent implements OnInit {
 
     calculate(){
         let total_received_line = this.receiptObject.payments.reduce((partialSum: any, line: any) => (Number(partialSum) + Number(line.amount_received)), 0 )
-        let current_payable = this.receiptObject.lines.reduce((partialSum: any, line: any) => (Number(partialSum) + Number(line.amount_saved)), 0 )
+        let current_payable = this.receiptObject.lines.reduce((partialSum: any, line: any) => (Number(partialSum) + Number(line.open_amount)), 0 )
 
         this.receiptObject.total_payable = current_payable
         this.receiptObject.total = total_received_line
