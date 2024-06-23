@@ -41,6 +41,16 @@
                             <div *ngIf="f['percentage'].errors.required">{{ 'errors.required' | translate}}</div>
                         </div>
                     </div>
+
+
+                    <div class="form-group">
+                        <label class="control-label">{{ 'Selecionar Documento' | translate}}</label>
+                        <select formControlName="regime_uuid" name="regime_uuid" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.regime_uuid.errors, 'is-valid': f.regime_uuid.touched && !f.regime_uuid.errors }">
+                            <option *ngFor="let regime of regimes" [value]="regime.uuid">{{ regime.name }} - {{ regime.code }}</option>
+                        </select>
+                    </div>
+
                 </div>
 
                 <div class="modal-footer">

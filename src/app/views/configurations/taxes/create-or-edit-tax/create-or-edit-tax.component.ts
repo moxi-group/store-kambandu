@@ -18,7 +18,9 @@ export class CreateOrEditTaxComponent implements OnInit {
     submitted = false
     private loading = false
 
-    @Input() taxForm: FormGroup;
+    @Input() taxForm: FormGroup
+
+    regimes: any = []
 
     constructor(
         private _taxService: TaxesService,
@@ -29,8 +31,11 @@ export class CreateOrEditTaxComponent implements OnInit {
             uuid: [{ value: null, disabled: true }],
             description: [null, Validators.required],
             code: [null, Validators.required],
+            regime_uuid: [null, Validators.required],
             percentage: [0, Validators.required]
-        });
+        })
+
+        this.get_regimes()
     }
 
     ngOnInit(): void {
@@ -52,6 +57,7 @@ export class CreateOrEditTaxComponent implements OnInit {
     onReset() {
         this.submitted = false;
         this.taxForm.reset()
+        
     }
 
     onSubmit() {
@@ -90,6 +96,13 @@ export class CreateOrEditTaxComponent implements OnInit {
     }
 
 
+    get_regimes(){
+        this._taxService
+        .get_regimes()
+        .subscribe( response => {
+            this.regimes = response
+        })
+    }
 
 
 }

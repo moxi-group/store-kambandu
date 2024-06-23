@@ -37,6 +37,13 @@ export class TaxesService {
     }
 
 
+    get_regimes() {
+        return this._http_client.get<any>(
+            `${environment.fullBaseUrl}/regimes`, { headers: this.headers }
+        )
+    }
+    
+
 
 
 }

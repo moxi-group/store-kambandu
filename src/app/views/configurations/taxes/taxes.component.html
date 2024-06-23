@@ -32,7 +32,8 @@
                                 <th>#</th>
                                 <th scope="col" class="sort">{{ 'table.name' | translate}}</th>
                                 <th scope="col" class="sort">{{ 'table.sigla' | translate}}</th>
-                                <th scope="col" class="sort">{{ 'table.sigla' | translate}}</th>
+                                <th scope="col" class="sort">{{ 'Percentagem' | translate}}</th>
+                                <th scope="col" class="sort">{{ 'Regime' | translate}}</th>
                                 <th scope="col" class="sort">{{ 'table.status' | translate}}</th>
                                 <th scope="col" class="sort">{{ 'table.date' | translate}}</th>
                                 <th scope="col"></th>
@@ -46,6 +47,7 @@
                                 </th>
                                 <td class="budget">{{ item.code }}</td>
                                 <td class="budget">{{ item.percentage }}</td>
+                                <td class="budget">{{ item.regime?.name }}</td>
                                 <td>
                                     <span class="badge badge-dot mr-4">
                                         <i class="bg-green"></i>
