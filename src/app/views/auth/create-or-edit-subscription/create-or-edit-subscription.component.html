@@ -230,16 +230,16 @@
                                             <span class="input-group-text"><i class="ni ni-ui-04"></i></span>
                                         </div>
 
-                                        <select formControlName="company_regime" name="company_regime"
+                                        <select 
+                                            formControlName="regime_uuid" 
+                                            name="regime_uuid" 
                                             class="form-control"
-                                            [ngClass]="{ 'is-invalid': submitted && f.company_regime.errors, 'is-valid': f.company_street_name.touched && !f.company_regime.errors }">
-
-                                            <option value="Regime Simplificado">Regime Simplificado</option>
-                                            <option value="Regime Caixa">Regime Caixa</option>
+                                            [ngClass]="{ 'is-invalid': submitted && f.regime_uuid.errors, 'is-valid': f.regime_uuid.touched && !f.regime_uuid.errors }">
+                                            <option *ngFor="let regime of regimes" [value]="regime.uuid">{{ regime.name }} - {{ regime.code }}</option>
                                         </select>
 
-                                        <div *ngIf="submitted && f['company_regime'].errors" class="invalid-feedback">
-                                            <div *ngIf="f['company_regime'].errors.required">{{ 'errors.required' |
+                                        <div *ngIf="submitted && f['regime_uuid'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['regime_uuid'].errors.required">{{ 'errors.required' |
                                                 translate}}
                                             </div>
                                         </div>

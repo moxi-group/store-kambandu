@@ -2,6 +2,7 @@ import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ApplicationService } from 'src/app/api/application.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TaxesService } from '../../configurations/taxes/taxes.service';
 
 @Component({
     selector: 'app-create-or-edit-subscription',
@@ -12,12 +13,14 @@ export class CreateOrEditSubscriptionComponent implements OnInit {
 
     submitted = false
     subscription: any = {}
+    regimes: any = []
 
     subscriptionForm: FormGroup;
 
 
     constructor(
         private _authService: AuthService,
+        private _taxService: TaxesService,
         private _applicationService: ApplicationService,
         private _formBuild: FormBuilder
     ) {
@@ -34,6 +37,8 @@ export class CreateOrEditSubscriptionComponent implements OnInit {
             company_city: [null, Validators.required],
             company_email: [null, Validators.required],
             company_cell_phone: [null, Validators.required],
+            regime_uuid: [null, Validators.required],
+            
             company_regime: [null, Validators.required],
             company_postal_code: [null, Validators.required]
         })
@@ -73,6 +78,14 @@ export class CreateOrEditSubscriptionComponent implements OnInit {
         .subscribe(response => {
             this._applicationService.SwalSuccess("Registo feito com sucesso!");
             this.onReset()
+        })
+    }
+
+    get_regimes(){
+        this._taxService
+        .get_regimes()
+        .subscribe( response => {
+            this.regimes = response
         })
     }
 }

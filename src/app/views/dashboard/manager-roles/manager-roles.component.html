@@ -22,6 +22,7 @@
 <div class="container-fluid mt--6">
 
     <div class="row">
+
         <div class="col-xl-3 col-md-6" *ngIf="currentUser.is_staff">
             <div class="card bg-gradient-primary border-0">
                 <!-- Card body -->
@@ -42,8 +43,13 @@
         </div>
 
         <div class="col-xl-3 col-md-6" *ngFor="let role of roles">
-            <button type="button" class="btn btn-outline-success" (click)="set_role(role)">
-                <h3 class="card-title text-uppercase text-muted mb-0"> {{ role.role_type | translate }}</h3>
+            <button 
+                style="width: 100%;"
+                type="button" 
+                class="btn btn-outline-success" 
+                (click)="set_role(role)">
+                <h4 class="card-title text-uppercase text-muted mb-0"> {{ role.role_type | translate }}</h4>
+                <h6>{{ role.company_name }}</h6>
             </button>
         </div>
 
