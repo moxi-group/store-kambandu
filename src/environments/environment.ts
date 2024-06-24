@@ -1,8 +1,8 @@
 export const environment = {
     production: false,
-    baseURL: 'https://qas.kambandu.com/',
+    baseURL: 'https://api.kambandu.com/',
     baseVersion: 'v1',
-    fullBaseUrl: `https://qas.kambandu.com/api/v1`,
+    fullBaseUrl: `https://api.kambandu.com/api/v1`,
     invoiceServe: {
         baseUrl: 'https://print.kambandu.com/api/v1/document',
         output: 'generate?output_format=pdf'
