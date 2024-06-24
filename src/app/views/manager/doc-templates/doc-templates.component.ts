@@ -28,9 +28,7 @@ export class DocTemplatesComponent implements OnInit {
       this.loading = true
         this._docTemplateService
         .get_config_templates()
-        .subscribe(response => {
-            console.log(response);
-            
+        .subscribe(response => {            
             this.templates = Object(response)
             this.loading = false
         })

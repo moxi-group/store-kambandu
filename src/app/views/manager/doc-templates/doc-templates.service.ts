@@ -16,6 +16,7 @@ export class DocTemplateService {
     .set('content-type', 'application/json')
     .set('Access-Control-Allow-Origin', '*')
     .set('Authorization', `Bearer ${this.token}`)
+    .set('header-company-uuid', `${this.companyToken}`)
 
     get_config_templates() {
         return this._http_client.get<any>(

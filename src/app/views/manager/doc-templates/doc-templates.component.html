@@ -30,17 +30,21 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>#</th>
-                                <th class="sort">{{ 'Referência Doc.' | translate}}</th>
-                                <th class="sort text-center">{{ 'Documento' | translate}}</th>
+                                <th class="sort text-left">{{ 'Tipo Documento' | translate}}</th>
+                                <th class="sort text-center">{{ 'Sigla' | translate}}</th>
+
+                                <th class="sort text-center">{{ 'Referência Template.' | translate}}</th>
                                 <th class="sort text-center">{{ 'Data Registo' | translate}}</th>
                                 <th class="text-right">{{ 'Opções' | translate}}</th>
                             </tr>
                         </thead>
+
                         <tbody class="list" *ngIf="templates">
                             <tr *ngFor="let item of templates; index as i">
                                 <td>{{ i+1 }}</td>
-                                <th scope="row"><span class="name mb-0 text-sm">{{ item.document_templater_uuid }}</span></th>
-                                <td class="budget text-center">{{ item.document.slug }} - {{ item.document.name }}</td>
+                                <td class="budget text-left">{{ item.document.name }}</td>
+                                <td class="budget text-center">{{ item.document.slug }}</td>
+                                <th class="text-center" scope="row"><span class="name mb-0 text-sm">{{ item.document_templater_uuid }}</span></th>
                                 <td class="budget text-center">{{ item.created_at | date }}</td>
                                 <td class="text-right">
                                     <div class="dropdown">
