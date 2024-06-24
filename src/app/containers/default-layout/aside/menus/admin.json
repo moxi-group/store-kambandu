@@ -56,11 +56,6 @@
                     "icon": "ni ni-collection"
                 },
                 {
-                    "name": "menu.series",
-                    "link": "/managers/series",
-                    "icon": "ni ni-app"
-                },
-                {
                     "name": "menu.products_and_sercives",
                     "link": "/managers/products",
                     "icon": "ni ni-ungroup"
@@ -69,11 +64,6 @@
                     "name": "Categorias",
                     "link": "/managers/categories",
                     "icon": "ni ni-ungroup"
-                },
-                {
-                    "name": "Lojas",
-                    "link": "/managers/stores",
-                    "icon": "ni ni-shop"
                 }
             ]
         },
@@ -167,6 +157,31 @@
             "name": "Colaboradores",
             "link": "/managers/employees",
             "icon": "ni ni-single-02"
+        },
+
+        {
+            "isSub": true,
+            "id": "configurations",
+            "name": "Configurações",
+            "link": "#",
+            "icon": "ni ni-settings",
+            "subMenu": [
+                {
+                    "name": "menu.series",
+                    "link": "/managers/series",
+                    "icon": "ni ni-app"
+                },
+                {
+                    "name": "Lojas",
+                    "link": "/managers/stores",
+                    "icon": "ni ni-shop"
+                },
+                {
+                    "name": "Doc Templates",
+                    "link": "/managers/doc_templates",
+                    "icon": "ni ni-doc"
+                }
+            ]
         }
     ]
 }

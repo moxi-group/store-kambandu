@@ -1,0 +1,71 @@
+<!-- Header -->
+<div class="header bg-green pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <h6 class="h2 text-white d-inline-block mb-0">{{ 'Gestão de Templates de Documentos' | translate }}</h6>
+                </div>
+                <div class="col-lg-6 col-5 text-right">
+                    <button type="button" class="btn btn-outline-default btn-sm" data-toggle="modal"
+                        data-target="#CreateOrEditTemplateModal">
+                        {{ 'btn.register' | translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header border-0">
+                </div>
+                <!-- Light table -->
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>#</th>
+                                <th class="sort">{{ 'Referência Doc.' | translate}}</th>
+                                <th class="sort text-center">{{ 'Documento' | translate}}</th>
+                                <th class="sort text-center">{{ 'Data Registo' | translate}}</th>
+                                <th class="text-right">{{ 'Opções' | translate}}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="list" *ngIf="templates">
+                            <tr *ngFor="let item of templates; index as i">
+                                <td>{{ i+1 }}</td>
+                                <th scope="row"><span class="name mb-0 text-sm">{{ item.document_templater_uuid }}</span></th>
+                                <td class="budget text-center">{{ item.document.slug }} - {{ item.document.name }}</td>
+                                <td class="budget text-center">{{ item.created_at | date }}</td>
+                                <td class="text-right">
+                                    <div class="dropdown">
+                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                            <a class="dropdown-item" href="#">Opções</a>
+                                            <button type="button" class="dropdown-item" data-toggle="modal"
+                                                (click)="pachValue(item)" data-target="#CreateOrEditTemplateModal">
+                                                {{ 'btn.update' | translate}}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<CreateOrEditTemplateModal [template]="template" [modal]=""></CreateOrEditTemplateModal>

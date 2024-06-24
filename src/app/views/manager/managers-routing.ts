@@ -19,6 +19,7 @@ import { SaftAoComponent } from './saft-ao/saft-ao.component';
 import { InternalConsumptionComponent } from './internal-consumption/internal-consumption.component';
 import { CreateOrEditReceiptComponent } from './receipts/create-or-edit-receipt/create-or-edit-receipt.component';
 import { EstimatesComponent } from './estimates/estimates.component';
+import { DocTemplatesComponent } from './doc-templates/doc-templates.component';
 
 const routes: Routes = [
     {
@@ -100,6 +101,9 @@ const routes: Routes = [
             {
                 path: 'internal-consumption',
                 component: InternalConsumptionComponent,
+            },{
+                path: 'doc_templates',
+                component: DocTemplatesComponent,
             },
         ]
     }

@@ -48,6 +48,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
 import { EstimatesComponent } from './estimates/estimates.component';
 import { GenerateInvoiceComponent } from './estimates/generate-invoice/generate-invoice.component';
+import { DocTemplatesComponent } from './doc-templates/doc-templates.component';
+import { CreateOrEditTemplateCompanyComponent } from './doc-templates/create-or-edit-template-company/create-or-edit-template-company.component';
 
 
 
@@ -106,8 +108,11 @@ const ngWizardConfig: NgWizardConfig = {
         GenerateSaftComponent,
 
         InternalConsumptionComponent,
-         EstimatesComponent,
-         GenerateInvoiceComponent
+        EstimatesComponent,
+        GenerateInvoiceComponent,
+
+        DocTemplatesComponent,
+        CreateOrEditTemplateCompanyComponent
     ],
 
     imports: [
