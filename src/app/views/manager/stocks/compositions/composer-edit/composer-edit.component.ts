@@ -169,8 +169,6 @@ export class ComposerEditComponent implements OnInit {
             product_uuid: item.uuid,
             quantity: Number(item.quantity)
         }))
-
-        console.log( products );
     
         if ( products.length ) {
             this._compostionsService.create(products, this.product_uuid)
@@ -178,6 +176,7 @@ export class ComposerEditComponent implements OnInit {
                 this.submitted = false;                
                 this._applicationService.SwalSuccess("Composição atualizada com sucesso!");
                 this.onReset()
+                this.router.navigateByUrl('/managers/products')
             })
         } else {
             this._applicationService.SwalDanger('Não há produtos na composição');
