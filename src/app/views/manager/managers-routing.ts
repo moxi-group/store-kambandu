@@ -20,6 +20,7 @@ import { InternalConsumptionComponent } from './internal-consumption/internal-co
 import { CreateOrEditReceiptComponent } from './receipts/create-or-edit-receipt/create-or-edit-receipt.component';
 import { EstimatesComponent } from './estimates/estimates.component';
 import { DocTemplatesComponent } from './doc-templates/doc-templates.component';
+import { ComposerProductComponent } from './stocks/composer-product/composer-product.component';
 
 const routes: Routes = [
     {
@@ -57,6 +58,10 @@ const routes: Routes = [
             {
                 path: 'products',
                 component: ProductsComponent,
+            },
+            {
+                path: 'products/composer/:product_uuid',
+                component: ComposerProductComponent,
             },
             {
                 path: 'banks',

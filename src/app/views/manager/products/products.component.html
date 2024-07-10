@@ -82,6 +82,11 @@
                                                 (click)="pachValue(item)" data-target="#CreateOrEditProductModal">
                                                 {{ 'btn.update' | translate}}
                                             </button>
+                                            <a 
+                                                [routerLink]="['/managers/products/composer', item.uuid]"
+                                                class="dropdown-item" 
+                                                href="#">Compor
+                                            </a>
                                         </div>
                                     </div>
                                 </td>

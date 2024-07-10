@@ -32,6 +32,16 @@ export class ProductsService {
         )
     }
 
+
+    get_product(uuid: string) {
+        return this._http_client.get<any>(
+            `${environment.fullBaseUrl}/products/${uuid}`, 
+            {
+                headers: this.headers 
+            }
+        )
+    }
+
     create(data: any) {
         return this._http_client.post<any>(
             `${environment.fullBaseUrl}/products`,
