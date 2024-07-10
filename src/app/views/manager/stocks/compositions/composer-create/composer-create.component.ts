@@ -1,19 +1,18 @@
-import { Component, Input, OnInit, SimpleChange } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { ProductsService } from '../../products/products.service';
 import { ApplicationService } from 'src/app/api/application.service';
 import { StocksService } from '../stocks.service';
-import { StoresService } from '../../stores/stores.service';
+import { ProductsService } from '../../../products/products.service';
+import { StoresService } from '../../../stores/stores.service';
 
 @Component({
     selector: 'ComposerProductkModal',
-    templateUrl: './composer-product.component.html',
-    styleUrls: ['./composer-product.component.scss']
+    templateUrl: './composer-create.component.html',
+    styleUrls: ['./composer-create.component.scss']
 })
 
-export class ComposerProductComponent implements OnInit {
+export class ComposerCretaeComponent implements OnInit {
     loading: boolean = false
     submitted = false
 
@@ -36,11 +35,17 @@ export class ComposerProductComponent implements OnInit {
         public _storeService: StoresService
     ) {
         const product_uuid: string = route.snapshot.params.product_uuid
-        this.get_products()
-        this.get_stores()
-
         this.product_uuid = product_uuid
+
+        this._init_(product_uuid)
+        
+        
+        
+        /*
+        this.get_products()
+
         this.get_product(product_uuid)
+        */
 
     }
 
@@ -49,12 +54,57 @@ export class ComposerProductComponent implements OnInit {
         
     }
 
-    get_product(uuid: string){
+    _init_(uuid: string){
         this._productService
         .get_product(uuid)
         .subscribe(response => {            
+            let product = Object(response)
             this.product = Object(response)
+            
+            if ( Boolean( product.is_stocked ) ) {
+                this.get_stores()
+            }
+        })
+    }
+
+    get_stores() {
+        this._storeService
+        .get_stores()
+        .subscribe(response => {
+            let results = Object(response)   
+                     
+            if ( results.length ) {
+                this.stores = results
+                this.store = results[0]
+                this.get_stock()
+            }
+        })
+    }
+
+    get_stock() {             
+        this._stockService
+        .get_stock_of_store(
+            this.product_uuid, 
+            this.store.uuid
+        )
+        .subscribe(response => {
+            this.stock = Object(response)  
+            this._get_compositions_product()             
             this.loading = false
+        })
+    }
+
+    _get_compositions_product(){
+        this._stockService
+        .get_compositions_product( this.stock.uuid )
+        .subscribe(response => {
+            let results = Object(response)
+                        
+            if ( results.length ) {
+                this.router.navigateByUrl(`/managers/products/composer/${this.product_uuid}/edit`)
+            } else {
+                this.get_products()
+            }
         })
     }
 
@@ -70,58 +120,11 @@ export class ComposerProductComponent implements OnInit {
                 let products_part_of_composed = products.filter((item: any) => item.is_part_of_composed === true)
                 this.products = products_part_of_composed
                 this.available_products = products_part_of_composed
-            }            
-
-            this.loading = false
+            }   
+            this.loading = false         
         })
     }
 
-    get_stores() {
-        this._storeService
-        .get_stores()
-        .subscribe(response => {
-            let results = Object(response)
-            this.stores = results
-
-            if ( results.length ) {
-                this.store = results[0]
-                this.get_stock()
-            }
-        })
-    }
-
-    get_stock() {
-        this._stockService
-        .get_stock_of_store(
-            this.product_uuid, 
-            this.store.uuid
-        )
-        .subscribe(response => {
-            this.stock = Object(response)  
-            this._get_compositions_product()          
-        })
-    }
-
-    _get_compositions_product(){
-        this._stockService
-        .get_compositions_product( this.stock.uuid )
-        .subscribe(response => {
-            let results = Object(response)
-            this.validate_composition( results )           
-        })
-    }
-
-    validate_composition(all_products: any){
-        let product = this.product
-        console.log( all_products );
-        
-        if ( Boolean(product.is_stocked) ) {
-            if ( all_products.length ) {
-                this.available_products = this.products.filter((obj1: any) => !all_products.some((obj2: any) => obj2.product.uuid === obj1.uuid) );
-                this.associated_products = this.products.filter((obj1: any) => all_products.some((obj2: any) => obj2.product.uuid === obj1.uuid) );   
-            }
-        }
-    }
 
     _add_to_list(product: any){
         this.available_products = this.available_products

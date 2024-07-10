@@ -38,7 +38,6 @@ import { CreateOrEditCategoryComponent } from './category/create-or-edit-categor
 import { CancelInvoiceComponent } from './invoices/cancel-invoice/cancel-invoice.component';
 import { SalesBoxesComponent } from './sales-boxes/sales-boxes.component';
 import { EditSaleBoxeComponent } from './sales-boxes/edit-sale-boxe/edit-sale-boxe.component';
-import { ComposerProductComponent } from './stocks/composer-product/composer-product.component';
 import { MovimentsStockComponent } from './stocks/moviments-stock/moviments-stock.component';
 import { AnaliticsStockComponent } from './stocks/analitics-stock/analitics-stock.component';
 import { SaftAoComponent } from './saft-ao/saft-ao.component';
@@ -50,6 +49,8 @@ import { EstimatesComponent } from './estimates/estimates.component';
 import { GenerateInvoiceComponent } from './estimates/generate-invoice/generate-invoice.component';
 import { DocTemplatesComponent } from './doc-templates/doc-templates.component';
 import { CreateOrEditTemplateCompanyComponent } from './doc-templates/create-or-edit-template-company/create-or-edit-template-company.component';
+import { ComposerCretaeComponent } from './stocks/compositions/composer-create/composer-create.component';
+import { ComposerEditComponent } from './stocks/compositions/composer-edit/composer-edit.component';
 
 
 
@@ -85,7 +86,8 @@ const ngWizardConfig: NgWizardConfig = {
         CreateOrEditStoreComponent,
 
         ListMovimentStockComponent,
-        ComposerProductComponent,
+        ComposerCretaeComponent,
+        ComposerEditComponent,
 
         EmployeesComponent,
         CreateOrEditEmployeeComponent,
