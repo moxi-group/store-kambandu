@@ -1,13 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ApplicationService } from 'src/app/api/application.service';
-import { StocksService } from '../stocks.service';
 import { ProductsService } from '../../../products/products.service';
 import { StoresService } from '../../../stores/stores.service';
+import { CompostionsService } from '../compositions.service';
 
 @Component({
-    selector: 'ComposerProductkModal',
+    selector: 'app-composer-create',
     templateUrl: './composer-create.component.html',
     styleUrls: ['./composer-create.component.scss']
 })
@@ -31,22 +31,12 @@ export class ComposerCretaeComponent implements OnInit {
         private router: Router,
         private _productService: ProductsService,
         private _applicationService: ApplicationService,
-        private _stockService: StocksService,
+        private _compostionsService: CompostionsService,
         public _storeService: StoresService
     ) {
         const product_uuid: string = route.snapshot.params.product_uuid
         this.product_uuid = product_uuid
-
         this._init_(product_uuid)
-        
-        
-        
-        /*
-        this.get_products()
-
-        this.get_product(product_uuid)
-        */
-
     }
 
 
@@ -82,7 +72,7 @@ export class ComposerCretaeComponent implements OnInit {
     }
 
     get_stock() {             
-        this._stockService
+        this._compostionsService
         .get_stock_of_store(
             this.product_uuid, 
             this.store.uuid
@@ -95,7 +85,7 @@ export class ComposerCretaeComponent implements OnInit {
     }
 
     _get_compositions_product(){
-        this._stockService
+        this._compostionsService
         .get_compositions_product( this.stock.uuid )
         .subscribe(response => {
             let results = Object(response)
@@ -162,7 +152,7 @@ export class ComposerCretaeComponent implements OnInit {
 
 
         if ( products.length ) {
-            this._stockService.associate_composition(products, this.product_uuid)
+            this._compostionsService.create(products, this.product_uuid)
             .subscribe(response => {
                 this.submitted = false;                
                 this._applicationService.SwalSuccess("Registo feito com sucesso!");
