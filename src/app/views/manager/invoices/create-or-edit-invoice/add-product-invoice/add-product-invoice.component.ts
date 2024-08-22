@@ -92,7 +92,7 @@ export class AddProductInvoiceComponent implements OnInit {
         this._productsService
         .get_products({})
         .subscribe(response => {
-            this.products = Object(response).items
+            this.products = Object(response).items.filter((item: any) => item.is_active == true)
         })
     }
 

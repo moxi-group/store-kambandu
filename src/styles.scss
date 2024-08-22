@@ -13,6 +13,12 @@ body {
   padding: 15px;
 }
 
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+  color: #fff;
+  border-color: transparent;
+  background-color: #2dcd89;
+}
+
 .card-body {
   padding: 15px !important;
 }

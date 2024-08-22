@@ -48,7 +48,8 @@ export class ProductsComponent implements OnInit {
         this._productsService
         .get_products( this._filterService.pagination )
         .subscribe(response => {
-            this._productsService.products = Object(response)
+            this._productsService.products_active = Object(response).items.filter((item: any) => item.is_active == true)
+            this._productsService.products_inactive = Object(response).items.filter((item: any) => item.is_active == false)
             this.loading = false
         })
     }

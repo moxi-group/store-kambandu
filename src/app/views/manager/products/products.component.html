@@ -26,86 +26,184 @@
                 <div class="card-header border-0">
                     <Filter [options]='filter_options' (filterEmitter)='(_onTableDataChange($event))'></Filter>
                 </div>
-                <!-- Light table -->
-                <div class="table-responsive">
-                    <table class="table align-items-center table-flush">
-                        <thead class="thead-light">
-                            <tr>
-                                <th>#</th>
-                                <th scope="col" class="sort">{{ 'table.name' | translate}}</th>
-                                <th scope="col" class="sort">{{ 'image Path' | translate}}</th>
-                                <th scope="col" class="sort">{{ 'Código' | translate}}</th>
-                                <th scope="col" class="sort">{{ 'table.tax' | translate}}</th>
-                                <th scope="col" class="sort">{{ 'table.price' | translate}}</th>
-                                <th scope="col" class="sort">{{ 'Total' | translate}}</th>
-                                <th scope="col" class="sort">{{ 'Usar Stock' | translate}}</th>
-                                <th scope="col" class="sort">{{ 'table.status' | translate}}</th>
-                                <th scope="col" class="sort">{{ 'Categoria' | translate}}</th>
-                                <th scope="col">Opções</th>
-                            </tr>
-                        </thead>
-                        <tbody class="list" *ngIf="_productsService.products.items">
-                            <tr *ngFor="let item of _productsService.products.items | paginate: {
-                                itemsPerPage: _filterService.pagination.limit,
-                                currentPage: _filterService.pagination.page,
-                                totalItems: _productsService.products.total}
-                                ; index as i">
-                                <td>{{ i+1 }}</td>
-                                <th scope="row"><span class="name mb-0 text-sm">{{ item.name}}</span></th>
-                                <th scope="row"><span class="name mb-0 text-sm">{{ item.image}}</span></th>
-                                <th scope="row"><span class="name mb-0 text-sm">{{ item.code }}</span></th>
-                                <td class="budget">{{ item.tax.code }} - {{ item.tax.percentage }}%</td>
-                                <td class="budget">{{ item.price | to_kwanza }}</td>
-                                <td class="budget">{{ _total_with_tax(item) | to_kwanza }}</td>
-                                <td>
-                                    <span class="badge badge-{{ item.is_stocked ? 'success' : 'primary' }}">{{
-                                        item.is_stocked ? 'SIM' : 'NÃO' }}</span>
-                                </td>
 
-                                <td>
-                                    <span class="badge badge-dot mr-4">
-                                        <i class="bg-green"></i>
-                                        <span class="status">{{ 'status.' + item.is_active.toString() | translate
-                                            }}</span>
-                                    </span>
-                                </td>
-                                <td class="budget">{{ item.category?.name }}</td>
-                                <td class="text-right">
-                                    <div class="dropdown">
-                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                            <a class="dropdown-item" href="#">Opções</a>
-                                            <button type="button" class="dropdown-item" data-toggle="modal"
-                                                (click)="pachValue(item)" data-target="#CreateOrEditProductModal">
-                                                {{ 'btn.update' | translate}}
-                                            </button>
-                                            <a 
-                                                [routerLink]="['/managers/products/composer', item.uuid]"
-                                                class="dropdown-item" 
-                                                href="#">Compor
-                                            </a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="home-tab" data-toggle="tab" data-target="#home"
+                            type="button" role="tab" aria-controls="home" aria-selected="true">Produtos/Serviços Ativos</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="active_product-tab" data-toggle="tab" data-target="#active_product" type="button"
+                            role="tab" aria-controls="active_product" aria-selected="false">Produtos/Serviços Inactivos</button>
+                    </li>
+                </ul>
 
-                        </tbody>
-                    </table>
-                    <app-loading [loading]="this.loading"></app-loading>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <!-- Light table -->
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>#</th>
+                                        <th scope="col" class="sort">{{ 'table.name' | translate}}</th>
+                                        <th scope="col" class="sort">{{ 'image Path' | translate}}</th>
+                                        <th scope="col" class="sort">{{ 'Código' | translate}}</th>
+                                        <th scope="col" class="sort">{{ 'table.tax' | translate}}</th>
+                                        <th scope="col" class="sort">{{ 'table.price' | translate}}</th>
+                                        <th scope="col" class="sort">{{ 'Total' | translate}}</th>
+                                        <th scope="col" class="sort">{{ 'Usar Stock' | translate}}</th>
+                                        <th scope="col" class="sort">{{ 'table.status' | translate}}</th>
+                                        <th scope="col" class="sort">{{ 'Categoria' | translate}}</th>
+                                        <th scope="col">Opções</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="list" *ngIf="_productsService.products_active">
+                                    <tr *ngFor="let item of _productsService.products_active | paginate: {
+                                        itemsPerPage: _filterService.pagination.limit,
+                                        currentPage: _filterService.pagination.page,
+                                        totalItems: _productsService.products_active.total}
+                                        ; index as i">
+                                        <td>{{ i+1 }}</td>
+                                        <th scope="row"><span class="name mb-0 text-sm">{{ item.name}}</span></th>
+                                        <th scope="row"><span class="name mb-0 text-sm">{{ item.image}}</span></th>
+                                        <th scope="row"><span class="name mb-0 text-sm">{{ item.code }}</span></th>
+                                        <td class="budget">{{ item.tax.code }} - {{ item.tax.percentage }}%</td>
+                                        <td class="budget">{{ item.price | to_kwanza }}</td>
+                                        <td class="budget">{{ _total_with_tax(item) | to_kwanza }}</td>
+                                        <td>
+                                            <span class="badge badge-{{ item.is_stocked ? 'success' : 'primary' }}">{{
+                                                item.is_stocked ? 'SIM' : 'NÃO' }}</span>
+                                        </td>
 
-                    <hr>
+                                        <td>
+                                            <span class="badge badge-dot mr-4">
+                                                <i class="bg-green"></i>
+                                                <span class="status">{{ 'status.' + item.is_active.toString() | translate
+                                                    }}</span>
+                                            </span>
+                                        </td>
+                                        <td class="budget">{{ item.category?.name }}</td>
+                                        <td class="text-right">
+                                            <div class="dropdown">
+                                                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                    <a class="dropdown-item" href="#">Opções</a>
+                                                    <button type="button" class="dropdown-item" data-toggle="modal"
+                                                        (click)="pachValue(item)" data-target="#CreateOrEditProductModal">
+                                                        {{ 'btn.update' | translate}}
+                                                    </button>
+                                                    <a [routerLink]="['/managers/products/composer', item.uuid]"
+                                                        class="dropdown-item" href="#">Compor
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
 
-                    <div class='row justify-content-center'>
-                        <div class="col-5">
-                            <pagination-controls (pageChange)="_onTableDataChange($event)" previousLabel="Anterior"
-                                nextLabel="Proximo">
-                            </pagination-controls>
-                        </div>
+                                </tbody>
+                            </table>
+                            <app-loading [loading]="this.loading"></app-loading>
+
+                            <hr>
+
+                            <div class='row justify-content-center'>
+                                <div class="col-5">
+                                    <pagination-controls (pageChange)="_onTableDataChange($event)" previousLabel="Anterior"
+                                        nextLabel="Proximo">
+                                    </pagination-controls>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+
+
+                    <div class="tab-pane fade" id="active_product" role="tabpanel" aria-labelledby="active_product-tab">
+                        <!-- Light table -->
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>#</th>
+                                        <th scope="col" class="sort">{{ 'table.name' | translate}}</th>
+                                        <th scope="col" class="sort">{{ 'image Path' | translate}}</th>
+                                        <th scope="col" class="sort">{{ 'Código' | translate}}</th>
+                                        <th scope="col" class="sort">{{ 'table.tax' | translate}}</th>
+                                        <th scope="col" class="sort">{{ 'table.price' | translate}}</th>
+                                        <th scope="col" class="sort">{{ 'Total' | translate}}</th>
+                                        <th scope="col" class="sort">{{ 'Usar Stock' | translate}}</th>
+                                        <th scope="col" class="sort">{{ 'table.status' | translate}}</th>
+                                        <th scope="col" class="sort">{{ 'Categoria' | translate}}</th>
+                                        <th scope="col">Opções</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="list" *ngIf="_productsService.products_inactive">
+                                    <tr *ngFor="let item of _productsService.products_inactive | paginate: {
+                                        itemsPerPage: _filterService.pagination.limit,
+                                        currentPage: _filterService.pagination.page,
+                                        totalItems: _productsService.products_inactive.total}
+                                        ; index as i">
+                                        <td>{{ i+1 }}</td>
+                                        <th scope="row"><span class="name mb-0 text-sm">{{ item.name}}</span></th>
+                                        <th scope="row"><span class="name mb-0 text-sm">{{ item.image}}</span></th>
+                                        <th scope="row"><span class="name mb-0 text-sm">{{ item.code }}</span></th>
+                                        <td class="budget">{{ item.tax.code }} - {{ item.tax.percentage }}%</td>
+                                        <td class="budget">{{ item.price | to_kwanza }}</td>
+                                        <td class="budget">{{ _total_with_tax(item) | to_kwanza }}</td>
+                                        <td>
+                                            <span class="badge badge-{{ item.is_stocked ? 'success' : 'primary' }}">{{
+                                                item.is_stocked ? 'SIM' : 'NÃO' }}</span>
+                                        </td>
+
+                                        <td>
+                                            <span class="badge badge-dot mr-4">
+                                                <i class="bg-green"></i>
+                                                <span class="status">{{ 'status.' + item.is_active.toString() | translate
+                                                    }}</span>
+                                            </span>
+                                        </td>
+                                        <td class="budget">{{ item.category?.name }}</td>
+                                        <td class="text-right">
+                                            <div class="dropdown">
+                                                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                    <a class="dropdown-item" href="#">Opções</a>
+                                                    <button type="button" class="dropdown-item" data-toggle="modal"
+                                                        (click)="pachValue(item)" data-target="#CreateOrEditProductModal">
+                                                        {{ 'btn.update' | translate}}
+                                                    </button>
+                                                    <a [routerLink]="['/managers/products/composer', item.uuid]"
+                                                        class="dropdown-item" href="#">Compor
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                            <app-loading [loading]="this.loading"></app-loading>
+
+                            <hr>
+
+                            <div class='row justify-content-center'>
+                                <div class="col-5">
+                                    <pagination-controls (pageChange)="_onTableDataChange($event)" previousLabel="Anterior"
+                                        nextLabel="Proximo">
+                                    </pagination-controls>
+                                </div>
+                            </div>
+                        </div> 
                     </div>
                 </div>
+
+
 
             </div>
         </div>

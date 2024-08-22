@@ -8,6 +8,8 @@ import { environment } from 'src/environments/environment';
 export class ProductsService {
 
     products: any = []
+    products_active: any = []
+    products_inactive: any = []
     
     constructor(
         private _http_client: HttpClient
